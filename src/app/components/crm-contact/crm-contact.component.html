@@ -1,0 +1,156 @@
+<div class="card">
+  <div class="card-header">
+    <h5>Contact</h5>
+    <button type="button" class="btn btn-primary waves-effect waves-light f-right d-inline-block md-trigger" (click)="openMyModal('effect-13')"> <i class="icofont icofont-plus m-r-5"></i> Add Contact
+    </button>
+  </div>
+  <div class="card-body">
+    <div class="table-content crm-table">
+      <div class="project-table">
+        <div id="crm-contact" class="dt-responsive">
+          <div class="row">
+            <div class="col-xs-12 col-sm-12 col-sm-12 col-md-6">
+              <div>
+                <label class="label-control">Show
+                  <select class="form-control input-sm full-data-show-entry" [(ngModel)]="rowsOnPage">
+                    <option [ngValue]="10">10</option>
+                    <option [ngValue]="25">25</option>
+                    <option [ngValue]="50">50</option>
+                    <option [ngValue]="100">100</option>
+                  </select>
+                  entries
+                </label>
+              </div>
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-6">
+              <div style="text-align: right;">
+                <label>Search:
+                  <input type="search" [(ngModel)]="filterQuery" class="form-control input-sm full-data-search" placeholder="Search name">
+                </label>
+              </div>
+            </div>
+          </div>
+          <!-- <div class="panel-heading">User information</div>-->
+          <table class="table table-striped table-responsive table-bordered full-data-table" [mfData]="data | dataFilter : filterQuery" #mf="mfDataTable"
+                 [mfRowsOnPage]="rowsOnPage" [(mfSortBy)]="sortBy" [(mfSortOrder)]="sortOrder">
+            <thead>
+            <tr>
+              <th>
+                <mfDefaultSorter  by="image">Profile</mfDefaultSorter>
+              </th>
+              <th>
+                <mfDefaultSorter  by="name">Name</mfDefaultSorter>
+              </th>
+              <th>
+                <mfDefaultSorter  by="email">Email</mfDefaultSorter>
+              </th>
+              <th>
+                <mfDefaultSorter  by="position">Position</mfDefaultSorter>
+              </th>
+              <th>
+                <mfDefaultSorter by="office">Office</mfDefaultSorter>
+              </th>
+              <th>
+                <mfDefaultSorter  by="age">Age</mfDefaultSorter>
+              </th>
+              <th>
+                <mfDefaultSorter  by="age">Favourite</mfDefaultSorter>
+              </th>
+              <th>
+                <mfDefaultSorter by="phone_no">Phone No.</mfDefaultSorter>
+              </th>
+              <th>
+                <mfDefaultSorter by="start-date">Start date</mfDefaultSorter>
+              </th>
+              <th>
+                <mfDefaultSorter>Action</mfDefaultSorter>
+              </th>
+            </tr>
+            <tr>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let item of mf.data">
+              <td><img src="{{item.image}}" class="d-inline-block img-circle " alt="tbl"></td>
+              <td>{{item.name}}</td>
+              <td>{{item.email}}</td>
+              <td>{{item.position}}</td>
+              <td>{{item.office}}</td>
+              <td>{{item.age}}</td>
+              <td class="text-primary text-center">
+              <span *ngIf="item.age > 45"><i class="fa fa-star" aria-hidden="true"></i></span>
+              <span *ngIf="item.age <= 45 && item.age > 25"><i class="fa fa-star-half-o" aria-hidden="true"></i></span>
+              <span *ngIf="item.age <= 25"><i class="fa fa-star-o" aria-hidden="true"></i></span>
+            </td>
+              <td>{{item.phone_no}}</td>
+              <td>{{item.date}}</td>
+              <td class="action-icon">
+                <a href="javascript:;" class="m-r-15 crm-action-edit text-muted text-primary"><i class="icofont icofont-ui-edit"></i></a>
+                <a href="javascript:;" class="crm-action-delete text-muted text-danger"><i class="icofont icofont-delete-alt"></i></a>
+              </td>
+            </tr>
+            </tbody>
+            <tfoot>
+            <tr>
+              <th>Profile</th>
+              <th>Name</th>
+              <th>Email</th>
+              <th>Position</th>
+              <th>Office</th>
+              <th>Age</th>
+              <th>Favourite</th>
+              <th>Phone No.</th>
+              <th>Start date</th>
+              <th>Action</th>
+            </tr>
+            <tr>
+              <td colspan="10">
+                <mfBootstrapPaginator class="pagination-main f-right"></mfBootstrapPaginator>
+              </td>
+            </tr>
+            </tfoot>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Add Contact Start Model -->
+<app-modal-animation [modalID]="'effect-13'" [modalClass]="'md-effect-13'">
+  <h3 class="f-26">Add Contact</h3>
+  <div class="text-center">
+    <div class="input-group">
+      <span class="input-group-addon" id="basic-addon1"><i class="icofont icofont-user"></i></span>
+      <input type="text" class="form-control" placeholder="Full Name">
+    </div>
+    <div class="input-group">
+      <span class="input-group-addon" id="basic-addon2"><i class="icofont icofont-user"></i></span>
+      <input type="text" class="form-control" placeholder="Email">
+    </div>
+    <div class="input-group">
+      <span class="input-group-addon" id="basic-addon3"><i class="icofont icofont-user"></i></span>
+      <input type="text" class="form-control" placeholder="Position">
+    </div>
+    <div class="input-group">
+      <span class="input-group-addon" id="basic-addon4"><i class="icofont icofont-user"></i></span>
+      <input type="text" class="form-control" placeholder="Office">
+    </div>
+    <div class="input-group">
+      <span class="input-group-addon" id="basic-addon5"><i class="icofont icofont-user"></i></span>
+      <input type="number" class="form-control" placeholder="Age">
+    </div>
+    <div class="input-group">
+      <span class="input-group-addon" id="basic-addon6"><i class="icofont icofont-user"></i></span>
+      <input type="text" class="form-control" placeholder="Phone Number">
+    </div>
+    <div class="input-group">
+      <span class="input-group-addon" id="basic-addon7"><i class="icofont icofont-user"></i></span>
+      <input id="dropper-default" class="form-control" type="text" placeholder="Select Your Birth Date" readonly="readonly">
+    </div>
+    <button type="button" class="btn btn-primary waves-effect m-r-20 f-w-600 d-inline-block">Save</button>
+    <button (click)="closeMyModal($event)" class="btn btn-danger waves-effect m-r-20 f-w-600 md-close d-inline-block">Close</button>
+  </div>
+  <button (click)="closeMyModal($event)" aria-label="Close" class="md-close-btn"><i class="icofont icofont-ui-close"></i></button>
+</app-modal-animation>
+<!-- Add Contact Ends Model-->
+<!-- ends -->

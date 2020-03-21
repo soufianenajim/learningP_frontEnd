@@ -1,0 +1,44 @@
+<div class="row">
+  <!-- LINE CHART start -->
+  <div class="col-md-12 col-lg-6">
+    <app-card [title]="'LINE CHART'" [headerContent]="'Lorem ipsum dolor sit amet, consectetur adipisicing elit'">
+        <nvd3 [options]="lineChartOptions" [data]="lineChartData"></nvd3>
+    </app-card>
+  </div>
+  <!-- LINE CHART Ends -->
+  <!-- DISCRETE BAR CHART start -->
+  <div class="col-md-12 col-lg-6">
+    <app-card [title]="'DISCRETE BAR CHART'" [headerContent]="'Lorem ipsum dolor sit amet, consectetur adipisicing elit'">
+      <nvd3 [options]="discreteBarOptions" [data]="discreteBarData"></nvd3>
+    </app-card>
+  </div>
+  <!-- DISCRETE BAR CHART Ends -->
+  <!-- STACKED/GROUPED MULTI-BAR CHART start -->
+  <div class="col-lg-12">
+    <app-card [title]="'STACKED/GROUPED MULTI-BAR CHART'" [headerContent]="'Lorem ipsum dolor sit amet, consectetur adipisicing elit'">
+      <nvd3 [options]="stackedMultiBarOptions" [data]="stackedMultiBarData"></nvd3>
+    </app-card>
+  </div>
+  <!-- STACKED/GROUPED MULTI-BAR CHART Ends -->
+  <!-- SCATTER CHART start -->
+  <div class="col-md-12">
+    <app-card [title]="'Scatter chart'" [headerContent]="'Lorem ipsum dolor sit amet, consectetur adipisicing elit'">
+      <nvd3 [options]="scatterOptions" [data]="scatterData"></nvd3>
+    </app-card>
+  </div>
+  <!-- SCATTER CHART Ends -->
+  <!-- Regular Pie chart start -->
+  <div class="col-md-12 col-lg-6">
+      <app-card [title]="'Regular Pie chart'" [headerContent]="'Lorem ipsum dolor sit amet, consectetur adipisicing elit'">
+        <nvd3 [options]="pieChartOption" [data]="pieChartData"></nvd3>
+      </app-card>
+  </div>
+  <!-- Regular Pie chart Ends -->
+  <!-- Donut Chart start -->
+  <div class="col-md-12 col-lg-6">
+    <app-card [title]="'Donut Chart'" [headerContent]="'Lorem ipsum dolor sit amet, consectetur adipisicing elit'">
+      <nvd3 [options]="donutChartOption" [data]="donutChartData"></nvd3>
+    </app-card>
+  </div>
+  <!-- Donut Chart Ends -->
+</div>

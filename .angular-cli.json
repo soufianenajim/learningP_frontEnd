@@ -1,0 +1,78 @@
+{
+  "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
+  "project": {
+    "name": "mash-able"
+  },
+  "apps": [
+    {
+      "root": "src",
+      "outDir": "dist",
+      "assets": [
+        "assets",
+        "favicon.ico"
+      ],
+      "index": "index.html",
+      "main": "main.ts",
+      "polyfills": "polyfills.ts",
+      "test": "test.ts",
+      "tsconfig": "tsconfig.app.json",
+      "testTsconfig": "tsconfig.spec.json",
+      "prefix": "app",
+      "styles": [
+        "../node_modules/bootstrap/dist/css/bootstrap.min.css",
+        "../node_modules/flag-icon-css/css/flag-icon.min.css",
+        "../node_modules/ti-icons/css/themify-icons.css",
+        "../node_modules/simple-line-icons/css/simple-line-icons.css",
+        "../node_modules/famfamfam-flags/dist/sprite/famfamfam-flags.min.css",
+        "assets/icon/icofont/css/icofont.css",
+        "assets/icon/font-awesome/css/font-awesome.min.css",
+        "../node_modules/sweetalert2/dist/sweetalert2.min.css",
+        "../node_modules/ng2-toasty/style-bootstrap.css",
+        "../node_modules/ng2-toasty/style-default.css",
+        "../node_modules/ng2-toasty/style-material.css",
+        "../node_modules/froala-editor/css/froala_editor.pkgd.min.css",
+        "../node_modules/froala-editor/css/froala_style.min.css",
+        "assets/css/animate.css",
+        "styles.css",
+        "assets/css/custom.css"
+      ],
+      "scripts": [
+        "../node_modules/jquery/dist/jquery.min.js",
+        "../node_modules/froala-editor/js/froala_editor.pkgd.min.js",
+        "../node_modules/raphael/raphael.js",
+        "../node_modules/morris.js/morris.js",
+        "../node_modules/jquery-sparkline/jquery.sparkline.min.js"
+      ],
+      "environmentSource": "environments/environment.ts",
+      "environments": {
+        "dev": "environments/environment.ts",
+        "prod": "environments/environment.prod.ts"
+      }
+    }
+  ],
+  "e2e": {
+    "protractor": {
+      "config": "./protractor.conf.js"
+    }
+  },
+  "lint": [
+    {
+      "project": "src/tsconfig.app.json"
+    },
+    {
+      "project": "src/tsconfig.spec.json"
+    },
+    {
+      "project": "e2e/tsconfig.e2e.json"
+    }
+  ],
+  "test": {
+    "karma": {
+      "config": "./karma.conf.js"
+    }
+  },
+  "defaults": {
+    "styleExt": "css",
+    "component": {}
+  }
+}

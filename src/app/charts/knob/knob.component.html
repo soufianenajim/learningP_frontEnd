@@ -1,0 +1,34 @@
+<div class='row'>
+  <!-- OVERLOADED 'DRAW' METHOD start -->
+  <div class="col-md-12 col-lg-6">
+    <app-card [title]="'Heartbeat Gauge'" [headerContent]="'Lorem ipsum dolor sit amet, consectetur adipisicing elit'" [blockClass]="'text-center'">
+      <knob class="skin1" #myknob1 [min]="0" [max]="360" [value]="0" [startDegree]="0"  [endDegree]="360" [intensive]="false"></knob>
+      <div class="info bpm">{{myknob1.meterValue}} bpm</div>
+  </app-card>
+  </div>
+  <!-- OVERLOADED 'DRAW' METHOD Ends -->
+  <!-- 'CURSOR' MODE start -->
+  <div class="col-md-12 col-lg-6">
+    <app-card [title]="'Frequency Gauge'" [headerContent]="'Lorem ipsum dolor sit amet, consectetur adipisicing elit'" [blockClass]="'text-center'">
+        <knob class="skin3" #myknob3 [min]="0" [max]="360" [value]="92" [startDegree]="0"  [endDegree]="360" [intensive]="false"></knob>
+        <div class="info freq">{{myknob3.meterValue}} freq</div>
+    </app-card>
+  </div>
+  <!-- 'CURSOR' MODE start Ends -->
+  <!-- DISABLE DISPLAY INPUT start -->
+  <div class="col-md-12 col-lg-6">
+    <app-card [title]="'CM Clock'" [headerContent]="'Lorem ipsum dolor sit amet, consectetur adipisicing elit'" [blockClass]="'text-center'">
+        <knob class="skin4" #myknob4 [min]="0" [max]="360" [value]="135" [startDegree]="0"  [endDegree]="360" [intensive]="false"></knob>
+        <div class="info cm">{{myknob4.meterValue}} cm</div>
+    </app-card>
+  </div>
+  <!-- DISABLE DISPLAY INPUT Ends -->
+  <!-- ANGLE OFFSET AND ARC start -->
+  <div class="col-md-12 col-lg-6">
+    <app-card [title]="'Angle OFFSET AND ARC'" [headerContent]="'Lorem ipsum dolor sit amet, consectetur adipisicing elit'" [blockClass]="'text-center'">
+        <knob class="skin2" #myknob2 [min]="0" [max]="270" [value]="45" [startDegree]="320"  [endDegree]="160" [intensive]="false"></knob>
+        <div class="info degree">{{myknob2.meterValue}} degree</div>
+    </app-card>
+  </div>
+  <!-- ANGLE OFFSET AND ARC Ends -->
+</div>

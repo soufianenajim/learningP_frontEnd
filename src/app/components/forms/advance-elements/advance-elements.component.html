@@ -1,0 +1,369 @@
+<div class="row">
+  <div class="col-sm-12">
+    <!-- Switches card start -->
+    <app-card [title]="'Switches'" [headerContent]="'Lorem ipsum dolor sit amet, consectetur adipisicing elit'">
+        <div class="row">
+          <div class="col-sm-12 col-xl-4 m-b-30">
+            <h4 class="sub-title">Single Switche</h4>
+            <ui-switch class="js-single" color="#1abc9c" switchColor="#fff" size="medium" checked></ui-switch>
+            <!-- <input type="checkbox" class="js-single" checked />-->
+          </div>
+          <div class="col-sm-12 col-xl-4 m-b-30">
+            <h4 class="sub-title">Multiple Switches</h4>
+            <ui-switch class="js-switch" color="#1abc9c" switchColor="#fff" size="medium" checked></ui-switch>
+            <ui-switch class="js-switch" color="#1abc9c" switchColor="#fff" size="medium" checked></ui-switch>
+            <ui-switch class="js-switch" color="#1abc9c" switchColor="#fff" size="medium" checked></ui-switch>
+          </div>
+          <div class="col-sm-12 col-xl-4 m-b-30">
+            <h4 class="sub-title">Enable Disable Switches</h4>
+            <ui-switch class="js-dynamic-state" color="#1abc9c" switchColor="#fff" size="medium" [disabled]="switchDisable" checked></ui-switch>
+            <button class="btn btn-default js-dynamic-disable" (click)="disableSwitch()">Disable Button</button>
+            <button class="btn btn-primary js-dynamic-enable" (click)="enableSwitch()">Enable Button</button>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-sm-8 m-b-3">
+            <h4 class="sub-title">Color Switches</h4>
+            <ui-switch class="js-default" color="#bdc3c7" switchColor="#fff" size="medium" checked></ui-switch>
+            <ui-switch class="js-primary" color="#1abc9c" switchColor="#fff" size="medium" checked></ui-switch>
+            <ui-switch class="js-success" color="#2ecc71" switchColor="#fff" size="medium" checked></ui-switch>
+            <ui-switch class="js-info" color="#3498DB" switchColor="#fff" size="medium" checked></ui-switch>
+            <ui-switch class="js-warning" color="#f1c40f" switchColor="#fff" size="medium" checked></ui-switch>
+            <ui-switch class="js-danger" color="#e74c3c" switchColor="#fff" size="medium" checked></ui-switch>
+            <ui-switch class="js-inverse" color="#34495e" switchColor="#fff" size="medium" checked></ui-switch>
+          </div>
+          <div class="col-sm-4">
+            <h4 class="sub-title">Switch Sizes</h4>
+            <ui-switch class="js-large" color="#1abc9c" switchColor="#fff" size="large" checked></ui-switch>
+            <ui-switch class="js-medium" color="#2ecc71" switchColor="#fff" size="medium" checked></ui-switch>
+            <ui-switch class="js-small" color="#3498DB" switchColor="#fff" size="small" checked></ui-switch>
+          </div>
+        </div>
+    </app-card>
+    <!-- Switches card end -->
+    <!-- Radio card start -->
+    <app-card [title]="'RADIO'" [headerContent]="'Lorem ipsum dolor sit amet, consectetur adipisicing elit'">
+        <div class="row">
+          <div class="col-sm-12 col-xl-6 m-b-30">
+            <h4 class="sub-title">Radio Fill Button</h4>
+            <div class="form-radio">
+              <form>
+                <div class="radio radio-inline">
+                  <label>
+                    <input type="radio" name="radio" checked="checked">
+                    <i class="helper"></i>Radio 1
+                  </label>
+                </div>
+                <div class="radio radio-inline">
+                  <label>
+                    <input type="radio" name="radio">
+                    <i class="helper"></i>Radio 2
+                  </label>
+                </div>
+                <div class="radio radio-inline radio-disable">
+                  <label>
+                    <input type="radio" disabled="" name="radio">
+                    <i class="helper"></i>Radio Disable
+                  </label>
+                </div>
+              </form>
+            </div>
+          </div>
+          <div class="col-sm-12 col-xl-6 m-b-30">
+            <h4 class="sub-title">Radio Button</h4>
+            <div class="form-radio">
+              <form>
+                <div class="radio radiofill radio-inline">
+                  <label>
+                    <input type="radio" name="radio" checked="checked">
+                    <i class="helper"></i>Radio-fill 1
+                  </label>
+                </div>
+                <div class="radio radiofill radio-inline">
+                  <label>
+                    <input type="radio" name="radio">
+                    <i class="helper"></i>Radio-fill 2
+                  </label>
+                </div>
+                <div class="radio radiofill radio-inline radio-disable">
+                  <label>
+                    <input type="radio" disabled="" name="radio">
+                    <i class="helper"></i>Radio-fill Disable
+                  </label>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+        <h4 class="sub-title">Color Radio Button</h4>
+        <div class="form-radio">
+          <form>
+            <div class="radio radiofill radio-default radio-inline">
+              <label>
+                <input type="radio" name="radio" checked="checked">
+                <i class="helper"></i>Default Color
+              </label>
+            </div>
+            <div class="radio radiofill radio-primary radio-inline">
+              <label>
+                <input type="radio" name="radio" checked="checked">
+                <i class="helper"></i>Primary Color
+              </label>
+            </div>
+            <div class="radio radiofill radio-success radio-inline">
+              <label>
+                <input type="radio" name="radio" checked="checked">
+                <i class="helper"></i>Success Color
+              </label>
+            </div>
+            <div class="radio radiofill radio-info radio-inline">
+              <label>
+                <input type="radio" name="radio" checked="checked">
+                <i class="helper"></i>Info Color
+              </label>
+            </div>
+            <div class="radio radiofill radio-warning radio-inline">
+              <label>
+                <input type="radio" name="radio" checked="checked">
+                <i class="helper"></i>Warning Color
+              </label>
+            </div>
+            <div class="radio radiofill radio-danger radio-inline">
+              <label>
+                <input type="radio" name="radio" checked="checked">
+                <i class="helper"></i>Danger Color
+              </label>
+            </div>
+            <div class="radio radiofill radio-inverse radio-inline">
+              <label>
+                <input type="radio" name="radio" checked="checked">
+                <i class="helper"></i>Inverse Color
+              </label>
+            </div>
+          </form>
+        </div>
+    </app-card>
+    <!-- Radio card end -->
+    <!-- Checkbox card start -->
+    <app-card [title]="'Checkbox'" [headerContent]="'Lorem ipsum dolor sit amet, consectetur adipisicing elit'">
+        <div class="row">
+          <div class="col-sm-12 col-xl-6 m-b-30">
+            <h4 class="sub-title">Border Checkbox</h4>
+            <div class="border-checkbox-section">
+              <div class="border-checkbox-group border-checkbox-group-default">
+                <input class="border-checkbox" type="checkbox" id="checkbox0">
+                <label class="border-checkbox-label" for="checkbox0">Do you like it?</label>
+              </div>
+              <div class="border-checkbox-group border-checkbox-group-primary">
+                <input class="border-checkbox" type="checkbox" id="checkbox1">
+                <label class="border-checkbox-label" for="checkbox1">Primary</label>
+              </div>
+              <div class="border-checkbox-group border-checkbox-group-success">
+                <input class="border-checkbox" type="checkbox" id="checkbox2">
+                <label class="border-checkbox-label" for="checkbox2">Success</label>
+              </div>
+              <div class="border-checkbox-group border-checkbox-group-info">
+                <input class="border-checkbox" type="checkbox" id="checkbox3">
+                <label class="border-checkbox-label" for="checkbox3">Info</label>
+              </div>
+              <div class="border-checkbox-group border-checkbox-group-warning">
+                <input class="border-checkbox" type="checkbox" id="checkbox4">
+                <label class="border-checkbox-label" for="checkbox4">Warning</label>
+              </div>
+              <div class="border-checkbox-group border-checkbox-group-danger">
+                <input class="border-checkbox" type="checkbox" id="checkbox5">
+                <label class="border-checkbox-label" for="checkbox5">Danger</label>
+              </div>
+              <div class="border-checkbox-group">
+                <input class="border-checkbox" type="checkbox" id="checkbox6" disabled>
+                <label class="border-checkbox-label" for="checkbox6">Disabled</label>
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-12 col-xl-6 m-b-30">
+            <h4 class="sub-title">Fade-in Checkbox</h4>
+            <div class="checkbox-fade fade-in-default">
+              <label>
+                <input type="checkbox" value="">
+                <span class="cr">
+                                    <i class="cr-icon icofont icofont-ui-check txt-default"></i>
+                                    </span> <span>Default</span>
+              </label>
+            </div>
+            <div class="checkbox-fade fade-in-primary">
+              <label>
+                <input type="checkbox" value="">
+                <span class="cr">
+                                    <i class="cr-icon icofont icofont-ui-check txt-primary"></i>
+                                    </span> <span>Primary</span>
+              </label>
+            </div>
+            <div class="checkbox-fade fade-in-warning">
+              <label>
+                <input type="checkbox" value="">
+                <span class="cr">
+                                    <i class="cr-icon icofont icofont-ui-check txt-warning"></i>
+                                    </span><span> Warning</span>
+              </label>
+            </div>
+            <div class="checkbox-fade fade-in-success">
+              <label>
+                <input type="checkbox" value="">
+                <span class="cr">
+                                    <i class="cr-icon icofont icofont-ui-check txt-success"></i>
+                                    </span> <span>Success</span>
+              </label>
+            </div>
+            <div class="checkbox-fade fade-in-info">
+              <label>
+                <input type="checkbox" value="">
+                <span class="cr">
+                                    <i class="cr-icon icofont icofont-ui-check txt-info"></i>
+                                    </span><span> Info</span>
+              </label>
+            </div>
+            <div class="checkbox-fade fade-in-danger">
+              <label>
+                <input type="checkbox" value="">
+                <span class="cr">
+                                    <i class="cr-icon icofont icofont-ui-check txt-danger"></i>
+                                    </span><span> Danger</span>
+              </label>
+            </div>
+            <div class="checkbox-fade fade-in-disable">
+              <label>
+                <input type="checkbox" value="" disabled>
+                <span class="cr">
+                                    <i class="cr-icon icofont icofont-ui-check text-default"></i>
+                                    </span> <span>Disabled</span>
+              </label>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-sm-12 col-xl-6 m-b-30">
+            <h4 class="sub-title">Color Checkbox</h4>
+            <div class="checkbox-color checkbox-default">
+              <input id="checkbox12" type="checkbox" checked="">
+              <label for="checkbox12">
+                Default
+              </label>
+            </div>
+            <div class="checkbox-color checkbox-primary">
+              <input id="checkbox18" type="checkbox" checked="">
+              <label for="checkbox18">
+                Primary
+              </label>
+            </div>
+            <div class="checkbox-color checkbox-success">
+              <input id="checkbox13" type="checkbox" checked="">
+              <label for="checkbox13">
+                Success
+              </label>
+            </div>
+            <div class="checkbox-color checkbox-info">
+              <input id="checkbox14" type="checkbox" checked="">
+              <label for="checkbox14">
+                Info
+              </label>
+            </div>
+            <div class="checkbox-color checkbox-warning">
+              <input id="checkbox15" type="checkbox" checked="">
+              <label for="checkbox15">
+                Warning
+              </label>
+            </div>
+            <div class="checkbox-color checkbox-danger">
+              <input id="checkbox16" type="checkbox" checked="">
+              <label for="checkbox16">
+                Danger
+              </label>
+            </div>
+            <div class="checkbox-color checkbox-default">
+              <input id="checkbox17" type="checkbox" disabled="">
+              <label for="checkbox17">
+                Disabled
+              </label>
+            </div>
+          </div>
+        </div>
+    </app-card>
+    <!-- Checkbox card end -->
+    <!-- Tags section start -->
+    <app-card [title]="'Tags Input'" [headerContent]="'Lorem ipsum dolor sit amet, consectetur adipisicing elit'">
+        <div class="row">
+          <div class="col-sm-12 col-xl-4 m-b-30">
+            <h4 class="sub-title">Markup</h4>
+            <p>Just add <code>data-role="tagsinput"</code> to your input field to automatically change it to a tags input field.</p>
+            <tag-input [(ngModel)]='items' theme='bootstrap'></tag-input>
+          </div>
+          <div class="col-sm-12 col-xl-4 m-b-30">
+            <h4 class="sub-title">Colors</h4>
+            <p>You can set a fixed css class for your tags, or determine dynamically by providing a custom function.</p>
+            <div class="color-tags">
+              <input class="" type="text" />
+            </div>
+          </div>
+          <div class="col-sm-12 col-xl-4 m-b-30">
+            <h4 class="sub-title">Max-Tags</h4>
+            <p>Just add <code>"tags_max"</code> to your input field to automatically change it to a tags input field.</p>
+            <div class="tags_max">
+              <tag-input [(ngModel)]='items1' theme='bootstrap' [maxItems]='10'></tag-input>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-sm-12 col-xl-4 m-b-30">
+            <h4 class="sub-title">Max-Characters</h4>
+            <p>Just add <code>"tags_max_char"</code> to your input field to automatically change it to a tags input field.</p>
+            <div class="tags_max_char">
+              <tag-input [(ngModel)]='items2' theme='bootstrap' ></tag-input>
+            </div>
+          </div>
+          <div class="col-sm-12 col-xl-4 ">
+            <h4 class="sub-title">Multiple</h4>
+            <p>Just add <code>"tags_add_multiple"</code> to your input field to automatically change it to a tags input field.</p>
+            <div class="tags_add_multiple">
+              <tag-input [(ngModel)]='items3' theme='bootstrap'></tag-input>
+            </div>
+          </div>
+          <div class="col-sm-4"></div>
+        </div>
+    </app-card>
+    <!-- Tags section ends -->
+    <!-- Max Length Section Start -->
+    <app-card [title]="'Max Length'" [headerContent]="'Lorem ipsum dolor sit amet, consectetur adipisicing elit'">
+        <div class="row">
+          <div class="col-sm-12 col-xl-4 m-b-30">
+            <h4 class="sub-title">Default</h4>
+            <p>The badge will show up by default when the remaining chars are <code>10</code> or <code>less</code>:</p>
+            <input type="text" class="form-control" placeholder="Type your keywords..." maxlength="25">
+          </div>
+          <div class="col-sm-12 col-xl-4 m-b-30">
+            <h4 class="sub-title">Thresold</h4>
+            <p>Do you want the badge to show up when there are <code>20 chars</code> or less? Use the <code>threshold</code> option:</p>
+            <input type="text" class="form-control thresold-i" placeholder="Type your keywords..." maxlength="25">
+          </div>
+          <div class="col-sm-12 col-xl-4 m-b-30">
+            <h4 class="sub-title">Color-lables</h4>
+            <p>Just add <code>color-class</code>with <code>input</code></p>
+            <input type="text" class="form-control color-class" placeholder="Type your keywords..." maxlength="25">
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-sm-12 col-xl-4 m-b-30">
+            <h4 class="sub-title">Play With Positions</h4>
+            <p>All you need to do is specify the <code>placement option</code>, with one of those strings. If none is specified, the positioning will be defauted to <code>'top-left'</code>.
+            </p>
+            <input type="text" class="form-control position-class" placeholder="Type your keywords..." maxlength="25">
+          </div>
+          <div class="col-sm-12 col-xl-8">
+            <h4 class="sub-title">Also Working With Textarea</h4>
+            <p>Bootstrap maxlength supports textarea as well as inputs. Even on old IE.</p>
+            <textarea class="form-control max-textarea" maxlength="255" rows="4"></textarea>
+          </div>
+        </div>
+    </app-card>
+    <!-- Max Length Section end -->
+  </div>
+</div>

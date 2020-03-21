@@ -1,0 +1,26 @@
+<div class="row">
+  <div class="col-sm-12">
+    <!-- wysiwyg-editor card start -->
+    <app-card [title]="'Wysiwyg Basic'" [classHeader]="true">
+      <span class="code-header">use property <code>froalaEditor</code> with options</span>
+      <div [froalaEditor]="{heightMin:275}">Hello, Froala!</div>
+    </app-card>
+    <!-- wysiwyg-editor card end -->
+  </div>
+
+  <div class="col-sm-12">
+    <!-- wysiwyg-editor card start -->
+    <app-card [title]="'Wysiwyg Theme'" [classHeader]="true">
+      <span class="code-header">use property <code>froalaEditor</code> with options theme<code>dark, red, gray, royal</code></span>
+      <span class="sub-title">Theme Dark</span>
+      <div [froalaEditor]="{theme: 'dark'}">Hello, Froala Dark!</div><hr>
+      <span class="sub-title m-t-20">Theme Red</span>
+      <div [froalaEditor]="{theme: 'red'}">Hello, Froala Red!</div><hr>
+      <span class="sub-title m-t-20">Theme Gray</span>
+      <div [froalaEditor]="{theme: 'gray'}">Hello, Froala Gray!</div><hr>
+      <span class="sub-title m-t-20">Theme Royal</span>
+      <div [froalaEditor]="{theme: 'royal'}">Hello, Froala Royal!</div>
+    </app-card>
+    <!-- wysiwyg-editor card end -->
+  </div>
+</div>

@@ -1,0 +1,204 @@
+<div class="row">
+  <div class="col-lg-12 col-xl-6">
+    <!-- Date card start -->
+    <app-card [title]="'Date'" [headerContent]="'Lorem ipsum dolor sit amet, consectetur adipisicing elit'">
+      <p class="m-b-15">Add class of <code>.date</code> with <code>data-mask</code> attribute</p>
+      <form>
+        <div class="row form-group">
+          <div class="col-sm-3">
+            <label class="col-form-label">Insert Date 1</label>
+          </div>
+          <div class="col-sm-9">
+            <input type="text" specialCharacters="false" class="form-control date" placeholder="__/__/____" mask='00/00/0000'>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-sm-3">
+            <label class="col-form-label">Insert Date 2</label>
+          </div>
+          <div class="col-sm-9">
+            <input type="text" class="form-control date2" placeholder="__-__-____" specialCharacters="false" mask="00-00-0000">
+          </div>
+        </div>
+      </form>
+    </app-card>
+    <!-- Date card end -->
+  </div>
+  <div class="col-lg-12 col-xl-6">
+    <!-- Time card start -->
+    <app-card [title]="'Time'" [headerContent]="'Lorem ipsum dolor sit amet, consectetur adipisicing elit'">
+      <p class="m-b-15">Add class of <code>.hour</code> with <code>data-mask</code> attribute</p>
+      <form>
+        <div class="row form-group">
+          <div class="col-sm-3">
+            <label class="col-form-label">Hour</label>
+          </div>
+          <div class="col-sm-9">
+            <input type="text" class="form-control hour" placeholder="__:__:__" mask="00:00:00">
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-sm-3">
+            <label class="col-form-label">Date & Hour</label>
+          </div>
+          <div class="col-sm-9">
+            <input type="text" class="form-control dateHour" placeholder="__/__/____ __:__:__" mask="00/00/00 00:00:00">
+          </div>
+        </div>
+      </form>
+    </app-card>
+    <!-- Time card end -->
+  </div>
+</div>
+<div class="row">
+  <div class="col-lg-12 col-xl-6">
+    <!-- Phone no card start -->
+    <app-card [title]="'Phone no.'" [headerContent]="'Lorem ipsum dolor sit amet, consectetur adipisicing elit'">
+      <p class="m-b-15">Add class of <code>.mob_no</code> with <code>data-mask</code> attribute</p>
+      <form>
+        <div class="row form-group">
+          <div class="col-sm-3">
+            <label class="col-form-label">Mobile No.</label>
+          </div>
+          <div class="col-sm-9">
+            <input type="text" class="form-control mob_no" placeholder="____-___-___"  specialCharacters="false"  mask="0000-000-000">
+          </div>
+        </div>
+        <div class="row form-group">
+          <div class="col-sm-3">
+            <label class="col-form-label">Telephone</label>
+          </div>
+          <div class="col-sm-9">
+            <input type="text" class="form-control phone" placeholder="____-____"  specialCharacters="false" mask="0000-0000">
+          </div>
+        </div>
+        <div class="row form-group">
+          <div class="col-sm-3">
+            <label class="col-form-label">Tel. with Code Area</label>
+          </div>
+          <div class="col-sm-9">
+            <input type="text" class="form-control telphone_with_code" placeholder="(__) ____-____" mask="(00) 0000-0000">
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-sm-3">
+            <label class="col-form-label">US Telephone</label>
+          </div>
+          <div class="col-sm-9">
+            <input type="text" class="form-control us_telephone" placeholder="(___) ___-____" mask="(000) 000-0000">
+          </div>
+        </div>
+      </form>
+    </app-card>
+    <!-- Phone no card end -->
+  </div>
+  <div class="col-lg-12 col-xl-6">
+    <!-- Network card start -->
+    <app-card [title]="'Network'" [headerContent]="'Lorem ipsum dolor sit amet, consectetur adipisicing elit'">
+      <p class="m-b-15">Add class of <code>.ip</code> with <code>data-mask</code> attribute</p>
+      <form>
+        <div class="row form-group">
+          <div class="col-sm-3">
+            <label class="col-form-label">IP Address</label>
+          </div>
+          <div class="col-sm-9">
+            <input type="text" class="form-control ip" placeholder="___.___.___.___" mask="000.000.000.000">
+          </div>
+        </div>
+        <div class="row form-group">
+          <div class="col-sm-3">
+            <label class="col-form-label">IPV4</label>
+          </div>
+          <div class="col-sm-9">
+            <input type="text" class="form-control ipv4" placeholder="___.___.___.____" mask="00/00/0000 00:00:00">
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-sm-3">
+            <label class="col-form-label">IPV6</label>
+          </div>
+          <div class="col-sm-9">
+            <input type="text" class="form-control ipv6" placeholder="____:____:____:_:___:____:____:____" mask="0000:0000:0000:0:000:0000:0000:0000">
+          </div>
+        </div>
+      </form>
+    </app-card>
+    <!-- Network card end -->
+  </div>
+</div>
+<div class="row">
+  <div class="col-lg-12 col-xl-6">
+    <!-- Numbers card start -->
+    <app-card [title]="'Numbers'" [headerContent]="'Lorem ipsum dolor sit amet, consectetur adipisicing elit'">
+      <p class="m-b-15">Add class of <code>.autonumber</code> with <code>&lt;input&gt;</code> tag</p>
+      <form>
+        <div class="row form-group">
+          <div class="col-sm-3">
+            <label class="col-form-label">Default</label>
+          </div>
+          <div class="col-sm-9">
+            <input type="text" class="form-control autonumber" >
+          </div>
+        </div>
+        <div class="row form-group">
+          <div class="col-sm-3">
+            <label class="col-form-label">Auto Numeric (%)</label>
+          </div>
+          <div class="col-sm-9">
+            <input type="text" class="form-control autonumber" name="autonumeric" currencyMask  [(ngModel)]="value5" [options]="{ prefix: '% ', align: 'right', allowZero: false }">
+          </div>
+        </div>
+      </form>
+    </app-card>
+    <!-- Numbers card end -->
+  </div>
+  <div class="col-lg-12 col-xl-6">
+    <!-- Currency card start -->
+    <app-card [title]="'Currency'" [headerContent]="'Lorem ipsum dolor sit amet, consectetur adipisicing elit'">
+      <p class="m-b-15">Add class of <code>.autonumber</code> with <code>data-a-*</code> attribute</p>
+      <form>
+        <div class="row form-group">
+          <div class="col-sm-3">
+            <label class="col-form-label">Dollar ($)</label>
+          </div>
+          <div class="col-sm-9">
+            <input type="text" class="form-control autonumber" name="dollar" currencyMask  [(ngModel)]="value" [options]="{ prefix: '$ ', align: 'left', allowZero: false }" >
+          </div>
+        </div>
+        <div class="row form-group">
+          <div class="col-sm-3">
+            <label class="col-form-label">Euro (€)</label>
+          </div>
+          <div class="col-sm-9">
+            <input type="text" class="form-control autonumber" name="Euro" currencyMask [(ngModel)]="value1" [options]="{ prefix: '€ ', align: 'left', allowZero: false }" >
+          </div>
+        </div>
+        <div class="row form-group">
+          <div class="col-sm-3">
+            <label class="col-form-label">Rupee (Rs.)</label>
+          </div>
+          <div class="col-sm-9">
+            <input type="text" name="Rupee" class="form-control autonumber"  currencyMask [(ngModel)]="value2" [options]="{ prefix: 'Rs. ', align: 'left', allowZero: false }" >
+          </div>
+        </div>
+        <div class="row form-group">
+          <div class="col-sm-3">
+            <label class="col-form-label">Renminbi (¥)</label>
+          </div>
+          <div class="col-sm-9">
+            <input type="text" class="form-control autonumber" name="renminbi"  currencyMask [(ngModel)]="value3" [options]="{ prefix: '¥ ', align: 'left', allowZero: false }" >
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-sm-3">
+            <label class="col-form-label">Pound (£)</label>
+          </div>
+          <div class="col-sm-9">
+            <input type="text" class="form-control autonumber" name="pound" currencyMask [(ngModel)]="value4" [options]="{ prefix: '£ ', align: 'left', allowZero: false }" >
+          </div>
+        </div>
+      </form>
+    </app-card>
+    <!-- Currency card end -->
+  </div>
+</div>

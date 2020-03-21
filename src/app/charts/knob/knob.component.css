@@ -1,0 +1,59 @@
+h3{
+    color:red;
+}
+knob.container{
+    width: 144px;
+    overflow: hidden;
+    border: 7px solid #FAFAFA;
+    padding: 20px;
+    box-shadow: 0px 0px 4px rgba(0,0,0,0.5);
+    background: #272727;
+    float:left;
+    margin:40px;
+}
+.info.bpm, .info.cm, .info.freq, .info.degree{
+    font-size: 2em;
+    margin-top: 22px;
+    text-align: center;
+    border-radius: 7px;
+}
+knob{
+    background-size:contain;
+    margin: 0 auto;
+    max-width: 100%;
+    width:200px;
+    height:200px;
+    display:block;
+}
+knob.skin1{
+    background:url('skins/gen-bg.png');
+    background-size: contain;
+}
+knob.skin1 /deep/ .knob{
+    background:url('skins/skin1.png');
+    background-size: contain;
+}
+knob.skin2{
+    background:url('skins/skin2-bg.png');
+    background-size: contain;
+}
+knob.skin2 /deep/ .knob{
+    background:url('skins/skin2-arrow.png');
+    background-size: contain;
+}
+knob.skin3{
+    background:url('skins/gen-bg.png');
+    background-size: contain;
+}
+knob.skin3 /deep/ .knob{
+    background:url('skins/skin3.png');
+    background-size: contain;
+}
+knob.skin4{
+    background:url('skins/gen-bg.png');
+    background-size: contain;
+}
+knob.skin4 /deep/ .knob{
+    background:url('skins/skin4.png');
+    background-size: contain;
+}

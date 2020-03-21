@@ -1,0 +1,31 @@
+<div class="row">
+    <div class="col-md-12 col-lg-8">
+        <app-card [title]="'LINE CHART'" [headerContent]="'Lorem ipsum dolor sit amet, consectetur adipisicing elit'">
+            <div echarts [options]="lineChartOption" style="height: 300px;"></div>
+        </app-card>
+    </div>
+    <div class="col-md-12 col-lg-4">
+        <app-card [title]="'PIE CHART'" [headerContent]="'Lorem ipsum dolor sit amet, consectetur adipisicing elit'">
+            <div echarts [options]="pieChartOption" style="height: 300px;"></div>
+        </app-card>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-12 col-lg-8">
+        <app-card [title]="'SERVER LOAD'" [headerContent]="'Lorem ipsum dolor sit amet, consectetur adipisicing elit'">
+            <div echarts [options]="serverChartOption" style="height: 300px;"></div>
+        </app-card>
+    </div>
+    <div class="col-md-12 col-lg-4">
+        <app-card [title]="'Column CHART'" [headerContent]="'Lorem ipsum dolor sit amet, consectetur adipisicing elit'">
+            <div echarts [dataset]="dataset" [options]="columnChartOption" style="height: 300px;"></div>
+        </app-card>
+    </div>
+</div>
+<div class="row">
+    <div class="col-lg-12">
+        <app-card [title]="'Scatter chart'" [headerContent]="'Lorem ipsum dolor sit amet, consectetur adipisicing elit'">
+            <div echarts [options]="scatterChartOption" style="height: 300px;"></div>
+        </app-card>
+    </div>
+</div>

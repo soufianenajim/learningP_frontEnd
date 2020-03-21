@@ -1,0 +1,99 @@
+<div class="row">
+  <div class="col-sm-12">
+    <app-card [title]="'Bar Chart'">
+      <x-chartist [data]="barChartData" [type]="'Bar'" [options]="{height:300}" ></x-chartist>
+    </app-card>
+  </div>
+
+  <div class="col-lg-6 col-sm-12">
+    <app-card [title]="'Line Chart Regular'">
+      <x-chartist [data]="lineChartData" [type]="'Line'" [options]="{height:300}" ></x-chartist>
+    </app-card>
+  </div>
+
+  <div class="col-lg-6 col-sm-12">
+    <app-card [title]="'Line Chart Irregular'">
+      <x-chartist [data]="lineChartIrregularData" [type]="'Line'" [options]="{height:300}" ></x-chartist>
+    </app-card>
+  </div>
+
+  <div class="col-lg-6 col-sm-12">
+    <app-card [title]="'Scatter Chart'">
+      <x-chartist [data]="scatterChartData" [type]="'Line'" [options]="scatterChartOption" [responsiveOptions]="scatterChartResponsiveOption">
+      </x-chartist>
+    </app-card>
+  </div>
+
+  <div class="col-lg-6 col-sm-12">
+    <app-card [title]="'Area Chart'">
+      <x-chartist [data]="areaChartData" [type]="'Line'" [options]="areaChartOption"></x-chartist>
+    </app-card>
+  </div>
+
+  <div class="col-lg-6 col-sm-12">
+    <app-card [title]="'Bi-Polar Bar Chart'">
+      <x-chartist [data]="biPolarChartData" [type]="'Bar'" [options]="biPolarChartOption"></x-chartist>
+    </app-card>
+  </div>
+
+  <div class="col-lg-6 col-sm-12">
+    <app-card [title]="'Distributed Series Chart'">
+      <x-chartist [data]="distributedChartData" [type]="'Bar'" [options]="distributedChartOption"></x-chartist>
+    </app-card>
+  </div>
+
+  <div class="col-lg-6 col-sm-12">
+    <app-card [title]="'Pie 180 Chart'">
+      <x-chartist [data]="pieChartData" [type]="'Pie'" [options]="pieChartOption"></x-chartist>
+    </app-card>
+  </div>
+
+  <div class="col-lg-6 col-sm-12">
+    <app-card [title]="'Pie 360 Chart'">
+      <x-chartist [data]="pieChartData" [type]="'Pie'" [options]="pieFullChartOption"></x-chartist>
+    </app-card>
+  </div>
+
+  <div class="col-lg-6 col-sm-12">
+    <app-card [title]="'Async Chart'">
+      <x-chartist [data]="data" [type]="type" [options]="{height:300}"></x-chartist>
+    </app-card>
+  </div>
+
+  <div class="col-lg-6 col-sm-12">
+    <app-card [title]="'Live Chart'">
+      <x-chartist [data]="dataLiveChart" [type]="typeLiveChart" [options]="optionLiveChart"></x-chartist>
+    </app-card>
+  </div>
+
+  <div class="col-sm-12">
+    <app-card [title]="'Dynamic Chart'">
+      <div class="row">
+        <div class="col-md-12">
+          <select class="form-control" [(ngModel)]="typeDynamicChart">
+            <option *ngFor="let type of chartTypes" [ngValue]="type">{{type}}</option>
+          </select>
+        </div>
+      </div>
+      <x-chartist [data]="dataDynamicChart" [type]="typeDynamicChart" [options]="optionsDynamicChart"></x-chartist>
+    </app-card>
+  </div>
+
+  <div class="col-lg-6 col-sm-12">
+    <app-card [title]="'BI-POLAR LINE CHART WITH AREA ONLY'">
+      <x-chartist [data]="biPolarLineAreaData" [type]="'Line'" [options]="biPolarLineAreaOption" ></x-chartist>
+    </app-card>
+  </div>
+
+  <div class="col-lg-6 col-sm-12">
+    <app-card [title]="'SERIES OVERRIDES'">
+      <x-chartist [data]="seriesOverChartData" [type]="'Line'" [options]="seriesOverChartOption" [responsiveOptions]="seriesOverChartResponsiveOption"></x-chartist>
+    </app-card>
+  </div>
+
+  <div class="col-sm-12">
+    <app-card [title]="'HORIZONTAL BAR CHART'">
+      <x-chartist [data]="horizontalChartData" [type]="'Bar'" [options]="horizontalChartOption"></x-chartist>
+    </app-card>
+  </div>
+</div>
