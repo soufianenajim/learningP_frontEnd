@@ -23,9 +23,6 @@ export const AppRoutes: Routes = [{
     path: 'authentication',
     loadChildren: './authentication/authentication.module#AuthenticationModule'
   },{
-    path: 'error',
-    loadChildren: './error/error.module#ErrorModule'
-  },{
     path: 'landing',
     loadChildren: './landing/landing.module#LandingModule'
   },{
