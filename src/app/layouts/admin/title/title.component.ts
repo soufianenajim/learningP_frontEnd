@@ -23,7 +23,7 @@ export class TitleComponent {
             }
           })
         } while (currentRoute);
-        this.titleService.setTitle( 'Mash Able | ' + title );
+        this.titleService.setTitle( 'Learning  | ' + title );
       });
   }
 }
