@@ -15,13 +15,14 @@ import { TitleComponent } from './layouts/admin/title/title.component';
 import {ScrollModule} from './scroll/scroll.module';
 import {LocationStrategy, PathLocationStrategy} from '@angular/common';
 
+
 @NgModule({
   declarations: [
     AppComponent,
     AdminLayoutComponent,
     AuthLayoutComponent,
     BreadcrumbsComponent,
-    TitleComponent
+    TitleComponent,
   ],
   imports: [
     BrowserModule,
@@ -30,7 +31,7 @@ import {LocationStrategy, PathLocationStrategy} from '@angular/common';
     RouterModule.forRoot(AppRoutes),
     FormsModule,
     HttpModule,
-    ScrollModule
+    ScrollModule,
   ],
   exports: [ScrollModule],
   providers: [
