@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import {SlimScroll} from "angular-io-slimscroll";
+import {SlimScroll} from './slimscroll.directive';
 
 @NgModule({
   imports: [

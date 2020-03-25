@@ -19,30 +19,45 @@ export const AppRoutes: Routes = [
       },
       {
         path: "chapter",
-        loadChildren: "./components/chapter/chapter.module#ChapterModule"
+        loadChildren: "./modules/chapter/chapter.module#ChapterModule"
       },
       {
         path: "course",
-        loadChildren: "./components/course/course.module#CourseModule"
+        loadChildren: "./modules/course/course.module#CourseModule"
       },
       {
         path: "module",
-        loadChildren: "./components/module/module.module#ModuleModule"
+        loadChildren: "./modules/module/module.module#ModuleModule"
       },{
         path: "td",
-        loadChildren: "./components/td/td.module#TdModule"
+        loadChildren: "./modules/td/td.module#TdModule"
       },{
         path: "paragraph",
-        loadChildren: "./components/paragraph/paragraph.module#ParagraphModule"
+        loadChildren: "./modules/paragraph/paragraph.module#ParagraphModule"
       },{
         path: "quiz",
-        loadChildren: "./components/quiz/quiz.module#QuizModule"
+        loadChildren: "./modules/quiz/quiz.module#QuizModule"
       }
       ,{
         path: "note_quiz",
-        loadChildren: "./components/note-quiz/note-quiz.module#NoteQuizModule"
+        loadChildren: "./modules/note-quiz/note-quiz.module#NoteQuizModule"
       }
-
+      ,{
+        path: "exam",
+        loadChildren: "./modules/exam/exam.module#ExamModule"
+      },{
+        path: "note_exam",
+        loadChildren: "./modules/note-exam/note-exam.module#NoteExamModule"
+      },{
+        path: "user",
+        loadChildren: "./modules/user/user.module#UserModule"
+      },{
+        path: "organization",
+        loadChildren: "./modules/organization/organization.module#OrganizationModule"
+      },{
+        path: "licence",
+        loadChildren: "./modules/licence/licence.module#LicenceModule"
+      }
     ]
   },
   {
@@ -53,10 +68,6 @@ export const AppRoutes: Routes = [
         path: "authentication",
         loadChildren:
           "./authentication/authentication.module#AuthenticationModule"
-      },
-      {
-        path: "landing",
-        loadChildren: "./landing/landing.module#LandingModule"
       }
     ]
   },

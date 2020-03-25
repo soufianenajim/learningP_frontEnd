@@ -1,5 +1,4 @@
-import {trigger, state, style, transition, animate} from '@angular/animations';
-import {AUTO_STYLE} from '@angular/core';
+import {trigger, state, style, transition, animate,AUTO_STYLE} from '@angular/animations';
 
 export const fadeInOutTranslate = trigger('fadeInOutTranslate', [
     transition(':enter', [

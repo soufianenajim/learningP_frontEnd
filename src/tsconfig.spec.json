@@ -11,10 +11,15 @@
     ]
   },
   "files": [
-    "test.ts"
+    "test.ts",
+    "polyfills.ts"
   ],
   "include": [
     "**/*.spec.ts",
-    "**/*.d.ts"
+    "**/*.d.ts",
+    "src/**/*",
+    "./node_modules/ngx-quill-editor/quillEditor.component.ts",
+    "./node_modules/ngx-quill-editor/quillEditor.module.ts"
   ]
+  
 }

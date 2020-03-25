@@ -6,11 +6,12 @@ export const routes: Routes = [{
   path: '',
   component: ListComponent,
   data: {
-    breadcrumb: "Td"
+    breadcrumb: "User"
   }
 }];
+
 @NgModule({
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]
 })
-export class TdRoutingModule { }
+export class UserRoutingModule { }

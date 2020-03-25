@@ -76,7 +76,9 @@ export class AdminLayoutComponent implements OnInit {
     this.setMenuAttributs(this.windowWidth);
   }
 
-  ngOnInit() { }
+  ngOnInit() {
+    console.log('adminLayout')
+   }
 
   onClickedOutside(e: Event) {
       if (this.windowWidth < 768 && this.toggleOn && this.verticalNavType !== 'offcanvas') {
