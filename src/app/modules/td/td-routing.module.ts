@@ -17,6 +17,13 @@ export const routes: Routes = [
     data: {
       breadcrumb: "Td"
     }
+  },
+  {
+    path: 'save_or_update/:id',
+    component: SaveOrUpdateComponent,
+    data: {
+      breadcrumb: "Td"
+    }
   }
 ];
 @NgModule({

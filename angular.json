@@ -21,6 +21,9 @@
               "src/favicon.ico"
             ],
             "styles": [
+              {
+                "input": "node_modules/@angular/material/prebuilt-themes/indigo-pink.css"
+              },
               "node_modules/bootstrap/dist/css/bootstrap.min.css",
               "node_modules/flag-icon-css/css/flag-icon.min.css",
               "node_modules/ti-icons/css/themify-icons.css",
@@ -98,6 +101,9 @@
               "node_modules/jquery-sparkline/jquery.sparkline.min.js"
             ],
             "styles": [
+              {
+                "input": "node_modules/@angular/material/prebuilt-themes/indigo-pink.css"
+              },
               "node_modules/bootstrap/dist/css/bootstrap.min.css",
               "node_modules/flag-icon-css/css/flag-icon.min.css",
               "node_modules/ti-icons/css/themify-icons.css",

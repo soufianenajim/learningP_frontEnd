@@ -3,6 +3,7 @@ import { FormGroup, FormControl } from "@angular/forms";
 import { CourseService } from "../../../core/services/course/course.service";
 import { Td } from "../../../core/models/td.model";
 import { TdService } from "../../../core/services/td/td.service";
+import { ActivatedRoute, Params } from "@angular/router";
 
 @Component({
   selector: "app-save-or-update",
@@ -15,10 +16,17 @@ export class SaveOrUpdateComponent implements OnInit {
     cour: new FormControl()
   });
   listCour: any;
+  idCour;
   constructor(
     private courseService: CourseService,
-    private tdService: TdService
-  ) {}
+    private tdService: TdService,
+    private route: ActivatedRoute,
+  ) {
+    this.route.params.subscribe((params: Params) => {
+      this.idCour = params["id"];
+      console.log('this.idCour',this.idCour)
+    });
+  }
 
   ngOnInit() {
     this.courseService.findAll().subscribe(res => {
