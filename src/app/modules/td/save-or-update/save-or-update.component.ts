@@ -17,18 +17,17 @@ export class SaveOrUpdateComponent implements OnInit {
     cour: new FormControl(null)
   });
   listCour: any;
-  idCour=null;
+  idTd=null;
   isEdit=false;
   constructor(
     private courseService: CourseService,
     private tdService: TdService,
-    private route: ActivatedRoute,
     public dialogRef: MatDialogRef<SaveOrUpdateComponent>,
     @Inject(MAT_DIALOG_DATA) public data:any
   ) {
    if(data!==null){
      this.isEdit=true;
-     this.idCour=data.id;
+     this.idTd=data.id;
      const name=data.name;
      const cour= data.cour;
     
@@ -49,7 +48,7 @@ export class SaveOrUpdateComponent implements OnInit {
     const name = this.tdForm.get("name").value;
     const cour = this.tdForm.get("cour").value;
     let td = new Td();
-    td.id=this.idCour;
+    td.id=this.idTd;
     td.name = name;
     td.cour = cour;
     this.tdService.saveOrUpdate(td).subscribe(resp => {
