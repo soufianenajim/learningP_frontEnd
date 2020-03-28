@@ -47,6 +47,7 @@ import { NvD3Module } from "ng2-nvd3";
 import { TodoService } from "./todo/todo.service";
 import { ClickOutsideModule } from "ng-click-outside";
 import { MaterialsModule } from "../modules/materials/materials.module";
+import { NgSelectModule } from '@ng-select/ng-select';
 
 @NgModule({
   imports: [
@@ -76,7 +77,8 @@ import { MaterialsModule } from "../modules/materials/materials.module";
     KnobModule,
     ChartistModule,
     NvD3Module,
-    ClickOutsideModule
+    ClickOutsideModule,
+    NgSelectModule
   ],
   declarations: [
     AccordionAnchorDirective,
@@ -131,7 +133,8 @@ import { MaterialsModule } from "../modules/materials/materials.module";
     KnobModule,
     ChartistModule,
     NvD3Module,
-    ClickOutsideModule
+    ClickOutsideModule,
+    NgSelectModule
   ],
   providers: [MenuItems, TodoService, SelectOptionService]
 })

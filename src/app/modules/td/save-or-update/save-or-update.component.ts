@@ -1,9 +1,10 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, Inject } from "@angular/core";
 import { FormGroup, FormControl } from "@angular/forms";
 import { CourseService } from "../../../core/services/course/course.service";
 import { Td } from "../../../core/models/td.model";
 import { TdService } from "../../../core/services/td/td.service";
 import { ActivatedRoute, Params } from "@angular/router";
+import { MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
 
 @Component({
   selector: "app-save-or-update",
@@ -13,19 +14,29 @@ import { ActivatedRoute, Params } from "@angular/router";
 export class SaveOrUpdateComponent implements OnInit {
   tdForm = new FormGroup({
     name: new FormControl(""),
-    cour: new FormControl()
+    cour: new FormControl(null)
   });
   listCour: any;
-  idCour;
+  idCour=null;
+  isEdit=false;
   constructor(
     private courseService: CourseService,
     private tdService: TdService,
     private route: ActivatedRoute,
+    public dialogRef: MatDialogRef<SaveOrUpdateComponent>,
+    @Inject(MAT_DIALOG_DATA) public data:any
   ) {
-    this.route.params.subscribe((params: Params) => {
-      this.idCour = params["id"];
-      console.log('this.idCour',this.idCour)
-    });
+   if(data!==null){
+     this.isEdit=true;
+     this.idCour=data.id;
+     const name=data.name;
+     const cour= data.cour;
+    
+    this.tdForm.get("name").setValue(name);
+    this.tdForm.get("cour").setValue(cour);
+   
+    
+   }
   }
 
   ngOnInit() {
@@ -38,10 +49,18 @@ export class SaveOrUpdateComponent implements OnInit {
     const name = this.tdForm.get("name").value;
     const cour = this.tdForm.get("cour").value;
     let td = new Td();
+    td.id=this.idCour;
     td.name = name;
     td.cour = cour;
     this.tdService.saveOrUpdate(td).subscribe(resp => {
       console.log("response  ----", resp);
+      this.dialogRef.close(true);
     });
+  }
+  cancel(){
+    this.dialogRef.close(false);
+  }
+  compareCour(c1: any, c2: any):boolean{
+    return c1 && c2 ? c1.id === c2.id : c1 === c2;
   }
 }

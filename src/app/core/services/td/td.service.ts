@@ -15,4 +15,7 @@ export class TdService {
     console.log("demande", demande);
     return this.httpClient.post(this.url + "/find-by-critere", demande);
   }
+  delete(id) {
+    return this.httpClient.delete(this.url + "/delete/" + id);
+  }
 }

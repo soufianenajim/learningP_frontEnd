@@ -7,6 +7,7 @@ import { environment } from "../../../../environments/environment";
 export class CourseService {
   url = environment.baseUrl + "/cour";
   constructor(private httpClient: HttpClient) {}
+  
   findAll() {
     return this.httpClient.get(this.url + "/find-all");
   }
