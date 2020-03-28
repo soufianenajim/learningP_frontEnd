@@ -70,7 +70,6 @@ export class ListComponent implements OnInit {
     console.log("demande", demande);
     this.tdService.searchByCritere(demande).subscribe((resp: any) => {
       console.log("tds from database afak ---------------", resp);
-
       this.resultsLength = resp.count;
       this.dataSource = new MatTableDataSource<Td>(resp.lignes);
       this.paginator.pageIndex = demande.page;
