@@ -9,6 +9,10 @@ import { Module } from '../../models/module.model';
 export class ModuleService {
   url = environment.baseUrl + "/module";
   constructor(private httpClient: HttpClient) {}
+
+  findAll() {
+    return this.httpClient.get(this.url + "/find-all");
+  }
   saveOrUpdate(module: Module) {
     return this.httpClient.post(this.url + "/save-or-update", module);
   }
