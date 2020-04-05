@@ -76,6 +76,18 @@ const MENUITEMS = [
       }
     ]
   },{
+    label: "Question",
+    main: [
+      {
+        state: "question",
+        name: "Question",
+        type: "link",
+        icon: "ti-home"
+      }
+
+    ]
+  },
+  {
     label: "Quiz",
     main: [
       {

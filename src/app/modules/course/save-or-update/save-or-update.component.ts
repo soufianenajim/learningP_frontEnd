@@ -29,10 +29,10 @@ export class SaveOrUpdateComponent implements OnInit {
      this.isEdit=true;
      this.idCour=data.id;
      const name=data.name;
-     const cour= data.cour;
+     const module= data.module;
     
     this.courForm.get("name").setValue(name);
-    this.courForm.get("cour").setValue(cour);
+    this.courForm.get("module").setValue(module);
    
     
    }

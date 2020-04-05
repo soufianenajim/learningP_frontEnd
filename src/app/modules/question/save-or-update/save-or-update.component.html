@@ -1,0 +1,90 @@
+<div class="card">
+  <div class="card-header">
+    <h5 *ngIf="isEdit">Modification Question</h5>
+    <h5 *ngIf="!isEdit">Ajout Question</h5>
+
+  </div>
+  <div class="card-block" style="margin: 1rem;">
+
+    <form [formGroup]="questionForm" (ngSubmit)="save()">
+      <div class="form-group row">
+        <label class="col-sm-3 col-form-label">Nom</label>
+        <div class="col-sm-9">
+          <input type="text" formControlName="name" class="form-control">
+        </div>
+      </div>
+      <div class="form-group row">
+        <label class="col-sm-3 col-form-label">Code</label>
+        <div class="col-sm-9">
+          <input type="text" formControlName="code" class="form-control">
+        </div>
+      </div>
+      <div class="form-group row">
+        <label class="col-sm-3 col-form-label">CorrectComment</label>
+        <div class="col-sm-9">
+          <textarea type="text" formControlName="correctComment" class="form-control"></textarea>
+        </div>
+      </div>
+      <div class="form-group row">
+        <label class="col-sm-3 col-form-label"> <button type="button" class="btn btn-primary btn-md waves-effect waves-light f-left" (click)="addSuggestions()"> <i
+          class="fa fa-plus"></i> Ajouter Suggestion
+      </button></label>
+        <div class="col-sm-9">
+        </div>
+      </div>
+      <div formArrayName="suggestions">
+        <div class="row"*ngFor="let suggestion of suggestions.controls; let i=index">
+          <div class="col-md-3"></div>
+          <div class="card col-md-9" [formGroupName]="i">
+            <div class="card-header">
+              <div class="card-header-right">
+                
+                <i class="icofont icofont-close-circled" (click)="removeSuggestion(i)"></i>
+            </div>
+            </div>
+            <div class="card-body">
+              <div class="form-group row" >
+                <label class="col-sm-3 col-form-label">Nom</label>
+                <div class="col-sm-9">
+                  <textarea type="text" formControlName="name" class="form-control"></textarea>
+                </div>
+              </div>
+              <div class="form-group row" >
+                <label class="col-sm-3 col-form-label">Correct</label>
+                <div class="col-sm-9 ">
+                  <!-- <input type="checkbox" formControlName="correct" class="border-checkbox"> -->
+                  <div class="checkbox-fade fade-in-success" style="margin-top: 0.5rem;">
+                    <label>
+                        <input type="checkbox" formControlName="correct">
+                        <span class="cr">
+                            <i class="cr-icon icofont icofont-ui-check txt-success"></i>
+                        </span> 
+                    </label>
+                </div>
+                </div>
+              </div>
+                
+              
+            </div>
+          </div>
+       
+        </div>
+      </div>
+
+
+
+      <div class="form-group row justify-content-center">
+        <button type="button" style="margin-right: 20px" type="submit" [disabled]="isSaved"
+          class="btn btn-success btn-md waves-effect waves-light">
+          <i class="fa fa-check"></i>Save
+        </button>
+        <button type="button" (click)="cancel()" class="btn btn-danger btn-md waves-effect waves-light">
+          <i class="fa fa-close"></i>Cancel
+        </button>
+      </div>
+
+    </form>
+
+
+  </div>
+</div>

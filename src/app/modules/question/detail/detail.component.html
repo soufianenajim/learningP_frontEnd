@@ -1,0 +1,34 @@
+<div class="card">
+  <div class="card-header">
+    <h5 >Detail Question</h5>
+   
+
+  </div>
+  <div class="card-block" style="margin: 1rem;">
+
+
+    <div class="form-group row">
+      <label class="col-sm-3 col-form-label">Nom</label>
+      <label class="col-sm-9 col-form-label">{{questionDetail.name!=null?questionDetail.name:'---'}}</label>
+    </div>
+
+    <div class="form-group row">
+      <label class="col-sm-3 col-form-label">Code</label>
+      <label class="col-sm-9 col-form-label">{{questionDetail.code!=null?questionDetail.code:'---'}}</label>
+    </div>
+    <div class="form-group row">
+      <label class="col-sm-3 col-form-label">CorrectComment</label>
+      <label class="col-sm-9 col-form-label">{{questionDetail.correctComment!=null?questionDetail.correctComment:'---'}}</label>
+    </div>
+    <div class="form-group row justify-content-center">
+
+      <button type="button" (click)="cancel()" class="btn btn-danger btn-md waves-effect waves-light">
+        <i class="fa fa-close"></i>Cancel
+      </button>
+    </div>
+
+
+
+
+  </div>
+</div>

@@ -34,7 +34,12 @@ export const AppRoutes: Routes = [
       },{
         path: "paragraph",
         loadChildren: "./modules/paragraph/paragraph.module#ParagraphModule"
-      },{
+      },
+      {
+        path: "question",
+        loadChildren: "./modules/question/question.module#QuestionModule"
+      },
+      {
         path: "quiz",
         loadChildren: "./modules/quiz/quiz.module#QuizModule"
       }
