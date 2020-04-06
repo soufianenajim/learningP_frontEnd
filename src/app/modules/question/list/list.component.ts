@@ -5,6 +5,8 @@ import {
   ViewChild,
   Input,
   Output,
+  SkipSelf,
+  AfterViewChecked,
 } from "@angular/core";
 import { MatTableDataSource, MatPaginator, MatDialog } from "@angular/material";
 import { Question } from "../../../core/models/question.model";
@@ -20,7 +22,7 @@ import { SelectionModel } from "@angular/cdk/collections";
   templateUrl: "./list.component.html",
   styleUrls: ["./list.component.css"],
 })
-export class ListComponent implements OnInit {
+export class ListComponent implements OnInit, AfterViewChecked {
   displayedColumns: string[] = ["name", "code", "correctComment", "actions"];
   //dataSource = new MatTableDataSource<PeriodicElement>(ELEMENT_DATA);
   dataSource: MatTableDataSource<Question>;
@@ -30,6 +32,7 @@ export class ListComponent implements OnInit {
   question: Question = new Question();
   resultsLength;
   @Input() isFromParent = false;
+  @Input() questionsParent;
   @Output() questionSelect = new EventEmitter();
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
@@ -39,6 +42,7 @@ export class ListComponent implements OnInit {
     code: new FormControl(""),
   });
   selection = new SelectionModel<any>(true, []);
+  checkedInit=true;
   constructor(
     private questionService: QuestionService,
     private dialog: MatDialog
@@ -49,6 +53,14 @@ export class ListComponent implements OnInit {
       this.displayedColumns = ["select", "name", "code", "correctComment"];
     }
     this.search(false);
+  }
+  ngAfterViewChecked() {
+    if (this.questionsParent && this.checkedInit) {
+      this.checkedInit=false;
+      for (let question of this.questionsParent) {
+        this.checked(question)
+      }
+    }
   }
   search(bool) {
     if (!bool) {
@@ -83,9 +95,10 @@ export class ListComponent implements OnInit {
     this.paginator.pageIndex = 0;
   }
   reset() {
-    this.questionForm.get("name").setValue("");
-    this.questionForm.get("code").setValue("");
-    this.search(false);
+    console.log("this.selction", this.selection.selected);
+    // this.questionForm.get("name").setValue("");
+    // this.questionForm.get("code").setValue("");
+    // this.search(false);
   }
   refreshDataTable() {
     console.log("this.paginator", this.paginator);

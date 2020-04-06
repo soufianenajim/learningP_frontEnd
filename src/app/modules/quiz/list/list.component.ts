@@ -101,7 +101,6 @@ export class ListComponent implements OnInit {
     });
   }
   openDialog(data) {
-    console.log("data", data);
     const dialogRef = this.dialog.open(SaveOrUpdateComponent, {
       width: "80%",
       data: data,

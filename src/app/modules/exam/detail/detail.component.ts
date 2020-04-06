@@ -16,6 +16,7 @@ export class DetailComponent implements OnInit {
     @Inject(MAT_DIALOG_DATA) public data: any,
     private questionService: QuestionService
   ) {
+    console.log('data',data);
     this.questionService.findByExam(data.id).subscribe((resp) => {
       console.log("resp", resp);
       this.examDetail = data;

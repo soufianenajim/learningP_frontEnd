@@ -4,6 +4,7 @@ import { MatDialogRef, MAT_DIALOG_DATA } from "@angular/material";
 import { Exam } from "../../../core/models/exam.model";
 import { ModuleService } from "../../../core/services/module/module.service";
 import { ExamService } from "../../../core/services/exam/exam.service";
+import { QuestionService } from "../../../core/services/question/question.service";
 
 @Component({
   selector: "app-save-or-update",
@@ -17,22 +18,29 @@ export class SaveOrUpdateComponent implements OnInit {
     module: new FormControl(null),
   });
   listModule: any;
-  idQuestion = null;
+  idExam = null;
   isEdit = false;
+  parentQuestions;
   constructor(
     private moduleseService: ModuleService,
     private examService: ExamService,
+    private questionService:QuestionService,
     public dialogRef: MatDialogRef<SaveOrUpdateComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any
   ) {
     if (data !== null) {
-      this.isEdit = true;
-      this.idQuestion = data.id;
-      const name = data.name;
-      const module = data.module;
-
-      this.examForm.get("name").setValue(name);
-      this.examForm.get("module").setValue(module);
+      this.questionService.findByExam(data.id).subscribe(resp=>{
+        console.log('questions',resp);
+        this.parentQuestions=resp;
+        this.isEdit = true;
+        this.idExam = data.id;
+        
+        const name = data.name;
+        const module = data.module;
+  
+        this.examForm.get("name").setValue(name);
+        this.examForm.get("module").setValue(module);
+      })
     }
   }
 
@@ -46,7 +54,7 @@ export class SaveOrUpdateComponent implements OnInit {
     const name = this.examForm.get("name").value;
     const module = this.examForm.get("module").value;
     let exam = new Exam();
-    exam.id = this.idQuestion;
+    exam.id = this.idExam;
     exam.name = name;
     exam.module = module;
     exam.questions=this.listQuestion;

@@ -4,6 +4,7 @@ import { CourseService } from "../../../core/services/course/course.service";
 import { MatDialogRef, MAT_DIALOG_DATA } from "@angular/material";
 import { Quiz } from "../../../core/models/quiz.model";
 import { QuizService } from "../../../core/services/quiz/quiz.service";
+import { QuestionService } from "../../../core/services/question/question.service";
 
 @Component({
   selector: "app-save-or-update",
@@ -19,26 +20,33 @@ export class SaveOrUpdateComponent implements OnInit {
   listCour: any;
   idQuiz = null;
   isEdit = false;
+  parentQuestions;
   constructor(
     private courseService: CourseService,
     private quizService: QuizService,
+    private questionSerivce:QuestionService,
     public dialogRef: MatDialogRef<SaveOrUpdateComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any
   ) {
     if (data !== null) {
-      this.isEdit = true;
-      this.idQuiz = data.id;
-      const name = data.name;
-      const cour = data.cour;
-
-      this.quizForm.get("name").setValue(name);
-      this.quizForm.get("cour").setValue(cour);
+      this.questionSerivce.findByQuiz(data.id).subscribe(resp=>{
+        console.log('questions',resp);
+        this.parentQuestions=resp;
+        this.isEdit = true;
+        this.idQuiz = data.id;
+        
+        const name = data.name;
+        const cour = data.cour;
+  
+        this.quizForm.get("name").setValue(name);
+        this.quizForm.get("cour").setValue(cour);
+      })
+     
     }
   }
 
   ngOnInit() {
     this.courseService.findAll().subscribe((res) => {
-      console.log("res", res);
       this.listCour = res;
     });
   }
