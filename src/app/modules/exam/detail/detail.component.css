@@ -1,0 +1,12 @@
+table {
+    width: 100%;
+  }
+  .mat-column-name {
+    width: 18%;
+  }
+  .mat-column-code {
+    width: 18%;
+  }
+  .mat-column-correctComment {
+    width: 64%;
+  }

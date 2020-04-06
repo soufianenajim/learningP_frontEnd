@@ -29,7 +29,7 @@ export class ListComponent implements OnInit {
 
   question: Question = new Question();
   resultsLength;
-  @Input() isFromQuiz = false;
+  @Input() isFromParent = false;
   @Output() questionSelect = new EventEmitter();
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
@@ -44,8 +44,8 @@ export class ListComponent implements OnInit {
     private dialog: MatDialog
   ) {}
   ngOnInit() {
-    console.log("isFromQuiz", this.isFromQuiz);
-    if (this.isFromQuiz) {
+    console.log("isFromParent", this.isFromParent);
+    if (this.isFromParent) {
       this.displayedColumns = ["select", "name", "code", "correctComment"];
     }
     this.search(false);

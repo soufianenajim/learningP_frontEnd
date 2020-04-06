@@ -22,7 +22,11 @@ export class QuestionService {
   delete(id) {
     return this.httpClient.delete(this.url + "/delete/" + id);
   }
-  findBySugestion(id){
+  findByQuiz(id){
     return this.httpClient.get(this.url + "/find-by-quiz/"+id);
+  }
+
+  findByExam(id){
+    return this.httpClient.get(this.url + "/find-by-exam/"+id);
   }
 }

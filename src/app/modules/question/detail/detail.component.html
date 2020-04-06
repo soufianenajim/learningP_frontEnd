@@ -9,16 +9,16 @@
 
     <div class="form-group row">
       <label class="col-sm-3 col-form-label">Nom</label>
-      <label class="col-sm-9 col-form-label">{{questionDetail.name!=null?questionDetail.name:'---'}}</label>
+      <label class="col-sm-9 col-form-label">{{questionDetail?.name!=null?questionDetail.name:'---'}}</label>
     </div>
 
     <div class="form-group row">
       <label class="col-sm-3 col-form-label">Code</label>
-      <label class="col-sm-9 col-form-label">{{questionDetail.code!=null?questionDetail.code:'---'}}</label>
+      <label class="col-sm-9 col-form-label">{{questionDetail?.code!=null?questionDetail.code:'---'}}</label>
     </div>
     <div class="form-group row">
       <label class="col-sm-3 col-form-label">CorrectComment</label>
-      <label class="col-sm-9 col-form-label">{{questionDetail.correctComment!=null?questionDetail.correctComment:'---'}}</label>
+      <label class="col-sm-9 col-form-label">{{questionDetail?.correctComment!=null?questionDetail.correctComment:'---'}}</label>
     </div>
     <div class="form-group row">
       <label class="col-sm-3 col-form-label">Suggestions</label>
@@ -31,13 +31,13 @@
           <!-- Position Column -->
           <ng-container matColumnDef="content">
             <th mat-header-cell *matHeaderCellDef> Content </th>
-            <td mat-cell *matCellDef="let element" > {{element.name.length>60?element.name.substring(0,60)+' ...':element.name}} </td>
+            <td mat-cell *matCellDef="let element" > {{element?.name.length>60?element.name.substring(0,60)+' ...':element.name}} </td>
           </ng-container>
         
           <!-- Name Column -->
           <ng-container matColumnDef="correct">
             <th mat-header-cell *matHeaderCellDef> Correct </th>
-            <td mat-cell *matCellDef="let element"> {{element.correct?'Correct':'Not correct'}} </td>
+            <td mat-cell *matCellDef="let element"> {{element?.correct?'Correct':'Not correct'}} </td>
           </ng-container>
           <ng-container matColumnDef="actions">
             <th mat-header-cell *matHeaderCellDef> Action </th>

@@ -8,7 +8,7 @@ import { QuestionService } from "../../../core/services/question/question.servic
   styleUrls: ["./detail.component.css"],
 })
 export class DetailComponent implements OnInit {
-  quizDetail;
+  examDetail;
   displayedColumns: string[] = ["name", "code", "correctComment"];
   dataSource = null;
   constructor(
@@ -16,9 +16,9 @@ export class DetailComponent implements OnInit {
     @Inject(MAT_DIALOG_DATA) public data: any,
     private questionService: QuestionService
   ) {
-    this.questionService.findByQuiz(data.id).subscribe((resp) => {
+    this.questionService.findByExam(data.id).subscribe((resp) => {
       console.log("resp", resp);
-      this.quizDetail = data;
+      this.examDetail = data;
 
       this.dataSource = resp;
       console.log('dataSource',this.dataSource)
