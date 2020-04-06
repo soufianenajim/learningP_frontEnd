@@ -1,19 +1,27 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
-import { MatTableDataSource, MatPaginator, MatDialog } from '@angular/material';
-import { Question } from '../../../core/models/question.model';
-import { Demande } from '../../../core/models/demande.model';
-import { FormGroup, FormControl } from '@angular/forms';
-import { QuestionService } from '../../../core/services/question/question.service';
-import { DetailComponent } from '../detail/detail.component';
-import { SaveOrUpdateComponent } from '../save-or-update/save-or-update.component';
+import {
+  EventEmitter,
+  Component,
+  OnInit,
+  ViewChild,
+  Input,
+  Output,
+} from "@angular/core";
+import { MatTableDataSource, MatPaginator, MatDialog } from "@angular/material";
+import { Question } from "../../../core/models/question.model";
+import { Demande } from "../../../core/models/demande.model";
+import { FormGroup, FormControl } from "@angular/forms";
+import { QuestionService } from "../../../core/services/question/question.service";
+import { DetailComponent } from "../detail/detail.component";
+import { SaveOrUpdateComponent } from "../save-or-update/save-or-update.component";
+import { SelectionModel } from "@angular/cdk/collections";
 
 @Component({
-  selector: 'app-list',
-  templateUrl: './list.component.html',
-  styleUrls: ['./list.component.css']
+  selector: "app-question-list",
+  templateUrl: "./list.component.html",
+  styleUrls: ["./list.component.css"],
 })
 export class ListComponent implements OnInit {
-  displayedColumns: string[] = ["name", "code","correctComment" ,"actions"];
+  displayedColumns: string[] = ["name", "code", "correctComment", "actions"];
   //dataSource = new MatTableDataSource<PeriodicElement>(ELEMENT_DATA);
   dataSource: MatTableDataSource<Question>;
 
@@ -21,18 +29,25 @@ export class ListComponent implements OnInit {
 
   question: Question = new Question();
   resultsLength;
+  @Input() isFromQuiz = false;
+  @Output() questionSelect = new EventEmitter();
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
   listChapitre;
   questionForm = new FormGroup({
     name: new FormControl(""),
-    code: new FormControl("")
+    code: new FormControl(""),
   });
+  selection = new SelectionModel<any>(true, []);
   constructor(
     private questionService: QuestionService,
     private dialog: MatDialog
   ) {}
   ngOnInit() {
+    console.log("isFromQuiz", this.isFromQuiz);
+    if (this.isFromQuiz) {
+      this.displayedColumns = ["select", "name", "code", "correctComment"];
+    }
     this.search(false);
   }
   search(bool) {
@@ -43,11 +58,10 @@ export class ListComponent implements OnInit {
     const size = this.paginator.pageSize;
     const name = this.questionForm.get("name").value;
     const code = this.questionForm.get("code").value;
-   
 
     this.question.name = name;
     this.question.code = code;
-   
+
     this.demandeQuestion.model = this.question;
     this.demandeQuestion.page = page;
     this.demandeQuestion.size = size;
@@ -83,10 +97,10 @@ export class ListComponent implements OnInit {
     const dialogRef = this.dialog.open(DetailComponent, {
       width: "60%",
       data: row,
-      disableClose: true
+      disableClose: true,
     });
 
-    dialogRef.afterClosed().subscribe(result => {
+    dialogRef.afterClosed().subscribe((result) => {
       console.log(
         "result mn dialog detail afakom rkzo m3ana   -----------",
         result
@@ -100,10 +114,10 @@ export class ListComponent implements OnInit {
       data: data,
       disableClose: true,
       autoFocus: false,
-      maxHeight: '90vh'
+      maxHeight: "90vh",
     });
 
-    dialogRef.afterClosed().subscribe(result => {
+    dialogRef.afterClosed().subscribe((result) => {
       if (result) {
         this.search(false);
       }
@@ -113,14 +127,54 @@ export class ListComponent implements OnInit {
   }
   delete(row) {
     this.questionService.delete(row.id).subscribe(
-      response => {
+      (response) => {
         console.log("response", response);
         this.search(true);
       },
-      error => {
+      (error) => {
         console.log("error", error);
       }
     );
   }
 
+  isAllSelected() {
+    if (this.dataSource) {
+      const numSelected = this.selection.selected.length;
+      const numRows = this.dataSource.data.length;
+      return numSelected === numRows;
+    }
+  }
+
+  /** Selects all rows if they are not all selected; otherwise clear selection. */
+  masterToggle() {
+    this.isAllSelected()
+      ? this.selection.clear()
+      : this.dataSource.data.forEach((row) => this.selection.select(row));
+  }
+
+  /** The label for the checkbox on the passed row */
+  checkboxLabel(row?: any): string {
+    if (!row) {
+      return `${this.isAllSelected() ? "select" : "deselect"} all`;
+    }
+    return `${this.selection.isSelected(row) ? "deselect" : "select"} row ${
+      row.position + 1
+    }`;
+  }
+  checked(row: any) {
+    this.selection.select(row);
+    var found = this.selection.selected.find((x) => x.id == row.id);
+    if (found) found.checked = true;
+    this.questionSelect.emit(this.selection.selected);
+  }
+  unChecked(row: any) {
+    var found = this.selection.selected.find((x) => x.id == row.id);
+    if (found) found.checked = false;
+    this.selection.deselect(found);
+    this.questionSelect.emit(this.selection.selected);
+  }
+  isChecked(row: any) {
+    var found = this.selection.selected.find((x) => x.id == row.id);
+    if (found) return found.checked;
+  }
 }

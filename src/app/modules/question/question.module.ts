@@ -6,6 +6,7 @@ import { ListComponent } from './list/list.component';
 import { SaveOrUpdateComponent } from './save-or-update/save-or-update.component';
 import { DetailComponent } from './detail/detail.component';
 import { SharedModule } from '../../shared/shared.module';
+import { DetailSuggestionComponent } from './detail/detail-suggestion/detail-suggestion.component';
 
 @NgModule({
   imports: [
@@ -15,8 +16,12 @@ import { SharedModule } from '../../shared/shared.module';
   ],
   entryComponents: [
     SaveOrUpdateComponent,
-    DetailComponent
+    DetailComponent,
+    DetailSuggestionComponent
   ],
-  declarations: [ListComponent, SaveOrUpdateComponent, DetailComponent]
+  exports:[
+    ListComponent
+  ],
+  declarations: [ListComponent, SaveOrUpdateComponent, DetailComponent, DetailSuggestionComponent]
 })
 export class QuestionModule { }
