@@ -45,8 +45,14 @@ const MENUITEMS = [
     label: "Module",
     main: [
       {
-        state: "module",
-        name: "Module",
+        state: "managedModule",
+        name: "Gestion des Modules",
+        type: "link",
+        icon: "ti-home"
+      },
+      {
+        state: "studentSpace",
+        name: "Espace étudiant",
         type: "link",
         icon: "ti-home"
       },

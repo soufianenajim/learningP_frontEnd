@@ -26,9 +26,14 @@ export const AppRoutes: Routes = [
         loadChildren: "./modules/course/course.module#CourseModule"
       },
       {
-        path: "module",
+        path: "managedModule",
         loadChildren: "./modules/module/module.module#ModuleModule"
-      },{
+      },
+      {
+        path: "studentSpace",
+        loadChildren: "./modules/student-space/student-space.module#StudentSpaceModule"
+      },
+      {
         path: "td",
         loadChildren: "./modules/td/td.module#TdModule"
       },{

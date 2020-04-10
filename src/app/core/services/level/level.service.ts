@@ -1,20 +1,20 @@
 import { Injectable } from '@angular/core';
 import { environment } from "../../../../environments/environment";
 import { HttpClient } from '@angular/common/http';
-import { Organization } from '../../models/organization.model';
+import { Level } from '../../models/level.model';
 
 @Injectable({
   providedIn: 'root'
 })
-export class OrganizationService {
-  url = environment.baseUrl + "/organization";
+export class LevelService {
+  url = environment.baseUrl + "/level";
   constructor(private httpClient: HttpClient) {}
 
   findAll() {
     return this.httpClient.get(this.url + "/find-all");
   }
-  saveOrUpdate(organization: Organization) {
-    return this.httpClient.post(this.url + "/save-or-update", organization);
+  saveOrUpdate(level: Level) {
+    return this.httpClient.post(this.url + "/save-or-update", level);
   }
   searchByCritere(demande) {
     console.log("demande", demande);

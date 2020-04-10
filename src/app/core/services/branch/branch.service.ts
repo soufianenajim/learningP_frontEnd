@@ -1,20 +1,20 @@
 import { Injectable } from '@angular/core';
 import { environment } from "../../../../environments/environment";
 import { HttpClient } from '@angular/common/http';
-import { Organization } from '../../models/organization.model';
+import { Branch } from '../../models/branch.model';
 
 @Injectable({
   providedIn: 'root'
 })
-export class OrganizationService {
-  url = environment.baseUrl + "/organization";
+export class BranchService {
+  url = environment.baseUrl + "/branch";
   constructor(private httpClient: HttpClient) {}
 
   findAll() {
     return this.httpClient.get(this.url + "/find-all");
   }
-  saveOrUpdate(organization: Organization) {
-    return this.httpClient.post(this.url + "/save-or-update", organization);
+  saveOrUpdate(branch: Branch) {
+    return this.httpClient.post(this.url + "/save-or-update", branch);
   }
   searchByCritere(demande) {
     console.log("demande", demande);

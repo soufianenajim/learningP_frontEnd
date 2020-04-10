@@ -51,6 +51,7 @@ export class ListComponent implements OnInit {
 
     this.paragraphe.name = name;
     this.paragraphe.chapitre = chapitre;
+
     this.demandeParagraphe.model = this.paragraphe;
     this.demandeParagraphe.page = page;
     this.demandeParagraphe.size = size;
@@ -107,9 +108,11 @@ export class ListComponent implements OnInit {
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
         this.search(false);
+      }else{
+        console.log("The dialog was closed");
       }
 
-      console.log("The dialog was closed");
+     
     });
   }
   delete(row) {

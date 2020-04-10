@@ -33,7 +33,7 @@
         </ng-select> -->
           </div>
       </div>
-
+      <app-question-list [isFromParent]="true" [questionsParent]="parentQuestions" (questionSelect)='getQuestionsOutPut($event)'></app-question-list>
       <div class="form-group row justify-content-center">
         <button type="button" style="margin-right: 20px"  type="submit" [disabled]="isSaved"
           class="btn btn-success btn-md waves-effect waves-light">

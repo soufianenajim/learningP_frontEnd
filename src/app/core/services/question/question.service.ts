@@ -25,6 +25,9 @@ export class QuestionService {
   findByQuiz(id){
     return this.httpClient.get(this.url + "/find-by-quiz/"+id);
   }
+  findByTd(id){
+    return this.httpClient.get(this.url + "/find-by-td/"+id);
+  }
 
   findByExam(id){
     return this.httpClient.get(this.url + "/find-by-exam/"+id);
