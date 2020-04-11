@@ -1,0 +1,113 @@
+<div class="card">
+  <div class="card-header">
+      <h5><i class="fa fa-search" style="margin-right: 4px;"></i>Rechercher</h5>
+      <button type="button" class="btn btn-primary btn-md waves-effect waves-light f-right"
+          (click)="openDialog(null)"> <i class="fa fa-plus"></i> Ajouter
+      </button>
+  </div>
+
+
+  
+  <div class="card-body">
+      <form [formGroup]="branchForm">
+          <div class="row">
+              <div class="col-sm-6">
+                  <div class="row">
+                      <label class="col-sm-3 col-form-label" style="font-weight: bold;color: #757575;">Nom</label>
+                      <div class="col-sm-9" >
+                          <input type="text" formControlName="name" class="form-control">
+
+                      </div>
+                  </div>
+              </div>
+              <div class="col-sm-6">
+                  <div class="row">
+                      <label class="col-sm-3 col-form-label" style="font-weight: bold;color: #757575;">Organization</label>
+                      <div class="col-sm-9">
+                          <select name="select" formControlName="organization" class="form-control">
+                              <option value="">Selectioner un organization</option>
+                              <option *ngFor="let organization of listOrganization" [ngValue]="organization">
+                                  {{organization.name}}
+                              </option>
+                          </select>
+
+                      </div>
+                  </div>
+              </div>
+          </div>
+          <br>
+          <div class="row">
+              <div class="col-lg-12 ">
+                  <div class="form-group row justify-content-center">
+                      <button type="button" style="margin-right: 20px" (click)="search(false)"
+                          class="btn btn-success btn-md waves-effect waves-light">
+                          <i class="fa fa-search"></i>Rechercher
+                      </button>
+                      <button type="button" (click)="reset()" class="btn btn-danger btn-md waves-effect waves-light">
+                          <i class="fa fa-close"></i>Réinitialiser
+                      </button>
+                  </div>
+
+              </div>
+          </div>
+
+      </form>
+
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-header">
+      <h5><i class="fa fa-list m-r-5"></i>Branchs</h5>
+  </div>
+
+
+  <div class="card-body" style="overflow: auto">
+
+      <table mat-table [dataSource]="dataSource">
+
+          <!-- Name Column -->
+          <ng-container matColumnDef="name">
+              <th mat-header-cell *matHeaderCellDef> Nom </th>
+              <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+          </ng-container>
+
+          <!-- Organizationse Column -->
+          <ng-container matColumnDef="organization">
+              <th mat-header-cell *matHeaderCellDef> Organization </th>
+              <td mat-cell *matCellDef="let element"> {{element.organization!=null?element.organization.name:'---'}} </td>
+          </ng-container>
+         
+          <!-- Action Column -->
+          <ng-container matColumnDef="action">
+              <th class="center-action" mat-header-cell *matHeaderCellDef> Actions </th>
+              <td class="center-action" mat-cell *matCellDef="let row">
+                  <div class="btn-group btn-group-sm">
+                      <button mat-icon-button>
+                          <span class="fa fa-desktop" (click)="openDialogDetail(row)" style="color: #007bff"></span>
+                      </button>
+                      <button mat-icon-button (click)="openDialog(row)">
+                          <span class="fa fa-edit" style="color: #007bff"></span>
+                      </button>
+                      <button mat-icon-button (click)="delete(row)" style="color:red">
+                          <span class="icofont icofont-ui-delete tabledit-delete-button "></span>
+                      </button>
+
+
+                  </div>
+              </td>
+          </ng-container>
+
+
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+      </table>
+
+      <mat-paginator #paginator (page)="refreshDataTable($event)" [pageSizeOptions]="[5, 10, 20]"
+          [length]="resultsLength" [pageSize]="5" showFirstLastButtons></mat-paginator>
+
+
+
+
+  </div>
+</div>

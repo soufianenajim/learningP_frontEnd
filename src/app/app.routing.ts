@@ -67,6 +67,13 @@ export const AppRoutes: Routes = [
       },{
         path: "licence",
         loadChildren: "./modules/licence/licence.module#LicenceModule"
+      },{
+        path: "level",
+        loadChildren: "./modules/level/level.module#LevelModule"
+      },
+      {
+        path: "branch",
+        loadChildren: "./modules/branch/branch.module#BranchModule"
       }
     ]
   },

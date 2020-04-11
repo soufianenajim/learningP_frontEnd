@@ -14,7 +14,7 @@ import { SaveOrUpdateComponent } from "../save-or-update/save-or-update.componen
   styleUrls: ["./list.component.css"]
 })
 export class ListComponent implements OnInit {
-  displayedColumns: string[] = ["name", "professeur", "actions"];
+  displayedColumns: string[] = ["name", "professeur","level","branch", "actions"];
   //dataSource = new MatTableDataSource<PeriodicElement>(ELEMENT_DATA);
   dataSource: MatTableDataSource<Module>;
 

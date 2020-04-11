@@ -17,7 +17,7 @@ export class BranchService {
     return this.httpClient.post(this.url + "/save-or-update", branch);
   }
   searchByCritere(demande) {
-    console.log("demande", demande);
+    console.log("demande",this.url);
     return this.httpClient.post(this.url + "/find-by-critere", demande);
   }
   delete(id) {

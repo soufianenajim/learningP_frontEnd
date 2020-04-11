@@ -139,6 +139,17 @@ const MENUITEMS = [
         name: "Organization",
         type: "link",
         icon: "ti-home"
+      }, {
+        state: "level",
+        name: "Level",
+        type: "link",
+        icon: "ti-home"
+      },
+       {
+        state: "branch",
+        name: "Branch",
+        type: "link",
+        icon: "ti-home"
       },
       {
         state: "licence",
