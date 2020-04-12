@@ -505,7 +505,7 @@
                     </a>
                   </ng-template>
                 </li>
-                <li [routerLinkActive]="['active']" *ngIf="asideItem.type === 'sub'" class="pcoded-hasmenu" dropdown-icon="style1" subitem-icon="style6" appAccordionLink group="{{asideItem.state}}">
+                <li  *ngIf="asideItem.type === 'sub'" class="pcoded-hasmenu" dropdown-icon="style1" subitem-icon="style6" appAccordionLink group="{{asideItem.state}}">
                   <a [routerLinkActive]="['active']" href="javascript:;" appAccordionToggle>
                     <span class="pcoded-micon"><i class="{{ asideItem.icon }}"></i></span>
                     <span class="pcoded-mtext">{{ asideItem.name }}</span>
@@ -515,7 +515,7 @@
                   <ul class="pcoded-submenu">
                     <ng-template ngFor let-asideChildren [ngForOf]="asideItem.children">
                     <li [routerLinkActive]="['active']" *ngIf="asideChildren.type !== 'sub'" class="pcoded-hasmenu">
-                      <a [routerLink]="['/',asideChildren.state]" target="{{asideChildren.target ? '_blank' : '_self'}}">
+                      <a [routerLink]="['/',asideChildren.state]">
                         <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
                         <span class="pcoded-mtext">{{ asideChildren.name }} </span>
                         <span *ngFor="let asideChildrenBadge of asideChildren.badge" class="pcoded-badge label label-{{ asideChildrenBadge.type }}">{{asideChildrenBadge.value}}</span>
@@ -523,7 +523,7 @@
                       </a>
                     </li>
 
-                    <li [routerLinkActive]="['active']" class="pcoded-hasmenu" dropdown-icon="style1" subitem-icon="style6" *ngIf="asideChildren.type === 'sub'" appAccordionLink group="sub-toggled">
+                    <li [routerLinkActive]="['active']" class="pcoded-hasmenu" dropdown-icon="style1"  *ngIf="asideChildren.type === 'sub'" appAccordionLink group="{{asideItem.state}}">
                       <a href="javascript:;" appAccordionToggle>
                         <span class="pcoded-micon"><i class="ti-direction-alt"></i></span>
                         <span class="pcoded-mtext">{{ asideChildren.name }}</span>
