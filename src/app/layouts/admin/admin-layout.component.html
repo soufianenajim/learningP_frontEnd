@@ -478,12 +478,12 @@
           <div class="pcoded-inner-navbar main-menu" appAccordion slimScroll width="100%" height="100%" size="4px" color="#fff" opacity="0.3" allowPageScroll="false">
             <div>
             <div *ngFor="let asideItems of menuItems.getAll()">
-              <div class="pcoded-navigatio-lavel" menu-title-theme="theme5" >{{asideItems.label}}</div>
+              <!-- <div class="pcoded-navigatio-lavel" menu-title-theme="theme5" >{{asideItems.label}}</div> -->
               <ul class="pcoded-item pcoded-left-item" item-border="none" item-border-style="solid" subitem-border="solid" *ngFor="let asideItem of asideItems.main" appAccordionLink group="{{asideItem.state}}">
                 <li [routerLinkActive]="['active']" *ngIf="asideItem.type === 'external'" appAccordionLink group="{{asideItem.state}}">
                   <a href="{{asideItem.external}}" target="{{asideItem.target ? '_blank' : '_self'}}" appAccordionToggle>
                     <span class="pcoded-micon"><i class="{{ asideItem.icon }}"></i></span>
-                    <span class="pcoded-mtext">{{ asideItem.name }}</span>
+                    <span class="pcoded-mtext" [routerLinkActive]="['active']">{{ asideItem.name }}</span>
                     <span *ngFor="let asideBadge of asideItem.badge" class="pcoded-badge label label-{{ asideBadge.type }}">{{asideBadge.value}}</span>
                     <span class="pcoded-mcaret"></span>
                   </a>
@@ -514,8 +514,8 @@
                   </a>
                   <ul class="pcoded-submenu">
                     <ng-template ngFor let-asideChildren [ngForOf]="asideItem.children">
-                    <li [routerLinkActive]="['active']" *ngIf="asideChildren.type !== 'sub'">
-                      <a [routerLink]="['/', asideItem.state, asideChildren.state]" target="{{asideChildren.target ? '_blank' : '_self'}}">
+                    <li [routerLinkActive]="['active']" *ngIf="asideChildren.type !== 'sub'" class="pcoded-hasmenu">
+                      <a [routerLink]="['/',asideChildren.state]" target="{{asideChildren.target ? '_blank' : '_self'}}">
                         <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
                         <span class="pcoded-mtext">{{ asideChildren.name }} </span>
                         <span *ngFor="let asideChildrenBadge of asideChildren.badge" class="pcoded-badge label label-{{ asideChildrenBadge.type }}">{{asideChildrenBadge.value}}</span>

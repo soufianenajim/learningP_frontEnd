@@ -35,7 +35,7 @@ export class ListComponent implements OnInit {
     private dialog: MatDialog
   ) {}
   ngOnInit() {
-   
+   this.search(false);
   }
   search(bool) {
     if (!bool) {

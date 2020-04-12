@@ -4,6 +4,7 @@ import { QuestionService } from "../../../core/services/question/question.servic
 import { ChapterService } from "../../../core/services/chapter/chapter.service";
 import { MatDialogRef, MAT_DIALOG_DATA } from "@angular/material";
 import { Question } from "../../../core/models/question.model";
+import { SuggestionService } from "../../../core/services/suggestion/suggestion.service";
 
 @Component({
   selector: "app-save-or-update",
@@ -11,13 +12,13 @@ import { Question } from "../../../core/models/question.model";
   styleUrls: ["./save-or-update.component.css"],
 })
 export class SaveOrUpdateComponent implements OnInit {
-  listChapitre: any;
   questionForm: FormGroup;
 
   idQuestion = null;
   isEdit = false;
   constructor(
     private questionService: QuestionService,
+    private suggestionService:SuggestionService,
     public dialogRef: MatDialogRef<SaveOrUpdateComponent>,
     private fb: FormBuilder,
     @Inject(MAT_DIALOG_DATA) public data: any
@@ -93,7 +94,19 @@ export class SaveOrUpdateComponent implements OnInit {
   }
 
   removeSuggestion(i: number) {
-    this.suggestions.removeAt(i);
+    if (this.isEdit) {
+      const id = this.suggestions.at(i).value.id;
+      if (id != null) {
+        this.suggestionService.delete(id).subscribe((resp) => {
+          this.suggestions.removeAt(i);
+        });
+      } else {
+        this.suggestions.removeAt(i);
+      }
+    } else {
+      this.suggestions.removeAt(i);
+    }
+   
   }
 
   onSubmit() {
