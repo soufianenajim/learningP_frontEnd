@@ -17,16 +17,13 @@ export const AppRoutes: Routes = [
         path: "dashboard",
         loadChildren: "./dashboard/dashboard.module#DashboardModule"
       },
-      {
-        path: "chapter",
-        loadChildren: "./modules/chapter/chapter.module#ChapterModule"
-      },
+     
       {
         path: "course",
         loadChildren: "./modules/course/course.module#CourseModule"
       },
       {
-        path: "managedModule",
+        path: "module",
         loadChildren: "./modules/module/module.module#ModuleModule"
       },
       {
@@ -36,9 +33,6 @@ export const AppRoutes: Routes = [
       {
         path: "td",
         loadChildren: "./modules/td/td.module#TdModule"
-      },{
-        path: "paragraph",
-        loadChildren: "./modules/paragraph/paragraph.module#ParagraphModule"
       },
       {
         path: "question",

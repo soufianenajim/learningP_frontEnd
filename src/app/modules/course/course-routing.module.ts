@@ -6,7 +6,7 @@ export const routes: Routes = [{
   path: '',
   component: ListComponent,
   data: {
-    breadcrumb: "Cours"
+    breadcrumb: "MENU_ITEM.COURSE"
   }
 }];
 

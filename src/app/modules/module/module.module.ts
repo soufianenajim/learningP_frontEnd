@@ -13,7 +13,9 @@ import { SharedModule } from "../../shared/shared.module";
     SaveOrUpdateComponent,
     DetailComponent
   ],
-
+  exports:  [
+    ListComponent
+  ],
   declarations: [ListComponent, SaveOrUpdateComponent, DetailComponent]
 })
 export class ModuleModule {}

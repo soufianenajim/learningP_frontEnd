@@ -14,7 +14,12 @@ export class SaveOrUpdateComponent implements OnInit {
 
   courForm = new FormGroup({
     name: new FormControl(""),
-    module: new FormControl(null)
+    module: new FormControl(null),
+    introduction: new FormControl(""),
+    resume: new FormControl(""),
+    conclusion: new FormControl(""),
+    
+
   });
   listModule: any;
   idCour=null;
@@ -30,11 +35,15 @@ export class SaveOrUpdateComponent implements OnInit {
      this.idCour=data.id;
      const name=data.name;
      const module= data.module;
-    
+     const introduction=data.introduction;
+     const resume=data.resume;
+     const conclusion=data.conclusion;
+     
     this.courForm.get("name").setValue(name);
     this.courForm.get("module").setValue(module);
-   
-    
+    this.courForm.get("introduction").setValue(introduction);
+    this.courForm.get("resume").setValue(resume);
+    this.courForm.get("conclusion").setValue(conclusion);
    }
   }
 
@@ -47,10 +56,16 @@ export class SaveOrUpdateComponent implements OnInit {
   save() {
     const name = this.courForm.get("name").value;
     const module = this.courForm.get("module").value;
+    const introduction= this.courForm.get("introduction").value;
+    const resume=this.courForm.get("resume").value;
+    const conclusion=this.courForm.get("conclusion").value;
     let cour = new Cour();
     cour.id=this.idCour;
     cour.name = name;
     cour.module = module;
+    cour.introduction=introduction;
+    cour.resume=resume;
+    cour.conclusion=conclusion;
     this.courseService.saveOrUpdate(cour).subscribe(resp => {
       console.log("response  ----", resp);
       this.dialogRef.close(true);

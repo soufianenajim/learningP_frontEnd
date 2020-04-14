@@ -3,6 +3,8 @@ import 'rxjs/add/operator/filter';
 import {state, style, transition, animate, trigger, AUTO_STYLE} from '@angular/animations';
 
 import { MenuItems } from '../../shared/menu-items/menu-items';
+import { TranslateService } from '@ngx-translate/core';
+import { LocalService } from '../../core/services/local/local.service';
 
 export interface Options {
   heading?: string;
@@ -69,11 +71,14 @@ export class AdminLayoutComponent implements OnInit {
   @ViewChild('searchFriends') search_friends: ElementRef;
   @ViewChild('toggleButton') toggle_button: ElementRef;
   @ViewChild('sideMenu') side_menu: ElementRef;
-  constructor(public menuItems: MenuItems) {
+
+  lang;
+  constructor(public menuItems: MenuItems,private translate: TranslateService,private localeService: LocalService) {
     const scrollHeight = window.screen.height - 150;
     this.innerHeight = scrollHeight + 'px';
     this.windowWidth = window.innerWidth;
     this.setMenuAttributs(this.windowWidth);
+    this.lang='en';
   }
 
   ngOnInit() {
@@ -127,7 +132,20 @@ export class AdminLayoutComponent implements OnInit {
       }
     });
   }
-
+  equalsLanguage(lang: string): boolean {
+    return this.lang === lang;
+  }
+  changeLanguage(lang: string) {
+    this.lang = lang;
+    this.translate.use(lang);
+    if (this.lang === 'en') {
+      this.localeService.registerLocale('en-US');
+    } else if (this.lang === 'fr') {
+      this.localeService.registerLocale('fr-FR');
+    } else {
+      this.localeService.registerLocale('ar-FR');
+    }
+  }
   toggleChat() {
     this.chatToggle = this.chatToggle === 'out' ? 'in' : 'out';
   }

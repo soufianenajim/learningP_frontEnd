@@ -35,9 +35,20 @@ const MENUITEMS = [
     main: [
       {
         state: "dashboard",
-        name: "Dashboard",
+        name: "MENU_ITEM.HOME",
         type: "link",
-        icon: "ti-home",
+        icon: "fa fa-tachometer",
+      },
+    ],
+  },
+  {
+    label: "MENU_ITEM.STUDENT_SPACE",
+    main: [
+      {
+        state: "studentSpace",
+        name: "MENU_ITEM.STUDENT_SPACE",
+        type: "link",
+        icon: "fa fa-graduation-cap",
       },
     ],
   },
@@ -47,35 +58,20 @@ const MENUITEMS = [
     main: [
       {
         state: "module_menu",
-        name: "Module",
+        name: "MENU_ITEM.PROFESSOR_SPACE",
         type: "sub",
-        icon: "ti-home",
+        icon: "fa fa-chalkboard-teacher",
         children: [
           {
-            state: "managedModule",
-            name: "Gestion des Modules",
-            icon: "ti-home",
-          },
-          {
-            state: "studentSpace",
-            name: "Espace étudiant",
+            state: "module",
+            name: "MENU_ITEM.MANAGED_MODULE",
             icon: "ti-home",
           },
           {
             state: "course",
-            name: "Cour",
+            name: "MENU_ITEM.COURSE",
             icon: "ti-home",
-          },
-          {
-            state: "chapter",
-            name: "Chapitre",
-            icon: "ti-home",
-          },
-          {
-            state: "paragraph",
-            name: "Paragraphe",
-            icon: "ti-home",
-          },
+          },        
           {
             state: "td",
             name: "Td",
@@ -92,7 +88,7 @@ const MENUITEMS = [
         state: "question",
         name: "Question",
         type: "link",
-        icon: "ti-home",
+        icon: "fa fa-question",
       },
     ],
   },
@@ -103,17 +99,17 @@ const MENUITEMS = [
         state: "quiz_menu",
         name: "Quiz",
         type: "sub",
-        icon: "ti-home",
+        icon: "fa fa-pencil",
         children: [
           {
             state: "quiz",
             name: "Quiz",
-            icon: "ti-home",
+            icon: "fa fa-pencil",
           },
           {
             state: "note_quiz",
             name: "NoteQuiz",
-            icon: "ti-home",
+            icon: "fa fa-list-alt",
           },
         ]
       }
@@ -126,17 +122,17 @@ const MENUITEMS = [
         state: "exam_menu",
         name: "Exam",
         type: "sub",
-        icon: "ti-home",
+        icon: "fa fa-pencil",
         children :[
           {
             state: "exam",
             name: "Exam",
-            icon: "ti-home",
+            icon: "fa fa-pencil",
           },
           {
             state: "noteExam",
             name: "NoteExam",
-            icon: "ti-home",
+            icon: "fa fa-list-alt",
           },
         ]
       }
@@ -154,22 +150,22 @@ const MENUITEMS = [
           {
             state: "user",
             name: "Utilisateur",
-            icon: "ti-home",
+            icon: "fa fa-user",
           },
           {
             state: "organization",
             name: "Organization",
-            icon: "ti-home",
+            icon: "fa fa-sitemap",
           },
           {
             state: "level",
             name: "Level",
-            icon: "ti-home",
+            icon: "fa fa-signal",
           },
           {
             state: "branch",
             name: "Branch",
-            icon: "ti-home",
+            icon: "fa fa-institution",
           },
           {
             state: "licence",

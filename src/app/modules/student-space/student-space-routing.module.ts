@@ -7,7 +7,7 @@ export const routes: Routes = [
     path: "",
     component: ListComponent,
     data: {
-      breadcrumb: "Espace étudiant"
+      breadcrumb: "MENU_ITEM.STUDENT_SPACE"
     }
   },
 

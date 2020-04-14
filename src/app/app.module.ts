@@ -15,7 +15,13 @@ import { TitleComponent } from './layouts/admin/title/title.component';
 import {ScrollModule} from './scroll/scroll.module';
 import {LocationStrategy, PathLocationStrategy} from '@angular/common';
 import { CoreModule } from './core/core.module';
-
+import { HttpClient } from '@angular/common/http';
+import {TranslateModule, TranslateLoader} from '@ngx-translate/core';
+import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+// AoT requires an exported function for factories
+export function HttpLoaderFactory(http: HttpClient) {
+  return new TranslateHttpLoader(http, './assets/i18n/', '.json');
+}
 
 @NgModule({
   declarations: [
@@ -30,10 +36,18 @@ import { CoreModule } from './core/core.module';
     BrowserAnimationsModule,
     SharedModule,
     RouterModule.forRoot(AppRoutes),
+    
     FormsModule,
     HttpModule,
     ScrollModule,
-    CoreModule
+    CoreModule,
+    TranslateModule.forRoot({
+      loader: {
+        provide: TranslateLoader,
+        useFactory: HttpLoaderFactory,
+        deps: [HttpClient]
+      }
+    })
   ],
   exports: [ScrollModule],
   providers: [

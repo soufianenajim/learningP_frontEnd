@@ -48,6 +48,7 @@ import { TodoService } from "./todo/todo.service";
 import { ClickOutsideModule } from "ng-click-outside";
 import { MaterialsModule } from "../modules/materials/materials.module";
 import { NgSelectModule } from '@ng-select/ng-select';
+import { TranslateModule } from "@ngx-translate/core";
 
 @NgModule({
   imports: [
@@ -119,6 +120,7 @@ import { NgSelectModule } from '@ng-select/ng-select';
     AnimatorModule,
     ColorPickerModule,
     SelectModule,
+    TranslateModule,
 
     CurrencyMaskModule,
     FormWizardModule,

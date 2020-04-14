@@ -6,7 +6,7 @@ export const routes: Routes = [{
   path: '',
   component: ListComponent,
   data: {
-    breadcrumb: "Module"
+    breadcrumb: 'MENU_ITEM.MANAGED_MODULE'
   }
 }];
 

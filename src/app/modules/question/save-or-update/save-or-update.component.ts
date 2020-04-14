@@ -1,7 +1,6 @@
 import { Component, OnInit, Inject } from "@angular/core";
 import { FormGroup, FormControl, FormBuilder, FormArray } from "@angular/forms";
 import { QuestionService } from "../../../core/services/question/question.service";
-import { ChapterService } from "../../../core/services/chapter/chapter.service";
 import { MatDialogRef, MAT_DIALOG_DATA } from "@angular/material";
 import { Question } from "../../../core/models/question.model";
 import { SuggestionService } from "../../../core/services/suggestion/suggestion.service";

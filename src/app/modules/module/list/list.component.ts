@@ -9,7 +9,7 @@ import { DetailComponent } from "../detail/detail.component";
 import { SaveOrUpdateComponent } from "../save-or-update/save-or-update.component";
 
 @Component({
-  selector: "app-list",
+  selector: "app-module-list",
   templateUrl: "./list.component.html",
   styleUrls: ["./list.component.css"]
 })

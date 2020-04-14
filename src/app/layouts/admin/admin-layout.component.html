@@ -23,117 +23,47 @@
               </li>
              
             </ul>
-            <ul [@mobileMenuTop]="isCollapsedMobile" class="nav-right" [ngClass]="isCollapsedMobile">
-              <li class="header-notification lng-dropdown">
-                <a href="javascript:;" id="dropdown-active-item">
-                  <i class="flag-icon flag-icon-gb m-r-5"></i> English
-                </a>
-                <ul class="show-notification">
-                  <li>
-                    <a href="javascript:;" data-lng="en">
-                      <i class="flag-icon flag-icon-gb m-r-5"></i> English
-                    </a>
-                  </li>
-                  <li>
-                    <a href="javascript:;" data-lng="es">
-                      <i class="flag-icon flag-icon-es m-r-5"></i> Spanish
-                    </a>
-                  </li>
-                  <li>
-                    <a href="javascript:;" data-lng="pt">
-                      <i class="flag-icon flag-icon-pt m-r-5"></i> Portuguese
-                    </a>
-                  </li>
-                  <li>
-                    <a href="javascript:;" data-lng="fr">
-                      <i class="flag-icon flag-icon-fr m-r-5"></i> French
-                    </a>
-                  </li>
-                </ul>
-              </li>
+            <ul class="nav-right">
               <li class="header-notification">
-                <a href="javascript:;">
-                  <i class="ti-bell"></i>
-                  <span class="badge">5</span>
-                </a>
-                <ul class="show-notification">
-                  <li>
-                    <h6>Notifications</h6>
-                    <label class="label label-danger">New</label>
-                  </li>
-                  <li>
-                    <div class="media">
-                      <img class="d-flex align-self-center" src="assets/images/user.png" alt="Generic placeholder image">
-                      <div class="media-body">
-                        <h5 class="notification-user">John Doe</h5>
-                        <p class="notification-msg">Lorem ipsum dolor sit amet, consectetuer elit.</p>
-                        <span class="notification-time">30 minutes ago</span>
-                      </div>
-                    </div>
-                  </li>
-                  <li>
-                    <div class="media">
-                      <img class="d-flex align-self-center" src="assets/images/user.png" alt="Generic placeholder image">
-                      <div class="media-body">
-                        <h5 class="notification-user">Joseph William</h5>
-                        <p class="notification-msg">Lorem ipsum dolor sit amet, consectetuer elit.</p>
-                        <span class="notification-time">30 minutes ago</span>
-                      </div>
-                    </div>
-                  </li>
-                  <li>
-                    <div class="media">
-                      <img class="d-flex align-self-center" src="assets/images/user.png" alt="Generic placeholder image">
-                      <div class="media-body">
-                        <h5 class="notification-user">Sara Soudein</h5>
-                        <p class="notification-msg">Lorem ipsum dolor sit amet, consectetuer elit.</p>
-                        <span class="notification-time">30 minutes ago</span>
-                      </div>
-                    </div>
-                  </li>
-                </ul>
-              </li>
-              <li class="header-notification">
-                <a href="javascript:;" (click)="toggleChat()" class="displayChatbox">
-                  <i class="ti-comments"></i>
-                  <span class="badge">9</span>
-                </a>
+                  <span [style.background]="equalsLanguage('en')? '#DFDFDF' : null"><a href="javascript:;"
+                          data-lng="en" (click)="changeLanguage('en')">
+                          <i class="flag-icon flag-icon-gb m-r-5"></i>
+                          <span class="langue">{{'LANGUAGE.ENGLISH' | translate}}</span>
+                      </a>
+                  </span>
+                  <span [style.background]="equalsLanguage('fr')? '#DFDFDF' : null">
+                      <a href="javascript:;" data-lng="fr" (click)="changeLanguage('fr')">
+                          <i class="flag-icon flag-icon-fr m-r-5"></i>
+                          <span class="langue">{{'LANGUAGE.FRENCH' | translate}}</span>
+                      </a>
+                  </span>
+                 
+
               </li>
               <li class="user-profile header-notification">
-                <a [routerLink]="['/']">
-                  <img src="assets/images/user.png" alt="User-Profile-Image">
-                  <span>John Doe</span>
-                  <i class="ti-angle-down"></i>
-                </a>
-                <ul class="show-notification profile-notification">
-                  <li>
-                    <a [routerLink]="['/crm-contact']">
-                      <i class="ti-settings"></i> Settings
-                    </a>
-                  </li>
-                  <li>
-                    <a [routerLink]="['/user/profile']">
-                      <i class="ti-user"></i> Profile
-                    </a>
-                  </li>
-                  <li>
-                    <a [routerLink]="['/advance/notifications']">
-                      <i class="ti-email"></i> My Messages
-                    </a>
-                  </li>
-                  <li>
-                    <a [routerLink]="['/authentication/lock-screen']" target="_blank">
-                      <i class="ti-lock"></i> Lock Screen
-                    </a>
-                  </li>
-                  <li>
-                    <a [routerLink]="['/']">
-                      <i class="ti-layout-sidebar-left"></i> Logout
-                    </a>
-                  </li>
-                </ul>
+                  <a style="cursor: pointer">
+                      <span
+                          title="{{fullName}}">{{fullName?.length <= 30 ? fullName : fullName.substr(0,30)+" ..."}}</span>
+                      <i class="ti-angle-down"></i>
+                  </a>
+                  <ul class="show-notification profile-notification">
+                      <li onmouseover="this.style.background='#C0C0C0'"
+                          onmouseout="this.style.background='white'" style="cursor: pointer"
+                          [routerLink]="['/myprofile']">
+                          <a>
+                              <i class="ti-user"></i> {{'PROFILE' | translate}}
+                          </a>
+                      </li>
+                      <li onmouseover="this.style.background='#C0C0C0'"
+                          onmouseout="this.style.background='white'" style="cursor: pointer"
+                          (click)="logout()">
+                          <a>
+                              <i class="icofont icofont-sign-out"></i> {{'LOGOUT' | translate}}
+                          </a>
+                      </li>
+                  </ul>
               </li>
-            </ul>
+          </ul>
           </div>
         </div>
       </div>
@@ -483,7 +413,7 @@
                 <li [routerLinkActive]="['active']" *ngIf="asideItem.type === 'external'" appAccordionLink group="{{asideItem.state}}">
                   <a href="{{asideItem.external}}" target="{{asideItem.target ? '_blank' : '_self'}}" appAccordionToggle>
                     <span class="pcoded-micon"><i class="{{ asideItem.icon }}"></i></span>
-                    <span class="pcoded-mtext" [routerLinkActive]="['active']">{{ asideItem.name }}</span>
+                    <span class="pcoded-mtext" [routerLinkActive]="['active']">{{ asideItem.name | translate }}</span>
                     <span *ngFor="let asideBadge of asideItem.badge" class="pcoded-badge label label-{{ asideBadge.type }}">{{asideBadge.value}}</span>
                     <span class="pcoded-mcaret"></span>
                   </a>
@@ -492,41 +422,47 @@
                 <li [routerLinkActive]="['active']" *ngIf="asideItem.type === 'link'" appAccordionLink group="{{asideItem.state}}">
                   <a [routerLink]="['/', asideItem.main_state, asideItem.state]" target="{{asideItem.target ? '_blank' : '_self'}}" appAccordionToggle *ngIf="asideItem.main_state; else: mainContent">
                     <span class="pcoded-micon"><i class="{{ asideItem.icon }}"></i></span>
-                    <span class="pcoded-mtext">{{ asideItem.name }}</span>
+                    <span class="pcoded-mtext">{{ asideItem.name | translate }}</span>
                     <span *ngFor="let asideBadge of asideItem.badge" class="pcoded-badge label label-{{ asideBadge.type }}">{{asideBadge.value}}</span>
                     <span class="pcoded-mcaret"></span>
                   </a>
                   <ng-template #mainContent>
                     <a [routerLink]="['/', asideItem.state]" target="{{asideItem.target ? '_blank' : '_self'}}" appAccordionToggle>
                       <span class="pcoded-micon"><i class="{{ asideItem.icon }}"></i></span>
-                      <span class="pcoded-mtext">{{ asideItem.name }}</span>
+                      <span class="pcoded-mtext">{{ asideItem.name | translate }}</span>
                       <span *ngFor="let asideBadge of asideItem.badge" class="pcoded-badge label label-{{ asideBadge.type }}">{{asideBadge.value}}</span>
                       <span class="pcoded-mcaret"></span>
                     </a>
                   </ng-template>
                 </li>
-                <li  *ngIf="asideItem.type === 'sub'" class="pcoded-hasmenu" dropdown-icon="style1" subitem-icon="style6" appAccordionLink group="{{asideItem.state}}">
-                  <a [routerLinkActive]="['active']" href="javascript:;" appAccordionToggle>
+                <li *ngIf="asideItem.type === 'sub'" class="pcoded-hasmenu" dropdown-icon="style1"
+                appAccordionLink group="{{asideItem.state}}">
+                <a [routerLinkActive]="['active']" href="javascript:;" appAccordionToggle>
                     <span class="pcoded-micon"><i class="{{ asideItem.icon }}"></i></span>
-                    <span class="pcoded-mtext">{{ asideItem.name }}</span>
-                    <span *ngFor="let asideBadge of asideItem.badge" class="pcoded-badge label label-{{ asideBadge.type }}">{{asideBadge.value}}</span>
+                    <span class="pcoded-mtext">{{ asideItem.name | translate  }}</span>
+                    <span *ngFor="let asideBadge of asideItem.badge"
+                        class="pcoded-badge label label-{{ asideBadge.type }}">{{asideBadge.value}}</span>
                     <span class="pcoded-mcaret"></span>
-                  </a>
-                  <ul class="pcoded-submenu">
+                </a>
+                <ul class="pcoded-submenu">
                     <ng-template ngFor let-asideChildren [ngForOf]="asideItem.children">
-                    <li [routerLinkActive]="['active']" *ngIf="asideChildren.type !== 'sub'" class="pcoded-hasmenu">
-                      <a [routerLink]="['/',asideChildren.state]">
-                        <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
-                        <span class="pcoded-mtext">{{ asideChildren.name }} </span>
-                        <span *ngFor="let asideChildrenBadge of asideChildren.badge" class="pcoded-badge label label-{{ asideChildrenBadge.type }}">{{asideChildrenBadge.value}}</span>
-                        <span class="pcoded-mcaret"></span>
-                      </a>
-                    </li>
+                        <li [routerLinkActive]="['active']" *ngIf="asideChildren.type !== 'sub'"
+                            class="pcoded-hasmenu">
+                            <a [routerLink]="['/', asideChildren.state]">
+                                <span style="margin-right:7px"><i
+                                        class="{{ asideChildren.icon }}"></i></span>
+                                <span class="pcoded-mtext">{{ asideChildren.name | translate  }}
+                                </span>
+                                <span *ngFor="let asideChildrenBadge of asideChildren.badge"
+                                    class="pcoded-badge label label-{{ asideChildrenBadge.type }}">{{asideChildrenBadge.value}}</span>
+                                <span class="pcoded-mcaret"></span>
+                            </a>
+                        </li>
 
                     <li [routerLinkActive]="['active']" class="pcoded-hasmenu" dropdown-icon="style1"  *ngIf="asideChildren.type === 'sub'" appAccordionLink group="{{asideItem.state}}">
                       <a href="javascript:;" appAccordionToggle>
                         <span class="pcoded-micon"><i class="ti-direction-alt"></i></span>
-                        <span class="pcoded-mtext">{{ asideChildren.name }}</span>
+                        <span class="pcoded-mtext">{{ asideChildren.name| translate }}</span>
                         <span *ngFor="let asideChildrenBadge of asideChildren.badge" class="pcoded-badge label label-{{ asideChildrenBadge.type }}">{{asideChildrenBadge.value}}</span>
                         <span class="pcoded-mcaret"></span>
                       </a>
@@ -535,7 +471,7 @@
                           <li [routerLinkActive]="['active']" >
                             <a [routerLink]="['/', asideItem.state, asideChildren.state, asideChildrenSub.state]" target="{{asideChildrenSub.target ? '_blank' : '_self'}}">
                               <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
-                              <span class="pcoded-mtext">{{ asideChildrenSub.name }}</span>
+                              <span class="pcoded-mtext">{{ asideChildrenSub.name | translate}}</span>
                               <span *ngFor="let asideChildrenSubBadge of asideChildrenSub.badge" class="pcoded-badge label label-{{ asideChildrenSubBadge.type }}">{{asideChildrenSubBadge.value}}</span>
                               <span class="pcoded-mcaret"></span>
                             </a>

@@ -1,23 +1,23 @@
 <div class="card">
   <div class="card-header">
-      <h5 *ngIf="isEdit">Modification Module</h5>
-      <h5 *ngIf="!isEdit">Ajout Module</h5>
+      <h5 *ngIf="isEdit">{{'ACTION.UPDATE'|translate}}</h5>
+      <h5 *ngIf="!isEdit">{{'ACTION.ADD'|translate}}</h5>
       
   </div>
   <div class="card-block" style="margin: 1rem;">
       
       <form  [formGroup]="moduleForm" (ngSubmit)="save()">
           <div class="form-group row">
-              <label class="col-sm-2 col-form-label">Nom</label>
+              <label class="col-sm-2 col-form-label">{{'MODULE.NAME'|translate}}</label>
               <div class="col-sm-10">
                   <input type="text" maxlength="100" formControlName="name" class="form-control">
               </div>
           </div>
           <div class="form-group row">
-            <label class="col-sm-2 col-form-label">Level</label>
+            <label class="col-sm-2 col-form-label">{{'MODULE.LEVEL'|translate}}</label>
             <div class="col-sm-10">
               <select name="select" [compareWith]="compareLevel" name="level"  formControlName="level" class="form-control">
-                <option value="opt1">Selectioner un level</option>
+                <option value="opt1">{{'MODULE.SELECT_LEVEL'|translate}}</option>
                 <option *ngFor="let level of listLevel" [ngValue]="level" >
                   {{level.name}}  
                 </option>
@@ -25,10 +25,10 @@
             </div>
         </div>
         <div class="form-group row">
-          <label class="col-sm-2 col-form-label">Branch</label>
+          <label class="col-sm-2 col-form-label">{{'MODULE.BRANCH'|translate}}</label>
           <div class="col-sm-10">
             <select name="select" [compareWith]="compareBranch" name="branch"  formControlName="branch" class="form-control">
-              <option value="opt1">Selectioner un branch</option>
+              <option value="opt1">{{'MODULE.SELECT_BRANCH'|translate}}</option>
               <option *ngFor="let branch of listBranch" [ngValue]="branch" >
                 {{branch.name}}  
               </option>
@@ -39,10 +39,10 @@
       <div class="form-group row justify-content-center">
         <button type="button" style="margin-right: 20px"  type="submit" [disabled]="isSaved"
           class="btn btn-success btn-md waves-effect waves-light">
-          <i class="fa fa-check"></i>Save
+          <i class="fa fa-check"></i>{{'ACTION.SAVE'| translate}}
         </button>
         <button type="button" (click)="cancel()" class="btn btn-danger btn-md waves-effect waves-light">
-          <i class="fa fa-close"></i>Cancel
+          <i class="fa fa-close"></i>{{'ACTION.CANCEL'| translate}}
         </button>
       </div>
          

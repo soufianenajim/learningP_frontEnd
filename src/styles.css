@@ -54,7 +54,7 @@ p {
 ==========================  **/
 
 .main-body .page-wrapper {
-  padding: 1.8rem;
+  /* padding: 1.8rem; */
   transition: all ease-in 0.3s;
 }
 .main-body .page-wrapper .page-header {
