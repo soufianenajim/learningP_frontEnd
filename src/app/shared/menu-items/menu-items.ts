@@ -48,7 +48,7 @@ const MENUITEMS = [
         state: "studentSpace",
         name: "MENU_ITEM.STUDENT_SPACE",
         type: "link",
-        icon: "fa fa-graduation-cap",
+        icon: "icofont icofont-student-alt",
       },
     ],
   },
@@ -60,22 +60,22 @@ const MENUITEMS = [
         state: "module_menu",
         name: "MENU_ITEM.PROFESSOR_SPACE",
         type: "sub",
-        icon: "fa fa-chalkboard-teacher",
+        icon: "icofont icofont-teacher",
         children: [
           {
             state: "module",
             name: "MENU_ITEM.MANAGED_MODULE",
-            icon: "ti-home",
+            icon: "fa fa-bookmark",
           },
           {
             state: "course",
             name: "MENU_ITEM.COURSE",
-            icon: "ti-home",
+            icon: "fa fa-book",
           },        
           {
             state: "td",
             name: "Td",
-            icon: "ti-home",
+            icon: "fa fa-pencil",
           },
         ],
       },
@@ -145,17 +145,17 @@ const MENUITEMS = [
         state: "administration_menu",
         name: "Administration",
         type: "sub",
-        icon: "ti-home",
+        icon: "fa fa-users",
         children:[
           {
             state: "user",
             name: "Utilisateur",
-            icon: "fa fa-user",
+            icon: "fa fa-users",
           },
           {
             state: "organization",
             name: "Organization",
-            icon: "fa fa-sitemap",
+            icon: "fa fa-building-o",
           },
           {
             state: "level",
@@ -170,7 +170,7 @@ const MENUITEMS = [
           {
             state: "licence",
             name: "Licence",
-            icon: "ti-home",
+            icon: "fa fa-shopping-bag",
           },
         ]
       },
