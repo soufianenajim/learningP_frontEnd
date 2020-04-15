@@ -98,7 +98,9 @@ export class ListComponent implements OnInit {
     const dialogRef = this.dialog.open(SaveOrUpdateComponent, {
       width: "60%",
       data: data,
-      disableClose: true
+      disableClose: true,
+      autoFocus: false,
+      maxHeight: "90vh",
     });
 
     dialogRef.afterClosed().subscribe(result => {

@@ -6,9 +6,7 @@ export class Cour extends Historized{
         
         public name?: string,
         public module?: any,
-        public introduction?:string,
-        public resume?:string,
-        public conclusion?:string,
+        public content?:string,
         public quiz?: any[]
     ) {
         super();

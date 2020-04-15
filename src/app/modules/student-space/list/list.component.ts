@@ -2,43 +2,48 @@ import { Component, OnInit, ViewChild } from "@angular/core";
 import { MatTableDataSource, MatPaginator, MatDialog } from "@angular/material";
 import { UserService } from "../../../core/services/user/user.service";
 import { FormGroup, FormControl } from "@angular/forms";
-import { Module } from "../../../core/models/module.model";
+import { ProgressionModule } from "../../../core/models/progression_module.model";
 import { Demande } from "../../../core/models/demande.model";
+import { ProgressionModuleService } from "../../../core/services/progression_module/progression-module.service";
+import { User } from "../../../core/models/user.model";
 import { ModuleService } from "../../../core/services/module/module.service";
+import { ProgressionCourComponent } from "../progression-cour/progression-cour.component";
 
 
 @Component({
-  selector: "app-module-list",
+  selector: "app-progression-module-list",
   templateUrl: "./list.component.html",
   styleUrls: ["./list.component.css"]
 })
 export class ListComponent implements OnInit {
-  displayedColumns: string[] = ["name", "professeur","cour","quiz","exam", "noteF"];
+  displayedColumns: string[] = ["name", "professeur","cour","exam", "noteF"];
   //dataSource = new MatTableDataSource<PeriodicElement>(ELEMENT_DATA);
-  dataSource: MatTableDataSource<Module>;
+  dataSource: MatTableDataSource<ProgressionModule>;
 
-  demandeModule: Demande<Module> = new Demande<Module>();
-
-  module: Module = new Module();
+  demandeProgressionModule: Demande<ProgressionModule> = new Demande<ProgressionModule>();
+ 
+  progressionModule: ProgressionModule = new ProgressionModule();
   resultsLength;
+  user=new User();
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
-  listProfessor;
-  moduleForm = new FormGroup({
-    name: new FormControl(""),
-    prof: new FormControl()
+  listModule;
+  progressionModuleForm = new FormGroup({
+    module: new FormControl(null),
+   
   });
   constructor(
     private userService: UserService,
-    private moduleService: ModuleService,
+    private progressionModuleService: ProgressionModuleService,
+    private moduleService:ModuleService,
     private dialog: MatDialog
   ) {}
   ngOnInit() {
-    this.userService.findAllProfessor().subscribe(resp => {
-      console.log("list professor --------", resp);
-      this.listProfessor = resp;
+    this.user.id=1;
+    this.moduleService.findAll().subscribe(resp=>{
+      this.listModule=resp;
       this.search(false);
-    });
+    })
   }
   search(bool) {
     if (!bool) {
@@ -46,25 +51,23 @@ export class ListComponent implements OnInit {
     }
     const page = this.paginator.pageIndex;
     const size = this.paginator.pageSize;
-    const name = this.moduleForm.get("name").value;
-    const professeur = this.moduleForm.get("prof").value;
+    const module = this.progressionModuleForm.get("module").value;
 
-    this.module.name = name;
-    this.module.user = professeur;
+    this.progressionModule.module = module;
+    this.progressionModule.student=this.user;
+    this.demandeProgressionModule.model = this.progressionModule;
+    this.demandeProgressionModule.page = page;
+    this.demandeProgressionModule.size = size;
 
-    this.demandeModule.model = this.module;
-    this.demandeModule.page = page;
-    this.demandeModule.size = size;
-
-    this.searchByCritere(this.demandeModule);
+    this.searchByCritere(this.demandeProgressionModule);
   }
 
-  searchByCritere(demande: Demande<Module>) {
-    console.log("demandeModule --------", demande);
-    this.moduleService.searchByCritere(demande).subscribe((resp: any) => {
-      console.log("modules from database afak ---------------", resp);
+  searchByCritere(demande: Demande<ProgressionModule>) {
+    console.log("demandeProgressionModule --------", demande);
+    this.progressionModuleService.searchByCritere(demande).subscribe((resp: any) => {
+      console.log("progressionModules from database afak ---------------", resp);
       this.resultsLength = resp.count;
-      this.dataSource = new MatTableDataSource<Module>(resp.lignes);
+      this.dataSource = new MatTableDataSource<ProgressionModule>(resp.lignes);
       this.paginator.pageIndex = demande.page;
     });
   }
@@ -73,8 +76,7 @@ export class ListComponent implements OnInit {
     this.paginator.pageIndex = 0;
   }
   reset() {
-    this.moduleForm.get("name").setValue("");
-    this.moduleForm.get("prof").setValue(null);
+    this.progressionModuleForm.get("module").setValue(null);
     this.search(false);
   }
   refreshDataTable() {
@@ -86,7 +88,7 @@ export class ListComponent implements OnInit {
 
 
    delete(row) {
-    this.moduleService.delete(row.id).subscribe(
+    this.progressionModuleService.delete(row.id).subscribe(
       response => {
         console.log("response", response);
         this.search(true);
@@ -95,6 +97,25 @@ export class ListComponent implements OnInit {
         console.log("error", error);
       }
     );
+  }
+  openProgressionCour (data) {
+    console.log("data", data);
+    const dialogRef = this.dialog.open(ProgressionCourComponent, {
+      width: "90%",
+      data: data,
+      disableClose: true,
+      autoFocus: false,
+      maxHeight: "90vh",
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if(result){
+        this.search(false);
+      }
+      
+      console.log("The dialog was closed");
+    });
+
   }
 }
 

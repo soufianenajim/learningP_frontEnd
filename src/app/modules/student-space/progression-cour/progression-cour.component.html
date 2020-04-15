@@ -1,23 +1,25 @@
 <div class="card">
   <div class="card-header">
     <h5><i class="fa fa-search" style="margin-right: 4px;"></i>{{ 'ACTION.SEARCH'  | translate}}</h5>
-    
+    <button type="button" class="btn btn-danger btn-md waves-effect waves-light f-right" (click)="cancel()"> <i
+        class="fa fa-close"></i> {{ 'ACTION.CANCEL' | translate}}
+    </button>
   </div>
 
 
 
   <div class="card-body">
-    <form [formGroup]="progressionModuleForm">
+    <form [formGroup]="progressionCourForm">
       <div class="row">
         
         <div class="col-sm-6">
           <div class="row">
-            <label class="col-sm-3 col-form-label" style="font-weight: bold;color: #757575;">Module</label>
+            <label class="col-sm-3 col-form-label" style="font-weight: bold;color: #757575;">Cour</label>
             <div class="col-sm-9">
-              <select name="select" formControlName="module" class="form-control">
-                <option value="">Selectioner un module</option>
-                <option *ngFor="let module of listModule" [ngValue]="module">
-                  {{module.name}}
+              <select name="select" formControlName="cour" class="form-control">
+                <option value="">Selectioner un cour</option>
+                <option *ngFor="let cour of listCour" [ngValue]="cour">
+                  {{cour.name}}
                 </option>
               </select>
 
@@ -55,24 +57,22 @@
       <!-- Position Column -->
       <ng-container matColumnDef="name">
         <th mat-header-cell *matHeaderCellDef> {{'MODULE.NAME'|translate}} </th>
-        <td mat-cell *matCellDef="let element"> {{element.module.name}} </td>
+        <td mat-cell *matCellDef="let element"> {{element.cour.name}} </td>
       </ng-container>
 
       <!-- Name Column -->
-      <ng-container matColumnDef="professeur">
-        <th mat-header-cell *matHeaderCellDef> {{'MODULE.PROFESSOR'|translate}} </th>
+      <ng-container matColumnDef="progression">
+        <th mat-header-cell *matHeaderCellDef> Progression</th>
         <td mat-cell *matCellDef="let element">
-          {{element.module.professor!=null?element.module.professor.firstName+' '+element.module.professor.lastName:'---'}} </td>
+          {{element.progression!=null?element.progression :'0'}}% </td>
       </ng-container>
-      <ng-container matColumnDef="cour">
-        <th mat-header-cell *matHeaderCellDef> Courses (Progression) </th>
+      <ng-container matColumnDef="scorQuiz">
+        <th mat-header-cell *matHeaderCellDef> Quiz Score </th>
         <td  mat-cell *matCellDef="let element">
           <div class="btn-group btn-group-sm">
 
-            <button mat-icon-button  (click)="openProgressionCour(element)">
-              <span class="fa fa-play" style="color: #007bff"></span>
-          </button>
-            {{element.progressionCour}} %
+            
+            {{element.scoreQuiz!=null?element.scoreQuiz:'---'}}
             
         
 
@@ -81,27 +81,7 @@
         </td>
       </ng-container>
      
-      <ng-container matColumnDef="exam">
-        <th mat-header-cell *matHeaderCellDef> Exams (Progression ) </th>
-        <td  mat-cell *matCellDef="let element">
-          <div class="btn-group btn-group-sm">
-
-            <button mat-icon-button >
-              <span class="fa fa-play" style="color: #007bff"></span>
-          </button>
-           {{element.progressionExam}} %
-
-
-          </div>
-        </td>
-      </ng-container>
-      <ng-container matColumnDef="noteF">
-        <th mat-header-cell *matHeaderCellDef> Note Final </th>
-        <td mat-cell *matCellDef="let element">
-          {{element.noteFinal!=null?element.noteFinal:'---'}} </td>
-      </ng-container>
-
-
+      
   
 
 
