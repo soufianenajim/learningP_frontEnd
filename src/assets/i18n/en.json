@@ -6,7 +6,7 @@
     "CHAPTER": "Chapter",
     "PARAGRAPH": "Paragraph",
     "STUDENT_SPACE": "Student Space",
-    "PROFESSOR_SPACE":"Professor Space"
+    "PROFESSOR_SPACE": "Professor Space"
   },
   "ACTION": {
     "SEARCH": "Search",
@@ -35,19 +35,44 @@
   "CHAPTER": {
     "NAME": "Name",
     "COURSE": "Course",
-    "MODULE":"Module",
+    "MODULE": "Module",
     "SELECT_COURSE": "Select course"
   },
-  "PARAGRAPH":{
-    "NAME":"Name",
-    "CHAPTER":"Chapter",
-    "SELECT_CHAPTER":"Select chapter",
-    "CONTENT":"Content"
+  "PARAGRAPH": {
+    "NAME": "Name",
+    "CHAPTER": "Chapter",
+    "SELECT_CHAPTER": "Select chapter",
+    "CONTENT": "Content"
   },
-  "COURSE":{
-    "NAME":"Name",
-    "MODULE":"Module",
-    "SELECT_MODULE":"Select module"
+  "COURSE": {
+    "NAME": "Name",
+    "MODULE": "Module",
+    "SELECT_MODULE": "Select module"
+  },
+  "ERRORS": {
+    "EMPTY_FIELD": "Field must not be empty.",
+    "INVALID_DATA": "Please enter valid data."
+  },
+  "USER":{
+    "EMAIL":"Email",
+    "FIRST_NAME":"FirstName",
+    "LAST_NAME":"lastName",
+    "PHONE":"Phone",
+    "ORGANIZATION":"Organization",
+    "LEVEL":"Level",
+    "BRANCH":"Branch",
+    "ROLE":"Role",
+    "SELECT_BRANCH": "Select  branch",
+    "SELECT_LEVEL": "Select level",
+    "SELECT_ROLE":"Select role",
+    "SELECT_ORGANIZATION":"Select organization",
+    "EXIST": "User already exists!",
+    "SAVE_SUCCESS": "User saved successfully"
+  },
+  "ROLE": {
+    "STUDENT": "Student",
+    "TEACHER":"Teacher",
+    "ADMIN":"Administrator"
   },
   "EMAIL": "Email",
   "COMPONENTS": "Components",

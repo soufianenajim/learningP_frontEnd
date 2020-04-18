@@ -31,6 +31,7 @@ export class ProgressionCourComponent implements OnInit {
     cour: new FormControl(null),
    
   });
+  dataFromDialog;
   constructor(
     private progressionCourService: ProgressionCourService,
     private courService:CourseService,
@@ -38,11 +39,12 @@ export class ProgressionCourComponent implements OnInit {
     public dialogRef: MatDialogRef<ProgressionCourComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any
   ) {
-    this.progressionCour.moduleId=data.module.id;
-    this.progressionCour.student=data.student;
+    this.dataFromDialog=data;
   }
   ngOnInit() {
-       this.courService.findAll().subscribe(resp=>{
+    this.progressionCour.moduleId=this.dataFromDialog.module.id;
+    this.progressionCour.student=this.dataFromDialog.student;
+    this.courService.findByModule(this.progressionCour.moduleId).subscribe(resp=>{
       this.listCour=resp;
       this.search(false);
     })

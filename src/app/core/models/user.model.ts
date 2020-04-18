@@ -2,7 +2,7 @@ import { Historized } from "./historized.model";
 
 export class User extends Historized {
   constructor(
-    public login?: string,
+    public email?: string,
     public password?: string,
     public firstName?: string,
     public lastName?: string,
@@ -10,7 +10,11 @@ export class User extends Historized {
     public tokenDate?: string,
     public isOnline?: boolean,
     public isOffline?: boolean,
-    public refRole?: any
+    public refRole?: any,
+    public organization?: any,
+    public branch?: any,
+    public level?: any
+
   ) {
     super();
   }

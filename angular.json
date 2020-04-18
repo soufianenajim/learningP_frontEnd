@@ -39,7 +39,8 @@
               "node_modules/froala-editor/css/froala_style.min.css",
               "src/assets/css/animate.css",
               "src/styles.css",
-              "src/assets/css/custom.css"
+              "src/assets/css/custom.css",
+               "node_modules/angular-notifier/styles.css"
             ],
             "scripts": [
               "node_modules/jquery/dist/jquery.min.js",

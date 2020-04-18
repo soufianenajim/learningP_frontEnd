@@ -3,10 +3,10 @@
     "HOME": "Tableau de bord",
     "MANAGED_MODULE": "Module",
     "COURSE": "Cour",
-    "CHAPTER":"Chapitre",
-    "PARAGRAPH":"Paragraphe",
+    "CHAPTER": "Chapitre",
+    "PARAGRAPH": "Paragraphe",
     "STUDENT_SPACE": "Espace Etudiant",
-    "PROFESSOR_SPACE":"Espace Professeur"
+    "PROFESSOR_SPACE": "Espace Professeur"
   },
   "ACTION": {
     "SEARCH": "Rechercher",
@@ -16,8 +16,8 @@
     "DELETE": "Supprimer",
     "UPDATE": "Modifier",
     "DETAIL": "Détail",
-    "SAVE":"Enregistrer",
-    "CANCEL":"Annuler"
+    "SAVE": "Enregistrer",
+    "CANCEL": "Annuler"
   },
   "LANGUAGE": {
     "FRENCH": "Français",
@@ -31,24 +31,49 @@
     "BRANCH": "Branche",
     "SELECT_BRANCH": "Selectionner une branche",
     "SELECT_LEVEL": "Selectionner un niveau"
-  },"CHAPTER":{
-    "NAME":"Nom",
-    "COURSE":"Cour",
-    "MODULE":"Module",
-    "SELECT_COURSE":"Selectionner un cour"  
-    },
-    "PARAGRAPH":{
-      "NAME":"Nom",
-      "CHAPTER":"Chapitre",
-      "SELECT_CHAPTER":"Selectionner un chapitre",
-      "CONTENT":"Contenu"
-    },
-    "COURSE":{
-      "NAME":"Nom",
-      "MODULE":"Module",
-      "SELECT_MODULE":"Select module"
-    },
-  
+  },
+  "CHAPTER": {
+    "NAME": "Nom",
+    "COURSE": "Cour",
+    "MODULE": "Module",
+    "SELECT_COURSE": "Selectionner un cour"
+  },
+  "PARAGRAPH": {
+    "NAME": "Nom",
+    "CHAPTER": "Chapitre",
+    "SELECT_CHAPTER": "Selectionner un chapitre",
+    "CONTENT": "Contenu"
+  },
+  "COURSE": {
+    "NAME": "Nom",
+    "MODULE": "Module",
+    "SELECT_MODULE": "Select module"
+  },
+  "ERRORS": {
+    "EMPTY_FIELD": "Le champ ne doit pas être vide.",
+    "INVALID_DATA": "Veuillez entrer des données valides."
+  },
+  "USER": {
+    "EMAIL": "Email",
+    "FIRST_NAME": "Prénom",
+    "LAST_NAME": "Nom",
+    "PHONE": "Télephone",
+    "ORGANIZATION": "Organisation",
+    "LEVEL": "Niveau",
+    "BRANCH": "Branche",
+    "ROLE": "Rôle",
+    "SELECT_BRANCH": "Selectionner une branche",
+    "SELECT_LEVEL": "Selectionner un niveau",
+    "SELECT_ROLE": "Selectionner un rôle",
+    "SELECT_ORGANIZATION": "Selectionner une organisation",
+    "EXIST": "Cet utilisateur existe déjà!",
+    "SAVE_SUCCESS": "Utilisateur enregistré avec succès"
+  },
+  "ROLE": {
+    "STUDENT": "Étudiant",
+    "TEACHER":"Professeur",
+    "ADMIN":"Administrateur"
+  },
   "EMAIL": "Email",
   "COMPONENTS": "Composants",
   "ACCORDION": "Accordéon",

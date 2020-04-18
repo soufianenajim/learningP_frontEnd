@@ -1,0 +1,97 @@
+<section class="login p-fixed d-flex text-center bg-primary common-img-bg">
+  <div class="auth-fluid">
+    <div class="nav-right">
+      <div class="header-notification">
+        <ul>
+          <li>
+            <a (click)="setLang('en')" style="cursor: pointer;" data-lng="en">
+              <i class="flag-icon flag-icon-gb m-r-5"></i> {{'LANGUAGE.ENGLISH' | translate}}
+            </a>
+          </li>
+          <li>
+              <a (click)="setLang('fr')" style="cursor: pointer;" data-lng="fr">
+                <i class="flag-icon flag-icon-fr m-r-5"></i> {{'LANGUAGE.FRENCH' | translate}}
+              </a>
+            </li>
+          <li>
+            <a (click)="setLang('ar')" style="cursor: pointer;" data-lng="ar">
+              <i class="flag-icon flag-icon-ma m-r-5"></i> {{'LANGUAGE.ARABIC' | translate}}
+            </a>
+          </li>
+
+
+        </ul>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-12">
+        <div class="login-card card-body auth-body m-auto">
+          <form class="md-float-material" [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+
+            <div class="auth-box">
+              <div class="text-center">
+                <img src="assets/images/logo.png" alt="Logo of DATA-CSIRT">
+              </div>
+              <hr>
+              <div class="row" style="margin-bottom: 3px;">
+                <div class="col-md-12">
+                  <h3 class="text-left txt-primary">{{ 'LOGIN.LOGIN' | translate }}</h3>
+                </div>
+              </div>
+
+              <div style="height: 48px;" *ngIf="!error">
+
+              </div>
+
+              <div class="alert alert-danger" *ngIf="error" style="padding: 0.45rem 1rem;">
+                <button type="button" class="close" (click)="removeError()" style="margin-top: 0px;">
+                  <i class="icofont icofont-close-line-circled"></i>
+                </button>
+                <strong>{{error}}</strong>
+              </div>
+
+              <div class="input-group">
+                <input type="text" formControlName="email" class="form-control" maxlength="100"
+                  placeholder="{{ 'FORGOT_PASSWORD.EMAIL' | translate }}"
+                  [ngClass]="{ 'form-control-danger': (f.email.dirty || f.email.touched) && f.email.invalid && f.email.errors.required }">
+                <span class="md-line"></span>
+              </div>
+              <div class="input-group">
+                <input [type]="show ? 'text' : 'password'" formControlName="password" class="form-control" maxlength="100"
+                  placeholder="{{ 'FORGOT_PASSWORD.PASSWORD' | translate }}" autocomplete="on"
+                  [ngClass]="{ 'form-control-danger': (f.password.dirty || f.password.touched) && f.password.invalid && f.password.errors.required }">
+                  <span (click)="showPasword()" class="input-group-append">
+                    <div class="input-group-text bg-transparent"><i class="fa fa-eye" ></i></div>
+                </span>
+                <span class="md-line"></span>
+              </div>
+              
+              <div class="row m-t-30">
+                <div class="col-md-12">
+                  <!-- [disabled]="loginForm.invalid" -->
+                  <button type="submit"
+                    class="btn btn-primary btn-md btn-block waves-effect text-center m-b-20" style="width: 100% !important;">
+                      <i *ngIf="loading" class="fa fa-circle-o-notch fa-spin" style="margin-right: 7px; float: none; margin-top: auto;"></i>{{ 'LOGIN.LOGIN' | translate }}
+                  </button>
+                </div>
+                
+              </div>
+              <div class="row m-t-30 text-right">
+                <div class="col-md-12 col-sm-12 col-xs-12 forgot-phone text-right">
+                  <a [routerLink]="['/login/forgot']" class="text-right f-w-600 text-inverse">
+                    {{ 'LOGIN.FORGOT_PASSWORD' | translate }} </a>
+                </div>
+              </div>
+              <hr />
+              <div class="row" style="margin-top: 30px">
+                <div class="col-md-12">
+                  <span class="text-inverse text-center">   {{'LOGIN.COPIRIGHT' | translate}}  </span>
+                </div>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

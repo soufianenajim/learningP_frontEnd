@@ -25,6 +25,11 @@ File: style.css
 /**  ===================== Custom css start
 ==========================  **/
 @import "~@ng-select/ng-select/themes/default.theme.css";
+/* @import "~/angular-notifier/styles.css";
+@import "~/angular-notifier/styles/core.css";
+@import "~/angular-notifier/styles/theme";
+@import "~/angular-notifier/styles/types"; */
+
 body {
   background-color: #f3f3f3;
   font-size: 0.875em;

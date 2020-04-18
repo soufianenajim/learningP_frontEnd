@@ -49,6 +49,8 @@ import { ClickOutsideModule } from "ng-click-outside";
 import { MaterialsModule } from "../modules/materials/materials.module";
 import { NgSelectModule } from '@ng-select/ng-select';
 import { TranslateModule } from "@ngx-translate/core";
+import { NotifierModule } from 'angular-notifier';
+
 
 @NgModule({
   imports: [
@@ -79,7 +81,25 @@ import { TranslateModule } from "@ngx-translate/core";
     ChartistModule,
     NvD3Module,
     ClickOutsideModule,
-    NgSelectModule
+    NgSelectModule,
+    NotifierModule.withConfig({
+      position: {
+        // fro custopm configuration visit : https://www.npmjs.com/package/angular-notifier
+        horizontal: {
+          position: 'right',
+          distance: 12
+        }, vertical: {
+          position: 'top',
+          distance: 12,
+          gap: 10
+        }
+      }, behaviour: {
+        stacking: 1
+      }
+
+
+    }),
+    
   ],
   declarations: [
     AccordionAnchorDirective,
@@ -136,8 +156,10 @@ import { TranslateModule } from "@ngx-translate/core";
     ChartistModule,
     NvD3Module,
     ClickOutsideModule,
-    NgSelectModule
+    NgSelectModule,
+    NotifierModule
   ],
-  providers: [MenuItems, TodoService, SelectOptionService]
+ 
+  providers: [MenuItems, TodoService, SelectOptionService ]
 })
 export class SharedModule {}

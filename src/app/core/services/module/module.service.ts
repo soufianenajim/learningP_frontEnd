@@ -13,6 +13,9 @@ export class ModuleService {
   findAll() {
     return this.httpClient.get(this.url + "/find-all");
   }
+  findByLevelAndBranch(idLevel,idBranch){
+    return this.httpClient.get(this.url + "/find-by-level-and-branch/"+idLevel+"/"+idBranch);
+  }
   saveOrUpdate(module: Module) {
     return this.httpClient.post(this.url + "/save-or-update", module);
   }

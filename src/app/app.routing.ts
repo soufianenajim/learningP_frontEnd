@@ -4,6 +4,8 @@ import { AdminLayoutComponent } from "./layouts/admin/admin-layout.component";
 import { AuthLayoutComponent } from "./layouts/auth/auth-layout.component";
 
 export const AppRoutes: Routes = [
+  { path: '', pathMatch: 'full', redirectTo: '/login' },
+  { path: 'login', loadChildren: './modules/auth/auth.module#AuthModule' },
   {
     path: "",
     component: AdminLayoutComponent,

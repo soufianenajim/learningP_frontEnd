@@ -41,12 +41,14 @@
 
               </li>
               <li class="user-profile header-notification">
-                  <a style="cursor: pointer">
-                      <span
-                          title="{{fullName}}">{{fullName?.length <= 30 ? fullName : fullName.substr(0,30)+" ..."}}</span>
-                      <i class="ti-angle-down"></i>
-                  </a>
+                <a style="cursor: pointer">
+                  <img src="assets/images/avatar-white.png" alt="User-Profile-Image">
+                  <span
+                      title="{{fullName}}">{{fullName?.length <= 30 ? fullName : fullName.substr(0,30)+" ..."}}</span>
+                  <i class="ti-angle-down"></i>
+              </a>
                   <ul class="show-notification profile-notification">
+                   
                       <li onmouseover="this.style.background='#C0C0C0'"
                           onmouseout="this.style.background='white'" style="cursor: pointer"
                           [routerLink]="['/myprofile']">

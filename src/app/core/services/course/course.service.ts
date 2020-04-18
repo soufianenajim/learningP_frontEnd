@@ -22,4 +22,7 @@ export class CourseService {
   delete(id) {
     return this.httpClient.delete(this.url + "/delete/" + id);
   }
+  findByModule(idModule){
+    return this.httpClient.get(this.url + "/find-by-module/"+idModule);
+  }
 }

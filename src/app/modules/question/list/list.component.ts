@@ -16,6 +16,7 @@ import { QuestionService } from "../../../core/services/question/question.servic
 import { DetailComponent } from "../detail/detail.component";
 import { SaveOrUpdateComponent } from "../save-or-update/save-or-update.component";
 import { SelectionModel } from "@angular/cdk/collections";
+import { TranslateService } from "@ngx-translate/core";
 
 @Component({
   selector: "app-question-list",
@@ -45,7 +46,8 @@ export class ListComponent implements OnInit, AfterViewChecked {
   checkedInit=true;
   constructor(
     private questionService: QuestionService,
-    private dialog: MatDialog
+    private dialog: MatDialog,
+    private translateService:TranslateService
   ) {}
   ngOnInit() {
     console.log("isFromParent", this.isFromParent);
@@ -190,4 +192,13 @@ export class ListComponent implements OnInit, AfterViewChecked {
     var found = this.selection.selected.find((x) => x.id == row.id);
     if (found) return found.checked;
   }
+  getRoleName(role: String) {
+    const rolei18 = role.replace("ROLE_", "ROLE.");
+    let roleName;
+    this.translateService.get(rolei18).subscribe((value: string) => {
+        roleName = value;
+        return value
+    });
+    return roleName;
+}
 }

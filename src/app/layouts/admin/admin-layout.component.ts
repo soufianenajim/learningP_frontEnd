@@ -5,6 +5,8 @@ import {state, style, transition, animate, trigger, AUTO_STYLE} from '@angular/a
 import { MenuItems } from '../../shared/menu-items/menu-items';
 import { TranslateService } from '@ngx-translate/core';
 import { LocalService } from '../../core/services/local/local.service';
+import { AuthenticationService } from '../../core/services/authentication/authentication.service';
+import { TokenStorageService } from '../../core/services/token_storage/token-storage.service';
 
 export interface Options {
   heading?: string;
@@ -73,7 +75,8 @@ export class AdminLayoutComponent implements OnInit {
   @ViewChild('sideMenu') side_menu: ElementRef;
 
   lang;
-  constructor(public menuItems: MenuItems,private translate: TranslateService,private localeService: LocalService) {
+  fullName: string;
+  constructor(public menuItems: MenuItems,private translate: TranslateService,private localeService: LocalService,private authenticasionService:AuthenticationService,private tokenStorageService:TokenStorageService) {
     const scrollHeight = window.screen.height - 150;
     this.innerHeight = scrollHeight + 'px';
     this.windowWidth = window.innerWidth;
@@ -83,8 +86,13 @@ export class AdminLayoutComponent implements OnInit {
 
   ngOnInit() {
     console.log('adminLayout')
+    console.log(this.tokenStorageService.getUser());
+    this.getFullName();
    }
-
+   getFullName(){
+     const user=this.tokenStorageService.getUser();
+     this.fullName=user.firstName+' '+user.lastName;
+   }
   onClickedOutside(e: Event) {
       if (this.windowWidth < 768 && this.toggleOn && this.verticalNavType !== 'offcanvas') {
           this.toggleOn = true;
@@ -168,5 +176,9 @@ export class AdminLayoutComponent implements OnInit {
 
   onScroll(event) {
     this.isScrolled = false;
+  }
+  logout(){
+    this.authenticasionService.logout();
+
   }
 }

@@ -1,0 +1,79 @@
+<section class="login p-fixed d-flex text-center bg-primary common-img-bg">
+  <div class="auth-fluid">
+    <div class="nav-right">
+      <div class="header-notification">
+        <ul>
+          <li>
+            <a (click)="setLang('en')" style="cursor: pointer;" data-lng="en">
+              <i class="flag-icon flag-icon-gb m-r-5"></i> English
+            </a>
+          </li>
+          <li>
+            <a (click)="setLang('fr')" style="cursor: pointer;" data-lng="fr">
+              <i class="flag-icon flag-icon-fr m-r-5"></i> Français
+            </a>
+          </li>
+          <li>
+            <a (click)="setLang('ar')" style="cursor: pointer;" data-lng="ar">
+              <i class="flag-icon flag-icon-ma m-r-5"></i> العربية
+            </a>
+          </li>
+
+
+        </ul>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-12">
+        <div class="login-card card-body auth-body">
+          <form [formGroup]="myForm" (ngSubmit)="onSubmit()" class="md-float-material">
+
+            <div class="auth-box">
+              <div class="text-center">
+                <img src="assets/images/logo.png" alt="Logo of DATA-CSIRT">
+              </div>
+              <hr>
+              <div class="row ">
+                <div class="col-md-12">
+                  <h3 class="text-left" style="font-size: 1rem;">{{ 'FORGOT_PASSWORD.TITLE' | translate }}</h3>
+                  <p style="color: #666666;">{{ 'FORGOT_PASSWORD.MESSAGE' | translate }}</p>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-md-12">
+                  <input type="text" class="form-control" placeholder="{{ 'FORGOT_PASSWORD.EMAIL' | translate }}"
+                    formControlName="email">
+                  <div *ngIf="myForm.get('email').hasError('required') && (myForm.get('email').touched|| isClickSave)"
+                    style="color:red">
+                    {{'ERRORS.EMPTY_FIELD' | translate}}</div>
+                  <div *ngIf="myForm.get('email').errors?.pattern" style="color:red">
+                    {{'ERRORS.INVALID_DATA' | translate}}</div>
+                </div>
+              </div>
+              <br>
+              <div class="row">
+                <div class="col-md-12">
+                  <button type="submit"
+                    class="btn btn-primary btn-md btn-block waves-effect text-center m-b-20" style="width: 100% !important;">{{ 'FORGOT_PASSWORD.RESET' | translate }}</button>
+                </div>
+              </div>
+              <div class="row m-t-10 text-right">
+                <div class="col-md-12 col-sm-12 col-xs-12 forgot-phone text-right">
+                  <u><a [routerLink]="['/login']" class="text-right f-w-600 text-inverse">
+                      {{ 'FORGOT_PASSWORD.BACK' | translate }} </a></u>
+                </div>
+              </div>
+              <div class="row" style="margin-top: 30px">
+                <div class="col-md-12">
+                  <span class="text-inverse text-center"> Copyright © DATA-CSIRT All rights reserved. </span>
+                </div>
+              </div>
+
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

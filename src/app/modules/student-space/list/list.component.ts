@@ -8,6 +8,7 @@ import { ProgressionModuleService } from "../../../core/services/progression_mod
 import { User } from "../../../core/models/user.model";
 import { ModuleService } from "../../../core/services/module/module.service";
 import { ProgressionCourComponent } from "../progression-cour/progression-cour.component";
+import { TokenStorageService } from "../../../core/services/token_storage/token-storage.service";
 
 
 @Component({
@@ -25,6 +26,8 @@ export class ListComponent implements OnInit {
   progressionModule: ProgressionModule = new ProgressionModule();
   resultsLength;
   user=new User();
+  levelId;
+  branchId;
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
   listModule;
@@ -36,12 +39,18 @@ export class ListComponent implements OnInit {
     private userService: UserService,
     private progressionModuleService: ProgressionModuleService,
     private moduleService:ModuleService,
-    private dialog: MatDialog
+    private dialog: MatDialog,
+    private tokenStorageService:TokenStorageService
   ) {}
   ngOnInit() {
-    this.user.id=1;
-    this.moduleService.findAll().subscribe(resp=>{
+    console.log('user',this.tokenStorageService.getUser());
+    const user=this.tokenStorageService.getUser();
+    this.user.id=user.id;
+    this.levelId=user.level.id;
+    this.branchId=user.branch.id   
+    this.moduleService.findByLevelAndBranch(this.levelId,this.branchId).subscribe(resp=>{
       this.listModule=resp;
+      console.log('module---',resp);
       this.search(false);
     })
   }

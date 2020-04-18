@@ -23,5 +23,8 @@ export class BranchService {
   delete(id) {
     return this.httpClient.delete(this.url + "/delete/" + id);
   }
+  findByOrganisation(idOrg){
+    return this.httpClient.get(this.url + "/find-by-organization/" + idOrg);
+  }
 
 }
