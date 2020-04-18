@@ -62,6 +62,7 @@ export class SaveOrUpdateComponent implements OnInit {
     this.userForm.get("firstName").setValue(data.firstName);
     this.userForm.get("lastName").setValue(data.lastName);
     this.userForm.get("email").setValue(data.email);
+    this.userForm.get("phone").setValue(data.phone);
     this.userForm.get("organization").setValue(data.organization);
     this.userForm.get("role").setValue(data.refRole);
     this.userForm.get("level").setValue(data.level);
@@ -82,6 +83,7 @@ export class SaveOrUpdateComponent implements OnInit {
     const email = this.userForm.get("email").value;
     const firstName = this.userForm.get("firstName").value;
     const lastName = this.userForm.get("lastName").value;
+    const phone = this.userForm.get("phone").value;
     const organization = this.userForm.get("organization").value;
     const role = this.userForm.get("role").value;
     const level = this.userForm.get("level").value;
@@ -92,10 +94,12 @@ export class SaveOrUpdateComponent implements OnInit {
     user.firstName = firstName;
     user.lastName = lastName;
     user.email = email;
+    user.phone=phone;
     user.organization = organization;
     user.refRole = role;
     user.level = level;
     user.branch = branch;
+    console.log('user',user);
     if(this.userForm.valid){
       this.userService.saveOrUpdate(user).subscribe((resp) => {
        //shofi hna

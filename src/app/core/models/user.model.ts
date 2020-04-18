@@ -6,6 +6,7 @@ export class User extends Historized {
     public password?: string,
     public firstName?: string,
     public lastName?: string,
+    public phone?:string,
     public token?: string,
     public tokenDate?: string,
     public isOnline?: boolean,
