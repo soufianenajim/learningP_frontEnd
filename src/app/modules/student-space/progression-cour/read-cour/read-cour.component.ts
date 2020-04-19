@@ -19,10 +19,12 @@ export class ReadCourComponent implements OnInit {
   secondFormGroup: FormGroup;
   cour;
   tds = [];
+  quiz;
   progressionCour: ProgressionCour;
   questionCorrectSuggestions: Map<Question, Suggestion[]> = new Map();
   questionCorrect = [];
-  isPassTd = false;
+  isPastTd = false;
+  isPastQuiz=false;
   constructor(
     public dialogRef: MatDialogRef<ReadCourComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any,
@@ -30,9 +32,13 @@ export class ReadCourComponent implements OnInit {
     private progressionCourService: ProgressionCourService,
     private tdService: TdService
   ) {
-    console.log("data", data);
+  
     this.cour = data.cour;
+    this.quiz=data.cour.quiz;
     this.progressionCour = data;
+    this.isPastTd=data.courFinished;
+    this.isPastQuiz=data.quizFinished;
+    
   }
 
   ngOnInit() {
@@ -59,64 +65,62 @@ export class ReadCourComponent implements OnInit {
     } else {
       this.tdService.findByCour(this.cour.id).subscribe((resp: any) => {
         this.tds = resp;
-        console.log("resp", resp);
+        console.log("tds", resp);
         stepper.next();
       });
     }
   }
   nextForm2(stepper: MatStepper) {
+         stepper.next();
+  }
+  validateTd(){
+    this.questionCorrect=[];
     this.questionCorrectSuggestions.forEach((value, key) => {
       if (this.compareQuestionWithChoiceSuggestions(key, value)) {
         this.questionCorrect.push(key);
       }
     });
-    console.log("questionCorrect", this.questionCorrect);
-    this.isPassTd = true;
-    // stepper.next();
-  }
-  addToCorrect(suggestion, question) {
-    if (this.questionCorrectSuggestions.has(question)) {
-      let suggestions: Suggestion[] = this.questionCorrectSuggestions.get(
-        question
-      );
-      suggestions.push(suggestion);
-    } else {
-      let suggestions = [];
-      suggestions.push(suggestion);
-      this.questionCorrectSuggestions.set(question, suggestions);
+    this.isPastTd = true;
+    if (!this.progressionCour.tdFinished) {
+      this.progressionCour.tdFinished = true;
+      this.progressionCour.progression = 60;
+      this.progressionCourService.saveOrUpdate(this.progressionCour).subscribe((resp) => {
+      
+        });
     }
-    console.log(
-      "this.questionCorrectSuggestions",
-      this.questionCorrectSuggestions
-    );
+
+
   }
-  deleteFromCorrect(suggestion, question) {
-    if (this.questionCorrectSuggestions.has(question)) {
-      let suggestions: Suggestion[] = this.questionCorrectSuggestions.get(
-        question
-      );
-      const index = suggestions.indexOf(suggestion);
-      if (index > -1) {
-        suggestions.splice(index, 1);
+  validateQuiz(){
+    this.questionCorrect=[];
+    this.questionCorrectSuggestions.forEach((value, key) => {
+      if (this.compareQuestionWithChoiceSuggestions(key, value)) {
+        this.questionCorrect.push(key);
       }
+    });
+    this.isPastQuiz = true;
+    if (!this.progressionCour.quizFinished) {
+      this.progressionCour.quizFinished = true;
+      this.progressionCour.progression = 100;
+      this.progressionCourService.saveOrUpdate(this.progressionCour).subscribe((resp) => {
+      
+        });
     }
+
+
   }
-  compareQuestionWithChoiceSuggestions(
-    question: Question,
-    suggestions
-  ): boolean {
-    console.log("");
+  
+
+  compareQuestionWithChoiceSuggestions(question: Question, suggestions ): boolean {
+  
     let suggestionCorrect = [];
+
     question.suggestions.forEach((element) => {
       if (element.correct) {
         suggestionCorrect.push(element);
       }
     });
-   
-
-    return JSON.stringify(suggestionCorrect) == JSON.stringify(suggestions);
+      return JSON.stringify(suggestionCorrect) == JSON.stringify(suggestions);
   }
-  isCorrect(question) {
-    return this.questionCorrect.indexOf(question) > -1;
+ 
   }
-}

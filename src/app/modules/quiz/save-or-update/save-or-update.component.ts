@@ -1,6 +1,6 @@
 import { Component, OnInit, Inject } from "@angular/core";
 import { FormGroup, FormControl } from "@angular/forms";
-import { CourseService } from "../../../core/services/course/course.service";
+import { ModuleService } from "../../../core/services/module/module.service";
 import { MatDialogRef, MAT_DIALOG_DATA } from "@angular/material";
 import { Quiz } from "../../../core/models/quiz.model";
 import { QuizService } from "../../../core/services/quiz/quiz.service";
@@ -15,14 +15,14 @@ export class SaveOrUpdateComponent implements OnInit {
   listQuestion = [];
   quizForm = new FormGroup({
     name: new FormControl(""),
-    cour: new FormControl(null),
+    module: new FormControl(null),
   });
-  listCour: any;
+  listModule: any;
   idQuiz = null;
   isEdit = false;
   parentQuestions;
   constructor(
-    private courseService: CourseService,
+    private moduleseService: ModuleService,
     private quizService: QuizService,
     private questionSerivce:QuestionService,
     public dialogRef: MatDialogRef<SaveOrUpdateComponent>,
@@ -36,27 +36,28 @@ export class SaveOrUpdateComponent implements OnInit {
         this.idQuiz = data.id;
         
         const name = data.name;
-        const cour = data.cour;
+        const module = data.module;
   
         this.quizForm.get("name").setValue(name);
-        this.quizForm.get("cour").setValue(cour);
+        this.quizForm.get("module").setValue(module);
       })
      
     }
   }
 
   ngOnInit() {
-    this.courseService.findAll().subscribe((res) => {
-      this.listCour = res;
+    this.moduleseService.findAll().subscribe((res) => {
+      console.log('resp',res)
+      this.listModule = res;
     });
   }
   save() {
     const name = this.quizForm.get("name").value;
-    const cour = this.quizForm.get("cour").value;
+    const module = this.quizForm.get("module").value;
     let quiz = new Quiz();
     quiz.id = this.idQuiz;
     quiz.name = name;
-    quiz.cour = cour;
+    quiz.module = module;
     quiz.questions=this.listQuestion;
     this.quizService.saveOrUpdate(quiz).subscribe((resp) => {
       console.log("response  ----", resp);
@@ -66,7 +67,7 @@ export class SaveOrUpdateComponent implements OnInit {
   cancel() {
     this.dialogRef.close(false);
   }
-  compareCour(c1: any, c2: any): boolean {
+  compareModule(c1: any, c2: any): boolean {
     return c1 && c2 ? c1.id === c2.id : c1 === c2;
   }
   getQuestionsOutPut(event) {

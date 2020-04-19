@@ -23,5 +23,8 @@ export class QuizService {
   delete(id) {
     return this.httpClient.delete(this.url + "/delete/" + id);
   }
+  findByModule(moduleId){
+    return this.httpClient.get(this.url+"/find-by-module/"+moduleId)
+  }
 
 }

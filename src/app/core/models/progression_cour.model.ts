@@ -8,6 +8,8 @@ export class ProgressionCour extends Historized {
     public cour?: Cour,
     public courFinished?: boolean,
     public tdFinished?: boolean,
+    public quizFinished?:boolean,
+    public scoreQuiz?:number,
     public progression?: number,
     public moduleId?:number
   ) {
