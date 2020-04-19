@@ -7,6 +7,7 @@ import { Demande } from "../../../core/models/demande.model";
 import { ProgressionCourService } from "../../../core/services/progression_cour/progression-cour.service";
 import { User } from "../../../core/models/user.model";
 import { CourseService } from "../../../core/services/course/course.service";
+import { ReadCourComponent } from "./read-cour/read-cour.component";
 
 
 @Component({
@@ -15,7 +16,7 @@ import { CourseService } from "../../../core/services/course/course.service";
   styleUrls: ["./progression-cour.component.css"]
 })
 export class ProgressionCourComponent implements OnInit {
-  displayedColumns: string[] = ["name", "progression","scorQuiz"];
+  displayedColumns: string[] = ["name", "progression","courFinished","tdFinished","quizFinished","startCour","scorQuiz"];
   //dataSource = new MatTableDataSource<PeriodicElement>(ELEMENT_DATA);
   dataSource: MatTableDataSource<ProgressionCour>;
 
@@ -104,5 +105,24 @@ export class ProgressionCourComponent implements OnInit {
   cancel(){
     this.dialogRef.close()
   }
+  openCour (data) {
+    const dialogRef = this.dialog.open(ReadCourComponent, {
+      width: "90%",
+      data: data,
+     // disableClose: true,
+      autoFocus: false,
+      maxHeight: "90vh",
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if(result){
+        this.search(false);
+      }
+      
+      console.log("The dialog was closed");
+    });
+
+  }
+  
 }
 

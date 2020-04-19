@@ -18,4 +18,7 @@ export class TdService {
   delete(id) {
     return this.httpClient.delete(this.url + "/delete/" + id);
   }
+  findByCour(id){
+    return this.httpClient.get(this.url+"/find-by-cour/"+id);
+  }
 }

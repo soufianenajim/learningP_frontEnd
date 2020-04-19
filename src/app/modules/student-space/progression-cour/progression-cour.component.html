@@ -66,6 +66,36 @@
         <td mat-cell *matCellDef="let element">
           {{element.progression!=null?element.progression :'0'}}% </td>
       </ng-container>
+     
+      <ng-container matColumnDef="courFinished">
+        <th mat-header-cell *matHeaderCellDef> Cour finished</th>
+        <td mat-cell *matCellDef="let element">
+          <span *ngIf="element.courFinished" class="fa fa-check-circle" style="color: green;font-size: 1.5em;"></span>
+          <span *ngIf="!element.courFinished" class="fa fa-minus-circle" style="color: red;font-size: 1.5em;"></span>
+        </td>    
+        </ng-container>
+      <ng-container matColumnDef="tdFinished">
+        <th mat-header-cell *matHeaderCellDef> Td finished</th>
+        <td mat-cell *matCellDef="let element">
+          <span *ngIf="element.tdFinished" class="fa fa-check-circle" style="color: green;font-size: 1.5em;"></span>
+          <span *ngIf="!element.tdFinished" class="fa fa-minus-circle" style="color: red;font-size: 1.5em;"></span>
+        </td>    
+        </ng-container>
+      <ng-container matColumnDef="quizFinished">
+        <th mat-header-cell *matHeaderCellDef> Quiz finished</th>
+        <td mat-cell *matCellDef="let element">
+          <span *ngIf="element.quizFinished" class="fa fa-check-circle" style="color: green;font-size: 1.5em;"></span>
+          <span *ngIf="!element.quizFinished" class="fa fa-minus-circle" style="color: red;font-size: 1.5em;"></span>
+        </td>
+      </ng-container>
+      <ng-container matColumnDef="startCour">
+        <th mat-header-cell *matHeaderCellDef> Start cour</th>
+        <td mat-cell *matCellDef="let element">
+          <button mat-icon-button  (click)="openCour(element)">
+            <span class="fa fa-play" style="color: #007bff"></span>
+        </button></td>
+      </ng-container>
+     
       <ng-container matColumnDef="scorQuiz">
         <th mat-header-cell *matHeaderCellDef> Quiz Score </th>
         <td  mat-cell *matCellDef="let element">

@@ -1,0 +1,54 @@
+<mat-horizontal-stepper [linear]="isLinear" #stepper>
+  <mat-step [stepControl]="firstFormGroup">
+    <form [formGroup]="firstFormGroup">
+      <ng-template matStepLabel>Cour</ng-template>
+      <p [innerHTML]="cour?.content"></p>
+
+
+      <div class="f-right">
+        <button class="btn btn-primary btn-md waves-effect waves-light" (click)="nextForm1(stepper)">Next<i
+            class="fa fa-chevron-right" style="margin-left: 0.3rem;"></i></button>
+      </div>
+    </form>
+  </mat-step>
+  <mat-step [stepControl]="secondFormGroup">
+    <form [formGroup]="secondFormGroup">
+      <ng-template matStepLabel>Td</ng-template>
+      <ng-container *ngFor="let td of tds; let i = index">
+        <h4 class="center-action">{{td.name}}</h4>
+        <ng-container *ngFor="let question of td.questions; let i = index">
+          <p> <strong style="font-size: 0.95rem;" >{{i+1}} - {{question.name}}</strong> <span *ngIf="isPassTd && isCorrect(question)" class="fa fa-check" style="color: green;font-size: 1.5em;margin-left: 0.5rem;"></span>
+            <span *ngIf="isPassTd && !isCorrect(question)"  class="fa fa-times-circle" style="color: red;font-size: 1.5em;margin-left: 0.5rem;"></span></p>  
+          <ng-container *ngFor="let suggestion of question.suggestions; let i = index">
+            <div class="row">
+              <div class="col-sm-1"><mat-checkbox  (change)="$event.checked ? addToCorrect(suggestion,question) : deleteFromCorrect(suggestion,question)" style="margin-left: 5rem;"></mat-checkbox></div>
+              <p  class="col-sm-11"> <strong style="font-size: 0.8rem;" > {{suggestion.name}}</strong></p>
+            </div>
+          </ng-container>
+          <div *ngIf="isPassTd" >
+          <p> Correct Comment :{{question.correctComment}}</p>
+          </div>
+        </ng-container>
+
+
+      </ng-container>
+
+
+
+      <div class="f-right">
+        <button type="button" matStepperPrevious class="btn btn-warning btn-md waves-effect waves-light"
+          style="margin-right: 15px"><i class="fa fa-chevron-left"></i>Back</button>
+        <button class="btn btn-primary btn-md waves-effect waves-light" (click)="nextForm2(stepper)">Next<i
+            class="fa fa-chevron-right" style="margin-left: 0.3rem;"></i></button>
+      </div>
+    </form>
+  </mat-step>
+  <mat-step>
+    <ng-template matStepLabel>Quiz</ng-template>
+    <p>You are now done.</p>
+    <div>
+      <button mat-button matStepperPrevious>Back</button>
+      <button mat-button (click)="stepper.reset()">Reset</button>
+    </div>
+  </mat-step>
+</mat-horizontal-stepper>

@@ -50,6 +50,8 @@ import { MaterialsModule } from "../modules/materials/materials.module";
 import { NgSelectModule } from '@ng-select/ng-select';
 import { TranslateModule } from "@ngx-translate/core";
 import { NotifierModule } from 'angular-notifier';
+import { AngularEditorModule } from '@kolkov/angular-editor';
+
 
 
 @NgModule({
@@ -82,6 +84,7 @@ import { NotifierModule } from 'angular-notifier';
     NvD3Module,
     ClickOutsideModule,
     NgSelectModule,
+    AngularEditorModule,
     NotifierModule.withConfig({
       position: {
         // fro custopm configuration visit : https://www.npmjs.com/package/angular-notifier
@@ -157,7 +160,8 @@ import { NotifierModule } from 'angular-notifier';
     NvD3Module,
     ClickOutsideModule,
     NgSelectModule,
-    NotifierModule
+    NotifierModule,
+    AngularEditorModule
   ],
  
   providers: [MenuItems, TodoService, SelectOptionService ]

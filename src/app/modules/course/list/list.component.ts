@@ -88,7 +88,8 @@ export class ListComponent implements OnInit {
     console.log("data", data);
     const dialogRef = this.dialog.open(SaveOrUpdateComponent, {
       width: "90%",
-     
+      autoFocus: false,
+      maxHeight: "90vh",
       data: data,
       disableClose: true
     });

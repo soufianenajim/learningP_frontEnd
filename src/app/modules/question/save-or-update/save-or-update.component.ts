@@ -15,6 +15,7 @@ export class SaveOrUpdateComponent implements OnInit {
 
   idQuestion = null;
   isEdit = false;
+  question;
   constructor(
     private questionService: QuestionService,
     private suggestionService:SuggestionService,
@@ -31,6 +32,7 @@ export class SaveOrUpdateComponent implements OnInit {
     if (data !== null) {
       this.isEdit = true;
       this.idQuestion = data.id;
+      this.question=data;
       this.buildForm(data);
     }
   }
@@ -65,6 +67,9 @@ export class SaveOrUpdateComponent implements OnInit {
     question.code = code;
     question.correctComment = correctComment;
     question.suggestions = suggestions;
+    question.td=this.question.td;
+    question.quiz=this.question.quiz;
+    question.exam=this.question.exam;
     this.questionService.saveOrUpdate(question).subscribe((resp) => {
       console.log("response  ----", resp);
       this.dialogRef.close(true);
