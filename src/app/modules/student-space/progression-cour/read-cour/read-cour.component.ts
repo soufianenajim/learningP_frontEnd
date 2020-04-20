@@ -24,7 +24,9 @@ export class ReadCourComponent implements OnInit {
   questionCorrectSuggestions: Map<Question, Suggestion[]> = new Map();
   questionCorrect = [];
   isPastTd = false;
-  isPastQuiz=false;
+  isPastQuiz = false;
+  isPastCour=false;
+  quizFinished = false;
   constructor(
     public dialogRef: MatDialogRef<ReadCourComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any,
@@ -32,13 +34,12 @@ export class ReadCourComponent implements OnInit {
     private progressionCourService: ProgressionCourService,
     private tdService: TdService
   ) {
-  
+    console.log("data", data);
     this.cour = data.cour;
-    this.quiz=data.cour.quiz;
+    this.quiz = data.cour.quiz;
     this.progressionCour = data;
-    this.isPastTd=data.courFinished;
-    this.isPastQuiz=data.quizFinished;
-    
+    this.quizFinished = data.quizFinished;
+    this.isPastCour=data.courFinished;
   }
 
   ngOnInit() {
@@ -50,6 +51,22 @@ export class ReadCourComponent implements OnInit {
     });
   }
   nextForm1(stepper: MatStepper) {
+    if(this.tds.length===0){
+      this.tdService.findByCour(this.cour.id).subscribe((resp: any) => {
+        this.tds = resp;
+        this.isPastCour=true;
+        stepper.next();  
+      });
+    }else{
+      
+    }
+  
+  }
+  nextForm2(stepper: MatStepper) {
+    stepper.next();
+  }
+  validateCour(){
+    console.log('validateCour');
     if (!this.progressionCour.courFinished) {
       this.progressionCour.courFinished = true;
       this.progressionCour.progression = 30;
@@ -58,23 +75,16 @@ export class ReadCourComponent implements OnInit {
         .subscribe((resp) => {
           this.tdService.findByCour(this.cour.id).subscribe((resp: any) => {
             this.tds = resp;
-            console.log("resp", resp);
-            stepper.next();
+           this.isPastCour=true;
+            
           });
         });
-    } else {
-      this.tdService.findByCour(this.cour.id).subscribe((resp: any) => {
-        this.tds = resp;
-        console.log("tds", resp);
-        stepper.next();
-      });
-    }
+    } 
+     
+    
   }
-  nextForm2(stepper: MatStepper) {
-         stepper.next();
-  }
-  validateTd(){
-    this.questionCorrect=[];
+  validateTd() {
+    this.questionCorrect = [];
     this.questionCorrectSuggestions.forEach((value, key) => {
       if (this.compareQuestionWithChoiceSuggestions(key, value)) {
         this.questionCorrect.push(key);
@@ -84,15 +94,13 @@ export class ReadCourComponent implements OnInit {
     if (!this.progressionCour.tdFinished) {
       this.progressionCour.tdFinished = true;
       this.progressionCour.progression = 60;
-      this.progressionCourService.saveOrUpdate(this.progressionCour).subscribe((resp) => {
-      
-        });
+      this.progressionCourService
+        .saveOrUpdate(this.progressionCour)
+        .subscribe((resp) => {});
     }
-
-
   }
-  validateQuiz(){
-    this.questionCorrect=[];
+  validateQuiz() {
+    this.questionCorrect = [];
     this.questionCorrectSuggestions.forEach((value, key) => {
       if (this.compareQuestionWithChoiceSuggestions(key, value)) {
         this.questionCorrect.push(key);
@@ -101,18 +109,23 @@ export class ReadCourComponent implements OnInit {
     this.isPastQuiz = true;
     if (!this.progressionCour.quizFinished) {
       this.progressionCour.quizFinished = true;
+      this.progressionCour.scoreQuiz =
+        (this.questionCorrect.length / this.quiz.questions.length) * 100;
       this.progressionCour.progression = 100;
-      this.progressionCourService.saveOrUpdate(this.progressionCour).subscribe((resp) => {
-      
+      this.progressionCourService
+        .saveOrUpdate(this.progressionCour)
+        .subscribe((resp) => {
+          this.dialogRef.close(true);
         });
+    } else {
+      this.dialogRef.close(true);
     }
-
-
   }
-  
 
-  compareQuestionWithChoiceSuggestions(question: Question, suggestions ): boolean {
-  
+  compareQuestionWithChoiceSuggestions(
+    question: Question,
+    suggestions
+  ): boolean {
     let suggestionCorrect = [];
 
     question.suggestions.forEach((element) => {
@@ -120,7 +133,9 @@ export class ReadCourComponent implements OnInit {
         suggestionCorrect.push(element);
       }
     });
-      return JSON.stringify(suggestionCorrect) == JSON.stringify(suggestions);
+    return JSON.stringify(suggestionCorrect) == JSON.stringify(suggestions);
   }
- 
+  cancel() {
+    this.dialogRef.close(true);
   }
+}

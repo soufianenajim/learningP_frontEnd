@@ -76,7 +76,7 @@
             <ng-container matColumnDef="professeur">
                 <th mat-header-cell *matHeaderCellDef>  {{'MODULE.PROFESSOR'|translate}} </th>
                 <td mat-cell *matCellDef="let element">
-                    {{element.user!=null?element.user.firstName+' '+element.user.lastName:'---'}} </td>
+                    {{element.professor!=null?element.professor.firstName+' '+element.professor.lastName:'---'}} </td>
             </ng-container>
             <ng-container matColumnDef="level">
                 <th mat-header-cell *matHeaderCellDef>  {{'MODULE.LEVEL'|translate}} </th>

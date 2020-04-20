@@ -103,13 +103,14 @@ export class ProgressionCourComponent implements OnInit {
     );
   }
   cancel(){
-    this.dialogRef.close()
+    this.dialogRef.close(true)
   }
   openCour (data) {
+    data.moduleId= this.progressionCour.moduleId;
     const dialogRef = this.dialog.open(ReadCourComponent, {
       width: "90%",
       data: data,
-     // disableClose: true,
+      disableClose: true,
       autoFocus: false,
       maxHeight: "90vh",
     });

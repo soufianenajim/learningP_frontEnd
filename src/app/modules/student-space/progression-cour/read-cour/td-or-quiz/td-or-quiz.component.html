@@ -1,5 +1,6 @@
 
   <h4 class="center-action">{{tdOrQuiz.name}}</h4>
+  <h5 class="center-action"></h5>
   <ng-container *ngFor="let question of tdOrQuiz.questions; let i = index">
     <p> <strong style="font-size: 0.95rem;">{{i+1}} - {{question.name}}</strong>
       <span *ngIf="isPastTdorQuiz && isCorrect(question)" class="fa fa-check"
@@ -10,17 +11,17 @@
     <ng-container *ngFor="let suggestion of question.suggestions">
       <div class="row">
         <div class="col-sm-1">
-          <mat-checkbox color="primary"
+          <mat-checkbox *ngIf="!quizFinished" color="primary"
             (change)="$event.checked ? addToCorrect(suggestion,question) : deleteFromCorrect(suggestion,question)"
             style="margin-left: 5rem;"></mat-checkbox>
         </div>
         <p class="col-sm-11"> <strong style="font-size: 0.8rem;"> {{suggestion.name}}</strong>
-          <span *ngIf="isPastTdorQuiz && suggestion.correct" class="fa fa-check"
+          <span *ngIf="(isPastTdorQuiz||quizFinished) && suggestion.correct" class="fa fa-check"
             style="color: green;font-size: 1rem;margin-left: 0.5rem;"></span>
         </p>
       </div>
     </ng-container>
-    <div *ngIf="isPastTdorQuiz">
+    <div *ngIf="isPastTdorQuiz||quizFinished">
 
       <p> <strong style="color: green;">Correct Comment :</strong> <strong style="font-size: 0.8rem;">
           {{question.correctComment}}</strong></p>

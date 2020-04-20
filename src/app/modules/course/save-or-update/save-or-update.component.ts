@@ -22,6 +22,7 @@ export class SaveOrUpdateComponent implements OnInit {
   listQuiz: any;
   idCour = null;
   isEdit = false;
+  quiz;
   constructor(
     private courseService: CourseService,
     private moduleService: ModuleService,
@@ -36,6 +37,7 @@ export class SaveOrUpdateComponent implements OnInit {
       const module = data.module;
       const content = data.content;
       const quiz = data.quiz;
+      this.quiz=quiz;
 console.log('quiz',quiz)
       this.courForm.get("name").setValue(name);
       this.courForm.get("module").setValue(module);

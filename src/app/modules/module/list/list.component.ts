@@ -7,6 +7,7 @@ import { Demande } from "../../../core/models/demande.model";
 import { ModuleService } from "../../../core/services/module/module.service";
 import { DetailComponent } from "../detail/detail.component";
 import { SaveOrUpdateComponent } from "../save-or-update/save-or-update.component";
+import { TokenStorageService } from "../../../core/services/token_storage/token-storage.service";
 
 @Component({
   selector: "app-module-list",
@@ -32,10 +33,12 @@ export class ListComponent implements OnInit {
   constructor(
     private userService: UserService,
     private moduleService: ModuleService,
-    private dialog: MatDialog
+    private dialog: MatDialog,
+    private tokenStorage:TokenStorageService
   ) {}
   ngOnInit() {
-    this.userService.findAllProfessor().subscribe(resp => {
+     const user=this.tokenStorage.getUser()
+    this.userService.findAllProfessorByOrga(user.organization.id).subscribe(resp => {
       console.log("list professor --------", resp);
       this.listProfessor = resp;
       this.search(false);
@@ -51,7 +54,7 @@ export class ListComponent implements OnInit {
     const professeur = this.moduleForm.get("prof").value;
 
     this.module.name = name;
-    this.module.user = professeur;
+    this.module.professor = professeur;
 
     this.demandeModule.model = this.module;
     this.demandeModule.page = page;

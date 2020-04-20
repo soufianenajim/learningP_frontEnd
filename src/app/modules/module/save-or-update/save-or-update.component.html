@@ -14,6 +14,19 @@
               </div>
           </div>
           <div class="form-group row">
+            <label class="col-sm-2 col-form-label"
+                style="font-weight: bold;color: #757575;">Professeur</label>
+            <div class="col-sm-10">
+                <select name="select" formControlName="prof" class="form-control">
+                    <option value="">Selectioner un professeur</option>
+                    <option *ngFor="let user of listProfessor" [ngValue]="user">
+                        {{user.firstName+' '+user.lastName}}
+                    </option>
+                </select>
+
+            </div>
+        </div>
+          <div class="form-group row">
             <label class="col-sm-2 col-form-label">{{'MODULE.LEVEL'|translate}}</label>
             <div class="col-sm-10">
               <select name="select" [compareWith]="compareLevel" name="level"  formControlName="level" class="form-control">

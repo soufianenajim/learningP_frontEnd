@@ -12,11 +12,10 @@ export class TdOrQuizComponent implements OnInit {
   @Input() questionCorrectSuggestions;
   @Input() questionCorrect;
   @Input() isPastTdorQuiz;
+  @Input() quizFinished;
   constructor() {}
 
   ngOnInit() {
-    console.log("tdOrQuiz", this.tdOrQuiz);
-    console.log("questionCorrect", this.questionCorrect);
   }
   addToCorrect(suggestion, question) {
     if (this.questionCorrectSuggestions.has(question)) {

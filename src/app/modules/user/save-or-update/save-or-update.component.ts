@@ -8,8 +8,10 @@ import { BranchService } from "../../../core/services/branch/branch.service";
 import { OrganizationService } from "../../../core/services/organization/organization.service";
 import { RoleService } from "../../../core/services/role/role.service";
 import { sharedConstants } from "../../../core/constants";
-import { NotifierService } from 'angular-notifier';
+import { NotifierService } from "angular-notifier";
 import { TranslateService } from "@ngx-translate/core";
+import { Level } from "../../../core/models/level.model";
+import { Branch } from "../../../core/models/branch.model";
 @Component({
   selector: "app-save-or-update",
   templateUrl: "./save-or-update.component.html",
@@ -18,17 +20,27 @@ import { TranslateService } from "@ngx-translate/core";
 export class SaveOrUpdateComponent implements OnInit {
   private readonly notifier: NotifierService;
   userForm = new FormGroup({
-    firstName: new FormControl("",[Validators.required, this.noWhitespaceValidator]),
-    lastName: new FormControl("",[Validators.required, this.noWhitespaceValidator]),
-    email: new FormControl("",[
+    firstName: new FormControl("", [
       Validators.required,
       this.noWhitespaceValidator,
-      Validators.pattern(sharedConstants.EMAIL_PATTERN)]),
-    phone:new FormControl("",[this.noWhitespaceValidator,Validators.pattern(sharedConstants.PHONE_PATTERN)]),
-    organization: new FormControl(null,Validators.required),
-    role: new FormControl(null,Validators.required),
-    level: new FormControl(null,Validators.required),
-    branch: new FormControl(null,Validators.required),
+    ]),
+    lastName: new FormControl("", [
+      Validators.required,
+      this.noWhitespaceValidator,
+    ]),
+    email: new FormControl("", [
+      Validators.required,
+      this.noWhitespaceValidator,
+      Validators.pattern(sharedConstants.EMAIL_PATTERN),
+    ]),
+    phone: new FormControl("", [
+      this.noWhitespaceValidator,
+      Validators.pattern(sharedConstants.PHONE_PATTERN),
+    ]),
+    organization: new FormControl(null, Validators.required),
+    role: new FormControl(null, Validators.required),
+    level: new FormControl(null, Validators.required),
+    branch: new FormControl(null, Validators.required),
   });
   listLevel = [];
 
@@ -50,7 +62,7 @@ export class SaveOrUpdateComponent implements OnInit {
     @Inject(MAT_DIALOG_DATA) public data: any,
     notifierService: NotifierService
   ) {
-    this.notifier=notifierService;
+    this.notifier = notifierService;
     if (data !== null) {
       this.isEdit = true;
       this.idUser = data.id;
@@ -79,36 +91,43 @@ export class SaveOrUpdateComponent implements OnInit {
     });
   }
   save() {
-    this.isClickSave=true;
+    this.isClickSave = true;
     const email = this.userForm.get("email").value;
     const firstName = this.userForm.get("firstName").value;
     const lastName = this.userForm.get("lastName").value;
     const phone = this.userForm.get("phone").value;
     const organization = this.userForm.get("organization").value;
     const role = this.userForm.get("role").value;
-    const level = this.userForm.get("level").value;
-    const branch = this.userForm.get("branch").value;
-
+    let level = this.userForm.get("level").value;
+    let branch = this.userForm.get("branch").value;
+    if (!this.isStudent) {
+      this.userForm.get("level").setValue(new Level());
+      this.userForm.get("branch").setValue(new Branch());
+      level = this.userForm.get("level").value;
+      branch = this.userForm.get("branch").value;
+    }
     let user = new User();
     user.id = this.idUser;
     user.firstName = firstName;
     user.lastName = lastName;
     user.email = email;
-    user.phone=phone;
+    user.phone = phone;
     user.organization = organization;
     user.refRole = role;
-    user.level = level;
-    user.branch = branch;
-    console.log('user',user);
-    if(this.userForm.valid){
-      this.userService.saveOrUpdate(user).subscribe((resp) => {
-       //shofi hna
-        this.successNotifaction();
-      },error=>{
-       this.erorrNotifaction(error);
-      });
+    user.level = level.id != null ? level : null;
+    user.branch = branch.id != null ? branch : null;
+    console.log("user", user);
+    if (this.userForm.valid) {
+      this.userService.saveOrUpdate(user).subscribe(
+        (resp) => {
+          //shofi hna
+          this.successNotifaction();
+        },
+        (error) => {
+          this.erorrNotifaction(error);
+        }
+      );
     }
-    
   }
   cancel() {
     this.dialogRef.close(false);
@@ -138,38 +157,42 @@ export class SaveOrUpdateComponent implements OnInit {
     if (role) this.isStudent = role.name === "ROLE_STUDENT";
   }
   public noWhitespaceValidator(control: FormControl) {
-    if (control.value === '') {
+    if (control.value === "") {
       return null;
     }
-    const isWhitespace = (control.value || '').trim().length === 0;
+    const isWhitespace = (control.value || "").trim().length === 0;
     const isValid = !isWhitespace;
-    return isValid ? null : { 'whitespace': true };
+    return isValid ? null : { whitespace: true };
   }
   errormptyField(field: string) {
-    return this.userForm.get(field).hasError('required') && (this.userForm.get(field).touched || this.isClickSave)
+    return (
+      this.userForm.get(field).hasError("required") &&
+      (this.userForm.get(field).touched || this.isClickSave)
+    );
   }
   invalidData(field: string) {
-    return this.userForm.get(field).hasError('whitespace') && !this.userForm.get(field).hasError('required')
-      && (this.userForm.get(field).touched || this.isClickSave);
+    return (
+      this.userForm.get(field).hasError("whitespace") &&
+      !this.userForm.get(field).hasError("required") &&
+      (this.userForm.get(field).touched || this.isClickSave)
+    );
   }
   successNotifaction() {
-    this.translateService.get('USER.SAVE_SUCCESS').subscribe((value: string) => {
-      this.showNotification('success', value);
-      setTimeout(() => {
-        this.dialogRef.close(true);
-
-      },
-        1000);
-    });
+    this.translateService
+      .get("USER.SAVE_SUCCESS")
+      .subscribe((value: string) => {
+        this.showNotification("success", value);
+        setTimeout(() => {
+          this.dialogRef.close(true);
+        }, 1000);
+      });
   }
   public showNotification(type: string, message: string): void {
     this.notifier.notify(type, message);
   }
   erorrNotifaction(err) {
     this.translateService.get(err).subscribe((value: string) => {
-      this.showNotification('error', value);
+      this.showNotification("error", value);
     });
   }
-
 }
-

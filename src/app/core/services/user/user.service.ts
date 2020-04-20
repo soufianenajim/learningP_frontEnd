@@ -14,8 +14,8 @@ export class UserService {
     console.log("url---------------------", this.url + "/find-by-id/" + id);
     return this.httpClient.get(this.url + "/find-by-id/" + id);
   }
-  findAllProfessor() {
-    return this.httpClient.get(this.url + "/find-all-professor");
+  findAllProfessorByOrga(idOrga) {
+    return this.httpClient.get(this.url + "/find-all-professor-by-orga/"+idOrga);
   }
   saveOrUpdate(user: User) {
     return this.httpClient.post(this.url + "/save-or-update", user);
