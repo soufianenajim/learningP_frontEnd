@@ -78,14 +78,11 @@
                 <td mat-cell *matCellDef="let element">
                     {{element.professor!=null?element.professor.firstName+' '+element.professor.lastName:'---'}} </td>
             </ng-container>
-            <ng-container matColumnDef="level">
-                <th mat-header-cell *matHeaderCellDef>  {{'MODULE.LEVEL'|translate}} </th>
-                <td mat-cell *matCellDef="let element"> {{element.level!=null?element.level.name:'---'}} </td>
+            <ng-container matColumnDef="group">
+                <th mat-header-cell *matHeaderCellDef>  {{'MODULE.GROUP'|translate}} </th>
+                <td mat-cell *matCellDef="let element"> {{element.group!=null?element.group.name:'---'}} </td>
             </ng-container>
-            <ng-container matColumnDef="branch">
-                <th mat-header-cell *matHeaderCellDef>  {{'MODULE.BRANCH'|translate}} </th>
-                <td mat-cell *matCellDef="let element"> {{element.branch!=null?element.branch.name:'---'}} </td>
-            </ng-container>
+           
 
             <!-- Weight Column -->
             <ng-container matColumnDef="actions">

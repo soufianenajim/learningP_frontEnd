@@ -68,6 +68,10 @@ export const AppRoutes: Routes = [
         loadChildren: "./modules/level/level.module#LevelModule"
       },
       {
+        path: "group",
+        loadChildren: "./modules/group/group.module#GroupModule"
+      },
+      {
         path: "branch",
         loadChildren: "./modules/branch/branch.module#BranchModule"
       }

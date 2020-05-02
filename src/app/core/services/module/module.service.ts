@@ -13,8 +13,11 @@ export class ModuleService {
   findAll() {
     return this.httpClient.get(this.url + "/find-all");
   }
-  findByLevelAndBranch(idLevel,idBranch){
-    return this.httpClient.get(this.url + "/find-by-level-and-branch/"+idLevel+"/"+idBranch);
+  findByGroup(idGroup){
+    return this.httpClient.get(this.url + "/find-by-group/"+idGroup);
+  }
+  findByProfessor(idProfessor){
+    return this.httpClient.get(this.url + "/find-by-professor/"+idProfessor);
   }
   saveOrUpdate(module: Module) {
     return this.httpClient.post(this.url + "/save-or-update", module);
@@ -26,4 +29,5 @@ export class ModuleService {
   delete(id) {
     return this.httpClient.delete(this.url + "/delete/" + id);
   }
+
 }

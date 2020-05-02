@@ -13,8 +13,9 @@ export class User extends Historized {
     public isOffline?: boolean,
     public refRole?: any,
     public organization?: any,
-    public branch?: any,
-    public level?: any
+    public groups?: any[],
+    public groupId?:number
+  
 
   ) {
     super();

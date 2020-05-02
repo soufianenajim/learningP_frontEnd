@@ -21,4 +21,7 @@ export class TdService {
   findByCour(id){
     return this.httpClient.get(this.url+"/find-by-cour/"+id);
   }
+  findByModule(idModule){
+    return this.httpClient.get(this.url + "/find-by-module/"+idModule);
+  }
 }

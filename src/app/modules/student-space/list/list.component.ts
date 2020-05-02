@@ -26,8 +26,8 @@ export class ListComponent implements OnInit {
   progressionModule: ProgressionModule = new ProgressionModule();
   resultsLength;
   user=new User();
-  levelId;
-  branchId;
+  
+  groupId;
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
   listModule;
@@ -46,9 +46,9 @@ export class ListComponent implements OnInit {
     console.log('user',this.tokenStorageService.getUser());
     const user=this.tokenStorageService.getUser();
     this.user.id=user.id;
-    this.levelId=user.level.id;
-    this.branchId=user.branch.id   
-    this.moduleService.findByLevelAndBranch(this.levelId,this.branchId).subscribe(resp=>{
+    this.groupId=user.groups[0].id;
+       
+    this.moduleService.findByGroup(this.groupId).subscribe(resp=>{
       this.listModule=resp;
       console.log('module---',resp);
       this.search(false);

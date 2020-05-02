@@ -158,6 +158,11 @@ const MENUITEMS = [
             icon: "fa fa-building-o",
           },
           {
+            state: "group",
+            name: "Group",
+            icon: "fa fa-building-o",
+          },
+          {
             state: "level",
             name: "Level",
             icon: "fa fa-signal",

@@ -25,6 +25,8 @@ File: style.css
 /**  ===================== Custom css start
 ==========================  **/
 @import "~@ng-select/ng-select/themes/default.theme.css";
+@import "~@ng-select/ng-select/themes/ant.design.theme.css";
+ @import "~ng-pick-datetime/assets/style/picker.min.css"; */
 /* @import "~/angular-notifier/styles.css";
 @import "~/angular-notifier/styles/core.css";
 @import "~/angular-notifier/styles/theme";

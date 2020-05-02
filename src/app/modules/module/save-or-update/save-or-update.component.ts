@@ -3,8 +3,7 @@ import { Module } from "../../../core/models/module.model";
 import { FormGroup, FormControl } from "@angular/forms";
 import { ModuleService } from "../../../core/services/module/module.service";
 import { MatDialogRef, MAT_DIALOG_DATA } from "@angular/material";
-import { LevelService } from "../../../core/services/level/level.service";
-import { BranchService } from "../../../core/services/branch/branch.service";
+import { GroupService } from "../../../core/services/group/group.service";
 import { TokenStorageService } from "../../../core/services/token_storage/token-storage.service";
 import { UserService } from "../../../core/services/user/user.service";
 
@@ -17,12 +16,11 @@ export class SaveOrUpdateComponent implements OnInit {
   moduleForm = new FormGroup({
     name: new FormControl(""),
     prof: new FormControl(null),
-    level: new FormControl(null),
-    branch: new FormControl(null),
+    group: new FormControl(null),
   });
   listLevel = [];
 
-  listBranch = [];
+  listGroup = [];
   listProfessor = [];
 
   idModule = null;
@@ -30,8 +28,7 @@ export class SaveOrUpdateComponent implements OnInit {
   constructor(
     private moduleService: ModuleService,
     public dialogRef: MatDialogRef<SaveOrUpdateComponent>,
-    private levelService: LevelService,
-    private branchService: BranchService,
+    private groupService: GroupService,
     @Inject(MAT_DIALOG_DATA) public data: any,
     private tokenStorageService: TokenStorageService,
     private userService: UserService
@@ -40,50 +37,43 @@ export class SaveOrUpdateComponent implements OnInit {
       this.isEdit = true;
       this.idModule = data.id;
       const name = data.name;
-      const level=data.level
-      const branch =data.branch;
-      const prof=data.professor;
-
+      const group = data.group;
+      const prof = data.professor;
+      console.log("data", data);
       this.moduleForm.get("name").setValue(name);
-      this.moduleForm.get("level").setValue(level);
-      this.moduleForm.get("branch").setValue(branch);
+      this.moduleForm.get("group").setValue(group);
       this.moduleForm.get("prof").setValue(prof);
-      
+      console.log('form',this.moduleForm.value)
+
     }
   }
 
   ngOnInit() {
     const user = this.tokenStorageService.getUser();
 
-    this.levelService
-      .findByOrganisation(user.organization.id)
-      .subscribe((response: any) => {
-        console.log("response", response);
-        this.listLevel = response;
-        this.branchService
-          .findByOrganisation(user.organization.id)
+   
+        this.groupService
+          .findByOrganization(user.organization.id)
           .subscribe((response: any) => {
-            this.listBranch = response;
+            this.listGroup = response;
             this.userService
               .findAllProfessorByOrga(user.organization.id)
-              .subscribe((resp:any) => {
+              .subscribe((resp: any) => {
                 this.listProfessor = resp;
               });
           });
-      });
+     
   }
   save() {
     const name = this.moduleForm.get("name").value;
-    const level = this.moduleForm.get("level").value;
-    const branch = this.moduleForm.get("branch").value;
-    const professor=this.moduleForm.get("prof").value;
+    const group = this.moduleForm.get("group").value;
+    const professor = this.moduleForm.get("prof").value;
     let module = new Module();
     module.id = this.idModule;
     module.name = name;
-    module.level = level;
-    module.branch = branch;
-    module.professor=professor;
-    console.log('module',module);
+    module.group = group;
+    module.professor = professor;
+    console.log("module", module);
     this.moduleService.saveOrUpdate(module).subscribe((resp) => {
       console.log("response  ----", resp);
       this.dialogRef.close(true);
@@ -93,10 +83,13 @@ export class SaveOrUpdateComponent implements OnInit {
     this.dialogRef.close(false);
   }
 
-  compareBranch(c1: any, c2: any): boolean {
+  compareGroup(c1: any, c2: any): boolean {
     return c1 && c2 ? c1.id === c2.id : c1 === c2;
   }
   compareLevel(c1: any, c2: any): boolean {
+    return c1 && c2 ? c1.id === c2.id : c1 === c2;
+  }
+  compareOrg(c1: any, c2: any): boolean {
     return c1 && c2 ? c1.id === c2.id : c1 === c2;
   }
 }

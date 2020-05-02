@@ -11,92 +11,89 @@
     <div class="card-body">
         <form [formGroup]="userForm">
             <div class="row">
-                <div class="col-sm-6 row">
-                    <label class="col-sm-3 col-form-label"
-                        style="font-weight: bold;color: #757575;">{{'USER.EMAIL'|translate}}</label>
-                    <div class="col-sm-9">
-                        <input type="text" formControlName="email" class="form-control">
-
-                    </div>
-                </div>
-                <div class="col-sm-6 row">
-                    <label class="col-sm-3 col-form-label"
-                        style="font-weight: bold;color: #757575;">{{'USER.FIRST_NAME'|translate}}</label>
-                    <div class="col-sm-9">
-                        <input type="text" formControlName="firstName" class="form-control">
-
-                    </div>
-                </div>
-                <br>
-                <div class="col-sm-6 row">
-
-                    <label class="col-sm-3 col-form-label"
-                        style="font-weight: bold;color: #757575;">{{'USER.LAST_NAME'|translate}}</label>
-                    <div class="col-sm-9">
-                        <input type="text" formControlName="lastName" class="form-control">
-
-                    </div>
-
-                </div>
-                <div class="col-sm-6 row ">
-
-                    <label class="col-sm-3 col-form-label"   style="font-weight: bold;color: #757575;">{{'USER.ORGANIZATION'|translate}}</label>
-                    <div class="col-sm-9">
-                        <select name="select" [compareWith]="compareLevel" name="organization"
-                            formControlName="organization" class="form-control" (change)="onSelectOgra()">
-                            <option value="">{{'USER.SELECT_ORGANIZATION'|translate}}</option>
-                            <option *ngFor="let organization of listOrganization" [ngValue]="organization">
-                                {{organization.name}}
-                            </option>
-                        </select>
-                        
-
-                    </div>
-
-                </div>
-                <br>
-                <div class="col-sm-6 row">
-                    <label class="col-sm-3 col-form-label"
-                        style="font-weight: bold;color: #757575;">{{'USER.ROLE'|translate}}</label>
+                <div class="col-sm-6">
+                    <div class="row"> <label class="col-sm-3 col-form-label"
+                            style="font-weight: bold;color: #757575;">{{'USER.EMAIL'|translate}}</label>
                         <div class="col-sm-9">
-                            <select name="select" [compareWith]="compareLevel" name="role" formControlName="role" class="form-control"
-                              (change)="onSelectRole()">
-                              <option value="">{{'USER.SELECT_ROLE'|translate}}</option>
-                              <option *ngFor="let role of listRole" [ngValue]="role">
-                                {{role.translated}}
-                              </option>
+                            <input type="text" formControlName="email" class="form-control">
+
+                        </div>
+                    </div>
+
+                </div>
+                <div class="col-sm-6">
+                    <div class="row">
+                        <label class="col-sm-3 col-form-label"
+                            style="font-weight: bold;color: #757575;">{{'USER.FIRST_NAME'|translate}}</label>
+                        <div class="col-sm-9">
+                            <input type="text" formControlName="firstName" class="form-control">
+
+                        </div>
+                    </div>
+                </div>
+                <br>
+                <div class="col-sm-6">
+                    <div class="row"> <label class="col-sm-3 col-form-label"
+                            style="font-weight: bold;color: #757575;">{{'USER.LAST_NAME'|translate}}</label>
+                        <div class="col-sm-9">
+                            <input type="text" formControlName="lastName" class="form-control">
+
+                        </div>
+                    </div>
+
+
+                </div>
+                <div class="col-sm-6 ">
+                    <div class="row">
+                        <label class="col-sm-3 col-form-label"
+                            style="font-weight: bold;color: #757575;">{{'USER.ORGANIZATION'|translate}}</label>
+                        <div class="col-sm-9">
+                            <select name="select" [compareWith]="compareLevel" name="organization"
+                                formControlName="organization" class="form-control" (change)="onSelectOgra()">
+                                <option value="">{{'USER.SELECT_ORGANIZATION'|translate}}</option>
+                                <option *ngFor="let organization of listOrganization" [ngValue]="organization">
+                                    {{organization.name}}
+                                </option>
                             </select>
-                            
-                          </div>
-                </div>
-                <div class="col-sm-6 row">
-                    <label class="col-sm-3 col-form-label"
-                        style="font-weight: bold;color: #757575;">{{'USER.BRANCH'|translate}}</label>
-                    <div class="col-sm-9">
-                        <select name="select" [compareWith]="compareBranch" name="branch" formControlName="branch"
-                        class="form-control">
-                        <option value="">{{'USER.SELECT_BRANCH'|translate}}</option>
-                        <option *ngFor="let branch of listBranch" [ngValue]="branch">
-                          {{branch.name}}
-                        </option>
-                      </select>
 
+
+                        </div>
                     </div>
                 </div>
-                <div class="col-sm-6 row">
-                    <label class="col-sm-3 col-form-label"
-                        style="font-weight: bold;color: #757575;">{{'USER.LEVEL'|translate}}</label>
-                    <div class="col-sm-9">
-                        <select name="select" [compareWith]="compareLevel" name="level" formControlName="level"
-                        class="form-control">
-                        <option value="">{{'USER.SELECT_LEVEL'|translate}}</option>
-                        <option *ngFor="let level of listLevel" [ngValue]="level">
-                          {{level.name}}
-                        </option>
-                      </select>
+                <br>
+                <div class="col-sm-6">
+                    <div class="row">
+                        <label class="col-sm-3 col-form-label"
+                            style="font-weight: bold;color: #757575;">{{'USER.ROLE'|translate}}</label>
+                        <div class="col-sm-9">
+                            <select name="select" [compareWith]="compareLevel" name="role" formControlName="role"
+                                class="form-control" (change)="onSelectRole()">
+                                <option value="">{{'USER.SELECT_ROLE'|translate}}</option>
+                                <option *ngFor="let role of listRole" [ngValue]="role">
+                                    {{role.translated}}
+                                </option>
+                            </select>
 
+                        </div>
                     </div>
                 </div>
+                <div class="col-sm-6">
+                    <div class="row">
+                        <label class="col-sm-3 col-form-label"
+                            style="font-weight: bold;color: #757575;">{{'USER.GROUP'|translate}}</label>
+                        <div class="col-sm-9">
+                            <select name="select" [compareWith]="compareGroup" name="group" formControlName="group"
+                                class="form-control">
+                                <option value="">{{'USER.SELECT_GROUP'|translate}}</option>
+                                <option *ngFor="let group of listGroup" [ngValue]="group">
+                                    {{group.name}}
+                                </option>
+                            </select>
+
+                        </div>
+                    </div>
+                </div>
+
 
             </div>
             <br>
@@ -154,14 +151,11 @@
                 <td mat-cell *matCellDef="let element">
                     {{element.refRole!=null? getRoleName(element.refRole.name):'---'}} </td>
             </ng-container>
-            <ng-container matColumnDef="level">
-                <th mat-header-cell *matHeaderCellDef> {{ 'USER.LEVEL'  | translate}} </th>
-                <td mat-cell *matCellDef="let element"> {{element.level!=null?element.level.name:'---'}} </td>
+            <ng-container matColumnDef="group">
+                <th mat-header-cell *matHeaderCellDef> {{ 'USER.GROUP'  | translate}} </th>
+                <td mat-cell *matCellDef="let element"> {{getGroup(element.groups)}} </td>
             </ng-container>
-            <ng-container matColumnDef="branch">
-                <th mat-header-cell *matHeaderCellDef> {{ 'USER.BRANCH'  | translate}} </th>
-                <td mat-cell *matCellDef="let element"> {{element.branch!=null?element.branch.name:'---'}} </td>
-            </ng-container>
+
             <!-- Weight Column -->
             <ng-container matColumnDef="actions">
                 <th class="center-action" mat-header-cell *matHeaderCellDef> Actions </th>

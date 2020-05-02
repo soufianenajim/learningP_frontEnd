@@ -12,6 +12,7 @@ import { RoleService } from "../../../core/services/role/role.service";
 import { OrganizationService } from "../../../core/services/organization/organization.service";
 import { LevelService } from "../../../core/services/level/level.service";
 import { BranchService } from "../../../core/services/branch/branch.service";
+import { GroupService } from "../../../core/services/group/group.service";
 
 @Component({
   selector: "app-list",
@@ -25,8 +26,8 @@ export class ListComponent implements OnInit {
     "lastName",
     "organization",
     "role",
-    "branch",
-    "level",
+    "group",
+
     "actions",
   ];
   //dataSource = new MatTableDataSource<PeriodicElement>(ELEMENT_DATA);
@@ -43,14 +44,14 @@ export class ListComponent implements OnInit {
   listBranch = [];
   listOrganization = [];
   listRole: Role[];
+  listGroup = [];
   userForm = new FormGroup({
     firstName: new FormControl(""),
     lastName: new FormControl(""),
     email: new FormControl(""),
     organization: new FormControl(null),
     role: new FormControl(null),
-    level: new FormControl(null),
-    branch: new FormControl(null),
+    group: new FormControl(null),
   });
   lang = "en";
   constructor(
@@ -59,8 +60,7 @@ export class ListComponent implements OnInit {
     private translateService: TranslateService,
     private organizationService: OrganizationService,
     private roleService: RoleService,
-    private levelService: LevelService,
-    private branchService: BranchService
+    private groupService: GroupService
   ) {}
   ngOnInit() {
     this.translateService.onLangChange.subscribe((event: LangChangeEvent) => {
@@ -105,16 +105,14 @@ export class ListComponent implements OnInit {
     const lastName = this.userForm.get("lastName").value;
     const organization = this.userForm.get("organization").value;
     const role = this.userForm.get("role").value;
-    const level = this.userForm.get("level").value;
-    const branch = this.userForm.get("branch").value;
+    const group = this.userForm.get("group").value;
     this.user.firstName = firstName;
     this.user.email = email;
-    this.user.lastName=lastName;
-    this.user.organization=(organization===''||organization===null)?null:organization;
-    this.user.refRole=(role===''||role===null)?null:role;
-    this.user.level=(level===''||level===null)?null:level;
-    this.user.branch=(branch===''||branch===null)?null:branch;
-
+    this.user.lastName = lastName;
+    this.user.organization =
+      organization === "" || organization === null ? null : organization;
+    this.user.refRole = role === "" || role === null ? null : role;
+    this.user.groupId = group != null ? group.id : null;
     this.demandeUser.model = this.user;
     this.demandeUser.page = page;
     this.demandeUser.size = size;
@@ -141,9 +139,7 @@ export class ListComponent implements OnInit {
     this.userForm.get("lastName").setValue("");
     this.userForm.get("role").setValue(null);
     this.userForm.get("organization").setValue(null);
-    this.userForm.get("level").setValue(null);
-    this.userForm.get("branch").setValue(null);
-
+    this.userForm.get("group").setValue(null);
 
     this.search(false);
   }
@@ -208,13 +204,8 @@ export class ListComponent implements OnInit {
   onSelectOgra() {
     const orga = this.userForm.get("organization").value;
     if (orga) {
-      this.levelService.findByOrganisation(orga.id).subscribe((resp: any) => {
-        this.listLevel = resp;
-        this.branchService
-          .findByOrganisation(orga.id)
-          .subscribe((resp: any) => {
-            this.listBranch = resp;
-          });
+      this.groupService.findByOrganization(orga.id).subscribe((resp: any) => {
+        this.listGroup = resp;
       });
     }
   }
@@ -223,5 +214,16 @@ export class ListComponent implements OnInit {
   }
   compareLevel(c1: any, c2: any): boolean {
     return c1 && c2 ? c1.id === c2.id : c1 === c2;
+  }
+  getGroup(groups) {
+    if (groups != null && groups.length > 0) {
+      let group = "";
+      groups.forEach((element) => {
+        group += element.name;
+      });
+      return group;
+    }
+    return '---';
+   
   }
 }

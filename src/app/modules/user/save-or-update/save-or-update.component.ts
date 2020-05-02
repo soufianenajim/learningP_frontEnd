@@ -1,23 +1,28 @@
-import { Component, OnInit, Inject } from "@angular/core";
+import { Component, OnInit, Inject, ViewChild } from "@angular/core";
 import { User } from "../../../core/models/user.model";
 import { FormGroup, FormControl, Validators } from "@angular/forms";
 import { UserService } from "../../../core/services/user/user.service";
 import { MatDialogRef, MAT_DIALOG_DATA } from "@angular/material";
-import { LevelService } from "../../../core/services/level/level.service";
+
 import { BranchService } from "../../../core/services/branch/branch.service";
 import { OrganizationService } from "../../../core/services/organization/organization.service";
 import { RoleService } from "../../../core/services/role/role.service";
 import { sharedConstants } from "../../../core/constants";
 import { NotifierService } from "angular-notifier";
 import { TranslateService } from "@ngx-translate/core";
-import { Level } from "../../../core/models/level.model";
 import { Branch } from "../../../core/models/branch.model";
+import { GroupService } from "../../../core/services/group/group.service";
+import { Group } from "../../../core/models/group.model";
+
 @Component({
   selector: "app-save-or-update",
   templateUrl: "./save-or-update.component.html",
   styleUrls: ["./save-or-update.component.css"],
 })
 export class SaveOrUpdateComponent implements OnInit {
+  dropdownList = [];
+  selectedItems = [];
+  dropdownSettings = {};
   private readonly notifier: NotifierService;
   userForm = new FormGroup({
     firstName: new FormControl("", [
@@ -39,23 +44,26 @@ export class SaveOrUpdateComponent implements OnInit {
     ]),
     organization: new FormControl(null, Validators.required),
     role: new FormControl(null, Validators.required),
-    level: new FormControl(null, Validators.required),
-    branch: new FormControl(null, Validators.required),
+    group: new FormControl(null, Validators.required),
   });
   listLevel = [];
 
   listBranch = [];
   listOrganization = [];
+  listGroup = [];
   listRole = [];
   idUser = null;
   isEdit = false;
   isStudent = false;
+  isTeacher = false;
   isClickSave = false;
+  groups = [];
   constructor(
     private userService: UserService,
     public dialogRef: MatDialogRef<SaveOrUpdateComponent>,
-    private levelService: LevelService,
+
     private branchService: BranchService,
+    private groupService: GroupService,
     private organizationService: OrganizationService,
     private roleService: RoleService,
     private translateService: TranslateService,
@@ -71,18 +79,38 @@ export class SaveOrUpdateComponent implements OnInit {
     }
   }
   buildForm(data) {
+    console.log("data", data);
     this.userForm.get("firstName").setValue(data.firstName);
     this.userForm.get("lastName").setValue(data.lastName);
     this.userForm.get("email").setValue(data.email);
     this.userForm.get("phone").setValue(data.phone);
     this.userForm.get("organization").setValue(data.organization);
     this.userForm.get("role").setValue(data.refRole);
-    this.userForm.get("level").setValue(data.level);
-    this.userForm.get("branch").setValue(data.branch);
+    if(data.refRole.name==="ROLE_STUDENT"){
+      this.isStudent=true;
+      this.userForm.get("group").setValue(data.groups[0]);
+    }
+   
+    if(data.refRole.name==="ROLE_TEACHER"){
+      this.isTeacher=true;
+      this.userForm.get("group").setValue(data.groups);
+    }
+    
     this.onSelectRole();
     this.onSelectOgra();
   }
+
   ngOnInit() {
+    this.dropdownSettings = {
+      singleSelection: false,
+      idField: "id",
+      textField: "name",
+      selectAllText: "Select All",
+      unSelectAllText: "UnSelect All",
+      itemsShowLimit: 3,
+      allowSearchFilter: true,
+      allowSelectAll: false,
+    };
     this.organizationService.findAll().subscribe((res: any) => {
       this.listOrganization = res;
       this.roleService.findAll().subscribe((resp: any) => {
@@ -98,13 +126,13 @@ export class SaveOrUpdateComponent implements OnInit {
     const phone = this.userForm.get("phone").value;
     const organization = this.userForm.get("organization").value;
     const role = this.userForm.get("role").value;
-    let level = this.userForm.get("level").value;
-    let branch = this.userForm.get("branch").value;
-    if (!this.isStudent) {
-      this.userForm.get("level").setValue(new Level());
-      this.userForm.get("branch").setValue(new Branch());
-      level = this.userForm.get("level").value;
-      branch = this.userForm.get("branch").value;
+    let groups = [];
+
+    if (this.isStudent) {
+      groups.push(this.userForm.get("group").value);
+    } else if (this.isTeacher) {
+  
+      groups = this.groups;
     }
     let user = new User();
     user.id = this.idUser;
@@ -114,8 +142,7 @@ export class SaveOrUpdateComponent implements OnInit {
     user.phone = phone;
     user.organization = organization;
     user.refRole = role;
-    user.level = level.id != null ? level : null;
-    user.branch = branch.id != null ? branch : null;
+    user.groups = groups != null ? groups : null;
     console.log("user", user);
     if (this.userForm.valid) {
       this.userService.saveOrUpdate(user).subscribe(
@@ -142,19 +169,18 @@ export class SaveOrUpdateComponent implements OnInit {
   onSelectOgra() {
     const orga = this.userForm.get("organization").value;
     if (orga) {
-      this.levelService.findByOrganisation(orga.id).subscribe((resp: any) => {
-        this.listLevel = resp;
-        this.branchService
-          .findByOrganisation(orga.id)
-          .subscribe((resp: any) => {
-            this.listBranch = resp;
-          });
+      this.groupService.findByOrganization(orga.id).subscribe((resp: any) => {
+        this.listGroup = resp;
+        console.log("resp", resp);
       });
     }
   }
   onSelectRole() {
     const role = this.userForm.get("role").value;
-    if (role) this.isStudent = role.name === "ROLE_STUDENT";
+    if (role) {
+      this.isStudent = role.name === "ROLE_STUDENT";
+      this.isTeacher = role.name === "ROLE_TEACHER";
+    }
   }
   public noWhitespaceValidator(control: FormControl) {
     if (control.value === "") {
@@ -194,5 +220,11 @@ export class SaveOrUpdateComponent implements OnInit {
     this.translateService.get(err).subscribe((value: string) => {
       this.showNotification("error", value);
     });
+  }
+  onItemSelect(item: any) {
+    this.groups.push(item);
+  }
+  onSelectAll(items: any) {
+    console.log(items);
   }
 }

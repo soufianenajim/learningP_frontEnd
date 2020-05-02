@@ -8,23 +8,90 @@
 
     <form [formGroup]="questionForm" (ngSubmit)="save()">
       <div class="form-group row">
-        <label class="col-sm-3 col-form-label">Nom</label>
-        <div class="col-sm-9">
-          <input type="text" formControlName="name" class="form-control">
-        </div>
-      </div>
-      <div class="form-group row">
         <label class="col-sm-3 col-form-label">Code</label>
         <div class="col-sm-9">
           <input type="text" formControlName="code" class="form-control">
         </div>
       </div>
       <div class="form-group row">
+        <label class="col-sm-3 col-form-label">Nom</label>
+        <div class="col-sm-9">
+          <input type="text" formControlName="name" class="form-control">
+        </div>
+      </div>
+     
+      <div class="form-group row">
         <label class="col-sm-3 col-form-label">CorrectComment</label>
         <div class="col-sm-9">
           <textarea type="text" formControlName="correctComment" class="form-control"></textarea>
         </div>
       </div>
+      <div class="form-group row">
+        <label class="col-sm-3 col-form-label">Module</label>
+        <div class="col-sm-9">
+          <select name="select" [compareWith]="compareModule" name="module" formControlName="module"
+            class="form-control">
+            <option value="opt1">Selectioner un module</option>
+            <option *ngFor="let module of listModule" [ngValue]="module">
+              {{module.name}}
+            </option>
+          </select>
+
+        </div>
+      </div>
+      <div class="form-group row">
+        <label class="col-sm-3 col-form-label">Type</label>
+        <div class="col-sm-9">
+          <select name="select"  name="type" formControlName="type" (change)="onSelectType()"
+            class="form-control">
+            <option value="opt1">Selectioner un type</option>
+            <option value="exam">Exam</option>
+            <option value="quiz">Quiz</option>
+            <option value="td">Td</option>
+          </select>
+
+        </div>
+      </div>
+      <div class="form-group row" *ngIf="isExam">
+        <label class="col-sm-3 col-form-label">Exam</label>
+        <div class="col-sm-9">
+          <select name="select" [compareWith]="compareModule" name="exam" formControlName="exam"
+            class="form-control">
+            <option value="opt1">Selectioner un exam</option>
+            <option *ngFor="let exam of listExam" [ngValue]="exam">
+              {{exam.name}}
+            </option>
+          </select>
+
+        </div>
+      </div>
+      <div class="form-group row" *ngIf="isQuiz">
+        <label class="col-sm-3 col-form-label">Quiz</label>
+        <div class="col-sm-9">
+          <select name="select" [compareWith]="compareModule" name="quiz" formControlName="quiz"
+            class="form-control">
+            <option value="opt1">Selectioner un quiz</option>
+            <option *ngFor="let quiz of listQuiz" [ngValue]="quiz">
+              {{quiz.name}}
+            </option>
+          </select>
+
+        </div>
+      </div>
+      <div class="form-group row" *ngIf="isTd">
+        <label class="col-sm-3 col-form-label">Td</label>
+        <div class="col-sm-9">
+          <select name="select" [compareWith]="compareModule" name="td" formControlName="td"
+            class="form-control">
+            <option value="opt1">Selectioner un td</option>
+            <option *ngFor="let td of listTd" [ngValue]="td">
+              {{td.name}}
+            </option>
+          </select>
+
+        </div>
+      </div>
+
       <div class="form-group row">
         <label class="col-sm-3 col-form-label"> <button type="button" class="btn btn-primary btn-md waves-effect waves-light f-left" (click)="addSuggestions()"> <i
           class="fa fa-plus"></i> Ajouter Suggestion
@@ -44,14 +111,7 @@
             </div>
             <div class="card-body">
               <div class="form-group row" >
-                <label class="col-sm-3 col-form-label">Nom</label>
-                <div class="col-sm-9">
-                  <textarea type="text" formControlName="name" class="form-control"></textarea>
-                </div>
-              </div>
-              <div class="form-group row" >
-                <label class="col-sm-3 col-form-label">Correct</label>
-                <div class="col-sm-9 ">
+                <div class="col-sm-1">
                   <!-- <input type="checkbox" formControlName="correct" class="border-checkbox"> -->
                   <div class="checkbox-fade fade-in-success" style="margin-top: 0.5rem;">
                     <label>
@@ -60,9 +120,29 @@
                             <i class="cr-icon icofont icofont-ui-check txt-success"></i>
                         </span> 
                     </label>
+                   
                 </div>
+                </div>
+                <div class="col-sm-11 row">
+                
+                  <label class="col-sm-1 col-form-label">{{getAlphabet(i)}}</label>
+                  <textarea type="text" formControlName="name" class="col-sm-11 form-control"></textarea>
                 </div>
               </div>
+              <!-- <div class="form-group row" >
+                <label class="col-sm-3 col-form-label">Correct</label>
+                <div class="col-sm-9 ">
+                   <input type="checkbox" formControlName="correct" class="border-checkbox"> -->
+                  <!-- <div class="checkbox-fade fade-in-success" style="margin-top: 0.5rem;">
+                    <label>
+                        <input type="checkbox" formControlName="correct">
+                        <span class="cr">
+                            <i class="cr-icon icofont icofont-ui-check txt-success"></i>
+                        </span> 
+                    </label>
+                </div>
+                </div>
+              </div> --> 
                 
               
             </div>

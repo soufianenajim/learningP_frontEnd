@@ -8,8 +8,7 @@
 
     <form [formGroup]="userForm" (ngSubmit)="save()">
       <div class="form-group row">
-        <label class="col-sm-2 col-form-label">{{'USER.EMAIL'|translate}}<span
-          style="color: red">*</span></label>
+        <label class="col-sm-2 col-form-label">{{'USER.EMAIL'|translate}}<span style="color: red">*</span></label>
         <div class="col-sm-10">
           <input type="text" maxlength="30" formControlName="email" class="form-control">
           <div *ngIf="errormptyField('email')" style="color:red">
@@ -19,8 +18,7 @@
         </div>
       </div>
       <div class="form-group row">
-        <label class="col-sm-2 col-form-label">{{'USER.FIRST_NAME'|translate}}<span
-          style="color: red">*</span></label>
+        <label class="col-sm-2 col-form-label">{{'USER.FIRST_NAME'|translate}}<span style="color: red">*</span></label>
         <div class="col-sm-10">
           <input type="text" maxlength="30" formControlName="firstName" class="form-control">
           <div *ngIf="errormptyField('firstName')" style="color:red">
@@ -30,8 +28,7 @@
         </div>
       </div>
       <div class="form-group row">
-        <label class="col-sm-2 col-form-label">{{'USER.LAST_NAME'|translate}}<span
-          style="color: red">*</span></label>
+        <label class="col-sm-2 col-form-label">{{'USER.LAST_NAME'|translate}}<span style="color: red">*</span></label>
         <div class="col-sm-10">
           <input type="text" maxlength="30" formControlName="lastName" class="form-control">
           <div *ngIf="errormptyField('lastName')" style="color:red">
@@ -52,7 +49,7 @@
       </div>
       <div class="form-group row">
         <label class="col-sm-2 col-form-label">{{'USER.ORGANIZATION'|translate}}<span
-          style="color: red">*</span></label>
+            style="color: red">*</span></label>
         <div class="col-sm-10">
           <select name="select" [compareWith]="compareLevel" name="organization" formControlName="organization"
             class="form-control" (change)="onSelectOgra()">
@@ -63,12 +60,11 @@
           </select>
           <div *ngIf="errormptyField('organization')" style="color:red">
             {{'ERRORS.EMPTY_FIELD' | translate}}</div>
-        
+
         </div>
       </div>
       <div class="form-group row">
-        <label class="col-sm-2 col-form-label">{{'USER.ROLE'|translate}}<span
-          style="color: red">*</span></label>
+        <label class="col-sm-2 col-form-label">{{'USER.ROLE'|translate}}<span style="color: red">*</span></label>
         <div class="col-sm-10">
           <select name="select" [compareWith]="compareLevel" name="role" formControlName="role" class="form-control"
             (change)="onSelectRole()">
@@ -83,35 +79,29 @@
       </div>
       <div *ngIf="isStudent">
         <div class="form-group row">
-          <label class="col-sm-2 col-form-label">{{'USER.LEVEL'|translate}}<span
-            style="color: red">*</span></label>
+          <label class="col-sm-2 col-form-label">{{'USER.GROUP'|translate}}<span style="color: red">*</span></label>
           <div class="col-sm-10">
-            <select name="select" [compareWith]="compareLevel" name="level" formControlName="level"
+            <select name="select" [compareWith]="compareLevel" name="group" formControlName="group"
               class="form-control">
               <option value="opt1">{{'USER.SELECT_LEVEL'|translate}}</option>
-              <option *ngFor="let level of listLevel" [ngValue]="level">
-                {{level.name}}
+              <option *ngFor="let group of listGroup" [ngValue]="group">
+                {{group.name}}
               </option>
             </select>
-            <div *ngIf="errormptyField('level')" style="color:red">
+            <div *ngIf="errormptyField('group')" style="color:red">
               {{'ERRORS.EMPTY_FIELD' | translate}}</div>
           </div>
         </div>
+      </div>
+      <div *ngIf="isTeacher">
         <div class="form-group row">
-          <label class="col-sm-2 col-form-label">{{'USER.BRANCH'|translate}}<span
-            style="color: red">*</span></label>
-          <div class="col-sm-10">
-            <select name="select" [compareWith]="compareBranch" name="branch" formControlName="branch"
-              class="form-control">
-              <option value="opt1">{{'USER.SELECT_BRANCH'|translate}}</option>
-              <option *ngFor="let branch of listBranch" [ngValue]="branch">
-                {{branch.name}}
-              </option>
-            </select>
-            <div *ngIf="errormptyField('level')" style="color:red">
-              {{'ERRORS.EMPTY_FIELD' | translate}}</div>
-          </div>
+        <label class="col-sm-2 col-form-label">{{'USER.ROLE'|translate}}<span style="color: red">*</span></label>
+        <div class="col-sm-10">
+        <ng-multiselect-dropdown class="col-sm-10" [placeholder]="'custom placeholder'" [data]="listGroup" formControlName="group"
+          [settings]="dropdownSettings" (onSelect)="onItemSelect($event)" (onSelectAll)="onSelectAll($event)">
+        </ng-multiselect-dropdown>
         </div>
+      </div>
       </div>
       <div class="form-group row justify-content-center">
         <button type="button" style="margin-right: 20px" type="submit" [disabled]="isSaved"
@@ -129,4 +119,3 @@
   </div>
 </div>
 <notifier-container></notifier-container>
-

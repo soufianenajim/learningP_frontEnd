@@ -10,10 +10,10 @@
     </p>
     <ng-container *ngFor="let suggestion of question.suggestions">
       <div class="row">
-        <div class="col-sm-1">
+        <div class="col-sm-1 center-action">
           <mat-checkbox *ngIf="!quizFinished" color="primary"
             (change)="$event.checked ? addToCorrect(suggestion,question) : deleteFromCorrect(suggestion,question)"
-            style="margin-left: 5rem;"></mat-checkbox>
+            style="margin-left: 4rem;"></mat-checkbox>
         </div>
         <p class="col-sm-11"> <strong style="font-size: 0.8rem;"> {{suggestion.name}}</strong>
           <span *ngIf="(isPastTdorQuiz||quizFinished) && suggestion.correct" class="fa fa-check"

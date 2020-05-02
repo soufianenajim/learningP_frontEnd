@@ -14,7 +14,7 @@ import { ModuleService } from '../../../core/services/module/module.service';
   styleUrls: ['./list.component.css']
 })
 export class ListComponent implements OnInit {
-  displayedColumns: string[] = ["name", "module","actions"];
+  displayedColumns: string[] = ["name", "module","startTime","endTime","actions"];
   //dataSource = new MatTableDataSource<PeriodicElement>(ELEMENT_DATA);
   dataSource: MatTableDataSource<Exam>;
 

@@ -16,6 +16,8 @@ export class SaveOrUpdateComponent implements OnInit {
   examForm = new FormGroup({
     name: new FormControl(""),
     module: new FormControl(null),
+    startTime: new FormControl(""),
+    endTime: new FormControl(""),
   });
   listModule: any;
   idExam = null;
@@ -24,26 +26,30 @@ export class SaveOrUpdateComponent implements OnInit {
   constructor(
     private moduleseService: ModuleService,
     private examService: ExamService,
-    private questionService:QuestionService,
+    private questionService: QuestionService,
     public dialogRef: MatDialogRef<SaveOrUpdateComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any
   ) {
     if (data !== null) {
-      this.questionService.findByExam(data.id).subscribe(resp=>{
-        console.log('questions',resp);
-        this.parentQuestions=resp;
+      this.questionService.findByExam(data.id).subscribe((resp) => {
+        console.log("questions", resp);
+        this.parentQuestions = resp;
         this.isEdit = true;
         this.idExam = data.id;
-        
-        const name = data.name;
-        const module = data.module;
-  
-        this.examForm.get("name").setValue(name);
-        this.examForm.get("module").setValue(module);
-      })
+        this.buildForm(data);
+      });
     }
   }
-
+  buildForm(data) {
+    const name = data.name;
+    const module = data.module;
+    const startTime = data.startDateTime;
+    const endTime = data.endDateTime;
+    this.examForm.get("name").setValue(name);
+    this.examForm.get("module").setValue(module);
+    this.examForm.get("startTime").setValue(startTime);
+    this.examForm.get("endTime").setValue(endTime);
+  }
   ngOnInit() {
     this.moduleseService.findAll().subscribe((res) => {
       console.log("res", res);
@@ -53,11 +59,15 @@ export class SaveOrUpdateComponent implements OnInit {
   save() {
     const name = this.examForm.get("name").value;
     const module = this.examForm.get("module").value;
+    const startTime=this.examForm.get("startTime").value;
+    const endTime=this.examForm.get("endTime").value;
     let exam = new Exam();
     exam.id = this.idExam;
     exam.name = name;
     exam.module = module;
-    exam.questions=this.listQuestion;
+    exam.startDateTime=startTime;
+    exam.endDateTime=endTime;
+    exam.questions = this.listQuestion;
     this.examService.saveOrUpdate(exam).subscribe((resp) => {
       console.log("response  ----", resp);
       this.dialogRef.close(true);
@@ -70,7 +80,7 @@ export class SaveOrUpdateComponent implements OnInit {
     return c1 && c2 ? c1.id === c2.id : c1 === c2;
   }
   getQuestionsOutPut(event) {
-    console.log('event from child',event);
+    console.log("event from child", event);
     this.listQuestion = event;
   }
 }

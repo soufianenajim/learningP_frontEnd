@@ -1,20 +1,20 @@
 import { Injectable } from '@angular/core';
 import { environment } from "../../../../environments/environment";
 import { HttpClient } from '@angular/common/http';
-import { Exam } from '../../models/exam.model';
+import { Group } from '../../models/group.model';
 
 @Injectable({
   providedIn: 'root'
 })
-export class ExamService {
-  url = environment.baseUrl + "/exam";
+export class GroupService {
+  url = environment.baseUrl + "/group";
   constructor(private httpClient: HttpClient) {}
 
   findAll() {
     return this.httpClient.get(this.url + "/find-all");
   }
-  saveOrUpdate(exam: Exam) {
-    return this.httpClient.post(this.url + "/save-or-update", exam);
+  saveOrUpdate(group: Group) {
+    return this.httpClient.post(this.url + "/save-or-update", group);
   }
   searchByCritere(demande) {
     console.log("demande", demande);
@@ -23,8 +23,8 @@ export class ExamService {
   delete(id) {
     return this.httpClient.delete(this.url + "/delete/" + id);
   }
-  findByModule(idModule){
-    return this.httpClient.get(this.url + "/find-by-module/"+idModule);
-  }
-  
+findByOrganization(id){
+  return this.httpClient.get(this.url + "/find-by-organization/"+id);
+
+}
 }

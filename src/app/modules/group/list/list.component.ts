@@ -2,47 +2,62 @@ import { Component, OnInit, ViewChild } from "@angular/core";
 import { MatTableDataSource, MatPaginator, MatDialog } from "@angular/material";
 import { UserService } from "../../../core/services/user/user.service";
 import { FormGroup, FormControl } from "@angular/forms";
-import { Module } from "../../../core/models/module.model";
+import { Group } from "../../../core/models/group.model";
 import { Demande } from "../../../core/models/demande.model";
-import { ModuleService } from "../../../core/services/module/module.service";
+import { GroupService } from "../../../core/services/group/group.service";
 import { DetailComponent } from "../detail/detail.component";
 import { SaveOrUpdateComponent } from "../save-or-update/save-or-update.component";
 import { TokenStorageService } from "../../../core/services/token_storage/token-storage.service";
+import { LevelService } from "../../../core/services/level/level.service";
+import { BranchService } from "../../../core/services/branch/branch.service";
 
 @Component({
-  selector: "app-module-list",
+  selector: "app-group-list",
   templateUrl: "./list.component.html",
   styleUrls: ["./list.component.css"]
 })
 export class ListComponent implements OnInit {
-  displayedColumns: string[] = ["name", "professeur","group", "actions"];
+  displayedColumns: string[] = ["name", "level","branch", "actions"];
   //dataSource = new MatTableDataSource<PeriodicElement>(ELEMENT_DATA);
-  dataSource: MatTableDataSource<Module>;
+  dataSource: MatTableDataSource<Group>;
 
-  demandeModule: Demande<Module> = new Demande<Module>();
+  demandeGroup: Demande<Group> = new Demande<Group>();
 
-  module: Module = new Module();
+  group: Group = new Group();
   resultsLength;
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
-  listProfessor;
-  moduleForm = new FormGroup({
+  listLevel = [];
+
+  listBranch = [];
+  groupForm = new FormGroup({
     name: new FormControl(""),
-    prof: new FormControl()
+    level: new FormControl(null),
+    branch: new FormControl(null),
   });
   constructor(
     private userService: UserService,
-    private moduleService: ModuleService,
+    private levelService:LevelService,
+    private branchService:BranchService,
+    private groupService: GroupService,
     private dialog: MatDialog,
     private tokenStorage:TokenStorageService
   ) {}
   ngOnInit() {
-     const user=this.tokenStorage.getUser()
-    this.userService.findAllProfessorByOrga(user.organization.id).subscribe(resp => {
-      console.log("list professor --------", resp);
-      this.listProfessor = resp;
-      this.search(false);
-    });
+    const user = this.tokenStorage.getUser();
+
+    this.levelService
+      .findByOrganisation(user.organization.id)
+      .subscribe((response: any) => {
+        console.log("response", response);
+        this.listLevel = response;
+        this.branchService
+          .findByOrganisation(user.organization.id)
+          .subscribe((response: any) => {
+            this.listBranch = response;
+           this.search(false);
+          });
+      });
   }
   search(bool) {
     if (!bool) {
@@ -50,25 +65,27 @@ export class ListComponent implements OnInit {
     }
     const page = this.paginator.pageIndex;
     const size = this.paginator.pageSize;
-    const name = this.moduleForm.get("name").value;
-    const professeur = this.moduleForm.get("prof").value;
+    const name = this.groupForm.get("name").value;
+    const level=this.groupForm.get("level").value;
+    const branch=this.groupForm.get("branch").value;
+    this.group.name = name;
+    this.group.level=level;
+    this.group.branch=branch;
+ 
 
-    this.module.name = name;
-    this.module.professor = professeur;
+    this.demandeGroup.model = this.group;
+    this.demandeGroup.page = page;
+    this.demandeGroup.size = size;
 
-    this.demandeModule.model = this.module;
-    this.demandeModule.page = page;
-    this.demandeModule.size = size;
-
-    this.searchByCritere(this.demandeModule);
+    this.searchByCritere(this.demandeGroup);
   }
 
-  searchByCritere(demande: Demande<Module>) {
-    console.log("demandeModule --------", demande);
-    this.moduleService.searchByCritere(demande).subscribe((resp: any) => {
-      console.log("modules from database afak ---------------", resp);
+  searchByCritere(demande: Demande<Group>) {
+    console.log("demandeGroup --------", demande);
+    this.groupService.searchByCritere(demande).subscribe((resp: any) => {
+      console.log("groups from database afak ---------------", resp);
       this.resultsLength = resp.count;
-      this.dataSource = new MatTableDataSource<Module>(resp.lignes);
+      this.dataSource = new MatTableDataSource<Group>(resp.lignes);
       this.paginator.pageIndex = demande.page;
     });
   }
@@ -77,8 +94,9 @@ export class ListComponent implements OnInit {
     this.paginator.pageIndex = 0;
   }
   reset() {
-    this.moduleForm.get("name").setValue("");
-    this.moduleForm.get("prof").setValue(null);
+    this.groupForm.get("name").setValue("");
+    this.groupForm.get("level").setValue(null);
+    this.groupForm.get("branch").setValue(null);
     this.search(false);
   }
   refreshDataTable() {
@@ -119,7 +137,7 @@ export class ListComponent implements OnInit {
 
   }
    delete(row) {
-    this.moduleService.delete(row.id).subscribe(
+    this.groupService.delete(row.id).subscribe(
       response => {
         console.log("response", response);
         this.search(true);
@@ -128,6 +146,12 @@ export class ListComponent implements OnInit {
         console.log("error", error);
       }
     );
+  }
+  compareBranch(c1: any, c2: any): boolean {
+    return c1 && c2 ? c1.id === c2.id : c1 === c2;
+  }
+  compareLevel(c1: any, c2: any): boolean {
+    return c1 && c2 ? c1.id === c2.id : c1 === c2;
   }
 }
 

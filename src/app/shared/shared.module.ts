@@ -51,8 +51,8 @@ import { NgSelectModule } from '@ng-select/ng-select';
 import { TranslateModule } from "@ngx-translate/core";
 import { NotifierModule } from 'angular-notifier';
 import { AngularEditorModule } from '@kolkov/angular-editor';
-
-
+import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
+import { OwlDateTimeModule, OwlNativeDateTimeModule } from 'ng-pick-datetime';
 
 @NgModule({
   imports: [
@@ -101,7 +101,10 @@ import { AngularEditorModule } from '@kolkov/angular-editor';
       }
 
 
-    }),
+    }), NgMultiSelectDropDownModule.forRoot(),
+   OwlDateTimeModule,
+    OwlNativeDateTimeModule 
+    
     
   ],
   declarations: [
@@ -161,7 +164,10 @@ import { AngularEditorModule } from '@kolkov/angular-editor';
     ClickOutsideModule,
     NgSelectModule,
     NotifierModule,
-    AngularEditorModule
+    AngularEditorModule,
+    NgMultiSelectDropDownModule,
+    OwlDateTimeModule,
+  //  OwlNativeDateTimeModule 
   ],
  
   providers: [MenuItems, TodoService, SelectOptionService ]
