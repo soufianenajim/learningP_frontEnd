@@ -33,18 +33,14 @@ export const AppRoutes: Routes = [
         loadChildren: "./modules/student-space/student-space.module#StudentSpaceModule"
       },
       {
-        path: "td",
-        loadChildren: "./modules/td/td.module#TdModule"
+        path: "exercices",
+        loadChildren: "./modules/exercices/exercices.module#ExercicesModule"
       },
       {
         path: "question",
         loadChildren: "./modules/question/question.module#QuestionModule"
       },
       {
-        path: "quiz",
-        loadChildren: "./modules/quiz/quiz.module#QuizModule"
-      }
-      ,{
         path: "note_quiz",
         loadChildren: "./modules/note-quiz/note-quiz.module#NoteQuizModule"
       }

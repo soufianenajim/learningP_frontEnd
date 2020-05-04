@@ -64,7 +64,7 @@
 
   <div class="card-body" style="overflow: auto">
 
-      <table mat-table [dataSource]="dataSource">
+      <table class="table-striped" mat-table   [dataSource]="dataSource">
 
           <!-- Name Column -->
           <ng-container matColumnDef="name">
@@ -88,9 +88,13 @@
                       <button mat-icon-button (click)="openDialog(row)">
                           <span class="fa fa-edit" style="color: #007bff"></span>
                       </button>
-                      <button mat-icon-button (click)="delete(row)" style="color:red">
+                      <button mat-icon-button (click)="openDialogDelete(row)" [disabled]="row.launched" [style.color]="row.launched?'#a6abb1':'red'">
                           <span class="icofont icofont-ui-delete tabledit-delete-button "></span>
                       </button>
+                      <button mat-icon-button  (click)="openDialogLaunch(row)" [disabled]="row.launched">
+                        <span *ngIf="!row.launched" class="fa fa-play" style="color: #007bff"></span>
+                        <span *ngIf="row.launched" class="fa fa-pause" style="color: #007bff"></span>
+                    </button>
 
 
                   </div>

@@ -17,7 +17,12 @@
     "UPDATE": "Update",
     "DETAIL": "Detail",
     "SAVE": "Save",
-    "CANCEL": "Cancel"
+    "CANCEL": "Cancel",
+    "DELETED": "Deleted !",
+    "CONFIRMATION": "Yes",
+    "CANCEL_CONFIRMATION": "No",
+    "CONFIRMATION_MESSAGE":"You won't be able to revert this!"
+    
   },
   "LANGUAGE": {
     "FRENCH": "French",
@@ -29,14 +34,19 @@
     "PROFESSOR": "Professor",
     "LEVEL": "Level",
     "BRANCH": "Branch",
+    "GROUP":"Group",
     "SELECT_BRANCH": "Select  branch",
-    "SELECT_LEVEL": "Select level"
+    "SELECT_LEVEL": "Select level",
+    "DELETE": "Delete module?",
+    "DELETED": "Module has been deleted."
   },
   "CHAPTER": {
     "NAME": "Name",
     "COURSE": "Course",
     "MODULE": "Module",
-    "SELECT_COURSE": "Select course"
+    "SELECT_COURSE": "Select course",
+    "DELETE": "Delete course?",
+    "DELETED": "Course has been deleted."
   },
   "PARAGRAPH": {
     "NAME": "Name",
@@ -47,32 +57,40 @@
   "COURSE": {
     "NAME": "Name",
     "MODULE": "Module",
-    "SELECT_MODULE": "Select module"
+    "SELECT_MODULE": "Select module",
+    "LAUNCH":"Start this course immediately ?",
+    "LAUNCHED":"Launched !",
+    "LAUNCHED_MESSAGE":"Course  has been launched",
+    "DELETE": "Supprimer cour ?",
+    "DELETED": "Le cour a été supprimé."
   },
   "ERRORS": {
     "EMPTY_FIELD": "Field must not be empty.",
     "INVALID_DATA": "Please enter valid data."
   },
-  "USER":{
-    "EMAIL":"Email",
-    "FIRST_NAME":"FirstName",
-    "LAST_NAME":"lastName",
-    "PHONE":"Phone",
-    "ORGANIZATION":"Organization",
-    "LEVEL":"Level",
-    "BRANCH":"Branch",
-    "ROLE":"Role",
+  "USER": {
+    "EMAIL": "Email",
+    "FIRST_NAME": "FirstName",
+    "LAST_NAME": "lastName",
+    "PHONE": "Phone",
+    "ORGANIZATION": "Organization",
+    "LEVEL": "Level",
+    "BRANCH": "Branch",
+    "GROUP":"Group",
+    "ROLE": "Role",
     "SELECT_BRANCH": "Select  branch",
     "SELECT_LEVEL": "Select level",
-    "SELECT_ROLE":"Select role",
-    "SELECT_ORGANIZATION":"Select organization",
+    "SELECT_ROLE": "Select role",
+    "SELECT_ORGANIZATION": "Select organization",
     "EXIST": "User already exists!",
-    "SAVE_SUCCESS": "User saved successfully"
+    "SAVE_SUCCESS": "User saved successfully",
+    "DELETE": "Delete user?",
+    "DELETED": "User has been deleted."
   },
   "ROLE": {
     "STUDENT": "Student",
-    "TEACHER":"Teacher",
-    "ADMIN":"Administrator"
+    "TEACHER": "Teacher",
+    "ADMIN": "Administrator"
   },
   "EMAIL": "Email",
   "COMPONENTS": "Components",

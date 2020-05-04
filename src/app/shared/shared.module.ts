@@ -53,6 +53,7 @@ import { NotifierModule } from 'angular-notifier';
 import { AngularEditorModule } from '@kolkov/angular-editor';
 import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
 import { OwlDateTimeModule, OwlNativeDateTimeModule } from 'ng-pick-datetime';
+import { TextWidthPipe } from "../core/pipes/text-width.pipe";
 
 @NgModule({
   imports: [
@@ -119,7 +120,8 @@ import { OwlDateTimeModule, OwlNativeDateTimeModule } from 'ng-pick-datetime';
     SpinnerComponent,
     ModalAnimationComponent,
     ModalBasicComponent,
-    DataFilterPipe
+    DataFilterPipe,
+    TextWidthPipe
   ],
   exports: [
     AccordionAnchorDirective,
@@ -167,6 +169,7 @@ import { OwlDateTimeModule, OwlNativeDateTimeModule } from 'ng-pick-datetime';
     AngularEditorModule,
     NgMultiSelectDropDownModule,
     OwlDateTimeModule,
+    TextWidthPipe
   //  OwlNativeDateTimeModule 
   ],
  

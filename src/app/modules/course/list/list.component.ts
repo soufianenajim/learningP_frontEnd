@@ -1,17 +1,18 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
-import { MatTableDataSource, MatPaginator, MatDialog } from '@angular/material';
-import { Cour } from '../../../core/models/cour.model';
-import { Demande } from '../../../core/models/demande.model';
-import { FormGroup, FormControl } from '@angular/forms';
-import { CourseService } from '../../../core/services/course/course.service';
-import { ModuleService } from '../../../core/services/module/module.service';
-import { SaveOrUpdateComponent } from '../save-or-update/save-or-update.component';
-import { DetailComponent } from '../detail/detail.component';
-
+import { Component, OnInit, ViewChild } from "@angular/core";
+import { MatTableDataSource, MatPaginator, MatDialog } from "@angular/material";
+import { Cour } from "../../../core/models/cour.model";
+import { Demande } from "../../../core/models/demande.model";
+import { FormGroup, FormControl } from "@angular/forms";
+import { CourseService } from "../../../core/services/course/course.service";
+import { ModuleService } from "../../../core/services/module/module.service";
+import { SaveOrUpdateComponent } from "../save-or-update/save-or-update.component";
+import { DetailComponent } from "../detail/detail.component";
+import swal from 'sweetalert2';
+import { TranslateService } from "@ngx-translate/core";
 @Component({
-  selector: 'app-list',
-  templateUrl: './list.component.html',
-  styleUrls: ['./list.component.css']
+  selector: "app-list",
+  templateUrl: "./list.component.html",
+  styleUrls: ["./list.component.css"],
 })
 export class ListComponent implements OnInit {
   displayedColumns: string[] = ["name", "module", "action"];
@@ -28,15 +29,16 @@ export class ListComponent implements OnInit {
 
   courForm = new FormGroup({
     name: new FormControl(""),
-    module: new FormControl()
+    module: new FormControl(),
   });
   constructor(
     private courService: CourseService,
     private moduleseService: ModuleService,
-    private dialog: MatDialog
+    private dialog: MatDialog,
+    private translate:TranslateService
   ) {}
   ngOnInit() {
-    this.moduleseService.findAll().subscribe(res => {
+    this.moduleseService.findAll().subscribe((res) => {
       console.log("modules in database -------------------------------", res);
       this.listModule = res;
       this.search(false);
@@ -79,8 +81,6 @@ export class ListComponent implements OnInit {
     this.search(false);
   }
   refreshDataTable() {
-    console.log("this.paginator", this.paginator);
-
     this.search(true);
   }
 
@@ -91,41 +91,104 @@ export class ListComponent implements OnInit {
       autoFocus: false,
       maxHeight: "90vh",
       data: data,
-      disableClose: true
+      disableClose: true,
     });
 
-    dialogRef.afterClosed().subscribe(result => {
-      if(result){
+    dialogRef.afterClosed().subscribe((result) => {
+      if (result) {
         this.search(false);
       }
-      
+
       console.log("The dialog was closed");
     });
   }
-  openDialogDetail(row){
+  openDialogDetail(row) {
     const dialogRef = this.dialog.open(DetailComponent, {
       width: "60%",
       data: row,
-      disableClose: true
-
+      disableClose: true,
     });
 
-    dialogRef.afterClosed().subscribe(result => {
-     console.log('result mn dialog detail afakom rkzo m3ana   -----------',result);
-  
+    dialogRef.afterClosed().subscribe((result) => {
+      console.log(
+        "result mn dialog detail afakom rkzo m3ana   -----------",
+        result
+      );
     });
   }
-  
+
   delete(row) {
     this.courService.delete(row.id).subscribe(
-      response => {
+      (response) => {
         console.log("response", response);
         this.search(true);
       },
-      error => {
+      (error) => {
         console.log("error", error);
       }
     );
   }
+  launch(cour) {
+    this.courService.launch(cour.id).subscribe((resp) => {
+     this.search(true)
+    });
+  }
+  openDialogLaunch(cour){
+  const  courLanched=this.getI18n('COURSE.LAUNCHED');
+  const  courLanchedMSG=this.getI18n('COURSE.LAUNCHED_MESSAGE');
+    swal({
+      title: this.getI18n('COURSE.LAUNCH'),
+      text: this.getI18n('ACTION.CONFIRMATION_MESSAGE'),
+      type: 'warning',
+      showCancelButton: true,
+      showCloseButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: this.getI18n('ACTION.CONFIRMATION'),
+      cancelButtonText: this.getI18n('ACTION.CANCEL_CONFIRMATION'),
+      reverseButtons: false,
+      focusCancel: true
+    }).then(() => this.launch(cour)).then(function () {
+      swal({
+        title: courLanched,
+        text: courLanchedMSG,
+        type: 'success'
+      });
+    }).catch();
+  }
+  getI18n(name): string {
+    let i18;
+    this.translate.get(name).subscribe((value: string) => {
 
+      i18 = value;
+    });
+    return i18;
+  }
+  openDialogDelete(course) {
+    let actionDeleted=this.getI18n("ACTION.DELETED");
+    let userDeleted= this.getI18n("COURSE.DELETED");
+    swal({
+      title: this.getI18n("COURSE.DELETE"),
+      text: this.getI18n("ACTION.CONFIRMATION_MESSAGE"),
+      type: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: this.getI18n("ACTION.CONFIRMATION"),
+      cancelButtonText: this.getI18n("ACTION.CANCEL_CONFIRMATION"),
+      reverseButtons: false,
+      focusCancel: true,
+    })
+      .then(() => this.delete(course))
+      .then(function () {
+        swal({
+          title: actionDeleted,
+          text:userDeleted,
+          type: "success",
+        });
+      })
+      .catch();
+  }
+
+ 
 }

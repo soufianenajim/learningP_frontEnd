@@ -73,8 +73,8 @@ const MENUITEMS = [
             icon: "fa fa-book",
           },        
           {
-            state: "td",
-            name: "Td",
+            state: "exercices",
+            name: "Exercices",
             icon: "fa fa-pencil",
           },
         ],
@@ -92,29 +92,7 @@ const MENUITEMS = [
       },
     ],
   },
-  {
-    label: "Quiz",
-    main: [
-      {
-        state: "quiz_menu",
-        name: "Quiz",
-        type: "sub",
-        icon: "fa fa-pencil",
-        children: [
-          {
-            state: "quiz",
-            name: "Quiz",
-            icon: "fa fa-pencil",
-          },
-          {
-            state: "note_quiz",
-            name: "NoteQuiz",
-            icon: "fa fa-list-alt",
-          },
-        ]
-      }
-    ]
-  },
+
   {
     label: "Exam",
     main: [

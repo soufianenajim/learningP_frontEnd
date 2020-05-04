@@ -24,7 +24,7 @@
           <label class="col-sm-3 col-form-label">{{'MODULE.LEVEL'|translate}}</label>
           <div class="col-sm-9">
             <select name="select" [compareWith]="compareLevel" name="level"  formControlName="level" class="form-control">
-              <option value="opt1">{{'MODULE.SELECT_LEVEL'|translate}}</option>
+              <option value="">{{'MODULE.SELECT_LEVEL'|translate}}</option>
               <option *ngFor="let level of listLevel" [ngValue]="level" >
                 {{level.name}}  
               </option>
@@ -36,7 +36,7 @@
           <label class="col-sm-3 col-form-label">{{'MODULE.BRANCH'|translate}}</label>
           <div class="col-sm-9">
             <select name="select" [compareWith]="compareBranch" name="branch"  formControlName="branch" class="form-control">
-              <option value="opt1">{{'MODULE.SELECT_BRANCH'|translate}}</option>
+              <option value="">{{'MODULE.SELECT_BRANCH'|translate}}</option>
               <option *ngFor="let branch of listBranch" [ngValue]="branch" >
                 {{branch.name}}  
               </option>
@@ -75,7 +75,7 @@
 
   <div class="card-body" style="overflow: auto">
 
-    <table mat-table [dataSource]="dataSource">
+    <table  class="table-striped" mat-table [dataSource]="dataSource">
 
       <!-- Position Column -->
       <ng-container matColumnDef="name">

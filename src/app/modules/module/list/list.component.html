@@ -64,23 +64,23 @@
 
     <div class="card-body" style="overflow: auto">
 
-        <table mat-table [dataSource]="dataSource">
+        <table class="table-striped" mat-table [dataSource]="dataSource">
 
             <!-- Position Column -->
             <ng-container matColumnDef="name">
                 <th mat-header-cell *matHeaderCellDef> {{'MODULE.NAME'|translate}} </th>
-                <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+                <td mat-cell *matCellDef="let element" title="{{element?.name}}"> {{element?.name.length>80?(element?.name | textWidth:80 ) +' ...' :element?.name}} </td>
             </ng-container>
 
             <!-- Name Column -->
             <ng-container matColumnDef="professeur">
                 <th mat-header-cell *matHeaderCellDef>  {{'MODULE.PROFESSOR'|translate}} </th>
-                <td mat-cell *matCellDef="let element">
-                    {{element.professor!=null?element.professor.firstName+' '+element.professor.lastName:'---'}} </td>
+                <td mat-cell *matCellDef="let element" title="{{getFullName(element?.professor)}}">
+                    {{getFullName(element?.professor).length>100?(getFullName(element?.professor)| textWidth:100 ) +' ...' :getFullName(element?.professor)}} </td>
             </ng-container>
             <ng-container matColumnDef="group">
                 <th mat-header-cell *matHeaderCellDef>  {{'MODULE.GROUP'|translate}} </th>
-                <td mat-cell *matCellDef="let element"> {{element.group!=null?element.group.name:'---'}} </td>
+                <td mat-cell *matCellDef="let element" title="{{getGroup(element?.group)}}"> {{getGroup(element?.group).length>80?(getGroup(element?.group) | textWidth:80 ) +' ...' :getGroup(element?.group)}} </td>
             </ng-container>
            
 
@@ -95,7 +95,7 @@
                         <button mat-icon-button (click)="openDialog(row)">
                             <span class="fa fa-edit" style="color: #007bff"></span>
                         </button>
-                        <button mat-icon-button (click)="delete(row)" style="color:red">
+                        <button mat-icon-button (click)="openDialogDelete(row)" [disabled]="row.launched" [style.color]="row.launched?'#a6abb1':'red'">
                             <span class="icofont icofont-ui-delete tabledit-delete-button "></span>
                         </button>
 

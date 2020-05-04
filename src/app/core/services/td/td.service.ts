@@ -1,15 +1,15 @@
 import { Injectable } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
 import { environment } from "../../../../environments/environment";
-import { Td } from "../../models/td.model";
+import { Exercices } from "../../models/exercices.model";
 @Injectable({
   providedIn: "root"
 })
-export class TdService {
-  url = environment.baseUrl + "/td";
+export class ExercicesService {
+  url = environment.baseUrl + "/exercices";
   constructor(private httpClient: HttpClient) {}
-  saveOrUpdate(td: Td) {
-    return this.httpClient.post(this.url + "/save-or-update", td);
+  saveOrUpdate(exercices: Exercices) {
+    return this.httpClient.post(this.url + "/save-or-update", exercices);
   }
   searchByCritere(demande) {
     console.log("demande", demande);

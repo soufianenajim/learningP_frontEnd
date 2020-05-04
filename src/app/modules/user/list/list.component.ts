@@ -13,6 +13,7 @@ import { OrganizationService } from "../../../core/services/organization/organiz
 import { LevelService } from "../../../core/services/level/level.service";
 import { BranchService } from "../../../core/services/branch/branch.service";
 import { GroupService } from "../../../core/services/group/group.service";
+import swal from "sweetalert2";
 
 @Component({
   selector: "app-list",
@@ -54,6 +55,8 @@ export class ListComponent implements OnInit {
     group: new FormControl(null),
   });
   lang = "en";
+  actionDeleted;
+  userDeleted;
   constructor(
     private userService: UserService,
     private dialog: MatDialog,
@@ -64,12 +67,15 @@ export class ListComponent implements OnInit {
   ) {}
   ngOnInit() {
     this.translateService.onLangChange.subscribe((event: LangChangeEvent) => {
-      console;
       this.lang = event.lang;
       this.userForm.get("role").setValue(null);
       this.getRoles();
+      this.actionDeleted = this.getI18n("ACTION.DELETED");
+      this.userDeleted = this.getI18n("USER.DELETED");
       this.reset();
     });
+    this.actionDeleted = this.getI18n("ACTION.DELETED");
+    this.userDeleted = this.getI18n("USER.DELETED");
     this.organizationService.findAll().subscribe((res: any) => {
       this.listOrganization = res;
       this.roleService.findAll().subscribe((resp: any) => {
@@ -223,7 +229,38 @@ export class ListComponent implements OnInit {
       });
       return group;
     }
-    return '---';
-   
+    return "---";
+  }
+  openDialogDelete(user) {
+    let actionDeleted=this.getI18n("ACTION.DELETED");
+    let moduleDeleted= this.getI18n("MODULE.DELETED");
+    swal({
+      title: this.getI18n("MODULE.DELETE"),
+      text: this.getI18n("ACTION.CONFIRMATION_MESSAGE"),
+      type: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: this.getI18n("ACTION.CONFIRMATION"),
+      cancelButtonText: this.getI18n("ACTION.CANCEL_CONFIRMATION"),
+      reverseButtons: false,
+      focusCancel: true,
+    })
+      .then(() => this.delete(user))
+      .then(function () {
+        swal({
+          title: actionDeleted,
+          text:moduleDeleted,
+          type: "success",
+        });
+      })
+      .catch();
+  }
+  getI18n(name): string {
+    let i18;
+    this.translateService.get(name).subscribe((value: string) => {
+      i18 = value;
+    });
+    return i18;
   }
 }

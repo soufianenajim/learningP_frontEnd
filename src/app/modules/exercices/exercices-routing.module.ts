@@ -6,7 +6,7 @@ export const routes: Routes = [{
   path: '',
   component: ListComponent,
   data: {
-    breadcrumb: "Quiz"
+    breadcrumb: " Exercices"
   }
 }];
 
@@ -14,4 +14,4 @@ export const routes: Routes = [{
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]
 })
-export class QuizRoutingModule { }
+export class ExercicesRoutingModule { }

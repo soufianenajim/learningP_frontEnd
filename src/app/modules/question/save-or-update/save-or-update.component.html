@@ -31,7 +31,7 @@
         <div class="col-sm-9">
           <select name="select" [compareWith]="compareModule" name="module" formControlName="module"
             class="form-control">
-            <option value="opt1">Selectioner un module</option>
+            <option value="">Selectioner un module</option>
             <option *ngFor="let module of listModule" [ngValue]="module">
               {{module.name}}
             </option>
@@ -44,7 +44,7 @@
         <div class="col-sm-9">
           <select name="select"  name="type" formControlName="type" (change)="onSelectType()"
             class="form-control">
-            <option value="opt1">Selectioner un type</option>
+            <option value="">Selectioner un type</option>
             <option value="exam">Exam</option>
             <option value="quiz">Quiz</option>
             <option value="td">Td</option>
@@ -57,7 +57,7 @@
         <div class="col-sm-9">
           <select name="select" [compareWith]="compareModule" name="exam" formControlName="exam"
             class="form-control">
-            <option value="opt1">Selectioner un exam</option>
+            <option value="">Selectioner un exam</option>
             <option *ngFor="let exam of listExam" [ngValue]="exam">
               {{exam.name}}
             </option>
@@ -68,9 +68,9 @@
       <div class="form-group row" *ngIf="isQuiz">
         <label class="col-sm-3 col-form-label">Quiz</label>
         <div class="col-sm-9">
-          <select name="select" [compareWith]="compareModule" name="quiz" formControlName="quiz"
+          <select name="select" [compareWith]="compareModule" name="quiz" formControlName="exercices"
             class="form-control">
-            <option value="opt1">Selectioner un quiz</option>
+            <option value="">Selectioner un quiz</option>
             <option *ngFor="let quiz of listQuiz" [ngValue]="quiz">
               {{quiz.name}}
             </option>
@@ -81,9 +81,9 @@
       <div class="form-group row" *ngIf="isTd">
         <label class="col-sm-3 col-form-label">Td</label>
         <div class="col-sm-9">
-          <select name="select" [compareWith]="compareModule" name="td" formControlName="td"
+          <select name="select" [compareWith]="compareModule" name="td" formControlName="exercices"
             class="form-control">
-            <option value="opt1">Selectioner un td</option>
+            <option value="">Selectioner un td</option>
             <option *ngFor="let td of listTd" [ngValue]="td">
               {{td.name}}
             </option>
@@ -100,7 +100,7 @@
         </div>
       </div>
       <div formArrayName="suggestions">
-        <div class="row"*ngFor="let suggestion of suggestions.controls; let i=index">
+        <div class="row" *ngFor="let suggestion of suggestions.controls; let i=index">
           <div class="col-md-3"></div>
           <div class="card col-md-9" [formGroupName]="i">
             <div class="card-header">

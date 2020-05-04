@@ -25,4 +25,7 @@ export class CourseService {
   findByModule(idModule){
     return this.httpClient.get(this.url + "/find-by-module/"+idModule);
   }
+  launch(idCour){
+    return this.httpClient.get(this.url + "/launch/"+idCour);
+  }
 }

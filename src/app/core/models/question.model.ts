@@ -5,8 +5,7 @@ export class Question extends Historized {
     public name?: string,
     public code?: string,
     public correctComment?: string,
-    public td?: any,
-    public quiz?: any,
+    public exercices?: any,
     public exam?: any,
     public suggestions?: any[]
   ) {

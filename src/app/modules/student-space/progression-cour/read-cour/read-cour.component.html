@@ -20,12 +20,12 @@
   <mat-step [stepControl]="secondFormGroup">
     <form [formGroup]="secondFormGroup">
       <ng-template matStepLabel>Td</ng-template>
-      <ng-container *ngFor="let td of tds">
+     
         <app-td-or-quiz [tdOrQuiz]="td" [questionCorrectSuggestions]="questionCorrectSuggestions"
           [isPastTdorQuiz]="isPastTd" [questionCorrect]="questionCorrect"></app-td-or-quiz>
 
 
-      </ng-container>
+     
       <br>
 
       <button class="btn btn-success btn-md waves-effect waves-light f-left" (click)="validateTd()"

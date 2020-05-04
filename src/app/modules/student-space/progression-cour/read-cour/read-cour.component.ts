@@ -3,7 +3,7 @@ import { MatDialogRef, MAT_DIALOG_DATA, MatStepper } from "@angular/material";
 import { FormGroup, FormBuilder, Validators } from "@angular/forms";
 import { ProgressionCour } from "../../../../core/models/progression_cour.model";
 import { ProgressionCourService } from "../../../../core/services/progression_cour/progression-cour.service";
-import { TdService } from "../../../../core/services/td/td.service";
+import { ExercicesService } from "../../../../core/services/exercices/exercices.service";
 import { Question } from "../../../../core/models/question.model";
 import { Suggestion } from "../../../../core/models/suggestion.model";
 import { element } from "protractor";
@@ -18,7 +18,7 @@ export class ReadCourComponent implements OnInit {
   firstFormGroup: FormGroup;
   secondFormGroup: FormGroup;
   cour;
-  tds = [];
+  td ;
   quiz;
   progressionCour: ProgressionCour;
   questionCorrectSuggestions: Map<Question, Suggestion[]> = new Map();
@@ -32,11 +32,10 @@ export class ReadCourComponent implements OnInit {
     @Inject(MAT_DIALOG_DATA) public data: any,
     private _formBuilder: FormBuilder,
     private progressionCourService: ProgressionCourService,
-    private tdService: TdService
+    private exercicesService: ExercicesService
   ) {
     console.log("data", data);
     this.cour = data.cour;
-    this.quiz = data.cour.quiz;
     this.progressionCour = data;
     this.quizFinished = data.quizFinished;
     this.isPastCour=data.courFinished;
@@ -51,19 +50,25 @@ export class ReadCourComponent implements OnInit {
     });
   }
   nextForm1(stepper: MatStepper) {
-    if(this.tds.length===0){
-      this.tdService.findByCour(this.cour.id).subscribe((resp: any) => {
-        this.tds = resp;
+    
+      this.exercicesService.findByCourAndType(this.cour.id,"TD").subscribe((resp: any) => {
+    console.log('resp',resp);
+        this.td= resp;
         this.isPastCour=true;
         stepper.next();  
       });
-    }else{
-      
     }
+    
   
-  }
+  
   nextForm2(stepper: MatStepper) {
-    stepper.next();
+    this.exercicesService.findByCourAndType(this.cour.id,"QUIZ").subscribe((resp: any) => {
+         console.log('resp',resp);
+          this.quiz= resp;
+          this.isPastCour=true;
+          stepper.next();  
+        });
+   
   }
   validateCour(){
     console.log('validateCour');
@@ -73,8 +78,8 @@ export class ReadCourComponent implements OnInit {
       this.progressionCourService
         .saveOrUpdate(this.progressionCour)
         .subscribe((resp) => {
-          this.tdService.findByCour(this.cour.id).subscribe((resp: any) => {
-            this.tds = resp;
+          this.exercicesService.findByCourAndType(this.cour.id,"TD").subscribe((resp: any) => {
+            this.td = resp;
            this.isPastCour=true;
             
           });
@@ -103,12 +108,15 @@ export class ReadCourComponent implements OnInit {
     this.questionCorrect = [];
     this.questionCorrectSuggestions.forEach((value, key) => {
       if (this.compareQuestionWithChoiceSuggestions(key, value)) {
-        this.questionCorrect.push(key);
+    this.questionCorrect.push(key);
       }
     });
     this.isPastQuiz = true;
     if (!this.progressionCour.quizFinished) {
       this.progressionCour.quizFinished = true;
+      console.log('this.questionCorrect',this.questionCorrect);
+      console.log('this.quiz.questions',this.quiz.questions);
+      console.log('(this.questionCorrect.length / this.quiz.questions.length)',(this.questionCorrect.length / this.quiz.questions.length))
       this.progressionCour.scoreQuiz =
         (this.questionCorrect.length / this.quiz.questions.length) * 100;
       this.progressionCour.progression = 100;

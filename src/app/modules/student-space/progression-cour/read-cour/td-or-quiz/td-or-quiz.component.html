@@ -1,7 +1,7 @@
 
-  <h4 class="center-action">{{tdOrQuiz.name}}</h4>
+  <h4 class="center-action">{{tdOrQuiz?.name}}</h4>
   <h5 class="center-action"></h5>
-  <ng-container *ngFor="let question of tdOrQuiz.questions; let i = index">
+  <ng-container *ngFor="let question of tdOrQuiz?.questions; let i = index">
     <p> <strong style="font-size: 0.95rem;">{{i+1}} - {{question.name}}</strong>
       <span *ngIf="isPastTdorQuiz && isCorrect(question)" class="fa fa-check"
         style="color: green;font-size: 1.5em;margin-left: 0.5rem;"></span>

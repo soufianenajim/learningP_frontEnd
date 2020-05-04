@@ -1,12 +1,12 @@
 import { Historized } from "./historized.model";
 import { Cour } from "./cour.model";
 
-export class Td extends Historized{
+export class Exercices extends Historized{
 
     constructor(
-        
         public name?: string,
-        public cour?: Cour,
+        public type?:string,
+        public cour?:any,
         public questions?: any[]
     ) {
         super();

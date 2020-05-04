@@ -12,7 +12,6 @@ import { QuestionService } from "../../../core/services/question/question.servic
   styleUrls: ["./save-or-update.component.css"],
 })
 export class SaveOrUpdateComponent implements OnInit {
-  listQuestion = [];
   examForm = new FormGroup({
     name: new FormControl(""),
     module: new FormControl(null),
@@ -67,7 +66,6 @@ export class SaveOrUpdateComponent implements OnInit {
     exam.module = module;
     exam.startDateTime=startTime;
     exam.endDateTime=endTime;
-    exam.questions = this.listQuestion;
     this.examService.saveOrUpdate(exam).subscribe((resp) => {
       console.log("response  ----", resp);
       this.dialogRef.close(true);
@@ -79,8 +77,5 @@ export class SaveOrUpdateComponent implements OnInit {
   compareModule(c1: any, c2: any): boolean {
     return c1 && c2 ? c1.id === c2.id : c1 === c2;
   }
-  getQuestionsOutPut(event) {
-    console.log("event from child", event);
-    this.listQuestion = event;
-  }
+  
 }

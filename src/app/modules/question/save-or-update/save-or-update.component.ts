@@ -7,8 +7,7 @@ import { SuggestionService } from "../../../core/services/suggestion/suggestion.
 import { ModuleService } from "../../../core/services/module/module.service";
 import { TokenStorageService } from "../../../core/services/token_storage/token-storage.service";
 import { ExamService } from "../../../core/services/exam/exam.service";
-import { TdService } from "../../../core/services/td/td.service";
-import { QuizService } from "../../../core/services/quiz/quiz.service";
+import { ExercicesService } from "../../../core/services/exercices/exercices.service";
 
 @Component({
   selector: "app-save-or-update",
@@ -34,8 +33,7 @@ export class SaveOrUpdateComponent implements OnInit {
     private suggestionService: SuggestionService,
     private moduleService: ModuleService,
     private examService: ExamService,
-    private tdService: TdService,
-    private quizService: QuizService,
+    private exercicesService: ExercicesService,
     private tokenStorageService: TokenStorageService,
     public dialogRef: MatDialogRef<SaveOrUpdateComponent>,
     private fb: FormBuilder,
@@ -47,8 +45,7 @@ export class SaveOrUpdateComponent implements OnInit {
       correctComment: new FormControl(""),
       module: new FormControl(null),
       exam: new FormControl(null),
-      quiz: new FormControl(null),
-      td: new FormControl(null),
+      exercices: new FormControl(null),
       type: new FormControl(""),
       suggestions: this.fb.array([]),
     });
@@ -60,9 +57,29 @@ export class SaveOrUpdateComponent implements OnInit {
     }
   }
   buildForm(data) {
+    console.log('data',data);
     this.questionForm.get("name").setValue(data.name);
     this.questionForm.get("code").setValue(data.code);
     this.questionForm.get("correctComment").setValue(data.correctComment);
+    let exam=data.exam;
+   // let exercices=data.exercices;
+    if(exam){
+      this.questionForm.get("type").setValue("exam")
+      this.questionForm.get("module").setValue(exam.module);
+      this.questionForm.get("exam").setValue(exam);
+    }
+   this.exercicesService.findByQuestion(data.id).subscribe((resp:any)=>{
+     console.log('resp-----------',resp)
+    const type:String=resp.type;
+    this.questionForm.get("type").setValue(type.toLowerCase());
+    this.questionForm.get("module").setValue(resp.cour.module);
+    this.questionForm.get("exercices").setValue(resp);
+    this.onSelectType();
+   })
+     
+   
+    
+   
     let suggestions = data.suggestions;
     if (suggestions) {
       for (let d of data.suggestions) {
@@ -76,6 +93,7 @@ export class SaveOrUpdateComponent implements OnInit {
         );
       }
     }
+    this.onSelectType();
   }
   ngOnInit() {
     console.log('s.charCodeAt(0) - 97',String.fromCharCode(97 + 0))
@@ -90,8 +108,7 @@ export class SaveOrUpdateComponent implements OnInit {
     const code = this.questionForm.get("code").value;
     const correctComment = this.questionForm.get("correctComment").value;
     const exam = this.questionForm.get("exam").value;
-    const quiz = this.questionForm.get("quiz").value;
-    const td = this.questionForm.get("td").value;
+    const exercices = this.questionForm.get("exercices").value;
     const suggestions :any[] = this.questionForm.get("suggestions").value;
     for (let index = 0; index < suggestions.length; index++) {
       suggestions[index].name =this.getAlphabet(index).concat(suggestions[index].name);
@@ -102,8 +119,7 @@ export class SaveOrUpdateComponent implements OnInit {
     question.code = code;
     question.correctComment = correctComment;
     question.suggestions = suggestions;
-    question.td = td;
-    question.quiz =quiz;
+    question.exercices = exercices;
     question.exam =exam;
     this.questionService.saveOrUpdate(question).subscribe((resp) => {
       console.log("response  ----", resp);
@@ -160,8 +176,9 @@ getAlphabet(i){
   onSelectType() {
     const type = this.questionForm.get("type").value;
     const module = this.questionForm.get("module").value;
+    console.log('module',module);
+    console.log('type',type);
     if (module) {
-      console.log('module')
       if (type === "exam") {
         this.examService.findByModule(module.id).subscribe((resp:any)=>{
           this.isExam = true;
@@ -171,7 +188,7 @@ getAlphabet(i){
         })
       
       } else if (type === "quiz") {
-        this.quizService.findByModule(module.id).subscribe((resp:any)=>{
+        this.exercicesService.findByModuleAndType(module.id,"QUIZ").subscribe((resp:any)=>{
           this.isExam = false;
           this.isQuiz = true;
           this.isTd = false;
@@ -179,7 +196,8 @@ getAlphabet(i){
         })
         
       } else if (type === "td") {
-        this.tdService.findByModule(module.id).subscribe((resp:any)=>{
+        this.exercicesService.findByModuleAndType(module.id,"TD").subscribe((resp:any)=>{
+          console.log('resp td',resp);
           this.isExam = false;
           this.isQuiz = false;
           this.isTd = true;

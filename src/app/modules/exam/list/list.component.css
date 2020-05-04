@@ -1,3 +1,18 @@
 table {
     width: 100%;
   }
+  .mat-column-name {
+    width: 30%;
+  }
+  .mat-column-module {
+    width: 30%;
+  }
+  .mat-column-startTime {
+    width: 15%;
+  }
+  .mat-column-endTime {
+    width: 15%;
+  }
+  .mat-column-actions {
+    width: 10%;
+  }

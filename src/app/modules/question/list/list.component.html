@@ -13,6 +13,16 @@
       <div class="row">
         <div class="col-sm-6">
           <div class="row">
+            <label class="col-sm-3 col-form-label" style="font-weight: bold;color: #757575;">Code</label>
+            <div class="col-sm-9">
+              <input type="text" formControlName="code" class="form-control">
+
+            </div>
+          </div>
+        </div>
+
+        <div class="col-sm-6">
+          <div class="row">
             <label class="col-sm-3 col-form-label" style="font-weight: bold;color: #757575;">Nom</label>
             <div class="col-sm-9">
               <input type="text" formControlName="name" class="form-control">
@@ -23,13 +33,91 @@
 
         <div class="col-sm-6">
           <div class="row">
-            <label class="col-sm-3 col-form-label" style="font-weight: bold;color: #757575;">Code</label>
+          <label class="col-sm-3 col-form-label" style="font-weight: bold;color: #757575;">Module</label>
+          <div class="col-sm-9">
+            <select name="select" [compareWith]="compareModule" name="module" formControlName="module" (change)="onSelectModule()"
+              class="form-control">
+              <option value="">Selectioner un module</option>
+              <option *ngFor="let module of listModule" [ngValue]="module">
+                {{module.name}}
+              </option>
+            </select>
+  
+          </div>
+        </div>
+        </div>
+        <div class="col-sm-6">
+          <div class="row">
+            <label class="col-sm-3 col-form-label" style="font-weight: bold;color: #757575;">Exam</label>
             <div class="col-sm-9">
-              <input type="text" formControlName="code" class="form-control">
+              <select name="select" [compareWith]="compareModule" name="exam" formControlName="exam"
+                class="form-control">
+                <option value="">Selectioner un exam</option>
+                <option *ngFor="let exam of listExam" [ngValue]="exam">
+                  {{exam.name}}
+                </option>
+              </select>
 
             </div>
           </div>
         </div>
+        <div class="col-sm-6">
+          <div class="row">
+            <label class="col-sm-3 col-form-label" style="font-weight: bold;color: #757575;">Quiz</label>
+            <div class="col-sm-9">
+              <select name="select" [compareWith]="compareModule" name="quiz" formControlName="quiz"
+                class="form-control">
+                <option value="">Selectioner un quiz</option>
+                <option *ngFor="let quiz of listQuiz" [ngValue]="quiz">
+                  {{quiz.name}}
+                </option>
+              </select>
+
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-6">
+          <div class="row">
+            <label class="col-sm-3 col-form-label" style="font-weight: bold;color: #757575;">Td</label>
+            <div class="col-sm-9">
+              <select name="select" [compareWith]="compareModule" name="td" formControlName="td" class="form-control">
+                <option value="">Selectioner un td</option>
+                <option *ngFor="let td of listTd" [ngValue]="td">
+                  {{td.name}}
+                </option>
+              </select>
+
+            </div>
+          </div>
+        </div>
+        <!-- <div class="col-sm-6 row">
+          <div class="row">
+            <label class="col-sm-3 col-form-label" style="font-weight: bold;color: #757575;">Td</label>
+            <div class="col-sm-9">
+              <input type="text" formControlName="name" class="form-control">
+
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-6">
+          <div class="row">
+            <label class="col-sm-3 col-form-label" style="font-weight: bold;color: #757575;">Exam</label>
+            <div class="col-sm-9">
+              <input type="text" formControlName="name" class="form-control">
+
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-6">
+          <div class="row">
+            <label class="col-sm-3 col-form-label" style="font-weight: bold;color: #757575;">Quiz</label>
+            <div class="col-sm-9">
+              <input type="text" formControlName="name" class="form-control">
+
+            </div>
+          </div>
+        </div> -->
+
 
       </div>
       <br>
@@ -57,85 +145,36 @@
   <div class="card-header">
     <div class="row">
       <h5 class="col-sm-2 " style="margin:0;margin-top:0.5rem"><i class="fa fa-list m-r-5"></i>Questions</h5>
-      <div class="col-sm-10" *ngIf="isFromParent">
-        <form [formGroup]="questionForm">
-          <div class="row">
-            <div class="col-sm-4">
-              <div class="row">
-                <label class="col-sm-3 col-form-label" style="font-weight: bold;color: #757575;">Nom</label>
-                <div class="col-sm-9">
-                  <input type="text" formControlName="name" class="form-control">
-
-                </div>
-              </div>
-            </div>
-
-            <div class="col-sm-4">
-              <div class="row">
-                <label class="col-sm-3 col-form-label" style="font-weight: bold;color: #757575;">Code</label>
-                <div class="col-sm-9">
-                  <input type="text" formControlName="code" class="form-control">
-
-                </div>
-              </div>
-            </div>
-
-            <div class="form-group col-sm-4 row justify-content-center">
-              <button type="button" style="margin-right: 20px" (click)="search(false)"
-                class="btn btn-success btn-md waves-effect waves-light">
-                <i class="fa fa-search"></i>Rechercher
-              </button>
-              <button type="button" (click)="reset()" class="btn btn-danger btn-md waves-effect waves-light">
-                <i class="fa fa-close"></i>Réinitialiser
-              </button>
-            </div>
-
-          </div>
-          <br>
-
-
-        </form>
-      </div>
+      
     </div>
   </div>
 
   <div class="card-body" style="overflow: auto">
 
-    <table mat-table [dataSource]="dataSource">
+    <table class="table-striped" mat-table [dataSource]="dataSource">
       <!-- Checkbox Column -->
-      <ng-container *ngIf="isFromParent" matColumnDef="select">
-        <th mat-header-cell *matHeaderCellDef>
-          <!-- <mat-checkbox (change)="$event ? masterToggle() : null" [checked]="selection.hasValue() && isAllSelected()"
-            [indeterminate]="selection.hasValue() && !isAllSelected()" [aria-label]="checkboxLabel()">
-          </mat-checkbox> -->
-        </th>
-        <td mat-cell *matCellDef="let row">
-          <mat-checkbox (click)="$event.stopPropagation()" (change) ="$event.checked ? checked(row) : unChecked(row)"
-          [checked] ="isChecked(row)"  >
-          </mat-checkbox>
-        </td>
-      </ng-container>
+     
 
       <!-- Name Column -->
       <ng-container matColumnDef="name">
         <th mat-header-cell *matHeaderCellDef> Nom </th>
-        <td mat-cell *matCellDef="let element"> {{element?.name!=null?element?.name:'---'}} </td>
+        <td mat-cell *matCellDef="let element" title="{{element?.name}}"> {{element?.name.length>50?(element?.name | textWidth:50 ) +' ...' :element?.name}} </td>
       </ng-container>
 
       <!-- CodeColumn -->
       <ng-container matColumnDef="code">
         <th mat-header-cell *matHeaderCellDef> Code </th>
-        <td mat-cell *matCellDef="let element"> {{element?.code!=null?element?.code:'---'}} </td>
+        <td mat-cell *matCellDef="let element" title="{{element?.code}}"> {{element?.code.length>50?(element?.code | textWidth:50 ) +' ...':element?.code}} </td>
       </ng-container>
       <!-- CodeColumn -->
       <ng-container matColumnDef="correctComment">
         <th mat-header-cell *matHeaderCellDef> CorrectComment </th>
-        <td mat-cell *matCellDef="let element">
-          {{element.correctComment!=null?element.correctComment?.length>60?element.correctComment.substring(0,60)+' ...':element.correctComment:'---'}}
+        <td mat-cell *matCellDef="let element" title="{{element?.correctComment}}">
+          {{element?.correctComment.length>150?(element?.correctComment | textWidth:150 ) +' ...':element?.correctComment}}
         </td>
       </ng-container>
       <!-- Action Column -->
-      <ng-container *ngIf="!isFromParent" matColumnDef="actions">
+      <ng-container  matColumnDef="actions">
         <th class="center-action" mat-header-cell *matHeaderCellDef> Actions </th>
         <td class="center-action" mat-cell *matCellDef="let row">
           <div class="btn-group btn-group-sm">

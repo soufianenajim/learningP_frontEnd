@@ -17,7 +17,11 @@
     "UPDATE": "Modifier",
     "DETAIL": "Détail",
     "SAVE": "Enregistrer",
-    "CANCEL": "Annuler"
+    "CANCEL": "Annuler",
+    "DELETED": "Supprimé !",
+    "CONFIRMATION": "Oui",
+   "CANCEL_CONFIRMATION": "Non",
+   "CONFIRMATION_MESSAGE":"Vous ne pourrez pas revenir en arrière!"
   },
   "LANGUAGE": {
     "FRENCH": "Français",
@@ -29,8 +33,11 @@
     "PROFESSOR": "Professeur",
     "LEVEL": "Niveau",
     "BRANCH": "Branche",
+    "GROUP":"Groupe",
     "SELECT_BRANCH": "Selectionner une branche",
-    "SELECT_LEVEL": "Selectionner un niveau"
+    "SELECT_LEVEL": "Selectionner un niveau",
+    "DELETE": "Supprimer module ?",
+    "DELETED": "Le module a été supprimé."
   },
   "CHAPTER": {
     "NAME": "Nom",
@@ -47,7 +54,10 @@
   "COURSE": {
     "NAME": "Nom",
     "MODULE": "Module",
-    "SELECT_MODULE": "Select module"
+    "SELECT_MODULE": "Select module",
+    "LAUNCH":"Lancer ce cours immédiatement ?",
+    "LAUNCHED":"Lancé !",
+    "LAUNCHED_MESSAGE":"le cour à été lancé "
   },
   "ERRORS": {
     "EMPTY_FIELD": "Le champ ne doit pas être vide.",
@@ -61,13 +71,16 @@
     "ORGANIZATION": "Organisation",
     "LEVEL": "Niveau",
     "BRANCH": "Branche",
+    "GROUP":"Groupe",
     "ROLE": "Rôle",
     "SELECT_BRANCH": "Selectionner une branche",
     "SELECT_LEVEL": "Selectionner un niveau",
     "SELECT_ROLE": "Selectionner un rôle",
     "SELECT_ORGANIZATION": "Selectionner une organisation",
     "EXIST": "Cet utilisateur existe déjà!",
-    "SAVE_SUCCESS": "Utilisateur enregistré avec succès"
+    "SAVE_SUCCESS": "Utilisateur enregistré avec succès",
+    "DELETE": "Supprimer utilisateur ?",
+    "DELETED": "L'utilisateur a été supprimé."
   },
   "ROLE": {
     "STUDENT": "Étudiant",

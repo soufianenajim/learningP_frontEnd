@@ -13,7 +13,9 @@ export class TdOrQuizComponent implements OnInit {
   @Input() questionCorrect;
   @Input() isPastTdorQuiz;
   @Input() quizFinished;
-  constructor() {}
+  constructor() {
+    console.log('tdOrQuiz',this.tdOrQuiz);
+  }
 
   ngOnInit() {
   }
