@@ -43,13 +43,13 @@
 
 
                 </div>
-                <div class="col-sm-6 ">
+                <div class="col-sm-6 " *ngIf="!isClientAdmin">
                     <div class="row">
                         <label class="col-sm-3 col-form-label"
                             style="font-weight: bold;color: #757575;">{{'USER.ORGANIZATION'|translate}}</label>
                         <div class="col-sm-9">
                             <select name="select" [compareWith]="compareLevel" name="organization"
-                                formControlName="organization" class="form-control" (change)="onSelectOgra()">
+                                formControlName="organization" class="form-control">
                                 <option value="">{{'USER.SELECT_ORGANIZATION'|translate}}</option>
                                 <option *ngFor="let organization of listOrganization" [ngValue]="organization">
                                     {{organization.name}}
@@ -67,7 +67,7 @@
                             style="font-weight: bold;color: #757575;">{{'USER.ROLE'|translate}}</label>
                         <div class="col-sm-9">
                             <select name="select" [compareWith]="compareLevel" name="role" formControlName="role"
-                                class="form-control" (change)="onSelectRole()">
+                                class="form-control" >
                                 <option value="">{{'USER.SELECT_ROLE'|translate}}</option>
                                 <option *ngFor="let role of listRole" [ngValue]="role">
                                     {{role.translated}}
@@ -77,7 +77,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-sm-6">
+                <div class="col-sm-6" *ngIf="isClientAdmin">
                     <div class="row">
                         <label class="col-sm-3 col-form-label"
                             style="font-weight: bold;color: #757575;">{{'USER.GROUP'|translate}}</label>

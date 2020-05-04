@@ -13,6 +13,7 @@ import { TranslateService } from "@ngx-translate/core";
 import { Branch } from "../../../core/models/branch.model";
 import { GroupService } from "../../../core/services/group/group.service";
 import { Group } from "../../../core/models/group.model";
+import { TokenStorageService } from "../../../core/services/token_storage/token-storage.service";
 
 @Component({
   selector: "app-save-or-update",
@@ -57,24 +58,23 @@ export class SaveOrUpdateComponent implements OnInit {
   isStudent = false;
   isTeacher = false;
   isClickSave = false;
+  isClientAdmin=false;
   groups = [];
   constructor(
     private userService: UserService,
     public dialogRef: MatDialogRef<SaveOrUpdateComponent>,
-
-    private branchService: BranchService,
     private groupService: GroupService,
     private organizationService: OrganizationService,
     private roleService: RoleService,
     private translateService: TranslateService,
     @Inject(MAT_DIALOG_DATA) public data: any,
-    notifierService: NotifierService
+    notifierService: NotifierService,
+    private tokenStorageService:TokenStorageService
   ) {
     this.notifier = notifierService;
     if (data !== null) {
       this.isEdit = true;
       this.idUser = data.id;
-      const name = data.name;
       this.buildForm(data);
     }
   }
@@ -101,6 +101,11 @@ export class SaveOrUpdateComponent implements OnInit {
   }
 
   ngOnInit() {
+    const user=this.tokenStorageService.getUser();
+    if(user.refRole.name==='ROLE_ADMIN_CLIENT'){
+      this.isClientAdmin=true;
+      this.userForm.get("organization").setValue(user.organization);
+    }
     this.dropdownSettings = {
       singleSelection: false,
       idField: "id",
@@ -111,12 +116,42 @@ export class SaveOrUpdateComponent implements OnInit {
       allowSearchFilter: true,
       allowSelectAll: false,
     };
-    this.organizationService.findAll().subscribe((res: any) => {
-      this.listOrganization = res;
-      this.roleService.findAll().subscribe((resp: any) => {
-        this.listRole = resp;
+    if(!this.isClientAdmin){
+      this.organizationService.findAll().subscribe((res: any) => {
+        this.listOrganization = res;
+        this.roleService.findAll().subscribe((resp: any) => {
+      
+          this.listRole = resp;
+          this.transalteRoles();
+        });
       });
+    }
+    else{
+      this.roleService.findAllClient().subscribe((resp: any) => {
+      
+        this.listRole = resp;
+        this.transalteRoles();
+      });
+    }
+   
+  }
+  transalteRoles() {
+    this.listRole.sort();
+
+    for (const role of this.listRole) {
+      role.translated = this.getRoleName(role.name);
+    }
+    console.log("listRole",this.listRole)
+    this.listRole.sort((a, b) => a.translated.localeCompare(b.translated));
+  }
+  getRoleName(role: String) {
+    const rolei18 = role.replace("ROLE_", "ROLE.");
+    let roleName;
+    this.translateService.get(rolei18).subscribe((value: string) => {
+      roleName = value;
+      return value;
     });
+    return roleName;
   }
   save() {
     this.isClickSave = true;
@@ -131,8 +166,12 @@ export class SaveOrUpdateComponent implements OnInit {
     if (this.isStudent) {
       groups.push(this.userForm.get("group").value);
     } else if (this.isTeacher) {
-  
       groups = this.groups;
+    }
+    else{
+      const group=new Group()
+      this.userForm.get("group").setValue(group);
+      groups=null;
     }
     let user = new User();
     user.id = this.idUser;

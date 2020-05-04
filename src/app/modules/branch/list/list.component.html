@@ -20,36 +20,19 @@
                       </div>
                   </div>
               </div>
-              <div class="col-sm-6">
-                  <div class="row">
-                      <label class="col-sm-3 col-form-label" style="font-weight: bold;color: #757575;">Organization</label>
-                      <div class="col-sm-9">
-                          <select name="select" formControlName="organization" class="form-control">
-                              <option value="">Selectioner un organization</option>
-                              <option *ngFor="let organization of listOrganization" [ngValue]="organization">
-                                  {{organization.name}}
-                              </option>
-                          </select>
-
-                      </div>
-                  </div>
+              <div class="col-sm-3">
+                <div class="form-group row justify-content-center">
+                    <button type="button" style="margin-right: 20px" (click)="search(false)"
+                        class="btn btn-success btn-md waves-effect waves-light">
+                        <i class="fa fa-search"></i>Rechercher
+                    </button>
+                    <button type="button" (click)="reset()" class="btn btn-danger btn-md waves-effect waves-light">
+                        <i class="fa fa-close"></i>Réinitialiser
+                    </button>
+                </div>
               </div>
           </div>
-          <br>
-          <div class="row">
-              <div class="col-lg-12 ">
-                  <div class="form-group row justify-content-center">
-                      <button type="button" style="margin-right: 20px" (click)="search(false)"
-                          class="btn btn-success btn-md waves-effect waves-light">
-                          <i class="fa fa-search"></i>Rechercher
-                      </button>
-                      <button type="button" (click)="reset()" class="btn btn-danger btn-md waves-effect waves-light">
-                          <i class="fa fa-close"></i>Réinitialiser
-                      </button>
-                  </div>
-
-              </div>
-          </div>
+                    
 
       </form>
 
@@ -72,11 +55,7 @@
               <td mat-cell *matCellDef="let element"> {{element.name}} </td>
           </ng-container>
 
-          <!-- Organizationse Column -->
-          <ng-container matColumnDef="organization">
-              <th mat-header-cell *matHeaderCellDef> Organization </th>
-              <td mat-cell *matCellDef="let element"> {{element.organization!=null?element.organization.name:'---'}} </td>
-          </ng-container>
+         
          
           <!-- Action Column -->
           <ng-container matColumnDef="action">

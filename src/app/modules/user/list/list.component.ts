@@ -14,6 +14,7 @@ import { LevelService } from "../../../core/services/level/level.service";
 import { BranchService } from "../../../core/services/branch/branch.service";
 import { GroupService } from "../../../core/services/group/group.service";
 import swal from "sweetalert2";
+import { TokenStorageService } from "../../../core/services/token_storage/token-storage.service";
 
 @Component({
   selector: "app-list",
@@ -57,32 +58,35 @@ export class ListComponent implements OnInit {
   lang = "en";
   actionDeleted;
   userDeleted;
+  isClientAdmin = false;
   constructor(
     private userService: UserService,
     private dialog: MatDialog,
     private translateService: TranslateService,
     private organizationService: OrganizationService,
     private roleService: RoleService,
-    private groupService: GroupService
+    private groupService: GroupService,
+    private tokenStorageService: TokenStorageService
   ) {}
   ngOnInit() {
+    const user = this.tokenStorageService.getUser();
+    if (user.refRole.name === "ROLE_ADMIN_CLIENT") {
+      this.isClientAdmin = true;
+      this.userForm.get("organization").setValue(user.organization);
+      this.onSelectOgra();
+    }
     this.translateService.onLangChange.subscribe((event: LangChangeEvent) => {
       this.lang = event.lang;
       this.userForm.get("role").setValue(null);
       this.getRoles();
-      this.actionDeleted = this.getI18n("ACTION.DELETED");
-      this.userDeleted = this.getI18n("USER.DELETED");
-      this.reset();
+      this.search(true);
     });
     this.actionDeleted = this.getI18n("ACTION.DELETED");
     this.userDeleted = this.getI18n("USER.DELETED");
     this.organizationService.findAll().subscribe((res: any) => {
       this.listOrganization = res;
-      this.roleService.findAll().subscribe((resp: any) => {
-        this.listRole = resp;
-        this.transalteRoles();
-        this.search(false);
-      });
+      this.getRoles();
+      this.search(false);
     });
   }
   transalteRoles() {
@@ -95,10 +99,18 @@ export class ListComponent implements OnInit {
     this.listRole.sort((a, b) => a.translated.localeCompare(b.translated));
   }
   getRoles() {
-    this.roleService.findAll().subscribe((resp: any) => {
-      this.listRole = resp;
-      this.transalteRoles();
-    });
+    if (!this.isClientAdmin) {
+      this.roleService.findAll().subscribe((resp: any) => {
+        this.listRole = resp;
+        this.transalteRoles();
+      });
+    }
+    else{
+      this.roleService.findAllClient().subscribe((resp: any) => {
+        this.listRole = resp;
+        this.transalteRoles();
+      });
+    }
   }
   search(bool) {
     if (!bool) {
@@ -144,6 +156,7 @@ export class ListComponent implements OnInit {
     this.userForm.get("firstName").setValue("");
     this.userForm.get("lastName").setValue("");
     this.userForm.get("role").setValue(null);
+    if(!this.isClientAdmin)
     this.userForm.get("organization").setValue(null);
     this.userForm.get("group").setValue(null);
 
@@ -232,8 +245,8 @@ export class ListComponent implements OnInit {
     return "---";
   }
   openDialogDelete(user) {
-    let actionDeleted=this.getI18n("ACTION.DELETED");
-    let moduleDeleted= this.getI18n("MODULE.DELETED");
+    let actionDeleted = this.getI18n("ACTION.DELETED");
+    let moduleDeleted = this.getI18n("MODULE.DELETED");
     swal({
       title: this.getI18n("MODULE.DELETE"),
       text: this.getI18n("ACTION.CONFIRMATION_MESSAGE"),
@@ -250,7 +263,7 @@ export class ListComponent implements OnInit {
       .then(function () {
         swal({
           title: actionDeleted,
-          text:moduleDeleted,
+          text: moduleDeleted,
           type: "success",
         });
       })

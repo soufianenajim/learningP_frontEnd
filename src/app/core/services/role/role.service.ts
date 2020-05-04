@@ -12,5 +12,8 @@ export class RoleService {
   findAll() {
     return this.httpClient.get(this.url + "/find-all");
   }
+  findAllClient(){
+    return this.httpClient.get(this.url + "/find-all-client");
+  }
  
 }

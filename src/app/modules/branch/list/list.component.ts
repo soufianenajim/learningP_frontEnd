@@ -7,6 +7,7 @@ import { BranchService } from '../../../core/services/branch/branch.service';
 import { OrganizationService } from '../../../core/services/organization/organization.service';
 import { SaveOrUpdateComponent } from '../save-or-update/save-or-update.component';
 import { DetailComponent } from '../detail/detail.component';
+import { TokenStorageService } from '../../../core/services/token_storage/token-storage.service';
 
 @Component({
   selector: 'app-list',
@@ -15,7 +16,7 @@ import { DetailComponent } from '../detail/detail.component';
 })
 export class ListComponent implements OnInit {
 
-  displayedColumns: string[] = ["name", "organization", "action"];
+  displayedColumns: string[] = ["name", "action"];
 
   dataSource: MatTableDataSource<Branch>;
   demandeBranch: Demande <Branch> = new Demande<Branch>();
@@ -33,16 +34,13 @@ export class ListComponent implements OnInit {
   });
   constructor(
     private branchService: BranchService,
-    private organizationseService: OrganizationService,
-    private dialog: MatDialog
+    private dialog: MatDialog,
+    private tokenStorageService:TokenStorageService
   ) {}
   ngOnInit() {
-    console.log('this is branches')
-    this.organizationseService.findAll().subscribe(res => {
-      console.log("organizations in database -------------------------------", res);
-      this.listOrganization = res;
-      this.search(false);
-    });
+    const user = this.tokenStorageService.getUser();
+    this.branchForm.get("organization").setValue(user.organization);
+   this.search(false);
   }
 
   search(bool) {
@@ -77,7 +75,6 @@ export class ListComponent implements OnInit {
   }
   reset() {
     this.branchForm.get("name").setValue("");
-    this.branchForm.get("organization").setValue(null);
     this.search(false);
   }
   refreshDataTable() {

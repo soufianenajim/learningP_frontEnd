@@ -90,7 +90,8 @@
   "ROLE": {
     "STUDENT": "Student",
     "TEACHER": "Teacher",
-    "ADMIN": "Administrator"
+    "ADMIN_CLIENT": "Client Administrator",
+    "ADMIN_TECHNIQUE": "Technical  Administrator"
   },
   "EMAIL": "Email",
   "COMPONENTS": "Components",

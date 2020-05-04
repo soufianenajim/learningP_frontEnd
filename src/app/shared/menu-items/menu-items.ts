@@ -1,4 +1,5 @@
-import { Injectable } from "@angular/core";
+import { Injectable, OnInit } from "@angular/core";
+import { TokenStorageService } from "../../core/services/token_storage/token-storage.service";
 
 export interface BadgeItem {
   type: string;
@@ -29,7 +30,7 @@ export interface Menu {
   main: MainMenuItems[];
 }
 
-const MENUITEMS = [
+const MENUITEMS_STUDENT = [
   {
     label: "Dashboard",
     main: [
@@ -52,6 +53,21 @@ const MENUITEMS = [
       },
     ],
   },
+
+];
+const MENUITEMS_TEACHER = [
+  {
+    label: "Dashboard",
+    main: [
+      {
+        state: "dashboard",
+        name: "MENU_ITEM.HOME",
+        type: "link",
+        icon: "fa fa-tachometer",
+      },
+    ],
+  },
+ 
   {
     label: "Module",
 
@@ -63,59 +79,30 @@ const MENUITEMS = [
         icon: "icofont icofont-teacher",
         children: [
           {
-            state: "module",
-            name: "MENU_ITEM.MANAGED_MODULE",
-            icon: "fa fa-bookmark",
-          },
-          {
             state: "course",
             name: "MENU_ITEM.COURSE",
             icon: "fa fa-book",
-          },        
+          },
           {
             state: "exercices",
             name: "Exercices",
             icon: "fa fa-pencil",
           },
+          {
+            state: "question",
+            name: "Question",
+            icon: "fa fa-question",
+          },
+          {
+            state: "exam",
+            name: "Exam",
+            icon: "fa fa-list-alt",
+          },
         ],
       },
     ],
   },
-  {
-    label: "Question",
-    main: [
-      {
-        state: "question",
-        name: "Question",
-        type: "link",
-        icon: "fa fa-question",
-      },
-    ],
-  },
-
-  {
-    label: "Exam",
-    main: [
-      {
-        state: "exam_menu",
-        name: "Exam",
-        type: "sub",
-        icon: "fa fa-pencil",
-        children :[
-          {
-            state: "exam",
-            name: "Exam",
-            icon: "fa fa-pencil",
-          },
-          {
-            state: "noteExam",
-            name: "NoteExam",
-            icon: "fa fa-list-alt",
-          },
-        ]
-      }
-    ]
-  },
+  
   {
     label: "Administration",
     main: [
@@ -124,7 +111,7 @@ const MENUITEMS = [
         name: "Administration",
         type: "sub",
         icon: "fa fa-users",
-        children:[
+        children: [
           {
             state: "user",
             name: "Utilisateur",
@@ -151,25 +138,138 @@ const MENUITEMS = [
             icon: "fa fa-institution",
           },
           {
+            state: "module",
+            name: "MENU_ITEM.MANAGED_MODULE",
+            icon: "fa fa-bookmark",
+          },
+          {
             state: "licence",
             name: "Licence",
             icon: "fa fa-shopping-bag",
           },
-        ]
+        ],
       },
-     
-      
-    ]
-  }
-];
+    ],
+  },
 
+];
+const MENUITEMS_ADMIN_CLIENT = [
+  {
+    label: "Dashboard",
+    main: [
+      {
+        state: "dashboard",
+        name: "MENU_ITEM.HOME",
+        type: "link",
+        icon: "fa fa-tachometer",
+      },
+    ],
+  },
+ 
+  {
+    label: "Administration",
+    main: [
+      {
+        state: "administration_menu",
+        name: "Administration",
+        type: "sub",
+        icon: "fa fa-users",
+        children: [
+          {
+            state: "user",
+            name: "Utilisateur",
+            icon: "fa fa-users",
+          },
+          {
+            state: "group",
+            name: "Group",
+            icon: "fa fa-building-o",
+          },
+          {
+            state: "level",
+            name: "Level",
+            icon: "fa fa-signal",
+          },
+          {
+            state: "branch",
+            name: "Branch",
+            icon: "fa fa-institution",
+          },
+          {
+            state: "module",
+            name: "MENU_ITEM.MANAGED_MODULE",
+            icon: "fa fa-bookmark",
+          },
+         
+        ],
+      },
+    ],
+  },
+];
+const MENUITEMS_ADMIN_TECHNIQUE = [
+  {
+    label: "Dashboard",
+    main: [
+      {
+        state: "dashboard",
+        name: "MENU_ITEM.HOME",
+        type: "link",
+        icon: "fa fa-tachometer",
+      },
+    ],
+  },
+ 
+  {
+    label: "Administration",
+    main: [
+      {
+        state: "administration_menu",
+        name: "Administration",
+        type: "sub",
+        icon: "fa fa-users",
+        children: [
+          {
+            state: "user",
+            name: "Utilisateur",
+            icon: "fa fa-users",
+          },
+          {
+            state: "organization",
+            name: "Organization",
+            icon: "fa fa-building-o",
+          },
+          
+          {
+            state: "licence",
+            name: "Licence",
+            icon: "fa fa-shopping-bag",
+          },
+        ],
+      },
+    ],
+  },
+];
 @Injectable()
 export class MenuItems {
+constructor(private tokenStorageService:TokenStorageService){
+
+}  
+
   getAll(): Menu[] {
-    return MENUITEMS;
+    const role =this.tokenStorageService.getRoleUser().name;
+   switch (role) {
+     case "ROLE_STUDENT":
+       return MENUITEMS_STUDENT;
+    case "ROLE_TEACHER":
+      return MENUITEMS_TEACHER;
+      case "ROLE_ADMIN_CLIENT":
+        return MENUITEMS_ADMIN_CLIENT;
+        case "ROLE_ADMIN_TECHNIQUE":
+          return MENUITEMS_ADMIN_TECHNIQUE;
+     default:
+       break;
+   }
   }
 
-  /*add(menu: Menu) {
-      MENUITEMS.push(menu);
-    }*/
+ 
 }

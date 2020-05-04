@@ -28,6 +28,7 @@ export class ListComponent implements OnInit {
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
   listProfessor;
+  idOrganization;
   moduleForm = new FormGroup({
     name: new FormControl(""),
     prof: new FormControl()
@@ -41,9 +42,10 @@ export class ListComponent implements OnInit {
   ) {}
   ngOnInit() {
      const user=this.tokenStorage.getUser()
-    this.userService.findAllProfessorByOrga(user.organization.id).subscribe(resp => {
-      console.log("list professor --------", resp);
+     this.idOrganization=user.organization.id;
+    this.userService.findAllProfessorByOrga(this.idOrganization).subscribe(resp => {
       this.listProfessor = resp;
+      
       this.search(false);
     });
   }
@@ -58,7 +60,7 @@ export class ListComponent implements OnInit {
 
     this.module.name = name;
     this.module.professor = professeur;
-
+    this.module.idOrganization=this.idOrganization;
     this.demandeModule.model = this.module;
     this.demandeModule.page = page;
     this.demandeModule.size = size;

@@ -7,6 +7,7 @@ import { LevelService } from '../../../core/services/level/level.service';
 import { OrganizationService } from '../../../core/services/organization/organization.service';
 import { SaveOrUpdateComponent } from '../save-or-update/save-or-update.component';
 import { DetailComponent } from '../detail/detail.component';
+import { TokenStorageService } from '../../../core/services/token_storage/token-storage.service';
 
 @Component({
   selector: 'app-list',
@@ -15,7 +16,7 @@ import { DetailComponent } from '../detail/detail.component';
 })
 export class ListComponent implements OnInit {
 
-  displayedColumns: string[] = ["name", "organization", "action"];
+  displayedColumns: string[] = ["name", "action"];
 
   dataSource: MatTableDataSource<Level>;
   demandeLevel: Demande <Level> = new Demande<Level>();
@@ -33,15 +34,15 @@ export class ListComponent implements OnInit {
   });
   constructor(
     private levelService: LevelService,
-    private organizationseService: OrganizationService,
-    private dialog: MatDialog
+    private dialog: MatDialog,
+    private tokenStorageService:TokenStorageService,
   ) {}
   ngOnInit() {
-    this.organizationseService.findAll().subscribe(res => {
-      console.log("organizations in database -------------------------------", res);
-      this.listOrganization = res;
-      this.search(false);
-    });
+    const user = this.tokenStorageService.getUser();
+    this.levelForm.get("organization").setValue(user.organization);
+   this.search(false);
+    
+    
   }
 
   search(bool) {
@@ -52,7 +53,6 @@ export class ListComponent implements OnInit {
     const size = this.paginator.pageSize;
     const name = this.levelForm.get("name").value;
     const organization = this.levelForm.get("organization").value;
-    console.log("organization", organization);
     this.level.name = name;
     this.level.organization = organization;
     this.demandeLevel.model = this.level;
@@ -76,7 +76,6 @@ export class ListComponent implements OnInit {
   }
   reset() {
     this.levelForm.get("name").setValue("");
-    this.levelForm.get("organization").setValue(null);
     this.search(false);
   }
   refreshDataTable() {

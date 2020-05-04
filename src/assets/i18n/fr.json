@@ -85,7 +85,8 @@
   "ROLE": {
     "STUDENT": "Étudiant",
     "TEACHER":"Professeur",
-    "ADMIN":"Administrateur"
+    "ADMIN_CLIENT":"Administrateur Client",
+    "ADMIN_TECHNIQUE": "Administrateur Technique"
   },
   "EMAIL": "Email",
   "COMPONENTS": "Composants",

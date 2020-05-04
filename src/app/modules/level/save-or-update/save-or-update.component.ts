@@ -5,6 +5,7 @@ import { FormGroup, FormControl } from '@angular/forms';
 import { OrganizationService } from '../../../core/services/organization/organization.service';
 import { LevelService } from '../../../core/services/level/level.service';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
+import { TokenStorageService } from '../../../core/services/token_storage/token-storage.service';
 
 @Component({
   selector: 'app-save-or-update',
@@ -14,43 +15,38 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 export class SaveOrUpdateComponent implements OnInit {
   levelForm = new FormGroup({
     name: new FormControl(""),
-    organization: new FormControl(null)
   });
   listOrganization: any;
   idLevel=null;
   isEdit=false;
+  organization;
   constructor(
-    private organizationService: OrganizationService,
     private levelService: LevelService,
     public dialogRef: MatDialogRef<SaveOrUpdateComponent>,
-    @Inject(MAT_DIALOG_DATA) public data:any
+    @Inject(MAT_DIALOG_DATA) public data:any,
+    private tokenStorageService:TokenStorageService,
   ) {
    if(data!==null){
      this.isEdit=true;
      this.idLevel=data.id;
      const name=data.name;
-     const organization= data.organization;
     
     this.levelForm.get("name").setValue(name);
-    this.levelForm.get("organization").setValue(organization);
    
     
    }
   }
 
   ngOnInit() {
-    this.organizationService.findAll().subscribe(res => {
-      console.log("res", res);
-      this.listOrganization = res;
-    });
+    const user = this.tokenStorageService.getUser();
+    this.organization=user.organization;
   }
   save() {
     const name = this.levelForm.get("name").value;
-    const organization = this.levelForm.get("organization").value;
     let level = new Level();
     level.id=this.idLevel;
     level.name = name;
-    level.organization = organization;
+    level.organization = this.organization;
     this.levelService.saveOrUpdate(level).subscribe(resp => {
       console.log("response  ----", resp);
       this.dialogRef.close(true);
