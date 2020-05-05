@@ -9,6 +9,7 @@ import { SaveOrUpdateComponent } from "../save-or-update/save-or-update.componen
 import { DetailComponent } from "../detail/detail.component";
 import swal from 'sweetalert2';
 import { TranslateService } from "@ngx-translate/core";
+import { TokenStorageService } from "../../../core/services/token_storage/token-storage.service";
 @Component({
   selector: "app-list",
   templateUrl: "./list.component.html",
@@ -35,10 +36,12 @@ export class ListComponent implements OnInit {
     private courService: CourseService,
     private moduleseService: ModuleService,
     private dialog: MatDialog,
-    private translate:TranslateService
+    private translate:TranslateService,
+    private tokenStorageService:TokenStorageService
   ) {}
   ngOnInit() {
-    this.moduleseService.findAll().subscribe((res) => {
+    const user=this.tokenStorageService.getUser()
+    this.moduleseService.findByProfessor(user.id).subscribe((res) => {
       console.log("modules in database -------------------------------", res);
       this.listModule = res;
       this.search(false);

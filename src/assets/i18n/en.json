@@ -21,7 +21,7 @@
     "DELETED": "Deleted !",
     "CONFIRMATION": "Yes",
     "CANCEL_CONFIRMATION": "No",
-    "CONFIRMATION_MESSAGE":"You won't be able to revert this!"
+    "CONFIRMATION_MESSAGE":"You won't be able to revert this"
     
   },
   "LANGUAGE": {
@@ -38,7 +38,9 @@
     "SELECT_BRANCH": "Select  branch",
     "SELECT_LEVEL": "Select level",
     "DELETE": "Delete module?",
-    "DELETED": "Module has been deleted."
+    "DELETED": "Module has been deleted.",
+    "SAVE_SUCCESS": "Module saved successfully",
+    "EXIST": "Module already exists!"
   },
   "CHAPTER": {
     "NAME": "Name",
@@ -61,7 +63,7 @@
     "LAUNCH":"Start this course immediately ?",
     "LAUNCHED":"Launched !",
     "LAUNCHED_MESSAGE":"Course  has been launched",
-    "DELETE": "Supprimer cour ?",
+    "DELETE": "Delete cour ?",
     "DELETED": "Le cour a été supprimé."
   },
   "ERRORS": {
@@ -86,6 +88,20 @@
     "SAVE_SUCCESS": "User saved successfully",
     "DELETE": "Delete user?",
     "DELETED": "User has been deleted."
+  },
+  "LEVEL":{
+    "SAVE_SUCCESS": "Level saved successfully",
+    "EXIST": "Level already exists!"
+  },
+  "BRANCH":{
+    "SAVE_SUCCESS": "Branch saved successfully",
+    "EXIST": "Branch already exists!",
+    "DELETE": "Delete branch?",
+    "DELETED": "Branch has been deleted."
+  },
+  "GROUP":{
+    "SAVE_SUCCESS": "Group saved successfully",
+    "EXIST": "Group already exists!"
   },
   "ROLE": {
     "STUDENT": "Student",

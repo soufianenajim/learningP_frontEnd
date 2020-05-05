@@ -5,6 +5,7 @@ import { MatDialogRef, MAT_DIALOG_DATA } from "@angular/material";
 import { FormGroup, FormControl } from "@angular/forms";
 import { Cour } from "../../../core/models/cour.model";
 import { QuizService } from "../../../core/services/quiz/quiz.service";
+import { TokenStorageService } from "../../../core/services/token_storage/token-storage.service";
 
 @Component({
   selector: "app-save-or-update",
@@ -28,7 +29,8 @@ export class SaveOrUpdateComponent implements OnInit {
     private moduleService: ModuleService,
     public dialogRef: MatDialogRef<SaveOrUpdateComponent>,
     private quizService: QuizService,
-    @Inject(MAT_DIALOG_DATA) public data: any
+    @Inject(MAT_DIALOG_DATA) public data: any,
+    private tokenStorageService:TokenStorageService
   ) {
     if (data !== null) {
       this.isEdit = true;
@@ -49,7 +51,8 @@ console.log('quiz',quiz)
   }
 
   ngOnInit() {
-    this.moduleService.findAll().subscribe((res) => {
+    const user=this.tokenStorageService.getUser()
+    this.moduleService.findByProfessor(user.id).subscribe((res) => {
       console.log("res", res);
       this.listModule = res;
     });

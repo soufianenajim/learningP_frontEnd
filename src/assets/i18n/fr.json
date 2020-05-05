@@ -21,7 +21,7 @@
     "DELETED": "Supprimé !",
     "CONFIRMATION": "Oui",
    "CANCEL_CONFIRMATION": "Non",
-   "CONFIRMATION_MESSAGE":"Vous ne pourrez pas revenir en arrière!"
+   "CONFIRMATION_MESSAGE":"Vous ne pourrez pas revenir en arrière"
   },
   "LANGUAGE": {
     "FRENCH": "Français",
@@ -37,7 +37,10 @@
     "SELECT_BRANCH": "Selectionner une branche",
     "SELECT_LEVEL": "Selectionner un niveau",
     "DELETE": "Supprimer module ?",
-    "DELETED": "Le module a été supprimé."
+    "DELETED": "Le module a été supprimé.",
+    "SAVE_SUCCESS": "Module enregistré avec succès",
+    "EXIST": "Ce Module existe déjà!"
+    
   },
   "CHAPTER": {
     "NAME": "Nom",
@@ -81,6 +84,20 @@
     "SAVE_SUCCESS": "Utilisateur enregistré avec succès",
     "DELETE": "Supprimer utilisateur ?",
     "DELETED": "L'utilisateur a été supprimé."
+  },
+  "LEVEL":{
+    "SAVE_SUCCESS": "Niveau enregistré avec succès",
+    "EXIST": "Ce niveau existe déjà!"
+  },
+  "BRANCH":{
+    "SAVE_SUCCESS": "Branche enregistré avec succès",
+    "EXIST": "Cette branche existe déjà!",
+    "DELETE": "Supprimer branche ?",
+    "DELETED": "La branche a été supprimé."
+  },
+  "GROUP":{
+    "SAVE_SUCCESS": "Groupe enregistré avec succès",
+    "EXIST": "Ce groupe existe déjà!"
   },
   "ROLE": {
     "STUDENT": "Étudiant",

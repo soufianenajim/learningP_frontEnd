@@ -11,7 +11,11 @@
               <label class="col-sm-2 col-form-label">{{'MODULE.NAME'|translate}}</label>
               <div class="col-sm-10">
                   <input type="text" maxlength="100" formControlName="name" class="form-control">
-              </div>
+                  <div *ngIf="errormptyField('name')" style="color:red">
+                    {{'ERRORS.EMPTY_FIELD' | translate}}</div>
+                  <div *ngIf="invalidData('name')" style="color:red">
+                    {{'ERRORS.INVALID_DATA' | translate}}</div>
+                </div>
           </div>
           
           <div class="form-group row">
@@ -23,6 +27,8 @@
                   {{level.name}}  
                 </option>
               </select>
+              <div *ngIf="errormptyField('name')" style="color:red">
+                {{'ERRORS.EMPTY_FIELD' | translate}}</div>
             </div>
         </div>
         <div class="form-group row">
@@ -34,6 +40,8 @@
                 {{branch.name}}  
               </option>
             </select>
+            <div *ngIf="errormptyField('name')" style="color:red">
+              {{'ERRORS.EMPTY_FIELD' | translate}}</div>
           </div>
       </div>
 
@@ -52,3 +60,4 @@
      
   </div>
 </div>
+<notifier-container></notifier-container>

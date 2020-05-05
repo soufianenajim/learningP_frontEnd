@@ -103,54 +103,7 @@ const MENUITEMS_TEACHER = [
     ],
   },
   
-  {
-    label: "Administration",
-    main: [
-      {
-        state: "administration_menu",
-        name: "Administration",
-        type: "sub",
-        icon: "fa fa-users",
-        children: [
-          {
-            state: "user",
-            name: "Utilisateur",
-            icon: "fa fa-users",
-          },
-          {
-            state: "organization",
-            name: "Organization",
-            icon: "fa fa-building-o",
-          },
-          {
-            state: "group",
-            name: "Group",
-            icon: "fa fa-building-o",
-          },
-          {
-            state: "level",
-            name: "Level",
-            icon: "fa fa-signal",
-          },
-          {
-            state: "branch",
-            name: "Branch",
-            icon: "fa fa-institution",
-          },
-          {
-            state: "module",
-            name: "MENU_ITEM.MANAGED_MODULE",
-            icon: "fa fa-bookmark",
-          },
-          {
-            state: "licence",
-            name: "Licence",
-            icon: "fa fa-shopping-bag",
-          },
-        ],
-      },
-    ],
-  },
+ 
 
 ];
 const MENUITEMS_ADMIN_CLIENT = [

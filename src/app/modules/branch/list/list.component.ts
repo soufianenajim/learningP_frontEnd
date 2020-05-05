@@ -8,6 +8,8 @@ import { OrganizationService } from '../../../core/services/organization/organiz
 import { SaveOrUpdateComponent } from '../save-or-update/save-or-update.component';
 import { DetailComponent } from '../detail/detail.component';
 import { TokenStorageService } from '../../../core/services/token_storage/token-storage.service';
+import swal from 'sweetalert2';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-list',
@@ -35,7 +37,8 @@ export class ListComponent implements OnInit {
   constructor(
     private branchService: BranchService,
     private dialog: MatDialog,
-    private tokenStorageService:TokenStorageService
+    private tokenStorageService:TokenStorageService,
+    private translateService:TranslateService
   ) {}
   ngOnInit() {
     const user = this.tokenStorageService.getUser();
@@ -124,5 +127,38 @@ export class ListComponent implements OnInit {
       }
     );
   }
+  openDialogDelete(module) {
+    let actionDeleted=this.getI18n("ACTION.DELETED");
+    let userDeleted= this.getI18n("BRANCH.DELETED");
+    swal({
+      title: this.getI18n("BRANCH.DELETE"),
+      text: this.getI18n("ACTION.CONFIRMATION_MESSAGE"),
+      type: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: this.getI18n("ACTION.CONFIRMATION"),
+      cancelButtonText: this.getI18n("ACTION.CANCEL_CONFIRMATION"),
+      reverseButtons: false,
+      focusCancel: true,
+    })
+      .then(() => this.delete(module))
+      .then(function () {
+        swal({
+          title: actionDeleted,
+          text:userDeleted,
+          type: "success",
+        });
+      })
+      .catch();
+  }
+  getI18n(name): string {
+    let i18;
+    this.translateService.get(name).subscribe((value: string) => {
+      i18 = value;
+    });
+    return i18;
+  }
+ 
 
 }
