@@ -5,6 +5,7 @@ export class Question extends Historized {
     public name?: string,
     public code?: string,
     public correctComment?: string,
+    public indexNumerator?:number,
     public exercices?: any,
     public exam?: any,
     public suggestions?: any[]

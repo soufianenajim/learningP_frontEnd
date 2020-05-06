@@ -8,6 +8,8 @@ export class Exercices extends Historized{
         public type?:string,
         public cour?:any,
         public scale?:number,
+        public startDateTime?:string,
+        public endDateTime?:string,
         public questions?: any[]
     ) {
         super();

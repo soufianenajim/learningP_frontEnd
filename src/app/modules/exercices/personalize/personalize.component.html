@@ -27,32 +27,38 @@
         <h4 class="center-action">{{exercices?.name}}</h4>
         <div class="alert">
           <strong style="color: red;font-size: 0.9rem;">NB : </strong>
-          <strong style="color: #0073aa;font-size: 0.8rem; ">Enter value of marques</strong>
-      
+          <strong style="color: #0073aa;font-size: 0.8rem; ">Enter value of marques,And you can change order of question
+            by dragg and drop question </strong>
+
         </div>
         <h5 class="center-action"></h5>
-        <div  cdkDropList  (cdkDropListDropped)="drop($event)" formArrayName="questions">
-        <div class="example-box" *ngFor="let question of questions.controls; let i=index" cdkDrag>
+        <div cdkDropList (cdkDropListDropped)="drop($event)" formArrayName="questions">
+           <div class="row">
+             <label class="col-sm-1 col-form-label center-action" >Note</label>
+             <label class="col-sm-11 col-form-label center-action" >Question Value</label>
+           </div> 
+          <div class="example-box" *ngFor="let question of questions.controls; let i=index" cdkDrag>
           <div class="row" [formGroupName]="i">       
-            <input type="number" min="0" max="100" class="form-control col-sm-1" (input)="onReCalculate(i)" formControlName="note">
-           <strong  class="col-sm-11" style="font-size: 0.95rem;">{{question.value.name}}</strong> 
+            <input type="number" min="0" max="100" class="form-control col-sm-1 ml-2" (input)="onReCalculate(i)" formControlName="note">
+           <strong  class="col-sm-10" style="font-size: 0.95rem;">{{i+1}} - {{question.value.name}}</strong> 
           
           <div *ngIf="isFieldRequiredInArray('note',i)" class="messages text-danger">
             {{'ERRORS.EMPTY_FIELD' | translate}}</div>
           <div *ngIf="invalidDataInArraY('note',i)" style="color:red">
             {{'ERRORS.INVALID_DATA' | translate}}</div>
           </div> 
-         <br>
+         
+          </div>
         </div>
-      </div>
 
       </div>
       <div class="form-group row">
-        <label class="col-sm-2 col-form-label">{{'EXERCICES.NOTE_QUESTION_SUM' |translate}}</label>
-        <label class="col-sm-2 col-form-label"[style.color]="sum!=0&& sum===exercicesForm.get('scale').value?'green':'red'" >{{sum}}</label>
-        
+        <label class="col-form-label">{{'EXERCICES.NOTE_QUESTION_SUM' |translate}}</label>
+        <label class="col-form-label"
+          [style.color]="sum!=0&& sum===exercicesForm.get('scale').value?'green':'red'">{{sum}}</label>
+
       </div>
-   
+
 
       <div class="form-group row justify-content-center">
         <button type="button" style="margin-right: 20px" type="submit" [disabled]="isSaved"
@@ -65,7 +71,7 @@
       </div>
 
     </form>
-   
+
 
 
   </div>

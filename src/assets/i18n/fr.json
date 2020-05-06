@@ -20,8 +20,8 @@
     "CANCEL": "Annuler",
     "DELETED": "Supprimé !",
     "CONFIRMATION": "Oui",
-   "CANCEL_CONFIRMATION": "Non",
-   "CONFIRMATION_MESSAGE":"Vous ne pourrez pas revenir en arrière"
+    "CANCEL_CONFIRMATION": "Non",
+    "CONFIRMATION_MESSAGE": "Vous ne pourrez pas revenir en arrière"
   },
   "LANGUAGE": {
     "FRENCH": "Français",
@@ -33,14 +33,13 @@
     "PROFESSOR": "Professeur",
     "LEVEL": "Niveau",
     "BRANCH": "Branche",
-    "GROUP":"Groupe",
+    "GROUP": "Groupe",
     "SELECT_BRANCH": "Selectionner une branche",
     "SELECT_LEVEL": "Selectionner un niveau",
     "DELETE": "Supprimer module ?",
     "DELETED": "Le module a été supprimé.",
     "SAVE_SUCCESS": "Module enregistré avec succès",
     "EXIST": "Ce Module existe déjà!"
-    
   },
   "CHAPTER": {
     "NAME": "Nom",
@@ -58,9 +57,9 @@
     "NAME": "Nom",
     "MODULE": "Module",
     "SELECT_MODULE": "Select module",
-    "LAUNCH":"Lancer ce cours immédiatement ?",
-    "LAUNCHED":"Lancé !",
-    "LAUNCHED_MESSAGE":"le cour à été lancé "
+    "LAUNCH": "Lancer ce cours immédiatement ?",
+    "LAUNCHED": "Lancé !",
+    "LAUNCHED_MESSAGE": "le cour à été lancé "
   },
   "ERRORS": {
     "EMPTY_FIELD": "Le champ ne doit pas être vide.",
@@ -74,7 +73,7 @@
     "ORGANIZATION": "Organisation",
     "LEVEL": "Niveau",
     "BRANCH": "Branche",
-    "GROUP":"Groupe",
+    "GROUP": "Groupe",
     "ROLE": "Rôle",
     "SELECT_BRANCH": "Selectionner une branche",
     "SELECT_LEVEL": "Selectionner un niveau",
@@ -85,44 +84,49 @@
     "DELETE": "Supprimer utilisateur ?",
     "DELETED": "L'utilisateur a été supprimé."
   },
-  "LEVEL":{
+  "LEVEL": {
     "SAVE_SUCCESS": "Niveau enregistré avec succès",
     "EXIST": "Ce niveau existe déjà!",
     "DELETE": "Supprimer niveau?",
     "DELETED": "La niveau a été supprimé."
   },
-  "BRANCH":{
+  "BRANCH": {
     "SAVE_SUCCESS": "Branche enregistré avec succès",
     "EXIST": "Cette branche existe déjà!",
     "DELETE": "Supprimer branche ?",
     "DELETED": "La branche a été supprimé."
   },
-  "GROUP":{
+  "GROUP": {
     "SAVE_SUCCESS": "Groupe enregistré avec succès",
     "EXIST": "Ce groupe existe déjà!",
     "DELETE": "Supprimer groupe?",
     "DELETED": "Le groupe a été supprimé."
   },
-  "QUESTION":{
+  "QUESTION": {
     "SAVE_SUCCESS": "Question enregistré avec succès",
     "EXIST": "Cette question existe déjà!",
     "DELETE": "Supprimer question?",
     "DELETED": "La question a été supprimé."
   },
-  "EXAM":{
+  "EXAM": {
     "SAVE_SUCCESS": "Examen enregistré avec succès",
     "EXIST": "Cette examen existe déjà!",
     "DELETE": "Supprimer examen?",
     "DELETED": "L'examen a été supprimé."
   },
-  "EXERCICES":{
-    "NOTE_QUESTION_INVALID":"La somme des notes est diffèrent de barème!",
-    "NOTE_QUESTION_SUM":"La somme des notes"
-    },
+  "EXERCICES": {
+    "SAVE_SUCCESS": "Exercices  enregistré avec succès",
+    "EXIST": "Cette exercices existe déjà!",
+    "PERSONALIZE_SUCCESS": "Exercices personalizé avec succès",
+    "NOTE_QUESTION_INVALID": "La somme des notes est diffèrent de barème!",
+    "NOTE_QUESTION_SUM": "La somme des notes est :",
+    "DELETE": "Supprimer exercices?",
+    "DELETED": "L'exercices a été supprimé."
+  },
   "ROLE": {
     "STUDENT": "Étudiant",
-    "TEACHER":"Professeur",
-    "ADMIN_CLIENT":"Administrateur Client",
+    "TEACHER": "Professeur",
+    "ADMIN_CLIENT": "Administrateur Client",
     "ADMIN_TECHNIQUE": "Administrateur Technique"
   },
   "EMAIL": "Email",

@@ -8,6 +8,8 @@ import { DetailComponent } from '../detail/detail.component';
 import { SaveOrUpdateComponent } from '../save-or-update/save-or-update.component';
 import { ModuleService } from '../../../core/services/module/module.service';
 import { PersonalizeComponent } from '../personalize/personalize.component';
+import { TranslateService } from '@ngx-translate/core';
+import swal from 'sweetalert2';
 
 @Component({
   selector: 'app-list',
@@ -33,7 +35,8 @@ export class ListComponent implements OnInit {
   constructor(
     private exercicesService: ExercicesService,
     private dialog: MatDialog,
-    private moduleService:ModuleService
+    private moduleService:ModuleService,
+    private translate:TranslateService
 
   ) {}
   ngOnInit() {
@@ -144,5 +147,38 @@ export class ListComponent implements OnInit {
 
       console.log("The dialog was closed");
     });
+  }
+  openDialogDelete(course) {
+    let actionDeleted=this.getI18n("ACTION.DELETED");
+    let userDeleted= this.getI18n("EXERCICES.DELETED");
+    swal({
+      title: this.getI18n("EXERCICES.DELETE"),
+      text: this.getI18n("ACTION.CONFIRMATION_MESSAGE"),
+      type: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: this.getI18n("ACTION.CONFIRMATION"),
+      cancelButtonText: this.getI18n("ACTION.CANCEL_CONFIRMATION"),
+      reverseButtons: false,
+      focusCancel: true,
+    })
+      .then(() => this.delete(course))
+      .then(function () {
+        swal({
+          title: actionDeleted,
+          text:userDeleted,
+          type: "success",
+        });
+      })
+      .catch();
+  }
+  getI18n(name): string {
+    let i18;
+    this.translate.get(name).subscribe((value: string) => {
+
+      i18 = value;
+    });
+    return i18;
   }
 }

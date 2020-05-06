@@ -120,8 +120,13 @@
     "DELETED": "Exam has been deleted."
   },
   "EXERCICES":{
+  "SAVE_SUCCESS": "Exercices saved successfully",
+  "EXIST": "Exercices already exists!",
+  "PERSONALIZE_SUCCESS":"Exercices personalized successfully",
   "NOTES_QUESTION_INVALID":"The sum of the marks is different from scale!",
-  "NOTE_QUESTION_SUM":"The sum of the marks"
+  "NOTE_QUESTION_SUM":"The sum of the marks is :",
+  "DELETE": "Delete exercices?",
+  "DELETED": "Exercices has been deleted."
   },
   "ROLE": {
     "STUDENT": "Student",

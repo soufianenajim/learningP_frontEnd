@@ -19,9 +19,12 @@ export class SaveOrUpdateComponent implements OnInit {
     type: new FormControl(""),
     module: new FormControl(null),
     cour: new FormControl(null),
+    startTime: new FormControl(""),
+    endTime: new FormControl(""),
   });
   listModule: any;
   idExercices = null;
+  scale;
   isEdit = false;
   listCour = [];
   constructor(
@@ -37,21 +40,26 @@ export class SaveOrUpdateComponent implements OnInit {
       this.questionSerivce.findByExercices(data.id).subscribe((resp) => {
        
         this.isEdit = true;
-        this.idExercices = data.id;
        this.buildForm(data);
        
       });
     }
   }
 buildForm(data){
+  this.idExercices = data.id;
+  this.scale=data.scale
   const name = data.name;
   const module = data.cour.module;
   const type=data.type;
  const cour=data.cour;
+ const startTime=data.startDateTime;
+ const endTime=data.endDateTime
   this.exercicesForm.get("name").setValue(name);
   this.exercicesForm.get("module").setValue(module);
   this.exercicesForm.get("cour").setValue(cour);
   this.exercicesForm.get("type").setValue(type);
+  this.exercicesForm.get("startTime").setValue(startTime);
+  this.exercicesForm.get("endTime").setValue(endTime);
   this.onSelectModule();
 }
   ngOnInit() {
@@ -64,11 +72,17 @@ buildForm(data){
     const name = this.exercicesForm.get("name").value;
     const cour = this.exercicesForm.get("cour").value;
     const type=this.exercicesForm.get("type").value;
+    const startTime=this.exercicesForm.get("startTime").value;
+    const endTime=this.exercicesForm.get("endTime").value;
     let exercices = new Exercices();
     exercices.id = this.idExercices;
     exercices.name = name;
     exercices.cour=cour;
     exercices.type=type;
+    exercices.startDateTime=startTime;
+    exercices.endDateTime=endTime;
+    exercices.scale=this.scale;
+    
     console.log('exercices',exercices);
     this.exercicesService.saveOrUpdate(exercices).subscribe((resp) => {
       console.log("response  ----", resp);

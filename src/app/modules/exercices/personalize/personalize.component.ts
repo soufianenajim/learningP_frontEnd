@@ -49,15 +49,19 @@ export class PersonalizeComponent implements OnInit {
     private translateService:TranslateService,
     notifierService:NotifierService
   ) {
+    console.log('data',data);
     this.notifier=notifierService;
     this.exercices = data;
     this.buildForm(data);
   }
   buildForm(data){
     this.exercicesForm.get('scale').setValue(data.scale);
-    let questions = data.questions;
-let index=0;
+    let questions:any[] = data.questions;
+      
+    let index=0;
     if (questions) {
+      questions.sort((a, b) => a.indexNumerator - b.indexNumerator)
+      console.log('quesitons',questions);
       for (let d of questions) {
         this.sum+=d.note;
         this.mapQuestionNote.set(index++,d.note);
@@ -70,12 +74,14 @@ let index=0;
             type: new FormControl(d.type),
             startTime: new FormControl(d.startTime),
             endTime: new FormControl(d.endTime),
+            indexNumerator:new FormControl(d.indexNumerator),
             note:new FormControl(d.note>0?d.note:"",[Validators.required,Validators.min(0),
               Validators.max(100)])
           })
         );
         
       }
+      
     }
   }
   public get questions(): FormArray {
@@ -88,11 +94,14 @@ let index=0;
   save() {
     this.isClickSave = true;
     const scale = this.exercicesForm.get("scale").value;
-    const questions=this.exercicesForm.get("questions").value;
+    let questions:any=this.exercicesForm.get("questions").value;
+   
     this.exercices.scale = scale;
-    this.exercices.questions=questions;
+    this.exercices.questions=this.rebuildIndexQuestion(questions);
+
     if (this.exercicesForm.valid ) {
       if(this.isValideNotes()){
+        
       this.exercicesService.saveOrUpdate(this.exercices).subscribe((resp) => {
         this.successNotifaction();
       },
@@ -124,7 +133,7 @@ let index=0;
    
   }
   isValideNotes():boolean{
-    const questions:[]=this.exercicesForm.get('questions').value;
+    const questions:any=this.exercicesForm.get('questions').value;
     const scale=this.exercicesForm.get('scale').value;
     let sum=0;
     
@@ -136,7 +145,7 @@ let index=0;
   }
   successNotifaction() {
     this.translateService
-      .get("GROUP.SAVE_SUCCESS")
+      .get("EXERCICES.PERSONALIZE_SUCCESS")
       .subscribe((value: string) => {
         this.showNotification("success", value);
         setTimeout(() => {
@@ -172,11 +181,19 @@ let index=0;
     const currentQuestion=this.questions.at(event.currentIndex).value;
     this.questions.at(event.previousIndex).setValue(currentQuestion);
     this.questions.at(event.currentIndex).setValue(previousQuestion);
-    console.log('event.previousIndex',event.previousIndex);
-    console.log('event.previousIndex',event.currentIndex);
-    console.log('questions',this.questions);
     
    moveItemInArray(this.questions.value, event.previousIndex, event.currentIndex);
   }
   
+  rebuildIndexQuestion(questions):any{
+    let i=0;
+    if(questions){
+    questions.forEach(element => {
+      element.indexNumerator=++i;
+      
+    });
+  }
+    console.log('questions',questions);
+    return questions;
+  }
 }
