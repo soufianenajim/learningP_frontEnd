@@ -7,6 +7,7 @@ import { ExercicesService } from '../../../core/services/exercices/exercices.ser
 import { DetailComponent } from '../detail/detail.component';
 import { SaveOrUpdateComponent } from '../save-or-update/save-or-update.component';
 import { ModuleService } from '../../../core/services/module/module.service';
+import { PersonalizeComponent } from '../personalize/personalize.component';
 
 @Component({
   selector: 'app-list',
@@ -127,5 +128,21 @@ export class ListComponent implements OnInit {
       }
     );
   }
+  openDialogQuestions(row){
+    const dialogRef = this.dialog.open(PersonalizeComponent, {
+      width: "80%",
+      data: row,
+      disableClose: true,
+      autoFocus: false,
+      maxHeight: '90vh'
+    });
 
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        this.search(false);
+      }
+
+      console.log("The dialog was closed");
+    });
+  }
 }

@@ -11,12 +11,20 @@
         <label class="col-sm-3 col-form-label">Code</label>
         <div class="col-sm-9">
           <input type="text" formControlName="code" class="form-control">
+          <div *ngIf="errormptyField('code')" style="color:red">
+            {{'ERRORS.EMPTY_FIELD' | translate}}</div>
+          <div *ngIf="invalidData('code')" style="color:red">
+            {{'ERRORS.INVALID_DATA' | translate}}</div>
         </div>
       </div>
       <div class="form-group row">
         <label class="col-sm-3 col-form-label">Nom</label>
         <div class="col-sm-9">
           <input type="text" formControlName="name" class="form-control">
+          <div *ngIf="errormptyField('name')" style="color:red">
+            {{'ERRORS.EMPTY_FIELD' | translate}}</div>
+          <div *ngIf="invalidData('name')" style="color:red">
+            {{'ERRORS.INVALID_DATA' | translate}}</div>
         </div>
       </div>
      
@@ -24,18 +32,24 @@
         <label class="col-sm-3 col-form-label">CorrectComment</label>
         <div class="col-sm-9">
           <textarea type="text" formControlName="correctComment" class="form-control"></textarea>
+          <div *ngIf="errormptyField('correctComment')" style="color:red">
+            {{'ERRORS.EMPTY_FIELD' | translate}}</div>
+          <div *ngIf="invalidData('correctComment')" style="color:red">
+            {{'ERRORS.INVALID_DATA' | translate}}</div>
         </div>
       </div>
       <div class="form-group row">
         <label class="col-sm-3 col-form-label">Module</label>
         <div class="col-sm-9">
-          <select name="select" [compareWith]="compareModule" name="module" formControlName="module"
+          <select name="select" [compareWith]="compareModule" name="module" formControlName="module" (change)="onSelectType()"
             class="form-control">
             <option value="">Selectioner un module</option>
             <option *ngFor="let module of listModule" [ngValue]="module">
               {{module.name}}
             </option>
           </select>
+          <div *ngIf="errormptyField('module')" style="color:red">
+            {{'ERRORS.EMPTY_FIELD' | translate}}</div>
 
         </div>
       </div>
@@ -49,6 +63,8 @@
             <option value="quiz">Quiz</option>
             <option value="td">Td</option>
           </select>
+          <div *ngIf="errormptyField('type')" style="color:red">
+            {{'ERRORS.EMPTY_FIELD' | translate}}</div>
 
         </div>
       </div>
@@ -62,6 +78,8 @@
               {{exam.name}}
             </option>
           </select>
+          <div *ngIf="errormptyField('exam')" style="color:red">
+            {{'ERRORS.EMPTY_FIELD' | translate}}</div>
 
         </div>
       </div>
@@ -75,6 +93,8 @@
               {{quiz.name}}
             </option>
           </select>
+          <div *ngIf="errormptyField('exercices')" style="color:red">
+            {{'ERRORS.EMPTY_FIELD' | translate}}</div>
 
         </div>
       </div>
@@ -88,6 +108,8 @@
               {{td.name}}
             </option>
           </select>
+          <div *ngIf="errormptyField('exercices')" style="color:red">
+            {{'ERRORS.EMPTY_FIELD' | translate}}</div>
 
         </div>
       </div>
@@ -168,3 +190,4 @@
 
   </div>
 </div>
+<notifier-container></notifier-container>

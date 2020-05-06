@@ -7,7 +7,8 @@ export class Module extends Historized {
     public group?:any,
     public cours?: any[],
     public exams?: any[],
-    public idOrganization?:number
+    public idOrganization?:number,
+    public launched?:boolean
   ) {
     super();
   }

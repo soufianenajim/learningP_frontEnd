@@ -91,7 +91,9 @@
   },
   "LEVEL":{
     "SAVE_SUCCESS": "Level saved successfully",
-    "EXIST": "Level already exists!"
+    "EXIST": "Level already exists!",
+    "DELETE": "Delete level?",
+    "DELETED": "Level has been deleted."
   },
   "BRANCH":{
     "SAVE_SUCCESS": "Branch saved successfully",
@@ -101,7 +103,25 @@
   },
   "GROUP":{
     "SAVE_SUCCESS": "Group saved successfully",
-    "EXIST": "Group already exists!"
+    "EXIST": "Group already exists!",
+    "DELETE": "Delete group?",
+    "DELETED": "Group has been deleted."
+  },
+  "QUESTION":{
+    "SAVE_SUCCESS": "Question saved successfully",
+    "EXIST": "Question already exists!",
+    "DELETE": "Delete question?",
+    "DELETED": "Question has been deleted."
+  },
+  "EXAM":{
+    "SAVE_SUCCESS": "Exam saved successfully",
+    "EXIST": "Exam already exists!",
+    "DELETE": "Delete exam?",
+    "DELETED": "Exam has been deleted."
+  },
+  "EXERCICES":{
+  "NOTES_QUESTION_INVALID":"The sum of the marks is different from scale!",
+  "NOTE_QUESTION_SUM":"The sum of the marks"
   },
   "ROLE": {
     "STUDENT": "Student",

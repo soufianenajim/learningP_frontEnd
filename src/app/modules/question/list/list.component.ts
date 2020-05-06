@@ -21,6 +21,7 @@ import { TokenStorageService } from "../../../core/services/token_storage/token-
 import { ModuleService } from "../../../core/services/module/module.service";
 import { ExamService } from "../../../core/services/exam/exam.service";
 import { ExercicesService } from "../../../core/services/exercices/exercices.service";
+import swal from "sweetalert2";
 
 
 @Component({
@@ -191,5 +192,38 @@ export class ListComponent implements OnInit {
        
      })
    }
+   openDialogDelete(module) {
+    let actionDeleted=this.getI18n("ACTION.DELETED");
+    let userDeleted= this.getI18n("QUESTION.DELETED");
+    swal({
+      title: this.getI18n("QUESTION.DELETE"),
+      text: this.getI18n("ACTION.CONFIRMATION_MESSAGE"),
+      type: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: this.getI18n("ACTION.CONFIRMATION"),
+      cancelButtonText: this.getI18n("ACTION.CANCEL_CONFIRMATION"),
+      reverseButtons: false,
+      focusCancel: true,
+    })
+      .then(() => this.delete(module))
+      .then(function () {
+        swal({
+          title: actionDeleted,
+          text:userDeleted,
+          type: "success",
+        });
+      })
+      .catch();
+  }
+  getI18n(name): string {
+    let i18;
+    this.translateService.get(name).subscribe((value: string) => {
+      i18 = value;
+    });
+    return i18;
+  }
+  
 
 }

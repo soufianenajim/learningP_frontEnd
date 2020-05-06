@@ -7,6 +7,7 @@ export class Exercices extends Historized{
         public name?: string,
         public type?:string,
         public cour?:any,
+        public scale?:number,
         public questions?: any[]
     ) {
         super();

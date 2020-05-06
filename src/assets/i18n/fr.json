@@ -87,7 +87,9 @@
   },
   "LEVEL":{
     "SAVE_SUCCESS": "Niveau enregistré avec succès",
-    "EXIST": "Ce niveau existe déjà!"
+    "EXIST": "Ce niveau existe déjà!",
+    "DELETE": "Supprimer niveau?",
+    "DELETED": "La niveau a été supprimé."
   },
   "BRANCH":{
     "SAVE_SUCCESS": "Branche enregistré avec succès",
@@ -97,8 +99,26 @@
   },
   "GROUP":{
     "SAVE_SUCCESS": "Groupe enregistré avec succès",
-    "EXIST": "Ce groupe existe déjà!"
+    "EXIST": "Ce groupe existe déjà!",
+    "DELETE": "Supprimer groupe?",
+    "DELETED": "Le groupe a été supprimé."
   },
+  "QUESTION":{
+    "SAVE_SUCCESS": "Question enregistré avec succès",
+    "EXIST": "Cette question existe déjà!",
+    "DELETE": "Supprimer question?",
+    "DELETED": "La question a été supprimé."
+  },
+  "EXAM":{
+    "SAVE_SUCCESS": "Examen enregistré avec succès",
+    "EXIST": "Cette examen existe déjà!",
+    "DELETE": "Supprimer examen?",
+    "DELETED": "L'examen a été supprimé."
+  },
+  "EXERCICES":{
+    "NOTE_QUESTION_INVALID":"La somme des notes est diffèrent de barème!",
+    "NOTE_QUESTION_SUM":"La somme des notes"
+    },
   "ROLE": {
     "STUDENT": "Étudiant",
     "TEACHER":"Professeur",

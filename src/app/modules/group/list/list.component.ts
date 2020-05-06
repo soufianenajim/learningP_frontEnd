@@ -10,6 +10,8 @@ import { SaveOrUpdateComponent } from "../save-or-update/save-or-update.componen
 import { TokenStorageService } from "../../../core/services/token_storage/token-storage.service";
 import { LevelService } from "../../../core/services/level/level.service";
 import { BranchService } from "../../../core/services/branch/branch.service";
+import swal from "sweetalert2";
+import { TranslateService } from "@ngx-translate/core";
 
 @Component({
   selector: "app-group-list",
@@ -41,7 +43,8 @@ export class ListComponent implements OnInit {
     private branchService:BranchService,
     private groupService: GroupService,
     private dialog: MatDialog,
-    private tokenStorage:TokenStorageService
+    private tokenStorage:TokenStorageService,
+    private translateService:TranslateService
   ) {}
   ngOnInit() {
     const user = this.tokenStorage.getUser();
@@ -153,5 +156,38 @@ export class ListComponent implements OnInit {
   compareLevel(c1: any, c2: any): boolean {
     return c1 && c2 ? c1.id === c2.id : c1 === c2;
   }
+  openDialogDelete(group) {
+    let actionDeleted=this.getI18n("ACTION.DELETED");
+    let userDeleted= this.getI18n("GROUP.DELETED");
+    swal({
+      title: this.getI18n("GROUP.DELETE"),
+      text: this.getI18n("ACTION.CONFIRMATION_MESSAGE"),
+      type: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: this.getI18n("ACTION.CONFIRMATION"),
+      cancelButtonText: this.getI18n("ACTION.CANCEL_CONFIRMATION"),
+      reverseButtons: false,
+      focusCancel: true,
+    })
+      .then(() => this.delete(group))
+      .then(function () {
+        swal({
+          title: actionDeleted,
+          text:userDeleted,
+          type: "success",
+        });
+      })
+      .catch();
+  }
+  getI18n(name): string {
+    let i18;
+    this.translateService.get(name).subscribe((value: string) => {
+      i18 = value;
+    });
+    return i18;
+  }
+ 
 }
 
