@@ -32,4 +32,7 @@ export class ExercicesService {
   findByQuestion(questionId){
     return this.httpClient.get(this.url+"/find-by-question/"+questionId);
   }
+  isExist(exercices){
+    return this.httpClient.post(this.url+"/is_exist",exercices);
+  }
 }

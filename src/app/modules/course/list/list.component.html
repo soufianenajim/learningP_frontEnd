@@ -83,17 +83,19 @@
               <td class="center-action" mat-cell *matCellDef="let row">
                   <div class="btn-group btn-group-sm">
                       <button mat-icon-button>
-                          <span class="fa fa-desktop" (click)="openDialogDetail(row)" style="color: #007bff"></span>
+                          <span class="fa fa-desktop" (click)="openDialogDetail(row)" style="color: #007bff" ngbTooltip="{{'ACTION.DETAIL' | translate}}"></span>
                       </button>
                       <button mat-icon-button (click)="openDialog(row)">
-                          <span class="fa fa-edit" style="color: #007bff"></span>
+                          <span class="fa fa-edit" style="color: #007bff" ngbTooltip="{{'ACTION.UPDATE' | translate}}"></span>
                       </button>
-                      <button mat-icon-button (click)="openDialogDelete(row)" [disabled]="row.launched" [style.color]="row.launched?'#a6abb1':'red'">
-                          <span class="icofont icofont-ui-delete tabledit-delete-button "></span>
+                      <button mat-icon-button (click)="openDialogDelete(row)" [disabled]="row.launched" [style.color]="row.launched?'#a6abb1':'red'" >
+                        <span *ngIf="row.launched" class="icofont icofont-ui-delete tabledit-delete-button "  ngbTooltip="{{'ACTION.ALREADY_LAUNCHED'| translate}}"></span>
+                        <span *ngIf="!row.launched" class="icofont icofont-ui-delete tabledit-delete-button "  ngbTooltip="{{'ACTION.DELETE' | translate}}"></span>
                       </button>
-                      <button mat-icon-button  (click)="openDialogLaunch(row)" [disabled]="row.launched">
-                        <span *ngIf="!row.launched" class="fa fa-play" style="color: #007bff"></span>
-                        <span *ngIf="row.launched" class="fa fa-pause" style="color: #007bff"></span>
+                      <button mat-icon-button  (click)="openDialogLaunch(row)" [disabled]="row.launched" [style.color]="row.launched?'#a6abb1':'#007bff'">
+                        <span *ngIf="row.launched" class="fa fa-play"  ngbTooltip="{{'ACTION.ALREADY_LAUNCHED'| translate}}" ></span>
+                        <span *ngIf="!row.launched" class="fa fa-play"  ngbTooltip="{{'ACTION.LAUNCH'| translate}}"></span>
+    
                     </button>
 
 

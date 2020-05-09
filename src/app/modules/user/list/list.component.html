@@ -161,14 +161,14 @@
                 <th class="center-action" mat-header-cell *matHeaderCellDef> Actions </th>
                 <td class="center-action" mat-cell *matCellDef="let row">
                     <div class="btn-group btn-group-sm">
-                        <button mat-icon-button>
-                            <span class="fa fa-desktop" (click)="openDialogDetail(row)" style="color: #007bff"></span>
+                        <button mat-icon-button >
+                            <span class="fa fa-desktop" (click)="openDialogDetail(row)" style="color: #007bff" ngbTooltip="{{'ACTION.DETAIL' | translate}}"></span>
                         </button>
-                        <button mat-icon-button (click)="openDialog(row)">
-                            <span class="fa fa-edit" style="color: #007bff"></span>
+                        <button mat-icon-button (click)="openDialog(row)" >
+                            <span class="fa fa-edit" style="color: #007bff"  ngbTooltip="{{'ACTION.UPDATE' | translate}}"></span>
                         </button>
-                        <button mat-icon-button (click)="openDialogDelete(row)" style="color:red">
-                            <span class="icofont icofont-ui-delete tabledit-delete-button "></span>
+                        <button mat-icon-button (click)="openDialogDelete(row)" style="color:red" >
+                            <span class="icofont icofont-ui-delete tabledit-delete-button " ngbTooltip="{{'DELETE' | translate}}"></span>
                         </button>
 
 

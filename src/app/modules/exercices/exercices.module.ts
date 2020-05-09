@@ -7,6 +7,8 @@ import { SaveOrUpdateComponent } from './save-or-update/save-or-update.component
 import { DetailComponent } from './detail/detail.component';
 import { SharedModule } from '../../shared/shared.module';
 import { PersonalizeComponent } from './personalize/personalize.component';
+import { EditQuestionComponent } from './personalize/edit-question/edit-question.component';
+import { ShowComponent } from './show/show.component';
 
 @NgModule({
   imports: [
@@ -15,7 +17,8 @@ import { PersonalizeComponent } from './personalize/personalize.component';
     SharedModule,
     
   ],
-  declarations: [ListComponent, SaveOrUpdateComponent, DetailComponent, PersonalizeComponent],
-  entryComponents: [SaveOrUpdateComponent,DetailComponent,PersonalizeComponent] 
+  declarations: [ListComponent, SaveOrUpdateComponent, DetailComponent, PersonalizeComponent, EditQuestionComponent, ShowComponent],
+  entryComponents: [SaveOrUpdateComponent,DetailComponent,PersonalizeComponent,EditQuestionComponent] ,
+  exports: [PersonalizeComponent]
 })
 export class ExercicesModule { }

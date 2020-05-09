@@ -1,0 +1,28 @@
+<h4 class="center-action">{{exercices?.name}}</h4>
+    <h5 class="center-action"></h5>
+    <div class="form-group ">
+        
+          <mat-checkbox class="example-margin" [(ngModel)]="isShow">Afficher Detail</mat-checkbox>
+        
+    </div>
+    <ng-container *ngFor="let question of exercices?.questions; let i = index">
+      <p> <strong style="font-size: 0.95rem;">{{i+1}} - {{question.name}}</strong>
+      </p>
+      <ng-container *ngFor="let suggestion of question.suggestions">
+        <div class="row">
+          <div class="col-sm-1 center-action">
+         
+          </div>
+          <p class="col-sm-11"> <strong style="font-size: 0.8rem;"> {{suggestion.name}}</strong>
+            <span *ngIf="isShow && suggestion.correct " class="fa fa-check"
+              style="color: green;font-size: 1rem;margin-left: 0.5rem;"></span>
+          </p>
+        </div>
+      </ng-container>
+      <div *ngIf="isShow">
+  
+        <p> <strong style="color: green;">Correct Comment :</strong> <strong style="font-size: 0.8rem;">
+            {{question.correctComment}}</strong></p>
+      </div>
+    </ng-container>
+  

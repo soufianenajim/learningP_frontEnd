@@ -1,21 +1,16 @@
 <div class="card">
-  <div class="card-header">
-    <h5>Personalize Exercices</h5>
-
-
-  </div>
   <div class="alert">
     <strong style="color: red;font-size: 0.9rem;">NB : </strong>
-    <strong style="color: #0073aa;font-size: 0.8rem; ">Scale is betwen 5,100</strong>
+    <strong style="color: #0073aa;font-size: 0.8rem; ">{{'EXERCICES.SCALE_INTERVAL'| translate}}</strong>
 
   </div>
   <div class="card-block" style="margin: 1rem;">
 
     <form [formGroup]="exercicesForm" (ngSubmit)="save()">
       <div class="form-group row">
-        <label class="col-sm-2 col-form-label">Scale</label>
+        <label class="col-sm-2 col-form-label">{{'EXERCICES.END_TIME'| translate}}</label>
         <div class="col-sm-10">
-          <input type="number" formControlName="scale" min="0" class="form-control">
+          <input type="number" formControlName="scale" min="0" (input)="onWriteScale()" class="form-control">
           <div *ngIf="errormptyField('scale')" style="color:red">
             {{'ERRORS.EMPTY_FIELD' | translate}}</div>
           <div *ngIf="exercicesForm.get('scale').errors?.min || exercicesForm.get('scale').errors?.max"
@@ -24,33 +19,41 @@
         </div>
       </div>
       <div class="form-group">
-        <h4 class="center-action">{{exercices?.name}}</h4>
         <div class="alert">
           <strong style="color: red;font-size: 0.9rem;">NB : </strong>
-          <strong style="color: #0073aa;font-size: 0.8rem; ">Enter value of marques,And you can change order of question
-            by dragg and drop question </strong>
+          <strong style="color: #0073aa;font-size: 0.8rem; ">{{'EXERCICES.MARKS_MESSAGE'| translate}} </strong>
 
         </div>
         <h5 class="center-action"></h5>
-        <div cdkDropList (cdkDropListDropped)="drop($event)" formArrayName="questions">
-           <div class="row">
-             <label class="col-sm-1 col-form-label center-action" >Note</label>
-             <label class="col-sm-11 col-form-label center-action" >Question Value</label>
-           </div> 
-          <div class="example-box" *ngFor="let question of questions.controls; let i=index" cdkDrag>
-          <div class="row" [formGroupName]="i">       
-            <input type="number" min="0" max="100" class="form-control col-sm-1 ml-2" (input)="onReCalculate(i)" formControlName="note">
-           <strong  class="col-sm-10" style="font-size: 0.95rem;">{{i+1}} - {{question.value.name}}</strong> 
-          
-          <div *ngIf="isFieldRequiredInArray('note',i)" class="messages text-danger">
-            {{'ERRORS.EMPTY_FIELD' | translate}}</div>
-          <div *ngIf="invalidDataInArraY('note',i)" style="color:red">
-            {{'ERRORS.INVALID_DATA' | translate}}</div>
-          </div> 
-         
+        <div class="form-group row">
+          <label class="col-sm-3 col-form-label"> <button type="button"
+              class="btn btn-primary btn-md waves-effect waves-light f-left" (click)="openDialogQuesiton(null)"> <i
+                class="fa fa-plus"></i> {{'EXERCICES.ADD_QUESTION'|translate}}
+            </button></label>
+          <div class="col-sm-9">
           </div>
         </div>
+        <div cdkDropList (cdkDropListDropped)="drop($event)" formArrayName="questions"> 
+          <div class="row">
+            <label class="col-sm-1 col-form-label center-action">{{'QUESTION.MARKS'|translate}}</label>
+            <label class="col-sm-11 col-form-label ">{{'QUESTION.VALUE'|translate}}</label>
+          </div>
+          <ng-container  *ngFor="let question of questions.controls; let i=index" >
+            <div class="row example-box" [cdkDragData]="question" [formGroupName]="i" cdkDrag>
+              <input type="number" min="0" max="100" class="form-control col-sm-1 ml-2" (input)="onReCalculate(i)"
+                formControlName="note">
+              <strong class="col-sm-10" style="font-size: 0.95rem;">{{i+1}} - {{question.value.name}}</strong>
 
+              <div *ngIf="isFieldRequiredInArray('note',i)" class="messages text-danger">
+                {{'ERRORS.EMPTY_FIELD' | translate}}</div>
+              <div *ngIf="invalidDataInArraY('note',i)" style="color:red">
+                {{'ERRORS.INVALID_DATA' | translate}}</div>
+            </div>
+
+          </ng-container>
+        </div> 
+
+        
       </div>
       <div class="form-group row">
         <label class="col-form-label">{{'EXERCICES.NOTE_QUESTION_SUM' |translate}}</label>
@@ -58,17 +61,11 @@
           [style.color]="sum!=0&& sum===exercicesForm.get('scale').value?'green':'red'">{{sum}}</label>
 
       </div>
+      <div *ngIf="errorEmptyQuestion()" style="color:red">
+        {{'EXERCICES.QUESTION_EMPTY_FIELD' | translate}}</div>
 
 
-      <div class="form-group row justify-content-center">
-        <button type="button" style="margin-right: 20px" type="submit" [disabled]="isSaved"
-          class="btn btn-success btn-md waves-effect waves-light">
-          <i class="fa fa-check"></i>Save
-        </button>
-        <button type="button" (click)="cancel()" class="btn btn-danger btn-md waves-effect waves-light">
-          <i class="fa fa-close"></i>Cancel
-        </button>
-      </div>
+
 
     </form>
 

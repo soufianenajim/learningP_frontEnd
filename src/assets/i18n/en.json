@@ -16,12 +16,17 @@
     "DELETE": "Delete",
     "UPDATE": "Update",
     "DETAIL": "Detail",
+    "SHOW":"Show",
     "SAVE": "Save",
     "CANCEL": "Cancel",
     "DELETED": "Deleted !",
     "CONFIRMATION": "Yes",
     "CANCEL_CONFIRMATION": "No",
-    "CONFIRMATION_MESSAGE":"You won't be able to revert this"
+    "CONFIRMATION_MESSAGE":"You won't be able to revert this",
+    "ALREADY_LAUNCHED":"already launched",
+    "LAUNCH":"Launch",
+    "BACK": "Previous",
+    "NEXT": "Next"
     
   },
   "LANGUAGE": {
@@ -111,7 +116,9 @@
     "SAVE_SUCCESS": "Question saved successfully",
     "EXIST": "Question already exists!",
     "DELETE": "Delete question?",
-    "DELETED": "Question has been deleted."
+    "DELETED": "Question has been deleted.",
+    "MARKS":"Mark",
+    "VALUE":"Value"
   },
   "EXAM":{
     "SAVE_SUCCESS": "Exam saved successfully",
@@ -125,8 +132,29 @@
   "PERSONALIZE_SUCCESS":"Exercices personalized successfully",
   "NOTES_QUESTION_INVALID":"The sum of the marks is different from scale!",
   "NOTE_QUESTION_SUM":"The sum of the marks is :",
+  "PERSONALIZE_QUESTION":"Personalize scale  and marks of questions",
   "DELETE": "Delete exercices?",
-  "DELETED": "Exercices has been deleted."
+  "DELETED": "Exercices has been deleted.",
+  "SUGGESTION_EMPTY_FIELD":"Suggestions must not be empty.",
+  "QUESTION_EMPTY_FIELD":"Questions must not be empty.",
+  "QUIZ_EXIST":"You cant add plus than quiz in this cour",
+  "TD_EXIST":"You cant add plus than td in this cour",
+  "TD_SAVE_SUCCESS":"Td saved successfully",
+  "QUIZ_SAVE_SUCCESS":"Quiz saved successfully",
+  "GENERAL_INFORMATION":"General information",
+  "QUESTIONS":"Questions",
+  "DETAILS":"Details",
+  "NAME":"Name",
+  "START_TIME":"Start time",
+  "END_TIME":"End tile",
+  "MODULE":"Module",
+  "COURSE":"Course",
+  "TYPE":"Type",
+  "SCALE":"Scale",
+  "SCALE_INTERVAL":"The scale must be betwen 5 and 100",
+  "MARKS_MESSAGE":"Enter values of marks, And you can change order of question by drag and drop question",
+  "ADD_QUESTION":"Add question"
+  
   },
   "ROLE": {
     "STUDENT": "Student",

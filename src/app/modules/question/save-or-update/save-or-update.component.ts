@@ -56,7 +56,7 @@ export class SaveOrUpdateComponent implements OnInit {
       exam: new FormControl(null,Validators.required),
       exercices: new FormControl(null,Validators.required),
       type: new FormControl("",Validators.required),
-      suggestions: this.fb.array([]),
+      suggestions: this.fb.array([],Validators.required),
     });
     if (data !== null) {
       this.isEdit = true;
@@ -76,15 +76,16 @@ export class SaveOrUpdateComponent implements OnInit {
       this.questionForm.get("type").setValue("exam")
       this.questionForm.get("module").setValue(exam.module);
       this.questionForm.get("exam").setValue(exam);
+    }else{
+      this.exercicesService.findByQuestion(data.id).subscribe((resp:any)=>{
+        console.log('resp',resp)
+        this.questionForm.get("type").setValue(resp.type.toLowerCase());
+        this.questionForm.get("module").setValue(resp.cour.module);
+        this.questionForm.get("exercices").setValue(resp);
+        this.onSelectType();
+       })
     }
-   this.exercicesService.findByQuestion(data.id).subscribe((resp:any)=>{
-     console.log('resp-----------',resp)
-    const type:String=resp.type;
-    this.questionForm.get("type").setValue(type.toLowerCase());
-    this.questionForm.get("module").setValue(resp.cour.module);
-    this.questionForm.get("exercices").setValue(resp);
-    this.onSelectType();
-   })
+  
      
    
     
@@ -96,7 +97,7 @@ export class SaveOrUpdateComponent implements OnInit {
         this.suggestions.push(
           this.fb.group({
             id: new FormControl(d.id),
-            name: new FormControl(d.name.substring(3,d.name.lenght)),
+            name: new FormControl(d.name.substring(3,d.name.lenght),[Validators.required,this.noWhitespaceValidator]),
             correct: new FormControl(d.correct),
           })
         );
@@ -153,7 +154,7 @@ export class SaveOrUpdateComponent implements OnInit {
   newSuggestion(): FormGroup {
     return this.fb.group({
       id: new FormControl(null),
-      name: new FormControl(),
+      name: new FormControl("",[Validators.required,this.noWhitespaceValidator]),
       correct: new FormControl(false),
     });
   }

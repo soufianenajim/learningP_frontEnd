@@ -16,12 +16,15 @@
     "DELETE": "Supprimer",
     "UPDATE": "Modifier",
     "DETAIL": "Détail",
+    "SHOW": "Afficher",
     "SAVE": "Enregistrer",
     "CANCEL": "Annuler",
     "DELETED": "Supprimé !",
     "CONFIRMATION": "Oui",
     "CANCEL_CONFIRMATION": "Non",
-    "CONFIRMATION_MESSAGE": "Vous ne pourrez pas revenir en arrière"
+    "CONFIRMATION_MESSAGE": "Vous ne pourrez pas revenir en arrière",
+    "BACK": "Précédent",
+    "NEXT": "Suivant"
   },
   "LANGUAGE": {
     "FRENCH": "Français",
@@ -39,7 +42,9 @@
     "DELETE": "Supprimer module ?",
     "DELETED": "Le module a été supprimé.",
     "SAVE_SUCCESS": "Module enregistré avec succès",
-    "EXIST": "Ce Module existe déjà!"
+    "EXIST": "Ce Module existe déjà!",
+    "ALREADY_LAUNCHED": "déja lancée",
+    "LAUNCH": "Lancée"
   },
   "CHAPTER": {
     "NAME": "Nom",
@@ -106,7 +111,9 @@
     "SAVE_SUCCESS": "Question enregistré avec succès",
     "EXIST": "Cette question existe déjà!",
     "DELETE": "Supprimer question?",
-    "DELETED": "La question a été supprimé."
+    "DELETED": "La question a été supprimé.",
+    "MARKS":"Note",
+    "VALUE":"Value"
   },
   "EXAM": {
     "SAVE_SUCCESS": "Examen enregistré avec succès",
@@ -120,8 +127,29 @@
     "PERSONALIZE_SUCCESS": "Exercices personalizé avec succès",
     "NOTE_QUESTION_INVALID": "La somme des notes est diffèrent de barème!",
     "NOTE_QUESTION_SUM": "La somme des notes est :",
+    "PERSONALIZE_QUESTION": "Personalizer le barème  et les  notes des questions",
     "DELETE": "Supprimer exercices?",
-    "DELETED": "L'exercices a été supprimé."
+    "DELETED": "L'exercices a été supprimé.",
+    "SUGGESTION_EMPTY_FIELD": "Les suggestions ne doit pas être vide.",
+    "QUESTION_EMPTY_FIELD": "Les questions ne doit pas être vide.",
+    "QUIZ_EXIST": "Vous ne pouvez pas ajouter plus d'un quiz dans cette cour",
+    "TD_EXIST": "Vous ne pouvez pas ajouter plus d'un td dans cette cour",
+    "TD_SAVE_SUCCESS": "Td enregistré avec succès",
+    "QUIZ_SAVE_SUCCESS": "Quiz enregistré avec succès",
+    "GENERAL_INFORMATION": "Information générale",
+    "QUESTIONS": "Questions",
+    "DETAILS": "Détails",
+    "NAME":"Nom",
+    "START_TIME":"Heure de début",
+    "END_TIME":"Heure de fin",
+    "MODULE":"Module",
+    "COURSE":"Cour",
+    "TYPE":"Type",
+    "SCALE":"Barème",
+    "SCALE_INTERVAL":"Le barème doit être comprise entre 5 et 100",
+    "MARKS_MESSAGE":"Entrez les valeurs des marques, et vous pouvez changer l'ordre des questions par glisser-déposer des questions",
+    "ADD_QUESTION":"Ajouter question"
+
   },
   "ROLE": {
     "STUDENT": "Étudiant",

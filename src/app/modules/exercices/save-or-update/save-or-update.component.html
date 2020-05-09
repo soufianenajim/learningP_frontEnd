@@ -1,63 +1,71 @@
-<div class="card">
-  <div class="card-header">
-    <h5 *ngIf="isEdit">Modification Exercices</h5>
-    <h5 *ngIf="!isEdit">Ajout Exercices</h5>
+<mat-horizontal-stepper [linear]="isLinear" #stepper>
+  <ng-template matStepperIcon="edit">
+    <i class="fa fa-check"></i>
+  </ng-template>
+  <mat-step [stepControl]="firstFormGroup">
+    <ng-template matStepLabel disabled>{{'EXERCICES.GENERAL_INFORMATION'| translate}}</ng-template>
+    <form [formGroup]="firstFormGroup">
 
-  </div>
-  <div class="card-block" style="margin: 1rem;">
-
-    <form [formGroup]="exercicesForm" (ngSubmit)="save()">
       <div class="form-group row">
-        <label class="col-sm-2 col-form-label">Nom</label>
+        <label class="col-sm-2 col-form-label">{{'EXERCICES.NAME'| translate}}</label>
         <div class="col-sm-10">
           <input type="text" formControlName="name" class="form-control">
+          <div *ngIf="errormptyFieldForm1('name')" style="color:red">
+            {{'ERRORS.EMPTY_FIELD' | translate}}</div>
+          <div *ngIf="invalidDataForm1('name')" style="color:red">
+            {{'ERRORS.INVALID_DATA' | translate}}</div>
         </div>
       </div>
 
       <div class="form-group row">
-        <label class="col-sm-2 col-form-label">Module</label>
+        <label class="col-sm-2 col-form-label">{{'EXERCICES.MODULE'| translate}}</label>
         <div class="col-sm-10">
-          <select name="select" [compareWith]="compareModule" name="module" formControlName="module" class="form-control" (change)="onSelectModule()">
+          <select name="select" [compareWith]="compareModule" name="module" formControlName="module"
+            class="form-control" (change)="onSelectModule()">
             <option value="">Selectioner un module</option>
             <option *ngFor="let module of listModule" [ngValue]="module">
               {{module.name}}
             </option>
           </select>
+          <div *ngIf="errormptyFieldForm1('module')" style="color:red">
+            {{'ERRORS.EMPTY_FIELD' | translate}}</div>
+         
 
         </div>
       </div>
       <div class="form-group row">
-        <label class="col-sm-2 col-form-label">Type</label>
+        <label class="col-sm-2 col-form-label">{{'EXERCICES.TYPE'| translate}}</label>
         <div class="col-sm-10">
-          <select name="select"  name="type"  formControlName="type" 
-            class="form-control">
+          <select name="select" name="type" formControlName="type" class="form-control">
             <option value="">Selectioner un type</option>
             <option value="TD">Td</option>
             <option value="QUIZ">Quiz</option>
-            
+
           </select>
+          <div *ngIf="errormptyFieldForm1('type')" style="color:red">
+            {{'ERRORS.EMPTY_FIELD' | translate}}</div>
 
         </div>
       </div>
       <div class="form-group row">
-        <label class="col-sm-2 col-form-label">Cour</label>
+        <label class="col-sm-2 col-form-label">{{'EXERCICES.COURSE'| translate}}</label>
         <div class="col-sm-10">
-          <select name="select" [compareWith]="compareModule" name="cour" formControlName="cour" class="form-control" >
+          <select name="select" [compareWith]="compareModule" name="cour" formControlName="cour" class="form-control">
             <option value="">Selectioner un cour</option>
             <option *ngFor="let cour of listCour" [ngValue]="cour">
               {{cour.name}}
             </option>
           </select>
-
+          <div *ngIf="errormptyFieldForm1('cour')" style="color:red">
+            {{'ERRORS.EMPTY_FIELD' | translate}}</div>
         </div>
       </div>
       <div class="form-group row">
-        <label class="col-sm-2 col-form-label">Start Time</label>
+        <label class="col-sm-2 col-form-label">{{'EXERCICES.START_TIME'| translate}}</label>
         <div class="col-sm-10">
           <label class="input-group date m-0">
 
-            <input class="form-control" [disabled]="true" formControlName="startTime" 
-              [owlDateTime]="dtStart">
+            <input class="form-control" [disabled]="true" formControlName="startTime" [owlDateTime]="dtStart">
 
             <span class="input-group-addon bg-default" style="padding: 0.2rem;
             background-color: #0738d8!important;" [owlDateTimeTrigger]="dtStart">
@@ -65,16 +73,17 @@
             </span>
             <owl-date-time #dtStart></owl-date-time>
           </label>
+          <div *ngIf="errormptyFieldForm1('startTime')" style="color:red">
+            {{'ERRORS.EMPTY_FIELD' | translate}}</div>
         </div>
 
       </div>
       <div class="form-group row">
-        <label class="col-sm-2 col-form-label">End Time</label>
+        <label class="col-sm-2 col-form-label">{{'EXERCICES.END_TIME'| translate}}</label>
         <div class="col-sm-10">
           <label class="input-group date m-0">
 
-            <input class="form-control" [disabled]="true" formControlName="endTime" 
-              [owlDateTime]="dtEnd">
+            <input class="form-control" [disabled]="true" formControlName="endTime" [owlDateTime]="dtEnd">
 
             <span class="input-group-addon bg-default" style="padding: 0.2rem;
             background-color: #0738d8!important;" [owlDateTimeTrigger]="dtEnd">
@@ -82,22 +91,62 @@
             </span>
             <owl-date-time #dtEnd></owl-date-time>
           </label>
+          <div *ngIf="errormptyFieldForm1('endTime')" style="color:red">
+            {{'ERRORS.EMPTY_FIELD' | translate}}</div>
         </div>
 
       </div>
-     
-      <div class="form-group row justify-content-center">
-        <button type="button" style="margin-right: 20px" type="submit" [disabled]="isSaved"
-          class="btn btn-success btn-md waves-effect waves-light">
-          <i class="fa fa-check"></i>Save
-        </button>
-        <button type="button" (click)="cancel()" class="btn btn-danger btn-md waves-effect waves-light">
-          <i class="fa fa-close"></i>Cancel
-        </button>
-      </div>
 
+
+
+      <button type="button" (click)="cancel()" class="btn btn-danger btn-md waves-effect waves-light f-left"
+        style="margin-right: 15px">
+        <i class="fa fa-close"></i>{{'ACTION.CANCEL'| translate}}
+      </button>
+      <button class="btn btn-primary btn-md waves-effect waves-light f-right" (click)="nextForm1(stepper)">{{'ACTION.NEXT'| translate}}<i
+          class="fa fa-chevron-right" style="margin-left: 0.3rem;"></i></button>
     </form>
+  </mat-step>
+  <mat-step [stepControl]="secondFormGroup">
+    <ng-template matStepLabel >{{'EXERCICES.QUESTIONS'| translate}}</ng-template>
+    <form [formGroup]="secondFormGroup">
 
 
-  </div>
-</div>
+
+
+
+      <app-personalize [data]="exercices" [isClickSave]="isClicNextSecondForm" [exercicesForm]="secondFormGroup"></app-personalize>
+      <button type="button" (click)="cancel()" class="btn btn-danger btn-md waves-effect waves-light f-light"
+        style="margin-right: 15px">
+        <i class="fa fa-close"></i>{{'ACTION.CANCEL'| translate}}
+      </button>
+      <div class="f-right">
+        <button type="button" matStepperPrevious class="btn btn-warning btn-md waves-effect waves-light"
+          style="margin-right: 15px"><i class="fa fa-chevron-left"></i>{{'ACTION.BACK'| translate}}</button>
+
+        <button class="btn btn-primary btn-md waves-effect waves-light" (click)="nextForm2(stepper)">{{'ACTION.NEXT'| translate}}<i
+            class="fa fa-chevron-right" style="margin-left: 0.3rem;"></i></button>
+      </div>
+    </form>
+  </mat-step>
+  <mat-step>
+    <ng-template matStepLabel>{{'EXERCICES.DETAILS'| translate}}</ng-template>
+    
+    <app-show [exercices]="exercices" ></app-show>
+    <button type="button" (click)="cancel()" class="btn btn-danger btn-md waves-effect waves-light f-left">
+      <i class="fa fa-close"></i>{{'ACTION.CANCEL'| translate}}
+    </button>
+    <div class="f-right">
+
+      <button type="button" matStepperPrevious class="btn btn-warning btn-md waves-effect waves-light"
+        style="margin-right: 15px"><i class="fa fa-chevron-left"></i>{{'ACTION.BACK'| translate}}</button>
+        <button type="button" style="margin-right: 20px" (click)="save()"
+        class="btn btn-success btn-md waves-effect waves-light">
+        <i class="fa fa-check"></i>{{'ACTION.SAVE'| translate}}
+      </button>        
+
+     
+    </div>
+  </mat-step>
+</mat-horizontal-stepper>
+<notifier-container></notifier-container>

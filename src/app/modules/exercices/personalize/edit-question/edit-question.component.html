@@ -37,82 +37,7 @@
           <div *ngIf="invalidData('correctComment')" style="color:red">
             {{'ERRORS.INVALID_DATA' | translate}}</div>
         </div>
-      </div>
-      <div class="form-group row">
-        <label class="col-sm-3 col-form-label">Module</label>
-        <div class="col-sm-9">
-          <select name="select" [compareWith]="compareModule" name="module" formControlName="module" (change)="onSelectType()"
-            class="form-control">
-            <option value="">Selectioner un module</option>
-            <option *ngFor="let module of listModule" [ngValue]="module">
-              {{module.name}}
-            </option>
-          </select>
-          <div *ngIf="errormptyField('module')" style="color:red">
-            {{'ERRORS.EMPTY_FIELD' | translate}}</div>
-
-        </div>
-      </div>
-      <div class="form-group row">
-        <label class="col-sm-3 col-form-label">Type</label>
-        <div class="col-sm-9">
-          <select name="select"  name="type" formControlName="type" (change)="onSelectType()"
-            class="form-control">
-            <option value="">Selectioner un type</option>
-            <option value="exam">Exam</option>
-            <option value="quiz">Quiz</option>
-            <option value="td">Td</option>
-          </select>
-          <div *ngIf="errormptyField('type')" style="color:red">
-            {{'ERRORS.EMPTY_FIELD' | translate}}</div>
-
-        </div>
-      </div>
-      <div class="form-group row" *ngIf="isExam">
-        <label class="col-sm-3 col-form-label">Exam</label>
-        <div class="col-sm-9">
-          <select name="select" [compareWith]="compareModule" name="exam" formControlName="exam"
-            class="form-control">
-            <option value="">Selectioner un exam</option>
-            <option *ngFor="let exam of listExam" [ngValue]="exam">
-              {{exam.name}}
-            </option>
-          </select>
-          <div *ngIf="errormptyField('exam')" style="color:red">
-            {{'ERRORS.EMPTY_FIELD' | translate}}</div>
-
-        </div>
-      </div>
-      <div class="form-group row" *ngIf="isQuiz">
-        <label class="col-sm-3 col-form-label">Quiz</label>
-        <div class="col-sm-9">
-          <select name="select" [compareWith]="compareModule" name="quiz" formControlName="exercices"
-            class="form-control">
-            <option value="">Selectioner un quiz</option>
-            <option *ngFor="let quiz of listQuiz" [ngValue]="quiz">
-              {{quiz.name}}
-            </option>
-          </select>
-          <div *ngIf="errormptyField('exercices')" style="color:red">
-            {{'ERRORS.EMPTY_FIELD' | translate}}</div>
-
-        </div>
-      </div>
-      <div class="form-group row" *ngIf="isTd">
-        <label class="col-sm-3 col-form-label">Td</label>
-        <div class="col-sm-9">
-          <select name="select" [compareWith]="compareModule" name="td" formControlName="exercices"
-            class="form-control">
-            <option value="">Selectioner un td</option>
-            <option *ngFor="let td of listTd" [ngValue]="td">
-              {{td.name}}
-            </option>
-          </select>
-          <div *ngIf="errormptyField('exercices')" style="color:red">
-            {{'ERRORS.EMPTY_FIELD' | translate}}</div>
-
-        </div>
-      </div>
+      </div>     
 
       <div class="form-group row">
         <label class="col-sm-3 col-form-label"> <button type="button" class="btn btn-primary btn-md waves-effect waves-light f-left" (click)="addSuggestions()"> <i
@@ -149,6 +74,10 @@
                 
                   <label class="col-sm-1 col-form-label">{{getAlphabet(i)}}</label>
                   <textarea type="text" formControlName="name" class="col-sm-11 form-control"></textarea>
+                  <div *ngIf="isFieldRequiredInArray('name',i)" class="messages text-danger">
+                    {{'ERRORS.EMPTY_FIELD' | translate}}</div>
+                  <div *ngIf="invalidDataInArraY('name',i)" style="color:red">
+                    {{'ERRORS.INVALID_DATA' | translate}}</div>
                 </div>
               </div>
               <!-- <div class="form-group row" >
@@ -171,8 +100,9 @@
           </div>
        
         </div>
-        
       </div>
+      <div *ngIf="errorEmptySuggestion()" style="color:red">
+        {{'EXERCICE.SUGGESTION_EMPTY_FIELD' | translate}}</div>
 
 
 
