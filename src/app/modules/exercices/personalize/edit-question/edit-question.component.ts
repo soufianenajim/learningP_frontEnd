@@ -1,5 +1,5 @@
 import { Component, OnInit, Inject } from '@angular/core';
-import { FormControl, FormArray, FormGroup, Validators, FormBuilder } from '@angular/forms';
+import { FormControl, FormArray, FormGroup, Validators, FormBuilder, AbstractControl } from '@angular/forms';
 import { Question } from '../../../../core/models/question.model';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
 import { TokenStorageService } from '../../../../core/services/token_storage/token-storage.service';
@@ -14,9 +14,8 @@ export class EditQuestionComponent implements OnInit {
 
   questionForm: FormGroup;
 
-  idQuestion = null;
   isEdit = false;
-  question;
+  question=new Question();
   listModule = [];
   listExam = [];
   listQuiz = [];
@@ -38,12 +37,11 @@ export class EditQuestionComponent implements OnInit {
       name: new FormControl("",[Validators.required,this.noWhitespaceValidator]),
       code: new FormControl("",[Validators.required,this.noWhitespaceValidator]),
       correctComment: new FormControl("",[Validators.required,this.noWhitespaceValidator]),
-      suggestions: this.fb.array([],Validators.required),
+      suggestions: this.fb.array([],[Validators.required,this.minLengthArray(2)]),
     });
     if (data !== null) {
       this.isEdit = true;
-      this.idQuestion = data.id;
-      this.question = data;
+     
       this.buildForm(data);
     }
   }
@@ -52,6 +50,10 @@ export class EditQuestionComponent implements OnInit {
     this.questionForm.get("name").setValue(data.name);
     this.questionForm.get("code").setValue(data.code);
     this.questionForm.get("correctComment").setValue(data.correctComment);
+    this.question = data;
+    this.question.id = data.id;
+    this.question.note=data.note
+    this.question.indexNumerator=data.indexNumerator;
    
      
    
@@ -76,9 +78,7 @@ export class EditQuestionComponent implements OnInit {
     
   }
   save() {
-    console.log('suggestion',this.suggestions.value);
     this.isClickSave=true;
-    console.log("fomr", this.questionForm.value);
     const name = this.questionForm.get("name").value;
     const code = this.questionForm.get("code").value;
     const correctComment = this.questionForm.get("correctComment").value;
@@ -86,19 +86,18 @@ export class EditQuestionComponent implements OnInit {
     for (let index = 0; index < suggestions.length; index++) {
       suggestions[index].name =this.getAlphabet(index).concat(suggestions[index].name);
     }
-    let question = new Question();
-    question.id = this.idQuestion;
-    question.name = name;
-    question.code = code;
-    question.correctComment = correctComment;
-    question.suggestions = suggestions;
-    console.log("question",question);
-    if(this.questionForm.valid){
-         this.dialogRef.close(question);
+    
+   
+    this.question.name = name;
+    this.question.code = code;
+    this.question.correctComment = correctComment;
+   this.question.suggestions = suggestions;
+    if(this.questionForm.valid && !this.isRedondantAllField()&& this.errorMinCorrect()){
+         this.dialogRef.close(this.question);
   }
   }
   cancel() {
-    this.dialogRef.close(false);
+    this.dialogRef.close(null);
   }
   compareQuestion(c1: any, c2: any): boolean {
     return c1 && c2 ? c1.id === c2.id : c1 === c2;
@@ -139,7 +138,6 @@ getAlphabet(i){
   }
 
   onSubmit() {
-    console.log(this.questionForm.value);
   }
   compareModule(c1: any, c2: any): boolean {
     return c1 && c2 ? c1.id === c2.id : c1 === c2;
@@ -150,6 +148,9 @@ getAlphabet(i){
       this.questionForm.get(field).hasError("required") &&
       (this.questionForm.get(field).touched || this.isClickSave)
     );
+  }
+  errorMinLenght(){
+   return this.questionForm.get('suggestions').hasError('minLengthArray')&&this.isClickSave;
   }
   errorEmptySuggestion(){
     return this.suggestions.value.length===0 &&this.isClickSave
@@ -184,6 +185,41 @@ getAlphabet(i){
     const isValid = !isWhitespace;
     return isValid ? null : { whitespace: true };
   }
+  minLengthArray(min: number) {
+    return (c: AbstractControl): {[key: string]: any} => {
+        if (c.value.length >= min)
+            return null;
 
+        return { 'minLengthArray': {valid: false }};
+    }
+}
+isRedondantField(index: number) {
+  const value = this.suggestions.at(index).value.name;
+  console.log('value',value);
+  for (let i = 0; i < this.suggestions.value.length; i++) {
+    if (i !== index && this.suggestions.at(i).value.name === value && this.suggestions.at(i).value.name !== '') {
+      return true;
+    }
+  }
+  return false;
+}
+isRedondantAllField() {
+  for (let j = 0; j < this.suggestions.value.length; j++) {
+    if (this.isRedondantField(j)) {
+      return true;
+    }
+  }
+  return false;
+}
 
+errorMinCorrect(){
+  console.log('errorMinCorrect')
+  let isCorrect=false;
+  for (let j = 0; j < this.suggestions.value.length; j++) {
+    if(this.suggestions.at(j).value.correct)
+    isCorrect =true;
+  }
+  console.log('isCorrect',isCorrect)
+  return isCorrect ;
+}
 }

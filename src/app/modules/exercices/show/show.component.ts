@@ -8,10 +8,15 @@ import { Exercices } from '../../../core/models/exercices.model';
 })
 export class ShowComponent implements OnInit {
 @Input() exercices:Exercices;
+questions;
 isShow=false;
   constructor() { }
 
   ngOnInit() {
+    console.log('this.questions',this.exercices.questions);
+    if(this.exercices!=null){
+      this.questions=this.exercices.questions;
+    }
   }
   showDetail(){
     this.isShow=!this.isShow;

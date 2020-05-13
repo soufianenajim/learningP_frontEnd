@@ -115,7 +115,7 @@
 
 
 
-      <app-personalize [data]="exercices" [isClickSave]="isClicNextSecondForm" [exercicesForm]="secondFormGroup"></app-personalize>
+      <app-personalize [data]="exercices" [isClickSave]="isClicNextSecondForm" [exercicesForm]="secondFormGroup" (changeNote)="onChangeNote($event)" (invalidQuestion)="onChangeInvalidQuestion($event)"></app-personalize>
       <button type="button" (click)="cancel()" class="btn btn-danger btn-md waves-effect waves-light f-light"
         style="margin-right: 15px">
         <i class="fa fa-close"></i>{{'ACTION.CANCEL'| translate}}

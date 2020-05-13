@@ -118,7 +118,14 @@
     "DELETE": "Delete question?",
     "DELETED": "Question has been deleted.",
     "MARKS":"Mark",
-    "VALUE":"Value"
+    "VALUE":"Value",
+    "MARK_MESSAGE":"Mark should be between 1 and  ",
+    "EXIST_INDEX": " already exists!",
+    "ERROR_REDONDANT_SUGGESTION":"Suggestion already  exists!",
+    "MIN_SUGGESTION":"The Minimum of suggestions is 2",
+    "SUGGESTION_EMPTY_FIELD":"Suggestions must not be empty.",
+    "CORRECT_SUGGESTION_MSG":"Question must contain at least one correct suggestion"
+    
   },
   "EXAM":{
     "SAVE_SUCCESS": "Exam saved successfully",
@@ -135,7 +142,6 @@
   "PERSONALIZE_QUESTION":"Personalize scale  and marks of questions",
   "DELETE": "Delete exercices?",
   "DELETED": "Exercices has been deleted.",
-  "SUGGESTION_EMPTY_FIELD":"Suggestions must not be empty.",
   "QUESTION_EMPTY_FIELD":"Questions must not be empty.",
   "QUIZ_EXIST":"You cant add plus than quiz in this cour",
   "TD_EXIST":"You cant add plus than td in this cour",
@@ -146,7 +152,7 @@
   "DETAILS":"Details",
   "NAME":"Name",
   "START_TIME":"Start time",
-  "END_TIME":"End tile",
+  "END_TIME":"End time",
   "MODULE":"Module",
   "COURSE":"Course",
   "TYPE":"Type",

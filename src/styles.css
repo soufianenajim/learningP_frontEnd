@@ -47590,3 +47590,10 @@ body {
   position: fixed!important;
   z-index: 9999999!important;
 }
+.mat-sort-header-arrow {
+  opacity: .5!important;
+}
+.swal2-container.swal2-shown {
+  background-color: rgba(0,0,0,.4)!important;
+  z-index: 99999999!important;
+}

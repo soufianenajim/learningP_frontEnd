@@ -22,6 +22,8 @@ export class SaveOrUpdateComponent implements OnInit {
   scale;
   isEdit = false;
   listCour = [];
+  sum=0;
+  invalidQuestion=false;
   
   firstFormGroup = this._formBuilder.group({
     name: new FormControl("",[Validators.required,this.noWhitespaceValidator]),
@@ -38,7 +40,7 @@ export class SaveOrUpdateComponent implements OnInit {
       Validators.min(5),
       Validators.max(100),
     ]),
-    questions: this._formBuilder.array([],Validators.required),
+    questions: new FormControl("",Validators.required),
   });
   isClickNext1=false;
   exercices=new Exercices();
@@ -89,6 +91,10 @@ buildForm(data){
   this.firstFormGroup.get("startTime").setValue(startTime);
   this.firstFormGroup.get("endTime").setValue(endTime);
   this.secondFormGroup.get("scale").setValue(scale);
+  this.secondFormGroup.get("questions").setValue(questions);
+  questions.forEach(element => {
+    this.sum+=element.note;
+  });
   
   this.onSelectModule();
 }
@@ -151,12 +157,18 @@ buildForm(data){
   }
   nextForm2(stepper: MatStepper){
     this.isClicNextSecondForm=true;
-   
-    if(this.secondFormGroup.valid){
-      const scale=this.secondFormGroup.get('scale').value;
-      const questions=this.secondFormGroup.get('questions').value;
+   console.log('this.secondFormGroup',this.secondFormGroup.valid);
+   console.log('sum',this.sum);
+   const scale=this.secondFormGroup.get('scale').value;
+   const questions=this.secondFormGroup.get('questions').value;
+    if(this.secondFormGroup.valid &&this.sum===scale &&!this.invalidQuestion ){
+      questions.sort(function (a:any, b:any) {
+        return a.indexNumerator - b.indexNumerator;
+      });
+      console.log('questions',questions);
       this.exercices.scale=scale;
       this.exercices.questions=questions;
+     
       stepper.next();
     }
     
@@ -201,5 +213,12 @@ buildForm(data){
           this.dialogRef.close(true);
         }, 1000);
       });
+  }
+  onChangeNote(event){
+    this.sum=event;
+  }
+  onChangeInvalidQuestion(event){
+    console.log('event',event);
+    this.invalidQuestion=event;
   }
 }

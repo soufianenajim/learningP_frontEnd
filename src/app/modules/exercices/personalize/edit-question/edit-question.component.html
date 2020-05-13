@@ -79,6 +79,8 @@
                   <div *ngIf="invalidDataInArraY('name',i)" style="color:red">
                     {{'ERRORS.INVALID_DATA' | translate}}</div>
                 </div>
+                <div *ngIf="isRedondantField(i)" style="color:red">
+                  {{'QUESTION.ERROR_REDONDANT_SUGGESTION' | translate}}</div>
               </div>
               <!-- <div class="form-group row" >
                 <label class="col-sm-3 col-form-label">Correct</label>
@@ -101,8 +103,12 @@
        
         </div>
       </div>
+      <div *ngIf="!errorMinCorrect()" style="color:red">
+        {{'QUESTION.CORRECT_SUGGESTION_MSG' | translate}}</div>
       <div *ngIf="errorEmptySuggestion()" style="color:red">
-        {{'EXERCICE.SUGGESTION_EMPTY_FIELD' | translate}}</div>
+        {{'QUESTION.SUGGESTION_EMPTY_FIELD' | translate}}</div>
+      <div *ngIf="errorMinLenght()" style="color:red">
+          {{'QUESTION.MIN_SUGGESTION' | translate}}</div>
 
 
 

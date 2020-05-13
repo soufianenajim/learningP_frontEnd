@@ -9,6 +9,7 @@ import { SharedModule } from '../../shared/shared.module';
 import { PersonalizeComponent } from './personalize/personalize.component';
 import { EditQuestionComponent } from './personalize/edit-question/edit-question.component';
 import { ShowComponent } from './show/show.component';
+import { ListQuestionComponent } from './personalize/list-question/list-question.component';
 
 @NgModule({
   imports: [
@@ -17,7 +18,7 @@ import { ShowComponent } from './show/show.component';
     SharedModule,
     
   ],
-  declarations: [ListComponent, SaveOrUpdateComponent, DetailComponent, PersonalizeComponent, EditQuestionComponent, ShowComponent],
+  declarations: [ListComponent, SaveOrUpdateComponent, DetailComponent, PersonalizeComponent, EditQuestionComponent, ShowComponent, ListQuestionComponent],
   entryComponents: [SaveOrUpdateComponent,DetailComponent,PersonalizeComponent,EditQuestionComponent] ,
   exports: [PersonalizeComponent]
 })

@@ -113,7 +113,13 @@
     "DELETE": "Supprimer question?",
     "DELETED": "La question a été supprimé.",
     "MARKS":"Note",
-    "VALUE":"Value"
+    "VALUE":"Value",
+    "MARK_MESSAGE":"La note doit compris entre 1  ",
+    "EXIST_INDEX": " existe déjà!",
+    "ERROR_REDONDANT_SUGGESTION":"Suggestion existe déjà!",
+    "MIN_SUGGESTION":"Le minimum de suggestions est 2",
+    "SUGGESTION_EMPTY_FIELD": "Les suggestions ne doit pas être vide.",
+    "CORRECT_SUGGESTION_MSG":"Question doit contient au moins une suggestion correcte"
   },
   "EXAM": {
     "SAVE_SUCCESS": "Examen enregistré avec succès",
@@ -130,7 +136,7 @@
     "PERSONALIZE_QUESTION": "Personalizer le barème  et les  notes des questions",
     "DELETE": "Supprimer exercices?",
     "DELETED": "L'exercices a été supprimé.",
-    "SUGGESTION_EMPTY_FIELD": "Les suggestions ne doit pas être vide.",
+   
     "QUESTION_EMPTY_FIELD": "Les questions ne doit pas être vide.",
     "QUIZ_EXIST": "Vous ne pouvez pas ajouter plus d'un quiz dans cette cour",
     "TD_EXIST": "Vous ne pouvez pas ajouter plus d'un td dans cette cour",
@@ -149,6 +155,8 @@
     "SCALE_INTERVAL":"Le barème doit être comprise entre 5 et 100",
     "MARKS_MESSAGE":"Entrez les valeurs des marques, et vous pouvez changer l'ordre des questions par glisser-déposer des questions",
     "ADD_QUESTION":"Ajouter question"
+    
+    
 
   },
   "ROLE": {
