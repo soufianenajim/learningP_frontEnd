@@ -1,6 +1,6 @@
 <div class="card">
   <div class="card-header">
-    <h5 >Detail Exam</h5>
+    <h5 >{{'ACTION.DETAIL'|translate}}</h5>
    
 
   </div>
@@ -8,13 +8,17 @@
 
 
     <div class="form-group row">
-      <label class="col-sm-3 col-form-label">Nom</label>
+      <label class="col-sm-3 col-form-label">{{'GLOBAL.NAME'|translate}}</label>
       <label class="col-sm-9 col-form-label">{{examDetail?.name!=null?examDetail?.name:'---'}}</label>
     </div>
 
     <div class="form-group row">
-      <label class="col-sm-3 col-form-label">Module</label>
+      <label class="col-sm-3 col-form-label">{{'EXERCICES.COURSE'| translate}}</label>
       <label class="col-sm-9 col-form-label">{{examDetail?.module!=null?examDetail?.module.name:'---'}}</label>
+    </div>
+    <div class="form-group row">
+      <label class="col-sm-3 col-form-label">{{'EXERCICES.COURSE'| translate}}</label>
+      <label class="col-sm-9 col-form-label">{{examDetail?.cour!=null?examDetail?.cour.name:'---'}}</label>
     </div>
 
     <div class="form-group row">
@@ -27,7 +31,7 @@
         
           <!-- Position Column -->
           <ng-container matColumnDef="name">
-            <th mat-header-cell *matHeaderCellDef> Nom </th>
+            <th mat-header-cell *matHeaderCellDef> {{'GLOBAL.NAME'|translate}} </th>
             <td mat-cell *matCellDef="let element"> {{element.name}} </td>
           </ng-container>
     
@@ -58,7 +62,7 @@
     <div class="form-group row justify-content-center">
             
       <button type="button" (click)="cancel()" class="btn btn-danger btn-md waves-effect waves-light">
-        <i class="fa fa-close"></i>Cancel
+        <i class="fa fa-close"></i>{{'ACTION.CANCEL'| translate}}
       </button>
     </div>
 

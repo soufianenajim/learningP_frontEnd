@@ -7,6 +7,7 @@ import { SharedModule } from '../../shared/shared.module';
 import { ProgressionCourComponent } from './progression-cour/progression-cour.component';
 import { ReadCourComponent } from './progression-cour/read-cour/read-cour.component';
 import { TdOrQuizComponent } from './progression-cour/read-cour/td-or-quiz/td-or-quiz.component';
+import { PassExamComponent } from './pass-exam/pass-exam.component';
 
 @NgModule({
   imports: [
@@ -14,7 +15,7 @@ import { TdOrQuizComponent } from './progression-cour/read-cour/td-or-quiz/td-or
     StudentSpaceRoutingModule,
     SharedModule
   ],
-  entryComponents:[ProgressionCourComponent,ReadCourComponent],
-  declarations: [ListComponent, ProgressionCourComponent, ReadCourComponent, TdOrQuizComponent]
+  entryComponents:[ProgressionCourComponent,ReadCourComponent,PassExamComponent],
+  declarations: [ListComponent, ProgressionCourComponent, ReadCourComponent, TdOrQuizComponent, PassExamComponent]
 })
 export class StudentSpaceModule { }

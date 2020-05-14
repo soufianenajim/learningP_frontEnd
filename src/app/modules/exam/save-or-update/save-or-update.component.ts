@@ -5,6 +5,7 @@ import { Exam } from "../../../core/models/exam.model";
 import { ModuleService } from "../../../core/services/module/module.service";
 import { ExamService } from "../../../core/services/exam/exam.service";
 import { QuestionService } from "../../../core/services/question/question.service";
+import { ThrowStmt } from "@angular/compiler";
 
 @Component({
   selector: "app-save-or-update",
@@ -22,6 +23,7 @@ export class SaveOrUpdateComponent implements OnInit {
   idExam = null;
   isEdit = false;
   parentQuestions;
+  exam=null;
   constructor(
     private moduleseService: ModuleService,
     private examService: ExamService,
@@ -30,53 +32,15 @@ export class SaveOrUpdateComponent implements OnInit {
     @Inject(MAT_DIALOG_DATA) public data: any
   ) {
     if (data !== null) {
-      this.questionService.findByExam(data.id).subscribe((resp) => {
-        console.log("questions", resp);
-        this.parentQuestions = resp;
-        this.isEdit = true;
-        this.idExam = data.id;
-        this.buildForm(data);
-      });
+    this.exam=data;
     }
   }
-  buildForm(data) {
-    const name = data.name;
-    const module = data.module;
-    const startTime = data.startDateTime;
-    const endTime = data.endDateTime;
-    this.examForm.get("name").setValue(name);
-    this.examForm.get("module").setValue(module);
-    this.examForm.get("startTime").setValue(startTime);
-    this.examForm.get("endTime").setValue(endTime);
-  }
+ 
   ngOnInit() {
-    this.moduleseService.findAll().subscribe((res) => {
-      console.log("res", res);
-      this.listModule = res;
-    });
+   
   }
-  save() {
-    const name = this.examForm.get("name").value;
-    const module = this.examForm.get("module").value;
-    const startTime=this.examForm.get("startTime").value;
-    const endTime=this.examForm.get("endTime").value;
-    let exam = new Exam();
-    exam.id = this.idExam;
-    exam.name = name;
-    exam.module = module;
-    exam.startDateTime=startTime;
-    exam.endDateTime=endTime;
-    this.examService.saveOrUpdate(exam).subscribe((resp) => {
-      console.log("response  ----", resp);
-      this.dialogRef.close(true);
-    });
-  }
-  cancel() {
-    this.dialogRef.close(false);
-  }
-  compareModule(c1: any, c2: any): boolean {
-    return c1 && c2 ? c1.id === c2.id : c1 === c2;
-  }
-  
+ 
+ 
+
   
 }

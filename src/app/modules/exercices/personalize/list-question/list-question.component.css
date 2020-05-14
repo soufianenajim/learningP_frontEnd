@@ -24,4 +24,16 @@ table {
   .example-list.cdk-drop-list-dragging .example-box:not(.cdk-drag-placeholder) {
     transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
   }
+  .mat-column-name {
+    width: 45%;
+  }.mat-column-indexNumerator {
+    width: 15%;
+  }
+  .mat-column-note {
+    width: 15%;
+  }
+  .mat-column-actions {
+    width: 15%;
+  }
+  
   

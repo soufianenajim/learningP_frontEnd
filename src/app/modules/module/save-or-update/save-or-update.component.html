@@ -22,7 +22,7 @@
                 style="font-weight: bold;color: #757575;">Professeur</label>
             <div class="col-sm-10">
                 <select name="select" [compareWith]="compareOrg" formControlName="prof" class="form-control">
-                    <option value="">Selectioner un professeur</option>
+                   <option value="" disabled selected>Selectioner un professeur</option>
                     <option *ngFor="let user of listProfessor" [ngValue]="user">
                         {{user.firstName+' '+user.lastName}}
                     </option>
@@ -38,7 +38,7 @@
           <label class="col-sm-2 col-form-label">{{'MODULE.GROUP'|translate}}</label>
           <div class="col-sm-10">
             <select name="select" [compareWith]="compareGroup" name="group"  formControlName="group" class="form-control">
-              <option value="">{{'MODULE.SELECT_BRANCH'|translate}}</option>
+             <option value="" disabled selected>{{'MODULE.SELECT_BRANCH'|translate}}</option>
               <option *ngFor="let group of listGroup" [ngValue]="group" >
                 {{group.name}}  
               </option>

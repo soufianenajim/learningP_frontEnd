@@ -53,7 +53,7 @@
         <div class="col-sm-10">
           <select name="select" [compareWith]="compareLevel" name="organization" formControlName="organization"
             class="form-control" (change)="onSelectOgra()">
-            <option value="">{{'USER.SELECT_ORGANIZATION'|translate}}</option>
+           <option value="" disabled selected>{{'USER.SELECT_ORGANIZATION'|translate}}</option>
             <option *ngFor="let organization of listOrganization" [ngValue]="organization">
               {{organization.name}}
             </option>
@@ -68,7 +68,7 @@
         <div class="col-sm-10">
           <select name="select" [compareWith]="compareLevel" name="role" formControlName="role" class="form-control"
             (change)="onSelectRole()">
-            <option value="">{{'USER.SELECT_ROLE'|translate}}</option>
+           <option value="" disabled selected>{{'USER.SELECT_ROLE'|translate}}</option>
             <option *ngFor="let role of listRole" [ngValue]="role">
               {{role.translated }}
             </option>
@@ -83,7 +83,7 @@
           <div class="col-sm-10">
             <select name="select" [compareWith]="compareLevel" name="group" formControlName="group"
               class="form-control">
-              <option value="">{{'USER.SELECT_LEVEL'|translate}}</option>
+             <option value="" disabled selected>{{'USER.SELECT_LEVEL'|translate}}</option>
               <option *ngFor="let group of listGroup" [ngValue]="group">
                 {{group.name}}
               </option>

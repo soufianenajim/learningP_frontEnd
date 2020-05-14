@@ -1,0 +1,37 @@
+<div class="card">
+  <div class="card-header">
+    <h5 >{{'ACTION.DETAIL'|translate}}</h5>
+   
+
+  </div>
+  <div class="card-block" style="margin: 1rem;">
+
+
+    <div class="form-group row">
+      <label class="col-sm-3 col-form-label">{{'QUESTION.CONTENT'|translate}}</label>
+      <label class="col-sm-9 col-form-label">{{suggestion.name!=null?suggestionDetail.name:'---'}}</label>
+    </div>
+
+    <div class="form-group row">
+      <label class="col-sm-3 col-form-label">{{'QUESTION.CORRECT'|translate}}</label>
+      <label class="col-sm-9 col-form-label">
+        <span *ngIf="suggestionDetail?.correct" style="padding:6px; width:55px;" 
+        class="label btn-sm label-success">{{'QUESTION.COORECT' | translate}}
+      </span>
+      <span *ngIf="!suggestionDetail?.correct" style="padding:6px; width:55px;" class="label btn-sm label-danger"
+        >{{'QUESTION.INCORRECT' | translate}}
+      </span></label>
+    </div>
+    
+    <div class="form-group row justify-content-center">
+            
+      <button type="button" (click)="cancel()" class="btn btn-danger btn-md waves-effect waves-light">
+        <i class="fa fa-close"></i>{{'ACTION.CANCEL'| translate}}
+      </button>
+    </div>
+
+
+
+
+  </div>
+</div>

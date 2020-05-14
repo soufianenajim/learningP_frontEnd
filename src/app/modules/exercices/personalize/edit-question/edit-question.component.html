@@ -1,14 +1,14 @@
 <div class="card">
   <div class="card-header">
-    <h5 *ngIf="isEdit">Modification Question</h5>
-    <h5 *ngIf="!isEdit">Ajout Question</h5>
+    <h5 *ngIf="isEdit">{{'ACTION.UPDATE'|translate}}</h5>
+    <h5 *ngIf="!isEdit">{{'ACTION.ADD'|translate}}</h5>
 
   </div>
   <div class="card-block" style="margin: 1rem;">
 
     <form [formGroup]="questionForm" (ngSubmit)="save()">
       <div class="form-group row">
-        <label class="col-sm-3 col-form-label">Code</label>
+        <label class="col-sm-3 col-form-label">{{'QUESTION.CODE'|translate}}</label>
         <div class="col-sm-9">
           <input type="text" formControlName="code" class="form-control">
           <div *ngIf="errormptyField('code')" style="color:red">
@@ -18,7 +18,7 @@
         </div>
       </div>
       <div class="form-group row">
-        <label class="col-sm-3 col-form-label">Nom</label>
+        <label class="col-sm-3 col-form-label">{{'QUESTION.CONTENT'|translate}}</label>
         <div class="col-sm-9">
           <input type="text" formControlName="name" class="form-control">
           <div *ngIf="errormptyField('name')" style="color:red">
@@ -29,7 +29,7 @@
       </div>
      
       <div class="form-group row">
-        <label class="col-sm-3 col-form-label">CorrectComment</label>
+        <label class="col-sm-3 col-form-label">{{'QUESTION.CORRECT_COMMENT'|translate}}</label>
         <div class="col-sm-9">
           <textarea type="text" formControlName="correctComment" class="form-control"></textarea>
           <div *ngIf="errormptyField('correctComment')" style="color:red">
@@ -41,7 +41,7 @@
 
       <div class="form-group row">
         <label class="col-sm-3 col-form-label"> <button type="button" class="btn btn-primary btn-md waves-effect waves-light f-left" (click)="addSuggestions()"> <i
-          class="fa fa-plus"></i> Ajouter Suggestion
+          class="fa fa-plus"></i> {{'QUESTION.ADD_SUGGESTION'|translate}}
       </button></label>
         <div class="col-sm-9">
         </div>
@@ -82,20 +82,7 @@
                 <div *ngIf="isRedondantField(i)" style="color:red">
                   {{'QUESTION.ERROR_REDONDANT_SUGGESTION' | translate}}</div>
               </div>
-              <!-- <div class="form-group row" >
-                <label class="col-sm-3 col-form-label">Correct</label>
-                <div class="col-sm-9 ">
-                   <input type="checkbox" formControlName="correct" class="border-checkbox"> -->
-                  <!-- <div class="checkbox-fade fade-in-success" style="margin-top: 0.5rem;">
-                    <label>
-                        <input type="checkbox" formControlName="correct">
-                        <span class="cr">
-                            <i class="cr-icon icofont icofont-ui-check txt-success"></i>
-                        </span> 
-                    </label>
-                </div>
-                </div>
-              </div> --> 
+   
                 
               
             </div>
@@ -115,10 +102,10 @@
       <div class="form-group row justify-content-center">
         <button type="button" style="margin-right: 20px" type="submit" [disabled]="isSaved"
           class="btn btn-success btn-md waves-effect waves-light">
-          <i class="fa fa-check"></i>Save
+          <i class="fa fa-check"></i>{{'ACTION.SAVE'| translate}}
         </button>
         <button type="button" (click)="cancel()" class="btn btn-danger btn-md waves-effect waves-light">
-          <i class="fa fa-close"></i>Cancel
+          <i class="fa fa-close"></i>{{'ACTION.CANCEL'| translate}}
         </button>
       </div>
 

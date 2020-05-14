@@ -8,16 +8,12 @@
 
 
     <div class="form-group row">
-      <label class="col-sm-3 col-form-label">{{'GLOBAL.NAME'|translate}}</label>
+      <label class="col-sm-3 col-form-label">{{'QUESTION.CONTENT'|translate}}</label>
       <label class="col-sm-9 col-form-label">{{questionDetail?.name!=null?questionDetail.name:'---'}}</label>
     </div>
 
     <div class="form-group row">
-      <label class="col-sm-3 col-form-label">Code</label>
-      <label class="col-sm-9 col-form-label">{{questionDetail?.code!=null?questionDetail.code:'---'}}</label>
-    </div>
-    <div class="form-group row">
-      <label class="col-sm-3 col-form-label">CorrectComment</label>
+      <label class="col-sm-3 col-form-label">{{'QUESTION.CORRECT_COMMENT'|translate}}</label>
       <label class="col-sm-9 col-form-label">{{questionDetail?.correctComment!=null?questionDetail.correctComment:'---'}}</label>
     </div>
     <div class="form-group row">
@@ -30,14 +26,19 @@
         
           <!-- Position Column -->
           <ng-container matColumnDef="content">
-            <th mat-header-cell *matHeaderCellDef> Content </th>
+            <th mat-header-cell *matHeaderCellDef> {{'QUESTION.CONTENT'|translate}} </th>
             <td mat-cell *matCellDef="let element" > {{element?.name.length>60?element.name.substring(0,60)+' ...':element.name}} </td>
           </ng-container>
         
           <!-- Name Column -->
           <ng-container matColumnDef="correct">
-            <th mat-header-cell *matHeaderCellDef> Correct </th>
-            <td mat-cell *matCellDef="let element"> {{element?.correct?'Correct':'Not correct'}} </td>
+            <th mat-header-cell *matHeaderCellDef> {{'QUESTION.CORRECT'|translate}} </th>
+            <td mat-cell *matCellDef="let row">   <span *ngIf="row?.correct" style="padding:6px; width:55px;" 
+              class="label btn-sm label-success">{{'QUESTION.COORECT' | translate}}
+            </span>
+            <span *ngIf="!row?.correct" style="padding:6px; width:55px;" class="label btn-sm label-danger"
+              >{{'QUESTION.INCORRECT' | translate}}
+            </span> </td>
           </ng-container>
           <ng-container matColumnDef="actions">
             <th mat-header-cell *matHeaderCellDef> Action </th>

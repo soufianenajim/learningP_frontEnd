@@ -13,7 +13,7 @@
             <div class="row">
                 <div class="col-sm-6">
                     <div class="row">
-                        <label class="col-sm-3 col-form-label" style="font-weight: bold;color: #757575;">Nom</label>
+                        <label class="col-sm-3 col-form-label" style="font-weight: bold;color: #757575;">{{'GLOBAL.NAME'|translate}}</label>
                         <div class="col-sm-9">
                             <input type="text" formControlName="name" class="form-control">
 
@@ -26,7 +26,7 @@
                             style="font-weight: bold;color: #757575;">Professeur</label>
                         <div class="col-sm-9">
                             <select name="select" formControlName="prof" class="form-control">
-                                <option value="">Selectioner un professeur</option>
+                               <option value="" disabled selected>Selectioner un professeur</option>
                                 <option *ngFor="let user of listProfessor" [ngValue]="user">
                                     {{user.firstName+' '+user.lastName}}
                                 </option>

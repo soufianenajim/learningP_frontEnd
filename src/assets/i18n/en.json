@@ -1,4 +1,8 @@
 {
+  "GLOBAL": {
+    "NAME": "Name",
+    "MODULE":"Module"
+  },
   "MENU_ITEM": {
     "HOME": "Dashboard",
     "MANAGED_MODULE": "Module",
@@ -16,18 +20,17 @@
     "DELETE": "Delete",
     "UPDATE": "Update",
     "DETAIL": "Detail",
-    "SHOW":"Show",
+    "SHOW": "Show",
     "SAVE": "Save",
     "CANCEL": "Cancel",
     "DELETED": "Deleted !",
     "CONFIRMATION": "Yes",
     "CANCEL_CONFIRMATION": "No",
-    "CONFIRMATION_MESSAGE":"You won't be able to revert this",
-    "ALREADY_LAUNCHED":"already launched",
-    "LAUNCH":"Launch",
+    "CONFIRMATION_MESSAGE": "You won't be able to revert this",
+    "ALREADY_LAUNCHED": "already launched",
+    "LAUNCH": "Launch",
     "BACK": "Previous",
     "NEXT": "Next"
-    
   },
   "LANGUAGE": {
     "FRENCH": "French",
@@ -39,7 +42,7 @@
     "PROFESSOR": "Professor",
     "LEVEL": "Level",
     "BRANCH": "Branch",
-    "GROUP":"Group",
+    "GROUP": "Group",
     "SELECT_BRANCH": "Select  branch",
     "SELECT_LEVEL": "Select level",
     "DELETE": "Delete module?",
@@ -61,13 +64,14 @@
     "SELECT_CHAPTER": "Select chapter",
     "CONTENT": "Content"
   },
+    
   "COURSE": {
     "NAME": "Name",
     "MODULE": "Module",
     "SELECT_MODULE": "Select module",
-    "LAUNCH":"Start this course immediately ?",
-    "LAUNCHED":"Launched !",
-    "LAUNCHED_MESSAGE":"Course  has been launched",
+    "LAUNCH": "Start this course immediately ?",
+    "LAUNCHED": "Launched !",
+    "LAUNCHED_MESSAGE": "Course  has been launched",
     "DELETE": "Delete cour ?",
     "DELETED": "Le cour a été supprimé."
   },
@@ -83,7 +87,7 @@
     "ORGANIZATION": "Organization",
     "LEVEL": "Level",
     "BRANCH": "Branch",
-    "GROUP":"Group",
+    "GROUP": "Group",
     "ROLE": "Role",
     "SELECT_BRANCH": "Select  branch",
     "SELECT_LEVEL": "Select level",
@@ -94,73 +98,79 @@
     "DELETE": "Delete user?",
     "DELETED": "User has been deleted."
   },
-  "LEVEL":{
+  "LEVEL": {
     "SAVE_SUCCESS": "Level saved successfully",
     "EXIST": "Level already exists!",
     "DELETE": "Delete level?",
     "DELETED": "Level has been deleted."
   },
-  "BRANCH":{
+  "BRANCH": {
     "SAVE_SUCCESS": "Branch saved successfully",
     "EXIST": "Branch already exists!",
     "DELETE": "Delete branch?",
     "DELETED": "Branch has been deleted."
   },
-  "GROUP":{
+  "GROUP": {
     "SAVE_SUCCESS": "Group saved successfully",
     "EXIST": "Group already exists!",
     "DELETE": "Delete group?",
     "DELETED": "Group has been deleted."
   },
-  "QUESTION":{
+  "QUESTION": {
     "SAVE_SUCCESS": "Question saved successfully",
     "EXIST": "Question already exists!",
     "DELETE": "Delete question?",
     "DELETED": "Question has been deleted.",
-    "MARKS":"Mark",
-    "VALUE":"Value",
-    "MARK_MESSAGE":"Mark should be between 1 and  ",
+    "MARKS": "Mark",
+    "VALUE": "Value",
+    "CONTENT": "Content",
+    "CODE": "Code",
+    "INDEX": "Index",
+    "SHOW_RESPONSES": "Show correct answers",
+    "CORRECT_COMMENT": "Correct comment",
+    "INDEX_MESSAGE": "Index should be between 1 and  ",
     "EXIST_INDEX": " already exists!",
-    "ERROR_REDONDANT_SUGGESTION":"Suggestion already  exists!",
-    "MIN_SUGGESTION":"The Minimum of suggestions is 2",
-    "SUGGESTION_EMPTY_FIELD":"Suggestions must not be empty.",
-    "CORRECT_SUGGESTION_MSG":"Question must contain at least one correct suggestion"
-    
+    "ERROR_REDONDANT_SUGGESTION": "Suggestion already  exists!",
+    "MIN_SUGGESTION": "The Minimum of suggestions is 2",
+    "SUGGESTION_EMPTY_FIELD": "Suggestions must not be empty.",
+    "CORRECT_SUGGESTION_MSG": "Question must contain at least one correct suggestion",
+    "ADD_SUGGESTION": "Add suggestion",
+    "CORRECT": "Correct",
+    "INCORRECT": "Incorrect"
   },
-  "EXAM":{
+  "EXAM": {
     "SAVE_SUCCESS": "Exam saved successfully",
     "EXIST": "Exam already exists!",
     "DELETE": "Delete exam?",
     "DELETED": "Exam has been deleted."
   },
-  "EXERCICES":{
-  "SAVE_SUCCESS": "Exercices saved successfully",
-  "EXIST": "Exercices already exists!",
-  "PERSONALIZE_SUCCESS":"Exercices personalized successfully",
-  "NOTES_QUESTION_INVALID":"The sum of the marks is different from scale!",
-  "NOTE_QUESTION_SUM":"The sum of the marks is :",
-  "PERSONALIZE_QUESTION":"Personalize scale  and marks of questions",
-  "DELETE": "Delete exercices?",
-  "DELETED": "Exercices has been deleted.",
-  "QUESTION_EMPTY_FIELD":"Questions must not be empty.",
-  "QUIZ_EXIST":"You cant add plus than quiz in this cour",
-  "TD_EXIST":"You cant add plus than td in this cour",
-  "TD_SAVE_SUCCESS":"Td saved successfully",
-  "QUIZ_SAVE_SUCCESS":"Quiz saved successfully",
-  "GENERAL_INFORMATION":"General information",
-  "QUESTIONS":"Questions",
-  "DETAILS":"Details",
-  "NAME":"Name",
-  "START_TIME":"Start time",
-  "END_TIME":"End time",
-  "MODULE":"Module",
-  "COURSE":"Course",
-  "TYPE":"Type",
-  "SCALE":"Scale",
-  "SCALE_INTERVAL":"The scale must be betwen 5 and 100",
-  "MARKS_MESSAGE":"Enter values of marks, And you can change order of question by drag and drop question",
-  "ADD_QUESTION":"Add question"
-  
+  "EXERCICES": {
+    "SAVE_SUCCESS": "Exercices saved successfully",
+    "EXIST": "Exercices already exists!",
+    "PERSONALIZE_SUCCESS": "Exercices personalized successfully",
+    "NOTES_QUESTION_INVALID": "The sum of the marks is different from scale!",
+    "NOTE_QUESTION_SUM": "The sum of the marks is :",
+    "PERSONALIZE_QUESTION": "Personalize scale  and marks of questions",
+    "DELETE": "Delete exercices?",
+    "DELETED": "Exercices has been deleted.",
+    "QUESTION_EMPTY_FIELD": "Questions must not be empty.",
+    "QUIZ_EXIST": "You cant add plus than quiz in this cour",
+    "TD_EXIST": "You cant add plus than td in this cour",
+    "TD_SAVE_SUCCESS": "Td saved successfully",
+    "QUIZ_SAVE_SUCCESS": "Quiz saved successfully",
+    "GENERAL_INFORMATION": "General information",
+    "QUESTIONS": "Questions",
+    "DETAILS": "Details",
+    "NAME": "Name",
+    "START_TIME": "Start time",
+    "END_TIME": "End time",
+    "MODULE": "Module",
+    "COURSE": "Course",
+    "TYPE": "Type",
+    "SCALE": "Scale",
+    "SCALE_INTERVAL": "The scale must be betwen 5 and 100",
+    "MARKS_MESSAGE": "Enter values of marks, And you can change order of question by drag and drop question",
+    "ADD_QUESTION": "Add question"
   },
   "ROLE": {
     "STUDENT": "Student",

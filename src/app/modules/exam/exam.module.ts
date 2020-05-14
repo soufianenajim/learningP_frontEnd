@@ -7,13 +7,15 @@ import { SaveOrUpdateComponent } from './save-or-update/save-or-update.component
 import { DetailComponent } from './detail/detail.component';
 import { SharedModule } from '../../shared/shared.module';
 import { QuestionModule } from '../question/question.module';
+import { ExercicesModule } from '../exercices/exercices.module';
 
 @NgModule({
   imports: [
     CommonModule,
     ExamRoutingModule,
     SharedModule,
-    QuestionModule
+    QuestionModule,
+    ExercicesModule
   ],
   declarations: [ListComponent, SaveOrUpdateComponent, DetailComponent],
   entryComponents: [SaveOrUpdateComponent,DetailComponent] 

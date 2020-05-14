@@ -8,9 +8,6 @@
   </div>
 </div>
 <table mat-table [dataSource]="dataSource" class="table-striped"
-cdkDropList #table #list="cdkDropList"
-[cdkDropListData]="dataSource.data" 
-(cdkDropListDropped)="drop($event)" id="table"
 matSort (matSortChange)="sortData($event)">
 
   <!--- Note that these columns can be defined in any order.
@@ -18,7 +15,7 @@ matSort (matSortChange)="sortData($event)">
 
 
   <ng-container matColumnDef="note">
-    <th mat-header-cell *matHeaderCellDef mat-sort-header> Note </th>
+    <th mat-header-cell *matHeaderCellDef mat-sort-header> {{'QUESTION.MARKS'|translate}} </th>
     <td mat-cell *matCellDef="let element"> 
         <input type="number" min="0" max="100" class="form-control col-sm-1" [(ngModel)]="questions[element.index].note" (input)="onReCalculate(element.index)" style="min-width: 6rem;">
         <div *ngIf="isFieldRequiredInArrayNote(element.index)" class="messages text-danger">
@@ -28,7 +25,7 @@ matSort (matSortChange)="sortData($event)">
     </td>
   </ng-container>
   <ng-container matColumnDef="indexNumerator" >
-    <th mat-header-cell *matHeaderCellDef mat-sort-header> Index </th>
+    <th mat-header-cell *matHeaderCellDef mat-sort-header> {{'QUESTION.INDEX'|translate}} </th>
     <td mat-cell *matCellDef="let element"> 
         <input type="number" min="1" max="questions.length" class="form-control col-sm-1" [(ngModel)]="questions[element.index].indexNumerator" (input)="onChangeIndexQuestion(element.index)"  style="min-width: 6rem;">
         <div *ngIf="isFieldRequiredInArrayQuestion(element.index)" class="messages text-danger">
@@ -42,8 +39,8 @@ matSort (matSortChange)="sortData($event)">
     </td>
   </ng-container>
   <ng-container matColumnDef="name">
-    <th mat-header-cell *matHeaderCellDef mat-sort-header> Content </th>
-    <td mat-cell *matCellDef="let element"> {{element?.name.length>60?element.name.substring(0,60)+' ...':element.name}}
+    <th mat-header-cell *matHeaderCellDef mat-sort-header> {{'QUESTION.CONTENT'|translate}} </th>
+    <td mat-cell *matCellDef="let element"> {{element?.name.length>50?(element?.name | textWidth:50 ) +' ...' :element?.name}}
     </td>
   </ng-container>
 
@@ -58,10 +55,13 @@ matSort (matSortChange)="sortData($event)">
         <span class="icofont icofont-ui-delete tabledit-delete-button "
           ngbTooltip="{{'ACTION.DELETE'  | translate}}"></span>
       </button>
+      <button mat-icon-button (click)="openDialogDetail(row)" style="color:#007bff">
+        <span class="fa fa-desktop" ngbTooltip="{{'ACTION.DETAIL' | translate}}"></span>
+      </button>
     </td>
   </ng-container>
 
 
   <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-  <tr mat-row *matRowDef="let row; columns: displayedColumns;" cdkDrag></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
 </table>

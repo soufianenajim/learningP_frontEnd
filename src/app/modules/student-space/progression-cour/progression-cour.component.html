@@ -14,10 +14,10 @@
         
         <div class="col-sm-6">
           <div class="row">
-            <label class="col-sm-3 col-form-label" style="font-weight: bold;color: #757575;">Cour</label>
+            <label class="col-sm-3 col-form-label" style="font-weight: bold;color: #757575;">{{'EXERCICES.COURSE'| translate}}</label>
             <div class="col-sm-9">
               <select name="select" formControlName="cour" class="form-control">
-                <option value="">Selectioner un cour</option>
+               <option value="" disabled selected>{{'CHAPTER.SELECT_COURSE'|translate}}</option>
                 <option *ngFor="let cour of listCour" [ngValue]="cour">
                   {{cour.name}}
                 </option>

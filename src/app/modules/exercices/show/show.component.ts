@@ -7,7 +7,7 @@ import { Exercices } from '../../../core/models/exercices.model';
   styleUrls: ['./show.component.css']
 })
 export class ShowComponent implements OnInit {
-@Input() exercices:Exercices;
+@Input() exercices:any;
 questions;
 isShow=false;
   constructor() { }

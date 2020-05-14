@@ -25,7 +25,7 @@
                       <label class="col-sm-3 col-form-label" style="font-weight: bold;color: #757575;">{{'COURSE.MODULE'| translate }}</label>
                       <div class="col-sm-9">
                           <select name="select" formControlName="module" class="form-control">
-                              <option value="">{{'COURSE.SELECT_MODULE'| translate }}</option>
+                            <option value="" disabled selected>{{'COURSE.SELECT_MODULE'| translate }}</option>
                               <option *ngFor="let module of listModule" [ngValue]="module">
                                   {{module.name}}
                               </option>

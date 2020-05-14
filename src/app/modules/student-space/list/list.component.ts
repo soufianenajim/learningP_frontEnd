@@ -9,6 +9,8 @@ import { User } from "../../../core/models/user.model";
 import { ModuleService } from "../../../core/services/module/module.service";
 import { ProgressionCourComponent } from "../progression-cour/progression-cour.component";
 import { TokenStorageService } from "../../../core/services/token_storage/token-storage.service";
+import { PassExamComponent } from "../pass-exam/pass-exam.component";
+import { ExamService } from "../../../core/services/exam/exam.service";
 
 
 @Component({
@@ -17,7 +19,7 @@ import { TokenStorageService } from "../../../core/services/token_storage/token-
   styleUrls: ["./list.component.css"]
 })
 export class ListComponent implements OnInit {
-  displayedColumns: string[] = ["name", "professeur","cour","exam", "noteF"];
+  displayedColumns: string[] = ["name", "professeur","cour","exam","noteExam", "noteF"];
   //dataSource = new MatTableDataSource<PeriodicElement>(ELEMENT_DATA);
   dataSource: MatTableDataSource<ProgressionModule>;
 
@@ -37,6 +39,7 @@ export class ListComponent implements OnInit {
   });
   constructor(
     private userService: UserService,
+    private examService:ExamService,
     private progressionModuleService: ProgressionModuleService,
     private moduleService:ModuleService,
     private dialog: MatDialog,
@@ -124,6 +127,27 @@ export class ListComponent implements OnInit {
       
       console.log("The dialog was closed");
     });
+
+  }
+  openExam(data) {
+   
+      
+      const dialogRef = this.dialog.open(PassExamComponent, {
+        width: "90%",
+        data: data,
+        disableClose: true,
+        autoFocus: false,
+        maxHeight: "90vh",
+      });
+  
+      dialogRef.afterClosed().subscribe(result => {
+        if(result){
+          this.search(false);
+        }
+        
+      });
+    
+    
 
   }
 }

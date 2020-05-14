@@ -6,13 +6,14 @@ import {CdkDragDrop, moveItemInArray, transferArrayItem, CdkDropList} from '@ang
 import clonedeep from 'lodash.clonedeep';
 import swal from "sweetalert2";
 import { TranslateService } from "@ngx-translate/core";
+import { DetailQuestionComponent } from "./detail/detail.component";
 @Component({
   selector: "app-list-question",
   templateUrl: "./list-question.component.html",
   styleUrls: ["./list-question.component.css"],
 })
 export class ListQuestionComponent implements OnInit {
-  @Input() questions:Question[];
+  @Input() questions:Question[]=[];
   @Output() changeQuestions = new EventEmitter<any>();
   @Output() changeNote = new EventEmitter<any>();
   @Output() invalidQuestion = new EventEmitter<boolean>();
@@ -36,6 +37,9 @@ export class ListQuestionComponent implements OnInit {
       console.log('mapQuestionNote',this.mapQuestionNote);
       this.dataSource = new MatTableDataSource(this.questions);
     }
+    else{
+      this.questions=[];
+    }
   }
   openDialogQuesiton(row) {
     let  indexOf =-1;
@@ -51,13 +55,13 @@ export class ListQuestionComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe((result:Question) => {
-      
+      console.log('this.questions',this.questions)
       const question = result;
      if(question!==null){
       if (indexOf===-1) {
-        result.indexNumerator = this.questions.length + 1;
+        result.indexNumerator = this.questions!==undefined?this.questions.length + 1:1;
         result.note=0;
-        result.index=this.questions.length;
+        result.index=this.questions!==undefined?this.questions.length:0;
         this.questions.push(result);
         this.dataSource = new MatTableDataSource(this.questions);
       } else {
@@ -202,5 +206,19 @@ export class ListQuestionComponent implements OnInit {
           i18 = value;
         });
         return i18;
+      }
+      openDialogDetail(row) {
+        const dialogRef = this.dialog.open(DetailQuestionComponent, {
+          width: "80%",
+          data: row,
+          disableClose: true
+        });
+    
+        dialogRef.afterClosed().subscribe(result => {
+          console.log(
+            "result mn dialog detail afakom rkzo m3ana   -----------",
+            result
+          );
+        });
       }
 }

@@ -114,9 +114,6 @@ export class ReadCourComponent implements OnInit {
     this.isPastQuiz = true;
     if (!this.progressionCour.quizFinished) {
       this.progressionCour.quizFinished = true;
-      console.log('this.questionCorrect',this.questionCorrect);
-      console.log('this.quiz.questions',this.quiz.questions);
-      console.log('(this.questionCorrect.length / this.quiz.questions.length)',(this.questionCorrect.length / this.quiz.questions.length))
       this.progressionCour.scoreQuiz =
         (this.questionCorrect.length / this.quiz.questions.length) * 100;
       this.progressionCour.progression = 100;

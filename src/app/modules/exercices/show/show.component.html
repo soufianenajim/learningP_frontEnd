@@ -2,7 +2,7 @@
     <h5 class="center-action"></h5>
     <div class="form-group ">
         
-          <mat-checkbox class="example-margin" [(ngModel)]="isShow">Afficher Detail</mat-checkbox>
+          <mat-checkbox class="example-margin" [(ngModel)]="isShow">{{'QUESTION.SHOW_RESPONSES'|translate}}</mat-checkbox>
         
     </div>
     <ng-container *ngFor="let question of exercices?.questions; let i = index">
@@ -21,7 +21,7 @@
       </ng-container>
       <div *ngIf="isShow">
   
-        <p> <strong style="color: green;">Correct Comment :</strong> <strong style="font-size: 0.8rem;">
+        <p> <strong style="color: green;">{{'QUESTION.CORRECT_COMMENT'|translate}} :</strong> <strong style="font-size: 0.8rem;">
             {{question.correctComment}}</strong></p>
       </div>
     </ng-container>

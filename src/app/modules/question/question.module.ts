@@ -20,7 +20,8 @@ import { DetailSuggestionComponent } from './detail/detail-suggestion/detail-sug
     DetailSuggestionComponent
   ],
   exports:[
-    ListComponent
+    ListComponent,
+    DetailComponent
   ],
   declarations: [ListComponent, SaveOrUpdateComponent, DetailComponent, DetailSuggestionComponent]
 })

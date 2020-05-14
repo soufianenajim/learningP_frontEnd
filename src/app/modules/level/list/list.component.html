@@ -1,8 +1,8 @@
 <div class="card">
   <div class="card-header">
-      <h5><i class="fa fa-search" style="margin-right: 4px;"></i>Rechercher</h5>
+      <h5><i class="fa fa-search" style="margin-right: 4px;"></i>{{'ACTION.SEARCH'|translate}}</h5>
       <button type="button" class="btn btn-primary btn-md waves-effect waves-light f-right"
-          (click)="openDialog(null)"> <i class="fa fa-plus"></i> Ajouter
+          (click)="openDialog(null)"> <i class="fa fa-plus"></i> {{'ACTION.ADD'|translate}}
       </button>
   </div>
 
@@ -13,7 +13,7 @@
           <div class="row">
               <div class="col-sm-6">
                   <div class="row">
-                      <label class="col-sm-3 col-form-label" style="font-weight: bold;color: #757575;">Nom</label>
+                      <label class="col-sm-3 col-form-label" style="font-weight: bold;color: #757575;">{{'GLOBAL.NAME'|translate}}</label>
                       <div class="col-sm-9" >
                           <input type="text" formControlName="name" class="form-control">
 
@@ -24,10 +24,10 @@
                 <div class="form-group row justify-content-center">
                     <button type="button" style="margin-right: 20px" (click)="search(false)"
                         class="btn btn-success btn-md waves-effect waves-light">
-                        <i class="fa fa-search"></i>Rechercher
+                        <i class="fa fa-search"></i>{{'ACTION.SEARCH'|translate}}
                     </button>
                     <button type="button" (click)="reset()" class="btn btn-danger btn-md waves-effect waves-light">
-                        <i class="fa fa-close"></i>Réinitialiser
+                        <i class="fa fa-close"></i>{{'ACTION.RESET'|translate}}
                     </button>
                 </div>
               </div>
@@ -51,7 +51,7 @@
 
           <!-- Name Column -->
           <ng-container matColumnDef="name">
-              <th mat-header-cell *matHeaderCellDef> Nom </th>
+              <th mat-header-cell *matHeaderCellDef> {{'GLOBAL.NAME'|translate}} </th>
               <td mat-cell *matCellDef="let element"> {{element.name}} </td>
           </ng-container>
 

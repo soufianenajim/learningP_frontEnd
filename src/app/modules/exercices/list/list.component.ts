@@ -5,7 +5,7 @@ import { Exercices } from '../../../core/models/exercices.model';
 import { FormGroup, FormControl } from '@angular/forms';
 import { ExercicesService } from '../../../core/services/exercices/exercices.service';
 import { DetailComponent } from '../detail/detail.component';
-import { SaveOrUpdateComponent } from '../save-or-update/save-or-update.component';
+import { SaveOrUpdateExComponent } from '../save-or-update/save-or-update.component';
 import { ModuleService } from '../../../core/services/module/module.service';
 import { PersonalizeComponent } from '../personalize/personalize.component';
 import { TranslateService } from '@ngx-translate/core';
@@ -17,7 +17,7 @@ import swal from 'sweetalert2';
   styleUrls: ['./list.component.css']
 })
 export class ListComponent implements OnInit {
-  displayedColumns: string[] = ["name", "module","type","actions"];
+  displayedColumns: string[] = ["name","cour", "module","type","actions"];
   //dataSource = new MatTableDataSource<PeriodicElement>(ELEMENT_DATA);
   dataSource: MatTableDataSource<Exercices>;
 
@@ -104,7 +104,7 @@ export class ListComponent implements OnInit {
     });
   }
   openDialog(data) {
-    const dialogRef = this.dialog.open(SaveOrUpdateComponent, {
+    const dialogRef = this.dialog.open(SaveOrUpdateExComponent, {
       width: "80%",
       data: data,
       disableClose: true,

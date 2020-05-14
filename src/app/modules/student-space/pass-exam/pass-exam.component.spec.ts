@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { SaveOrUpdateComponent } from './save-or-update.component';
+import { PassExamComponent } from './pass-exam.component';
 
-describe('SaveOrUpdateComponent', () => {
-  let component: SaveOrUpdateComponent;
-  let fixture: ComponentFixture<SaveOrUpdateComponent>;
+describe('PassExamComponent', () => {
+  let component: PassExamComponent;
+  let fixture: ComponentFixture<PassExamComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ SaveOrUpdateComponent ]
+      declarations: [ PassExamComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(SaveOrUpdateComponent);
+    fixture = TestBed.createComponent(PassExamComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
