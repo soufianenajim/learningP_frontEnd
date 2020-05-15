@@ -30,7 +30,8 @@
     "ALREADY_LAUNCHED": "already launched",
     "LAUNCH": "Launch",
     "BACK": "Previous",
-    "NEXT": "Next"
+    "NEXT": "Next",
+    "VALIDATE":"Validate"
   },
   "LANGUAGE": {
     "FRENCH": "French",
@@ -73,7 +74,10 @@
     "LAUNCHED": "Launched !",
     "LAUNCHED_MESSAGE": "Course  has been launched",
     "DELETE": "Delete cour ?",
-    "DELETED": "Le cour a été supprimé."
+    "DELETED": "Course has been deleted.",
+    "FINISHED":"Course finished",
+    "START":"Start course",
+    "PROGRESSION":"Course progression"
   },
   "ERRORS": {
     "EMPTY_FIELD": "Field must not be empty.",
@@ -137,13 +141,32 @@
     "ADD_SUGGESTION": "Add suggestion",
     "CORRECT": "Correct",
     "INCORRECT": "Incorrect"
+    
   },
   "EXAM": {
     "SAVE_SUCCESS": "Exam saved successfully",
     "EXIST": "Exam already exists!",
     "DELETE": "Delete exam?",
-    "DELETED": "Exam has been deleted."
+    "DELETED": "Exam has been deleted.",
+    "PROGRESSION":"Exam progress",
+    "SCORE":"Exam score",
+    "SCORE_FINAL":"Score final",
+    "FINISHED": "Exam finished",
+    "START":"Start exam",
+    "REMAINING_TIME":"Remaining time",
+    "HOUR":"Hour",
+    "MINUTE":"Minute",
+    "SECOND":"Second"
   },
+  "QUIZ": {
+    "FINISHED": "Quiz finished",
+    "SCORE":"Quiz score"
+    
+    },
+    "TD": {
+      "FINISHED": "Td finished"
+      },
+      
   "EXERCICES": {
     "SAVE_SUCCESS": "Exercices saved successfully",
     "EXIST": "Exercices already exists!",

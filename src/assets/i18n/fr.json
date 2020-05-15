@@ -6,7 +6,7 @@
   "MENU_ITEM": {
     "HOME": "Tableau de bord",
     "MANAGED_MODULE": "Module",
-    "COURSE": "Cour",
+    "COURSE": "Cours",
     "CHAPTER": "Chapitre",
     "PARAGRAPH": "Paragraphe",
     "STUDENT_SPACE": "Espace Etudiant",
@@ -28,7 +28,8 @@
     "CANCEL_CONFIRMATION": "Non",
     "CONFIRMATION_MESSAGE": "Vous ne pourrez pas revenir en arrière",
     "BACK": "Précédent",
-    "NEXT": "Suivant"
+    "NEXT": "Suivant",
+    "VALIDATE":"Valider"
   },
   "LANGUAGE": {
     "FRENCH": "Français",
@@ -52,7 +53,7 @@
   },
   "CHAPTER": {
     "NAME": "Nom",
-    "COURSE": "Cour",
+    "COURSE": "Cours",
     "MODULE": "Module",
     "SELECT_COURSE": "Selectionner un cour"
   },
@@ -68,7 +69,10 @@
     "SELECT_MODULE": "Select module",
     "LAUNCH": "Lancer ce cours immédiatement ?",
     "LAUNCHED": "Lancé !",
-    "LAUNCHED_MESSAGE": "le cour à été lancé "
+    "LAUNCHED_MESSAGE": "le cour à été lancé ",
+    "FINISHED":"Cours terminé",
+    "START":"Commencer cours",
+    "PROGRESSION":"Progression des cours"
   },
   "ERRORS": {
     "EMPTY_FIELD": "Le champ ne doit pas être vide.",
@@ -137,8 +141,24 @@
     "SAVE_SUCCESS": "Examen enregistré avec succès",
     "EXIST": "Cette examen existe déjà!",
     "DELETE": "Supprimer examen?",
-    "DELETED": "L'examen a été supprimé."
+    "DELETED": "L'examen a été supprimé.",
+    "PROGRESSION":"Progression d'examen",
+    "SCORE":"Score d'examen",
+    "SCORE_FINAL":"Score final",
+    "FINISHED": "Examen terminé",
+    "START":"Commencer examen",
+    "REMAINING_TIME":"Temps restant",
+    "HOUR":"Heure",
+    "MINUTE":"Minute",
+    "SECOND":"Seconde"
   },
+  "QUIZ": {
+    "FINISHED": "Quiz terminé",
+    "SCORE":"Score du quiz"
+    },
+    "TD": {
+      "FINISHED": "Td terminé"
+      },
   "EXERCICES": {
     "SAVE_SUCCESS": "Exercices  enregistré avec succès",
     "EXIST": "Cette exercices existe déjà!",
@@ -160,7 +180,7 @@
     "START_TIME": "Heure de début",
     "END_TIME": "Heure de fin",
     "MODULE": "Module",
-    "COURSE": "Cour",
+    "COURSE": "Cours",
     "TYPE": "Type",
     "SCALE": "Barème",
     "SCALE_INTERVAL": "Le barème doit être comprise entre 5 et 100",

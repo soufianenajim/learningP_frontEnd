@@ -54,25 +54,18 @@
 
       <!-- Position Column -->
       <ng-container matColumnDef="name">
-        <th mat-header-cell *matHeaderCellDef> {{'MODULE.NAME'|translate}} </th>
+        <th mat-header-cell *matHeaderCellDef> Module </th>
         <td mat-cell *matCellDef="let element"> {{element.module.name}} </td>
       </ng-container>
-
-      <!-- Name Column -->
-      <ng-container matColumnDef="professeur">
-        <th mat-header-cell *matHeaderCellDef> {{'MODULE.PROFESSOR'|translate}} </th>
-        <td mat-cell *matCellDef="let element">
-          {{element.module.professor!=null?element.module.professor.firstName+' '+element.module.professor.lastName:'---'}} </td>
-      </ng-container>
-      <ng-container matColumnDef="cour">
-        <th mat-header-cell *matHeaderCellDef> Courses (Progression) </th>
-        <td  mat-cell *matCellDef="let element">
+      <ng-container matColumnDef="startCourse">
+        <th mat-header-cell *matHeaderCellDef class="center-action"> {{'COURSE.START'|translate}} </th>
+        <td  mat-cell *matCellDef="let element" class="center-action">
           <div class="btn-group btn-group-sm">
 
             <button mat-icon-button  (click)="openProgressionCour(element)">
               <span class="fa fa-play" style="color: #007bff"></span>
           </button>
-            {{element.progressionCour}} %
+          
             
         
 
@@ -81,27 +74,44 @@
         </td>
       </ng-container>
      
+      <ng-container matColumnDef="cour">
+        <th mat-header-cell *matHeaderCellDef class="center-action"> {{'COURSE.PROGRESSION'|translate}} </th>
+        <td  mat-cell *matCellDef="let element" class="center-action">
+         
+            {{element.progressionCour}} %
+         
+        </td>
+      </ng-container>
+      
       <ng-container matColumnDef="exam">
-        <th mat-header-cell *matHeaderCellDef> Exams (Progression ) </th>
+        <th mat-header-cell *matHeaderCellDef> {{'EXAM.START'|translate}} </th>
         <td  mat-cell *matCellDef="let element">
           <div class="btn-group btn-group-sm">
 
             <button mat-icon-button (click)="openExam(element)" >
               <span class="fa fa-play" style="color: #007bff"></span>
           </button>
-           {{element.progressionExam}} %
+           
 
 
           </div>
         </td>
       </ng-container>
+      <ng-container matColumnDef="examFinished">
+        <th mat-header-cell *matHeaderCellDef> {{'EXAM.FINISHED'|translate}} </th>
+        <td  mat-cell *matCellDef="let element">
+          <span *ngIf="element.examFinished" class="fa fa-check-circle" style="color: green;font-size: 1.5em;"></span>
+          <span *ngIf="!element.examFinished" class="fa fa-minus-circle" style="color: red;font-size: 1.5em;"></span>
+        </td>
+      </ng-container>
+
       <ng-container matColumnDef="noteExam">
-        <th mat-header-cell *matHeaderCellDef> Note Exam </th>
+        <th mat-header-cell *matHeaderCellDef>{{'EXAM.SCORE'|translate}} </th>
         <td mat-cell *matCellDef="let element">
           {{element.noteExam}}% </td>
       </ng-container>
       <ng-container matColumnDef="noteF">
-        <th mat-header-cell *matHeaderCellDef> Note Final </th>
+        <th mat-header-cell *matHeaderCellDef> {{'EXAM.SCORE_FINAL'|translate}} </th>
         <td mat-cell *matCellDef="let element">
           {{element.noteFinal!=null?element.noteFinal:'---'}} </td>
       </ng-container>

@@ -168,7 +168,7 @@
       </ng-container>
       <!-- CodeColumn -->
       <ng-container matColumnDef="correctComment">
-        <th mat-header-cell *matHeaderCellDef> CorrectComment </th>
+        <th mat-header-cell *matHeaderCellDef> {{'QUESTION.CORRECT_COMMENT'|translate}} </th>
         <td mat-cell *matCellDef="let element" title="{{element?.correctComment}}">
           {{element?.correctComment.length>150?(element?.correctComment | textWidth:150 ) +' ...':element?.correctComment}}
         </td>

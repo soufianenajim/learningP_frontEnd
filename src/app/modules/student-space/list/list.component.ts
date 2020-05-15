@@ -19,7 +19,7 @@ import { ExamService } from "../../../core/services/exam/exam.service";
   styleUrls: ["./list.component.css"]
 })
 export class ListComponent implements OnInit {
-  displayedColumns: string[] = ["name", "professeur","cour","exam","noteExam", "noteF"];
+  displayedColumns: string[] = ["name", "startCourse","cour","exam","examFinished","noteExam", "noteF"];
   //dataSource = new MatTableDataSource<PeriodicElement>(ELEMENT_DATA);
   dataSource: MatTableDataSource<ProgressionModule>;
 
