@@ -29,7 +29,8 @@
     "CONFIRMATION_MESSAGE": "Vous ne pourrez pas revenir en arrière",
     "BACK": "Précédent",
     "NEXT": "Suivant",
-    "VALIDATE":"Valider"
+    "VALIDATE":"Valider",
+    "NOT_EXIST":"Pas encore existe"
   },
   "LANGUAGE": {
     "FRENCH": "Français",

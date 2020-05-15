@@ -1,4 +1,7 @@
-
+<div class="row" *ngIf="isNotTd">
+  <label class="col-sm-2 col-form-label" style="color: black;">{{'EXAM.REMAINING_TIME'|translate}} :</label>
+  <label class="col-sm-3 col-form-label"  [style.color]="timeLeft>=300?'#4c3ece':'red'"> {{secondsToHms(timeLeft)}} </label>
+</div>
   <h4 class="center-action">{{tdOrQuiz?.name}}</h4>
   <h5 class="center-action"></h5>
   <ng-container *ngFor="let question of tdOrQuiz?.questions; let i = index">

@@ -96,7 +96,7 @@
             <button mat-icon-button>
               <span class="fa fa-desktop" (click)="openDialogDetail(row)" ngbTooltip="{{'ACTION.SHOW' | translate}}" style="color: #007bff"></span>
             </button>
-            <button mat-icon-button (click)="openDialog(row)"  [style.color]="row.cour.launched?'#a6abb1':'#007bff'" >
+            <button mat-icon-button (click)="openDialog(row)" [disabled]="row.cour.launched" [style.color]="row.cour.launched?'#a6abb1':'#007bff'" >
               <span class="fa fa-edit" ngbTooltip="{{'ACTION.UPDATE' | translate}}" ></span>
             </button>
             <button mat-icon-button (click)="openDialogDelete(row)" [disabled]="row.cour.launched" [style.color]="row.cour.launched?'#a6abb1':'red'" >

@@ -17,12 +17,7 @@ export class PassExamComponent implements OnInit {
   isPastTd;
   progressionModule: ProgressionModule;
   questionCorrectSuggestions = new Map();
-  HOUR:String;
-  HOURS:String;
-  MINUTE:String;
-  MINUTES:String;
-  SECOND:String;
-  SECONDS:String;
+ 
   constructor(
     public dialogRef: MatDialogRef<PassExamComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any,
@@ -30,39 +25,20 @@ export class PassExamComponent implements OnInit {
     private progressionModuleService: ProgressionModuleService,
     private translateService:TranslateService
   ) {
-    console.log('data',data);
-    this.progressionModule = data;
-    this.examService.findByModule(data.module.id).subscribe((resp: any) => {
-      this.exam = resp[0];
-      console.log('exam',new Date(this.exam.endDateTime).getTime() - new Date(this.exam.startDateTime).getTime());
-     this.timeLeft=(new Date(this.exam.endDateTime).getTime() - new Date(this.exam.startDateTime).getTime())/1000;
-     this.startTimer();
-    });
-  }
-  timeLeft: number ;
-  interval;
-
-  startTimer() {
-    this.interval = setInterval(() => {
-      if(this.timeLeft > 0) {
-        this.timeLeft--;
-      } else{
-        this.validateExam();
-      }
-    },1000)
+if(data!=null){
+  this.progressionModule = data;
+  this.exam=data.module.exams[0];
+}
+  
+   
   }
 
+  
   ngOnInit() {
-    this.HOUR=this.getI18n('EXAM.HOUR');
-    this.HOURS=this.HOUR.concat('s');
-    this.MINUTE=this.getI18n('EXAM.MINUTE');
-    this.MINUTES=this.MINUTE.concat('s');
-    this.SECOND=this.getI18n('EXAM.SECOND');
-    this.SECONDS=this.SECOND.concat('s');
-   // this.startTimer()
+   
   }
   validateExam() {
-    clearInterval(this.interval);
+   
     this.questionCorrect = [];
     this.questionCorrectSuggestions.forEach((value, key) => {
       if (this.compareQuestionWithChoiceSuggestions(key, value)) {
@@ -93,22 +69,11 @@ export class PassExamComponent implements OnInit {
     });
     return JSON.stringify(suggestionCorrect) == JSON.stringify(suggestions);
   }
-  secondsToHms(d) {
-    d = Number(d);
-    var h = Math.floor(d / 3600);
-    var m = Math.floor(d % 3600 / 60);
-    var s = Math.floor(d % 3600 % 60);
 
-    var hDisplay = h > 0 ? h + (h == 1 ? ' '+this.HOUR+', ' : ' '+this.HOURS+' , ') : "";
-    var mDisplay = m > 0 ? m + (m == 1 ? ' '+this.MINUTE+', ' : ' '+this.MINUTES+' , ') : "";
-    var sDisplay = s > 0 ? s + (s == 1 ? ' '+this.SECOND+', ' : ' '+this.SECONDS):"";
-    return hDisplay + mDisplay + sDisplay; 
-}
-getI18n(name): string {
-  let i18;
-  this.translateService.get(name).subscribe((value: string) => {
-    i18 = value;
-  });
-  return i18;
+onFinished(event){
+  if(event){
+    this.validateExam();
+  }
+
 }
 }

@@ -372,10 +372,12 @@ button.close {
 /**  ===================== Tooltip css start
 ==========================  **/
 
+**/
+
 .mytooltip {
   display: inline;
-  position: relative;
-  z-index: 9999;
+  position: absolute;
+  z-index: 1;
 }
 .mytooltip .tooltip-item {
   background: rgba(0, 0, 0, 0.1);
@@ -401,7 +403,7 @@ button.close {
   pointer-events: none;
 }
 .mytooltip .tooltip-content::after {
-  content: "";
+  content: '';
   top: 100%;
   left: 50%;
   border: solid transparent;
@@ -421,7 +423,7 @@ button.close {
   margin-right: 1em;
 }
 .mytooltip .tooltip-item::after {
-  content: "";
+  content: '';
   position: absolute;
   width: 360px;
   height: 20px;
@@ -462,10 +464,18 @@ button.close {
   -webkit-transform: translate3d(0, 0, 0) scale3d(1, 1, 1);
   transform: translate3d(0, 0, 0) scale3d(1, 1, 1);
 }
+.tooltip-item2:after {
+  content: '...';
+}
 .mytooltip:hover .tooltip-item2 {
-  color: #fff;
+  color: #34495e;
   -webkit-transform: translate3d(0, -0.9em, 0);
   transform: translate3d(0, -0.9em, 0);
+}
+.mytooltip:hover .tooltip-item2 a:after {
+  color: #fff;
+  content: 'Detail';
+  text-decoration: underline;
 }
 .mytooltip:hover .tooltip-text3 {
   -webkit-transition-delay: 0s;
@@ -515,7 +525,7 @@ button.close {
   cursor: pointer;
   z-index: 100;
   position: relative;
-  display: inline-block;
+  /* display: inline-block; */
   font-weight: 700;
   font-size: 14px;
   -webkit-transition: background-color 0.3s, color 0.3s, -webkit-transform 0.3s;
@@ -647,7 +657,7 @@ button.close {
   opacity: 0;
 }
 .tooltip-content2::after {
-  content: "";
+  content: '';
   position: absolute;
   top: 100%;
   left: 50%;
@@ -684,23 +694,23 @@ button.close {
   transition-timing-function: ease, cubic-bezier(0.6, 0, 0.4, 1);
 }
 .tooltip-content3::after {
-  content: "";
+  content: '';
   position: absolute;
   width: 16px;
   height: 16px;
   left: 50%;
   margin-left: -8px;
   top: 100%;
-  background: #00aeef;
+  background: #00AEEF;
   -webkit-transform: translate3d(0, -60%, 0) rotate3d(0, 0, 1, 45deg);
   transform: translate3d(0, -60%, 0) rotate3d(0, 0, 1, 45deg);
 }
 .tooltip-content4 {
   position: absolute;
   z-index: 99;
-  width: 360px;
+  width: 600px;
   left: 50%;
-  margin-left: -180px;
+  margin-left: -300px;
   bottom: -5px;
   text-align: left;
   background: #0073aa;
@@ -709,7 +719,7 @@ button.close {
   line-height: 27px;
   padding: 1.5em;
   color: #fff;
-  border-bottom: 55px solid #34495e;
+  border-bottom: 31px solid #34495e;
   cursor: default;
   pointer-events: none;
   border-radius: 5px;
@@ -722,6 +732,7 @@ button.close {
   color: #2b2b2b;
 }
 .tooltip-content4 .tooltip-text2 {
+  white-space: normal;
   opacity: 0;
   -webkit-transform: translate3d(0, 1.5em, 0);
   transform: translate3d(0, 1.5em, 0);
@@ -734,7 +745,7 @@ button.close {
   width: 300px;
   left: 50%;
   bottom: 100%;
-  font-size: 20px;
+  font-size: 14px;
   line-height: 1.4;
   text-align: center;
   font-weight: 400;
@@ -752,7 +763,7 @@ button.close {
   display: block;
 }
 .tooltip-content5::after {
-  content: "";
+  content: '';
   bottom: -20px;
   left: 50%;
   border: solid transparent;
@@ -774,7 +785,7 @@ button.close {
 }
 .tooltip-content5 .tooltip-inner2 {
   background: #2b2b2b;
-  padding: 40px;
+  padding: 15px;
   -webkit-transform: translate3d(0, 100%, 0);
   transform: translate3d(0, 100%, 0);
   webkit-transition: -webkit-transform 0.3s;
@@ -791,6 +802,9 @@ a.mytooltip {
 }
 .tooltip-icon button i {
   margin-right: 0;
+}
+.tooltip{
+  min-width: 5rem!important;
 }
 /**====== Tooltip css end ======**/
 /**  ===================== Slider css start

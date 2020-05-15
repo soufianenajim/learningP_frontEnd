@@ -143,4 +143,9 @@ export class ReadCourComponent implements OnInit {
   cancel() {
     this.dialogRef.close(true);
   }
+  onFinished(event){
+    if(event){
+      this.validateQuiz();
+    }
+  }
 }

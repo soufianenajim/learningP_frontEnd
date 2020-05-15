@@ -130,24 +130,31 @@ export class ListComponent implements OnInit {
 
   }
   openExam(data) {
-   
+    let   dialogRef;
+    this.examService.findByModule(data.module.id).subscribe((resp: any) => {
+      data.module.exams=resp;
       
-      const dialogRef = this.dialog.open(PassExamComponent, {
+       dialogRef = this.dialog.open(PassExamComponent, {
         width: "90%",
         data: data,
         disableClose: true,
         autoFocus: false,
         maxHeight: "90vh",
       });
-  
       dialogRef.afterClosed().subscribe(result => {
+        console.log('result',result);
         if(result){
           this.search(false);
         }
         
       });
     
+    });
     
+    
+
+
+      
 
   }
 }

@@ -33,6 +33,8 @@ export class SaveOrUpdateExComponent implements OnInit {
   invalidQuestion = false;
   @Input() isExam = false;
   @Input() exam;
+  isNotTd = false;
+  minDateTime = new Date();
 
   firstFormGroup = this._formBuilder.group({
     name: new FormControl("", [
@@ -55,15 +57,14 @@ export class SaveOrUpdateExComponent implements OnInit {
     questions: new FormControl("", Validators.required),
   });
   isClickNext1 = false;
-  exercices = new Exercices();
-  examOrExercices:any;
+  examOrExercices: any;
   validSecondForm = false;
   isClicNextSecondForm = false;
   private readonly notifier: NotifierService;
   constructor(
     private moduleService: ModuleService,
     private exercicesService: ExercicesService,
-    private examService:ExamService,
+    private examService: ExamService,
     private questionSerivce: QuestionService,
     private tokenStorageService: TokenStorageService,
     public dialogRef: MatDialogRef<SaveOrUpdateExComponent>,
@@ -75,14 +76,10 @@ export class SaveOrUpdateExComponent implements OnInit {
   ) {
     this.notifier = notifierService;
     if (data !== null) {
-      this.exercices = data;
-      this.examOrExercices=data;
-      console.log("this.exercices", this.exercices);
+      this.examOrExercices = data;
       this.buildForm(data);
-
-    }
-    else{
-      this.examOrExercices=new Exercices();
+    } else {
+      this.examOrExercices = new Exercices();
     }
   }
   buildForm(data) {
@@ -90,16 +87,17 @@ export class SaveOrUpdateExComponent implements OnInit {
     this.idExercices = data.id;
     this.scale = data.scale;
     const name = data.name;
-    
-    let type, cour,module;
+
+    let type, cour, module;
     if (this.isExam) {
-      type = data.type;
-      cour = data.cour;
-      module=  data.cour.module;
-    }else{
       type = "EXAM";
       cour = new Cour();
-     module=data.module;
+      module = data.module;
+    } else {
+      type = data.type;
+      this.isNotTd = type === "QUIZ";
+      cour = data.cour;
+      module = data.cour.module;
     }
     const startTime = data.startDateTime;
     const endTime = data.endDateTime;
@@ -122,11 +120,11 @@ export class SaveOrUpdateExComponent implements OnInit {
 
   ngOnInit() {
     if (this.isExam) {
+      this.isNotTd = true;
       if (this.exam) {
         this.buildForm(this.exam);
-      }
-      else{
-        this.examOrExercices=new Exam();
+      } else {
+        this.examOrExercices = new Exam();
       }
     }
     const user = this.tokenStorageService.getUser();
@@ -135,23 +133,21 @@ export class SaveOrUpdateExComponent implements OnInit {
     });
   }
   save() {
-    if(!this.isExam){
-      this.exercicesService.saveOrUpdate(this.examOrExercices).subscribe((resp) => {
-        if (this.exercices.type === "TD")
-          this.successNotifaction("EXERCICES.TD_SAVE_SUCCESS");
-        else {
-          this.successNotifaction("EXERCICES.QUIZ_SAVE_SUCCESS");
-        }
-      });
-    }
-    else{
+    if (!this.isExam) {
+      this.exercicesService
+        .saveOrUpdate(this.examOrExercices)
+        .subscribe((resp) => {
+          if (this.examOrExercices.type === "TD")
+            this.successNotifaction("EXERCICES.TD_SAVE_SUCCESS");
+          else {
+            this.successNotifaction("EXERCICES.QUIZ_SAVE_SUCCESS");
+          }
+        });
+    } else {
       this.examService.saveOrUpdate(this.examOrExercices).subscribe((resp) => {
-        
-          this.successNotifaction("EXERCICES.EXAM_SAVE_SUCCESS");
-       
+        this.successNotifaction("EXERCICES.EXAM_SAVE_SUCCESS");
       });
     }
-   
   }
   cancel() {
     this.dialogRef.close(false);
@@ -160,55 +156,64 @@ export class SaveOrUpdateExComponent implements OnInit {
     return c1 && c2 ? c1.id === c2.id : c1 === c2;
   }
   onSelectModule() {
-    if(!this.isExam){
-    const module = this.firstFormGroup.get("module").value;
-    console.log("module", module);
-    this.courService
-      .findByModuleAndNotLaunchd(module.id)
-      .subscribe((resp: any) => {
-        this.listCour = resp;
-      });
+    if (!this.isExam) {
+      const module = this.firstFormGroup.get("module").value;
+      console.log("module", module);
+      this.courService
+        .findByModuleAndNotLaunchd(module.id)
+        .subscribe((resp: any) => {
+          this.listCour = resp;
+        });
     }
   }
   nextForm1(stepper: MatStepper) {
     this.isClickNext1 = true;
     const name = this.firstFormGroup.get("name").value;
-   
+
     const startTime = this.firstFormGroup.get("startTime").value;
     const endTime = this.firstFormGroup.get("endTime").value;
-    
+
     this.examOrExercices.name = name;
-    if(!this.isExam){
+    if (!this.isExam) {
       const cour = this.firstFormGroup.get("cour").value;
       const type = this.firstFormGroup.get("type").value;
+      if (type === "TD") {
+        this.firstFormGroup.get("startTime").setValue(new Date());
+        this.firstFormGroup.get("endTime").setValue(new Date());
+        this.examOrExercices.startDateTime = null;
+        this.examOrExercices.endDateTime = null;
+      }else{
+        this.examOrExercices.startDateTime = startTime;
+        this.examOrExercices.endDateTime = endTime;
+      }
       this.examOrExercices.cour = cour;
-    this.examOrExercices.type = type;
-    }else{
-      const module=this.firstFormGroup.get("module").value;
+      this.examOrExercices.type = type;
+    } else {
+      const module = this.firstFormGroup.get("module").value;
       this.firstFormGroup.get("cour").setValue(new Cour());
       this.firstFormGroup.get("type").setValue("EXAM");
-      this.examOrExercices.module=module
-    }
-    
-    this.examOrExercices.startDateTime = startTime;
+      this.examOrExercices.module = module;
+      this.examOrExercices.startDateTime = startTime;
     this.examOrExercices.endDateTime = endTime;
-    if(!this.isExam){
+    }
+
+    
+    if (!this.isExam) {
       if (this.firstFormGroup.valid) {
-        this.exercicesService.isExist(this.exercices).subscribe(
+        this.exercicesService.isExist(this.examOrExercices).subscribe(
           (resp) => {
             stepper.next();
           },
           (error) => {
-            this.exercices.type === "TD"
+            this.examOrExercices.type === "TD"
               ? this.erorrNotifaction("EXERCICES.TD_EXIST")
               : this.erorrNotifaction("EXERCICES.QUIZ_EXIST");
           }
         );
       }
-    }else{
-      stepper.next()
+    } else {
+      stepper.next();
     }
-    
   }
   nextForm2(stepper: MatStepper) {
     this.isClicNextSecondForm = true;
@@ -274,5 +279,9 @@ export class SaveOrUpdateExComponent implements OnInit {
   onChangeInvalidQuestion(event) {
     console.log("event", event);
     this.invalidQuestion = event;
+  }
+  onSelectType() {
+    const type = this.firstFormGroup.get("type").value;
+    this.isNotTd = type === "QUIZ";
   }
 }

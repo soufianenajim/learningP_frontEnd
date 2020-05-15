@@ -61,8 +61,9 @@ export class PersonalizeComponent implements OnInit {
   }
  
   ngOnInit() {
-    if (this.data.id !== undefined) {
-      console.log("data", this.data);
+    console.log("data", this.data);
+    if (this.data!=undefined && this.data.id !== undefined) {
+     
       this.buildForm(this.data);
     }
   }

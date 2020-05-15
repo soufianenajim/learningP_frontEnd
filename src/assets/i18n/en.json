@@ -31,7 +31,8 @@
     "LAUNCH": "Launch",
     "BACK": "Previous",
     "NEXT": "Next",
-    "VALIDATE":"Validate"
+    "VALIDATE":"Validate",
+    "NOT_EXIST":"Not yet exists"
   },
   "LANGUAGE": {
     "FRENCH": "French",

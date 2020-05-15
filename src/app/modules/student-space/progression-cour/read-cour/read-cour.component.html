@@ -21,7 +21,7 @@
     <form [formGroup]="secondFormGroup">
       <ng-template matStepLabel>Td</ng-template>
      
-        <app-td-or-quiz [tdOrQuiz]="td" [questionCorrectSuggestions]="questionCorrectSuggestions"
+        <app-td-or-quiz [tdOrQuiz]="td" [isNotTd]="false" [questionCorrectSuggestions]="questionCorrectSuggestions"
           [isPastTdorQuiz]="isPastTd" [questionCorrect]="questionCorrect"></app-td-or-quiz>
 
 
@@ -45,8 +45,8 @@
   </mat-step>
   <mat-step>
     <ng-template matStepLabel>Quiz</ng-template>
-    <app-td-or-quiz [tdOrQuiz]="quiz" [questionCorrectSuggestions]="questionCorrectSuggestions" [quizFinished]="quizFinished"
-      [isPastTdorQuiz]="isPastQuiz" [questionCorrect]="questionCorrect"></app-td-or-quiz>
+    <app-td-or-quiz [tdOrQuiz]="quiz" [isNotTd]="true" [questionCorrectSuggestions]="questionCorrectSuggestions" [quizFinished]="quizFinished"
+      [isPastTdorQuiz]="isPastQuiz" [questionCorrect]="questionCorrect" (onFinished)="onFinished($event)"></app-td-or-quiz>
     <button class="btn btn-success btn-md waves-effect waves-light f-left" (click)="validateQuiz()" [disabled]="quizFinished"
       style="margin-right: 15px">
       <i class="fa fa-check"></i>{{'ACTION.VALIDATE'|translate}} </button>

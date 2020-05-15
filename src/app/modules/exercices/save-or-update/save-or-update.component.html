@@ -36,7 +36,7 @@
       <div class="form-group row" *ngIf="!this.isExam">
         <label class="col-sm-2 col-form-label">{{'EXERCICES.TYPE'| translate}}</label>
         <div class="col-sm-10">
-          <select name="select" name="type" formControlName="type" class="form-control">
+          <select name="select" name="type" formControlName="type" class="form-control" (change)="onSelectType()">
            <option value="" disabled selected>Selectioner un type</option>
             <option value="TD">Td</option>
             <option value="QUIZ">Quiz</option>
@@ -60,12 +60,12 @@
             {{'ERRORS.EMPTY_FIELD' | translate}}</div>
         </div>
       </div>
-      <div class="form-group row">
+      <div class="form-group row" *ngIf="isNotTd">
         <label class="col-sm-2 col-form-label">{{'EXERCICES.START_TIME'| translate}}</label>
         <div class="col-sm-10">
           <label class="input-group date m-0">
 
-            <input class="form-control" [disabled]="true" formControlName="startTime" [owlDateTime]="dtStart">
+            <input class="form-control" [min]="minDateTime" [disabled]="true" formControlName="startTime" [owlDateTime]="dtStart">
 
             <span class="input-group-addon bg-default" style="padding: 0.2rem;
             background-color: #0738d8!important;" [owlDateTimeTrigger]="dtStart">
@@ -78,12 +78,12 @@
         </div>
 
       </div>
-      <div class="form-group row">
+      <div class="form-group row" *ngIf="isNotTd">
         <label class="col-sm-2 col-form-label">{{'EXERCICES.END_TIME'| translate}}</label>
         <div class="col-sm-10">
           <label class="input-group date m-0">
 
-            <input class="form-control" [disabled]="true" formControlName="endTime" [owlDateTime]="dtEnd">
+            <input class="form-control" [disabled]="true" [min]="firstFormGroup.value.startTime" formControlName="endTime" [owlDateTime]="dtEnd">
 
             <span class="input-group-addon bg-default" style="padding: 0.2rem;
             background-color: #0738d8!important;" [owlDateTimeTrigger]="dtEnd">
@@ -115,7 +115,7 @@
 
 
 
-      <app-personalize [data]="exercices" [isClickSave]="isClicNextSecondForm" [exercicesForm]="secondFormGroup" (changeNote)="onChangeNote($event)" (invalidQuestion)="onChangeInvalidQuestion($event)"></app-personalize>
+      <app-personalize [data]="examOrExercices" [isClickSave]="isClicNextSecondForm" [exercicesForm]="secondFormGroup" (changeNote)="onChangeNote($event)" (invalidQuestion)="onChangeInvalidQuestion($event)"></app-personalize>
       <button type="button" (click)="cancel()" class="btn btn-danger btn-md waves-effect waves-light f-light"
         style="margin-right: 15px">
         <i class="fa fa-close"></i>{{'ACTION.CANCEL'| translate}}
