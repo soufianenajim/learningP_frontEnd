@@ -83,7 +83,7 @@
         <div class="col-sm-10">
           <label class="input-group date m-0">
 
-            <input class="form-control" [disabled]="true" [min]="firstFormGroup.value.startTime" formControlName="endTime" [owlDateTime]="dtEnd">
+            <input class="form-control" [disabled]="true" [min]="minEnDatTime()" formControlName="endTime" [owlDateTime]="dtEnd">
 
             <span class="input-group-addon bg-default" style="padding: 0.2rem;
             background-color: #0738d8!important;" [owlDateTimeTrigger]="dtEnd">

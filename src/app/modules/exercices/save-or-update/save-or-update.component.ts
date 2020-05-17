@@ -1,4 +1,4 @@
-import { Component, OnInit, Inject, Input } from "@angular/core";
+import { Component, OnInit, Inject, Input, ɵConsole } from "@angular/core";
 import {
   FormGroup,
   FormControl,
@@ -17,6 +17,7 @@ import { NotifierService } from "angular-notifier";
 import { Exam } from "../../../core/models/exam.model";
 import { Cour } from "../../../core/models/cour.model";
 import { ExamService } from "../../../core/services/exam/exam.service";
+import moment from 'moment';
 
 @Component({
   selector: "app-save-or-update-ex",
@@ -44,7 +45,7 @@ export class SaveOrUpdateExComponent implements OnInit {
     type: new FormControl("", Validators.required),
     module: new FormControl(null, Validators.required),
     cour: new FormControl(null, Validators.required),
-    startTime: new FormControl("", Validators.required),
+    startTime: new FormControl(moment().format(), Validators.required),
     endTime: new FormControl("", Validators.required),
   });
 
@@ -119,6 +120,8 @@ export class SaveOrUpdateExComponent implements OnInit {
   }
 
   ngOnInit() {
+    console.log('moment(item.publishDate).date()',new Date(moment().add(10,'minutes').format()))
+    console.log('date',new Date());
     if (this.isExam) {
       this.isNotTd = true;
       if (this.exam) {
@@ -169,10 +172,8 @@ export class SaveOrUpdateExComponent implements OnInit {
   nextForm1(stepper: MatStepper) {
     this.isClickNext1 = true;
     const name = this.firstFormGroup.get("name").value;
-
     const startTime = this.firstFormGroup.get("startTime").value;
     const endTime = this.firstFormGroup.get("endTime").value;
-
     this.examOrExercices.name = name;
     if (!this.isExam) {
       const cour = this.firstFormGroup.get("cour").value;
@@ -197,7 +198,8 @@ export class SaveOrUpdateExComponent implements OnInit {
     this.examOrExercices.endDateTime = endTime;
     }
 
-    
+    console.log('!this.isExam',!this.isExam);
+    console.log('this.firstFormGroup.valid',this.firstFormGroup.valid);
     if (!this.isExam) {
       if (this.firstFormGroup.valid) {
         this.exercicesService.isExist(this.examOrExercices).subscribe(
@@ -284,4 +286,8 @@ export class SaveOrUpdateExComponent implements OnInit {
     const type = this.firstFormGroup.get("type").value;
     this.isNotTd = type === "QUIZ";
   }
+    minEnDatTime(){
+      const startTime=this.firstFormGroup.get('startTime').value
+      return moment(startTime).add(10,'minutes').format();
+    }
 }

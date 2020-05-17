@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Output,EventEmitter } from "@angular/core";
+import { Component, OnInit, Input, Output,EventEmitter, AfterViewChecked } from "@angular/core";
 import { Suggestion } from "../../../../../core/models/suggestion.model";
 import { Question } from "../../../../../core/models/question.model";
 import { TranslateService } from "@ngx-translate/core";
@@ -8,7 +8,7 @@ import { TranslateService } from "@ngx-translate/core";
   templateUrl: "./td-or-quiz.component.html",
   styleUrls: ["./td-or-quiz.component.css"],
 })
-export class TdOrQuizComponent implements OnInit {
+export class TdOrQuizComponent implements OnInit ,AfterViewChecked{
   @Input() tdOrQuiz;
   @Input() questionCorrectSuggestions;
   @Input() questionCorrect;
@@ -24,22 +24,30 @@ export class TdOrQuizComponent implements OnInit {
   MINUTES:String;
   SECOND:String;
   SECONDS:String;
+  isChecked=false;
   constructor(private translateService:TranslateService) {
   }
 
   ngOnInit() {
-if(this.isNotTd){
-  this.HOUR=this.getI18n('EXAM.HOUR');
-  this.HOURS=this.HOUR.concat('s');
-  this.MINUTE=this.getI18n('EXAM.MINUTE');
-  this.MINUTES=this.MINUTE.concat('s');
-  this.SECOND=this.getI18n('EXAM.SECOND');
-  this.SECONDS=this.SECOND.concat('s');
-  console.log('tdOrQuiz',this.tdOrQuiz);
-  this.timeLeft=(new Date(this.tdOrQuiz.endDateTime).getTime() - new Date(this.tdOrQuiz.startDateTime).getTime())/1000;
-  this.startTimer();
+  
 
-}
+ 
+  }
+  ngAfterViewChecked(){
+    if(this.isNotTd &&this.tdOrQuiz &&!this.isChecked){
+      console.log('tdOrQuiz',this.tdOrQuiz);
+      this.isChecked=true;
+      this.HOUR=this.getI18n('EXAM.HOUR');
+      this.HOURS=this.HOUR.concat('s');
+      this.MINUTE=this.getI18n('EXAM.MINUTE');
+      this.MINUTES=this.MINUTE.concat('s');
+      this.SECOND=this.getI18n('EXAM.SECOND');
+      this.SECONDS=this.SECOND.concat('s');
+      console.log('tdOrQuiz',this.tdOrQuiz);
+      this.timeLeft=(new Date(this.tdOrQuiz.endDateTime).getTime() - new Date(this.tdOrQuiz.startDateTime).getTime())/1000;
+      this.startTimer();
+     
+    }
   }
   addToCorrect(suggestion, question) {
     if (this.questionCorrectSuggestions.has(question)) {

@@ -27,4 +27,7 @@ export class UserService {
   delete(id) {
     return this.httpClient.delete(this.url + "/delete/" + id);
   }
+  getNotificationsByUser(idUser){
+    return this.httpClient.get(this.url+"/notifications/"+idUser);
+  }
 }

@@ -74,7 +74,7 @@ export class ReadCourComponent implements OnInit {
     console.log('validateCour');
     if (!this.progressionCour.courFinished) {
       this.progressionCour.courFinished = true;
-      this.progressionCour.progression = 30;
+      this.progressionCour.progression = 50;
       this.progressionCourService
         .saveOrUpdate(this.progressionCour)
         .subscribe((resp) => {
@@ -98,34 +98,34 @@ export class ReadCourComponent implements OnInit {
     this.isPastTd = true;
     if (!this.progressionCour.tdFinished) {
       this.progressionCour.tdFinished = true;
-      this.progressionCour.progression = 60;
+      this.progressionCour.progression = 100;
       this.progressionCourService
         .saveOrUpdate(this.progressionCour)
         .subscribe((resp) => {});
     }
   }
-  validateQuiz() {
-    this.questionCorrect = [];
-    this.questionCorrectSuggestions.forEach((value, key) => {
-      if (this.compareQuestionWithChoiceSuggestions(key, value)) {
-    this.questionCorrect.push(key);
-      }
-    });
-    this.isPastQuiz = true;
-    if (!this.progressionCour.quizFinished) {
-      this.progressionCour.quizFinished = true;
-      this.progressionCour.scoreQuiz =
-        (this.questionCorrect.length / this.quiz.questions.length) * 100;
-      this.progressionCour.progression = 100;
-      this.progressionCourService
-        .saveOrUpdate(this.progressionCour)
-        .subscribe((resp) => {
-          this.dialogRef.close(true);
-        });
-    } else {
-      this.dialogRef.close(true);
-    }
-  }
+  // validateQuiz() {
+  //   this.questionCorrect = [];
+  //   this.questionCorrectSuggestions.forEach((value, key) => {
+  //     if (this.compareQuestionWithChoiceSuggestions(key, value)) {
+  //   this.questionCorrect.push(key);
+  //     }
+  //   });
+  //   this.isPastQuiz = true;
+  //   if (!this.progressionCour.quizFinished) {
+  //     this.progressionCour.quizFinished = true;
+  //     this.progressionCour.scoreQuiz =
+  //       (this.questionCorrect.length / this.quiz.questions.length) * 100;
+  //     this.progressionCour.progression = 100;
+  //     this.progressionCourService
+  //       .saveOrUpdate(this.progressionCour)
+  //       .subscribe((resp) => {
+  //         this.dialogRef.close(true);
+  //       });
+  //   } else {
+  //     this.dialogRef.close(true);
+  //   }
+  // }
 
   compareQuestionWithChoiceSuggestions(
     question: Question,
@@ -143,9 +143,9 @@ export class ReadCourComponent implements OnInit {
   cancel() {
     this.dialogRef.close(true);
   }
-  onFinished(event){
-    if(event){
-      this.validateQuiz();
-    }
-  }
+  // onFinished(event){
+  //   if(event){
+  //     this.validateQuiz();
+  //   }
+  // }
 }

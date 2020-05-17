@@ -40,6 +40,27 @@
                  
 
               </li>
+              <li class="header-notification" *ngIf="isStudent">
+                <a href="javascript:;">
+                  <i class="ti-bell"></i>
+                  <span class="badge">{{listNotification.length}}</span>
+                </a>
+                <ul class="show-notification">
+                  <li>
+                    <h6>{{'NOTIFICATIONS.NAME'|translate}}</h6>
+                    <label class="label label-danger">{{'NOTIFICATIONS.NEW'|translate}}</label>
+                  </li>
+                  <li *ngFor="let notification of listNotification">
+                    <div class="media">
+                      <div class="media-body">
+                        <h5 class="notification-user">{{notification.nameParent}}</h5>
+                        <p class="notification-msg">{{notification.nameChild}} {{'NOTIFICATIONS.AVAILABLE_TIME'|translate}}{{getFormaterDate(notification.dateNotif)}}</p>
+                      </div>
+                    </div>
+                  </li>
+                 
+                </ul>
+              </li>
               <li class="user-profile header-notification">
                 <a style="cursor: pointer">
                   <img src="assets/images/avatar-white.png" alt="User-Profile-Image">
@@ -53,14 +74,14 @@
                           onmouseout="this.style.background='white'" style="cursor: pointer"
                           [routerLink]="['/myprofile']">
                           <a>
-                              <i class="ti-user"></i> {{'PROFILE' | translate}}
+                              <i class="ti-user"></i> {{'LOGIN.PROFILE' | translate}}
                           </a>
                       </li>
                       <li onmouseover="this.style.background='#C0C0C0'"
                           onmouseout="this.style.background='white'" style="cursor: pointer"
                           (click)="logout()">
                           <a>
-                              <i class="icofont icofont-sign-out"></i> {{'LOGOUT' | translate}}
+                              <i class="icofont icofont-sign-out"></i> {{'LOGIN.LOGOUT' | translate}}
                           </a>
                       </li>
                   </ul>

@@ -1,5 +1,11 @@
 import { Component, OnInit, ViewChild, Inject } from "@angular/core";
-import { MatTableDataSource, MatPaginator, MatDialog, MAT_DIALOG_DATA, MatDialogRef } from "@angular/material";
+import {
+  MatTableDataSource,
+  MatPaginator,
+  MatDialog,
+  MAT_DIALOG_DATA,
+  MatDialogRef,
+} from "@angular/material";
 import { UserService } from "../../../core/services/user/user.service";
 import { FormGroup, FormControl } from "@angular/forms";
 import { ProgressionCour } from "../../../core/models/progression_cour.model";
@@ -8,47 +14,65 @@ import { ProgressionCourService } from "../../../core/services/progression_cour/
 import { User } from "../../../core/models/user.model";
 import { CourseService } from "../../../core/services/course/course.service";
 import { ReadCourComponent } from "./read-cour/read-cour.component";
-
+import { ExercicesService } from "../../../core/services/exercices/exercices.service";
+import { PassQuizComponent } from "./pass-quiz/pass-quiz.component";
+import moment from "moment";
+import swal from "sweetalert2";
+import { TranslateService } from "@ngx-translate/core";
 
 @Component({
   selector: "progression-cour",
   templateUrl: "./progression-cour.component.html",
-  styleUrls: ["./progression-cour.component.css"]
+  styleUrls: ["./progression-cour.component.css"],
 })
 export class ProgressionCourComponent implements OnInit {
-  displayedColumns: string[] = ["name", "progression","courFinished","tdFinished","quizFinished","startCour","scorQuiz"];
+  displayedColumns: string[] = [
+    "name",
+    "startCour",
+    "courFinished",
+    "tdFinished",
+    "startQuiz",
+    "quizFinished",
+    "progression",
+    "scorQuiz",
+  ];
   //dataSource = new MatTableDataSource<PeriodicElement>(ELEMENT_DATA);
   dataSource: MatTableDataSource<ProgressionCour>;
 
-  demandeProgressionCour: Demande<ProgressionCour> = new Demande<ProgressionCour>();
- 
+  demandeProgressionCour: Demande<ProgressionCour> = new Demande<
+    ProgressionCour
+  >();
+
   progressionCour: ProgressionCour = new ProgressionCour();
   resultsLength;
-  user=new User();
+  user = new User();
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
   listCour;
   progressionCourForm = new FormGroup({
     cour: new FormControl(null),
-   
   });
   dataFromDialog;
   constructor(
     private progressionCourService: ProgressionCourService,
-    private courService:CourseService,
+    private courService: CourseService,
     private dialog: MatDialog,
     public dialogRef: MatDialogRef<ProgressionCourComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: any
+    @Inject(MAT_DIALOG_DATA) public data: any,
+    private exercicesService: ExercicesService,
+    private translateService: TranslateService
   ) {
-    this.dataFromDialog=data;
+    this.dataFromDialog = data;
   }
   ngOnInit() {
-    this.progressionCour.moduleId=this.dataFromDialog.module.id;
-    this.progressionCour.student=this.dataFromDialog.student;
-    this.courService.findByModule(this.progressionCour.moduleId).subscribe(resp=>{
-      this.listCour=resp;
-      this.search(false);
-    })
+    this.progressionCour.moduleId = this.dataFromDialog.module.id;
+    this.progressionCour.student = this.dataFromDialog.student;
+    this.courService
+      .findByModule(this.progressionCour.moduleId)
+      .subscribe((resp) => {
+        this.listCour = resp;
+        this.search(false);
+      });
   }
   search(bool) {
     if (!bool) {
@@ -68,12 +92,17 @@ export class ProgressionCourComponent implements OnInit {
 
   searchByCritere(demande: Demande<ProgressionCour>) {
     console.log("demandeProgressionCour --------", demande);
-    this.progressionCourService.searchByCritere(demande).subscribe((resp: any) => {
-      console.log("progressionCours from database afak ---------------", resp);
-      this.resultsLength = resp.count;
-      this.dataSource = new MatTableDataSource<ProgressionCour>(resp.lignes);
-      this.paginator.pageIndex = demande.page;
-    });
+    this.progressionCourService
+      .searchByCritere(demande)
+      .subscribe((resp: any) => {
+        console.log(
+          "progressionCours from database afak ---------------",
+          resp
+        );
+        this.resultsLength = resp.count;
+        this.dataSource = new MatTableDataSource<ProgressionCour>(resp.lignes);
+        this.paginator.pageIndex = demande.page;
+      });
   }
   initPagination() {
     this.paginator.pageSize = 5;
@@ -89,24 +118,22 @@ export class ProgressionCourComponent implements OnInit {
     this.search(true);
   }
 
-
-
-   delete(row) {
+  delete(row) {
     this.progressionCourService.delete(row.id).subscribe(
-      response => {
+      (response) => {
         console.log("response", response);
         this.search(true);
       },
-      error => {
+      (error) => {
         console.log("error", error);
       }
     );
   }
-  cancel(){
-    this.dialogRef.close(true)
+  cancel() {
+    this.dialogRef.close(true);
   }
-  openCour (data) {
-    data.moduleId= this.progressionCour.moduleId;
+  openCour(data) {
+    data.moduleId = this.progressionCour.moduleId;
     const dialogRef = this.dialog.open(ReadCourComponent, {
       width: "90%",
       data: data,
@@ -115,15 +142,67 @@ export class ProgressionCourComponent implements OnInit {
       maxHeight: "90vh",
     });
 
-    dialogRef.afterClosed().subscribe(result => {
-      if(result){
+    dialogRef.afterClosed().subscribe((result) => {
+      if (result) {
         this.search(false);
       }
-      
+
       console.log("The dialog was closed");
     });
-
   }
-  
-}
+  openQuiz(data) {
+    this.exercicesService
+      .findByCourAndType(data.cour.id, "QUIZ")
+      .subscribe((resp: any) => {
+        data.quiz = resp;
+        const availableToBeStarted = moment().isSameOrAfter(resp.startDateTime);
+        if (availableToBeStarted) {
+          const dialogRef = this.dialog.open(PassQuizComponent, {
+            width: "90%",
+            data: data,
+            disableClose: true,
+            autoFocus: false,
+            maxHeight: "90vh",
+          });
 
+          dialogRef.afterClosed().subscribe((result) => {
+            if (result) {
+              this.search(false);
+            }
+
+            console.log("The dialog was closed");
+          });
+        } else {
+          this.openDialogLaunch(data.quiz);
+        }
+      });
+  }
+  openDialogLaunch(quiz) {
+    swal({
+      title: this.getI18n("QUIZ.AVAILABLE"),
+      text: this.getI18n("QUIZ.AVAILABLE_TIME")+ this.getFormaterDate(quiz.startDateTime),
+      type: "warning",
+      showCancelButton: false,
+      showConfirmButton:false,
+      showCloseButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      reverseButtons: false,
+      focusCancel: true,
+    }).then();
+  }
+
+  getI18n(name): string {
+    let i18;
+    this.translateService.get(name).subscribe((value: string) => {
+      i18 = value;
+    });
+    return i18;
+  }
+  getFormaterDate(date){
+    const lang = this.translateService.getLangs();
+    const length=lang.length-1
+    moment.locale(lang[length]);
+return  moment(date).format('MMMM Do YYYY, h:mm:ss a')
+  }
+}

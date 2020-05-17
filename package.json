@@ -53,6 +53,8 @@
     "jquery-knob": "github:aterrien/jQuery-Knob",
     "jquery-sparkline": "^2.4.0",
     "morris.js": "^0.5.0",
+    "moment": "^2.24.0",
+    "moment-timezone":"^0.5.28",
     "ng-chartist": "^1.1.1",
     "ng-click-outside": "^2.4.1",
     "ng-knob": "^1.0.1",

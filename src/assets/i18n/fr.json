@@ -27,6 +27,7 @@
     "CONFIRMATION": "Oui",
     "CANCEL_CONFIRMATION": "Non",
     "CONFIRMATION_MESSAGE": "Vous ne pourrez pas revenir en arrière",
+    "ALREADY_LAUNCHED": "Déja lancé",
     "BACK": "Précédent",
     "NEXT": "Suivant",
     "VALIDATE":"Valider",
@@ -78,6 +79,19 @@
   "ERRORS": {
     "EMPTY_FIELD": "Le champ ne doit pas être vide.",
     "INVALID_DATA": "Veuillez entrer des données valides."
+  },
+  "LOGIN":{
+    "PROFILE":"Profile",
+    "INCORRECT": "Email ou mot de passe incorrect !",
+    "EXPIRED": "Licence expiré !",
+    "REQUIRED": "Merci de remplir tous les champs",
+    "CNX_FAILED": "Échec de la connexion à DATACERT. Veuillez contacter l'administrateur",
+    "LOCKED": "Votre compte est bloqué . Veuillez réessayer à nouveau au bout de ",
+    "MINUTES": " minutes! ",
+    "LOGIN": "Se connecter",
+    "FORGOT_PASSWORD": "Mot de passe oublié ?",
+    "COPIRIGHT": "Copyright © DATA-CSIRT Tous droits réservés.",
+    "LOGOUT": "Déconnecter"
   },
   "USER": {
     "EMAIL": "Email",
@@ -140,7 +154,7 @@
   },
   "EXAM": {
     "SAVE_SUCCESS": "Examen enregistré avec succès",
-    "EXIST": "Cette examen existe déjà!",
+    "EXIST": "Cet examen existe déjà!",
     "DELETE": "Supprimer examen?",
     "DELETED": "L'examen a été supprimé.",
     "PROGRESSION":"Progression d'examen",
@@ -151,15 +165,26 @@
     "REMAINING_TIME":"Temps restant",
     "HOUR":"Heure",
     "MINUTE":"Minute",
-    "SECOND":"Seconde"
+    "SECOND":"Seconde",
+    "AVAILABLE":"Cet examen  est lancé mais non disponible ",
+    "AVAILABLE_TIME":"Il sera disponible à : "
   },
   "QUIZ": {
     "FINISHED": "Quiz terminé",
-    "SCORE":"Score du quiz"
+    "SCORE":"Score du quiz",
+    "START":"Commencer quiz",
+    "AVAILABLE":"Ce quiz est lancé mais non disponible ",
+    "AVAILABLE_TIME":"Il sera disponible à : "
+    
     },
     "TD": {
       "FINISHED": "Td terminé"
       },
+      "NOTIFICATIONS":{
+        "NAME":"Notifications",
+        "NEW":"Récent",
+        "AVAILABLE_TIME":" sera disponible à : "
+      }  ,
   "EXERCICES": {
     "SAVE_SUCCESS": "Exercices  enregistré avec succès",
     "EXIST": "Cette exercices existe déjà!",

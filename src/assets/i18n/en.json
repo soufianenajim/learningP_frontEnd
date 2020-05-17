@@ -84,6 +84,20 @@
     "EMPTY_FIELD": "Field must not be empty.",
     "INVALID_DATA": "Please enter valid data."
   },
+  "LOGIN":{
+    "PROFILE":"Profile",
+    "INCORRECT": "Login or password incorrect !",
+        "EXPIRED": "expired license !",
+        "REQUIRED": "Please fill in all the blanks",
+        "CNX_FAILED": "Failed connection to DATACERT. Please contact the administrator.",
+        "LOCKED": "Your account is blocked please try again after ",
+        "MINUTES": " minutes!",
+        "LOGIN": "Login",
+        "FORGOT_PASSWORD" : "Forgot your password ?",
+        "COPIRIGHT": "Copyright © DATA-CSIRT All rights reserved.",
+        "LOGOUT": "Logout"
+
+  },
   "USER": {
     "EMAIL": "Email",
     "FIRST_NAME": "FirstName",
@@ -157,16 +171,26 @@
     "REMAINING_TIME":"Remaining time",
     "HOUR":"Hour",
     "MINUTE":"Minute",
-    "SECOND":"Second"
+    "SECOND":"Second",
+    "AVAILABLE":"This exam is launched but not availble ",
+    "AVAILABLE_TIME":"It will be available at : "
   },
   "QUIZ": {
     "FINISHED": "Quiz finished",
-    "SCORE":"Quiz score"
+    "SCORE":"Quiz score",
+    "START":"Start quiz",
+    "AVAILABLE":"This quiz is launched but not availble ",
+    "AVAILABLE_TIME":"It will be available at : "
     
     },
     "TD": {
       "FINISHED": "Td finished"
       },
+    "NOTIFICATIONS":{
+      "NAME":"Notifications",
+      "NEW":"New",
+      "AVAILABLE_TIME":" will be available at : "
+    }  ,
       
   "EXERCICES": {
     "SAVE_SUCCESS": "Exercices saved successfully",
