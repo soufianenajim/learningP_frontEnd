@@ -54,6 +54,18 @@ const MENUITEMS_STUDENT = [
     ],
   },
 
+  {
+    label: "MENU_ITEM.EXAM",
+    main: [
+      {
+        state: "studentExam",
+        name: "MENU_ITEM.EXAM",
+        type: "link",
+        icon: "fa fa-list-alt",
+      },
+    ],
+  },
+
 ];
 const MENUITEMS_TEACHER = [
   {

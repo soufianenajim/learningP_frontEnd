@@ -1,0 +1,22 @@
+table {
+    width: 100%;
+  }
+  .mat-column-name {
+    width: 25%;
+  }
+  .mat-column-module {
+    width: 25%;
+  }
+  .mat-column-score {
+    width:5%;
+  }
+  .mat-column-type {
+    width: 10%;
+  }
+  .mat-column-remainingTime {
+    width: 30%;
+  }
+  
+  .mat-column-launch {
+    width: 15%;
+  }

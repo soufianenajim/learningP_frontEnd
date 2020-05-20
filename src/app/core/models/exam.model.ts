@@ -6,7 +6,8 @@ export class Exam extends Historized {
     public module?: any,
     public startDateTime?:string,
     public endDateTime?:string,
-    public questions?: any[]
+    public questions?: any[],
+    public type?:string
   ) {
     super();
   }

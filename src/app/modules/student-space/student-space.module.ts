@@ -27,5 +27,8 @@ import { PassQuizComponent } from "./progression-cour/pass-quiz/pass-quiz.compon
     PassQuizComponent,
    
   ],
+  exports:[
+    TdOrQuizComponent
+  ]
 })
 export class StudentSpaceModule {}

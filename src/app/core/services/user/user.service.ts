@@ -3,6 +3,7 @@ import { CrudService } from "../crud/crud.service";
 import { HttpClient } from "@angular/common/http";
 import { environment } from "../../../../environments/environment";
 import { User } from "../../models/user.model";
+import { of } from "rxjs";
 
 @Injectable({
   providedIn: "root"
@@ -29,5 +30,13 @@ export class UserService {
   }
   getNotificationsByUser(idUser){
     return this.httpClient.get(this.url+"/notifications/"+idUser);
+  }
+  findbyNameContainingByExam(name:string,idExam){
+    console.log("find;")
+    if(name.length>=2){
+      return this.httpClient.get(this.url + "/findbyNameContaining/"+ name+"/"+idExam);
+    }
+    return of([]);
+    
   }
 }

@@ -76,7 +76,9 @@ export class SaveOrUpdateExComponent implements OnInit {
     notifierService: NotifierService
   ) {
     this.notifier = notifierService;
+    console.log('this.exam',this.exam);
     if (data !== null) {
+      console.log('data',data);
       this.examOrExercices = data;
       this.buildForm(data);
     } else {
@@ -84,21 +86,23 @@ export class SaveOrUpdateExComponent implements OnInit {
     }
   }
   buildForm(data) {
-    console.log("data", data);
+    console.log('this.exam',this.isExam);
     this.idExercices = data.id;
     this.scale = data.scale;
     const name = data.name;
 
     let type, cour, module;
     if (this.isExam) {
-      type = "EXAM";
+      
+      type = data.type;
       cour = new Cour();
       module = data.module;
     } else {
       type = data.type;
       this.isNotTd = type === "QUIZ";
       cour = data.cour;
-      module = data.cour.module;
+      console.log('cour',cour);
+      module = cour?cour.module:data.module;
     }
     const startTime = data.startDateTime;
     const endTime = data.endDateTime;
@@ -122,9 +126,11 @@ export class SaveOrUpdateExComponent implements OnInit {
   ngOnInit() {
     console.log('moment(item.publishDate).date()',new Date(moment().add(10,'minutes').format()))
     console.log('date',new Date());
+    console.log('this.exam',this.exam);
     if (this.isExam) {
       this.isNotTd = true;
       if (this.exam) {
+        console.log('this.exam',this.exam);
         this.buildForm(this.exam);
       } else {
         this.examOrExercices = new Exam();
@@ -191,9 +197,10 @@ export class SaveOrUpdateExComponent implements OnInit {
       this.examOrExercices.type = type;
     } else {
       const module = this.firstFormGroup.get("module").value;
+      const type = this.firstFormGroup.get("type").value;
       this.firstFormGroup.get("cour").setValue(new Cour());
-      this.firstFormGroup.get("type").setValue("EXAM");
       this.examOrExercices.module = module;
+      this.examOrExercices.type=type;
       this.examOrExercices.startDateTime = startTime;
     this.examOrExercices.endDateTime = endTime;
     }
@@ -284,7 +291,7 @@ export class SaveOrUpdateExComponent implements OnInit {
   }
   onSelectType() {
     const type = this.firstFormGroup.get("type").value;
-    this.isNotTd = type === "QUIZ";
+    this.isNotTd = type === "QUIZ"||type === "EXAM";
   }
     minEnDatTime(){
       const startTime=this.firstFormGroup.get('startTime').value

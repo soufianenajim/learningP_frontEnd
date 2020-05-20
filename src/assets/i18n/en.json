@@ -10,7 +10,9 @@
     "CHAPTER": "Chapter",
     "PARAGRAPH": "Paragraph",
     "STUDENT_SPACE": "Student Space",
-    "PROFESSOR_SPACE": "Professor Space"
+    "PROFESSOR_SPACE": "Professor Space",
+    "QUIZ":"Quiz",
+    "EXAM":"Exam"
   },
   "ACTION": {
     "SEARCH": "Search",
@@ -28,7 +30,8 @@
     "CANCEL_CONFIRMATION": "No",
     "CONFIRMATION_MESSAGE": "You won't be able to revert this",
     "ALREADY_LAUNCHED": "already launched",
-    "LAUNCH": "Launch",
+    "START": "Launch",
+    "LAUNCH":"Lancement ",
     "BACK": "Previous",
     "NEXT": "Next",
     "VALIDATE":"Validate",
@@ -115,7 +118,8 @@
     "EXIST": "User already exists!",
     "SAVE_SUCCESS": "User saved successfully",
     "DELETE": "Delete user?",
-    "DELETED": "User has been deleted."
+    "DELETED": "User has been deleted.",
+    "GLOLBAL_PLACEHOLDER":"Enter firstName,LastName or email"
   },
   "LEVEL": {
     "SAVE_SUCCESS": "Level saved successfully",
@@ -146,6 +150,7 @@
     "CODE": "Code",
     "INDEX": "Index",
     "SHOW_RESPONSES": "Show correct answers",
+    "SHOW_RESPONSES_USER": "Show answers of",
     "CORRECT_COMMENT": "Correct comment",
     "INDEX_MESSAGE": "Index should be between 1 and  ",
     "EXIST_INDEX": " already exists!",
@@ -166,14 +171,19 @@
     "PROGRESSION":"Exam progress",
     "SCORE":"Exam score",
     "SCORE_FINAL":"Score final",
-    "FINISHED": "Exam finished",
+    "FINISHED": "Finished",
+    "ABSENT":"Missed",
+    "UNVAILABLE":"Unvailable",
     "START":"Start exam",
     "REMAINING_TIME":"Remaining time",
+    "DAY":"Day",
     "HOUR":"Hour",
     "MINUTE":"Minute",
     "SECOND":"Second",
     "AVAILABLE":"This exam is launched but not availble ",
-    "AVAILABLE_TIME":"It will be available at : "
+    "AVAILABLE_TIME":"It will be available at : ",
+    "USER_SHOW_SCORE":"You want this user to see their score",
+    "ALREADY_SHOW":"Already showed"
   },
   "QUIZ": {
     "FINISHED": "Quiz finished",

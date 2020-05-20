@@ -2,10 +2,13 @@ table {
     width: 100%;
   }
   .mat-column-name {
-    width: 30%;
+    width: 25%;
   }
   .mat-column-module {
-    width: 30%;
+    width: 25%;
+  }
+  .mat-column-type {
+    width: 15%;
   }
   .mat-column-startTime {
     width: 15%;

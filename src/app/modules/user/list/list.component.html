@@ -82,7 +82,7 @@
                         <label class="col-sm-3 col-form-label"
                             style="font-weight: bold;color: #757575;">{{'USER.GROUP'|translate}}</label>
                         <div class="col-sm-9">
-                            <select name="select" [compareWith]="compareGroup" name="group" formControlName="group"
+                            <select name="select" [compareWith]="compareLevel" name="group" formControlName="group"
                                 class="form-control">
                                <option value="" disabled selected>{{'USER.SELECT_GROUP'|translate}}</option>
                                 <option *ngFor="let group of listGroup" [ngValue]="group">

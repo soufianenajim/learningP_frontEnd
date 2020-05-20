@@ -1,3 +1,259 @@
-<p>
-  list works!
-</p>
+<div class="card">
+  <div class="card-header">
+    <h5><i class="fa fa-search" style="margin-right: 4px;"></i>{{'ACTION.SEARCH'|translate}}</h5>
+    <button type="button" class="btn btn-danger btn-md waves-effect waves-light f-right" (click)="cancel()"> <i
+        class="fa fa-close"></i> {{ 'ACTION.CANCEL' | translate}}
+    </button>
+  </div>
+
+
+
+  <div class="card-body">
+    <form [formGroup]="noteExamForm">
+      <div class="row" *ngIf="!isFromExamList">
+        <div class="col-sm-6">
+          <div class="row">
+            <label class="col-sm-3 col-form-label"
+              style="font-weight: bold;color: #757575;">{{'GLOBAL.NAME'|translate}}</label>
+            <div class="col-sm-9">
+              <input type="text" formControlName="name" class="form-control">
+
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-6">
+          <div class="row">
+            <label class="col-sm-3 col-form-label"
+              style="font-weight: bold;color: #757575;">{{'GLOBAL.MODULE'|translate}}</label>
+            <div class="col-sm-9">
+              <select name="select" formControlName="module" class="form-control">
+                <option value="" disabled selected>{{'COURSE.SELECT_MODULE'|translate}}</option>
+                <option *ngFor="let module of listModule" [ngValue]="module">
+                  {{module.name}}
+                </option>
+              </select>
+
+            </div>
+          </div>
+        </div>
+        <br>
+
+        <div class="col-sm-6">
+          <div class="row">
+            <label class="col-sm-3 col-form-label"
+              style="font-weight: bold;color: #757575;">{{'EXERCICES.TYPE'| translate}}</label>
+            <div class="col-sm-9">
+              <select name="select" name="type" formControlName="type" class="form-control">
+                <option value="" disabled selected>Selectioner un type</option>
+                <option value="EXAM">Exam</option>
+                <option value="QUIZ">Quiz</option>
+
+              </select>
+
+            </div>
+          </div>
+
+        </div>
+
+
+      </div>
+      <div class="row" *ngIf="isFromExamList">
+        <div class="col-sm-6">
+          <div class="row">
+            <label class="col-sm-3 col-form-label" style="font-weight: bold;color: #757575;">Student</label>
+            <div class="col-sm-9">
+              <ng-select [items]="students" bindLabel="fullName" [hideSelected]="true"
+                placeholder="{{'USER.GLOLBAL_PLACEHOLDER' | translate}}" (clear)="clearStudent()"
+                formControlName="student" [virtualScroll]="true" [loading]="studentLoading" [typeahead]="studentInput$"
+                [compareWith]="compareFn">
+              </ng-select>
+
+            </div>
+          </div>
+
+        </div>
+        <div class="col-sm-3 ">
+          <div class="form-group row justify-content-center">
+            <button type="button" style="margin-right: 20px" (click)="search(false)"
+              class="btn btn-success btn-md waves-effect waves-light">
+              <i class="fa fa-search"></i>{{'ACTION.SEARCH'|translate}}
+            </button>
+            <button type="button" (click)="reset()" class="btn btn-danger btn-md waves-effect waves-light">
+              <i class="fa fa-close"></i>{{'ACTION.RESET'|translate}}
+            </button>
+          </div>
+
+        </div>
+
+      </div>
+      <br>
+      <div class="row" *ngIf="!isFromExamList">
+        <div class="col-lg-12 ">
+          <div class="form-group row justify-content-center">
+            <button type="button" style="margin-right: 20px" (click)="search(false)"
+              class="btn btn-success btn-md waves-effect waves-light">
+              <i class="fa fa-search"></i>{{'ACTION.SEARCH'|translate}}
+            </button>
+            <button type="button" (click)="reset()" class="btn btn-danger btn-md waves-effect waves-light">
+              <i class="fa fa-close"></i>{{'ACTION.RESET'|translate}}
+            </button>
+          </div>
+
+        </div>
+      </div>
+
+    </form>
+
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-header">
+    <h5><i class="fa fa-list m-r-5"></i>Exams</h5>
+  </div>
+
+
+  <div class="card-body" style="overflow: auto">
+
+    <table class="table-striped" mat-table [dataSource]="dataSource">
+      <ng-container matColumnDef="student">
+        <th mat-header-cell *matHeaderCellDef> Student</th>
+        <td mat-cell *matCellDef="let element" title="{{element?.exam?.name}}">
+          {{(element?.user?.firstName.length+element?.user?.lastName.length)>80?((element?.user?.firstName+' '+element?.user?.lastName) | textWidth:80 ) +' ...' :(element?.user?.firstName+' '+element?.user?.lastName)}}
+        </td>
+      </ng-container>
+      <!-- Name Column -->
+      <ng-container matColumnDef="exam">
+        <th mat-header-cell *matHeaderCellDef> Exam </th>
+        <td mat-cell *matCellDef="let element" title="{{element?.exam?.name}}">
+          {{element?.exam?.name.length>80?(element?.exam?.name | textWidth:80 ) +' ...' :element?.exam?.name}} </td>
+      </ng-container>
+
+      <!-- ModuleColumn -->
+      <ng-container matColumnDef="module">
+        <th mat-header-cell *matHeaderCellDef> {{'EXERCICES.MODULE'| translate}} </th>
+        <td mat-cell *matCellDef="let element" title="{{element?.exam?.module.name}}">
+          {{element?.exam?.module?.name.length>80?(element?.exam?.module?.name | textWidth:80 ) +' ...' :element?.exam?.module?.name}}
+        </td>
+      </ng-container>
+      <ng-container matColumnDef="type">
+        <th mat-header-cell *matHeaderCellDef> Type </th>
+        <td mat-cell *matCellDef="let element"> {{element?.exam?.type!=null?element?.exam?.type:'---'}} </td>
+      </ng-container>
+      <ng-container matColumnDef="score">
+        <th mat-header-cell *matHeaderCellDef> Score </th>
+        <td mat-cell *matCellDef="let element"> {{(isFromExamList||element?.showScore)?element?.score:"---"}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="remainingTime">
+        <th mat-header-cell *matHeaderCellDef> RemainingTime </th>
+        <td mat-cell *matCellDef="let element">
+          <ng-container>
+            <div *ngIf="isEndTimeSupToCurrent(element?.exam.endDateTime); then thenBlock else elseBlock"></div>
+            <ng-template #thenBlock>
+              <span>
+                {{secondsToHms(element?.exam?.startDateTime)}}
+              </span>
+            </ng-template>
+            <ng-template #elseBlock> <span>
+                ---
+              </span>
+            </ng-template>
+          </ng-container>
+
+        </td>
+      </ng-container>
+      <ng-container matColumnDef="statut">
+        <th mat-header-cell *matHeaderCellDef> Statut </th>
+        <td mat-cell *matCellDef="let element">
+          <div class="btn-group btn-group-sm">
+
+            <div *ngIf="element.finished; then finishBlock else launchBlock"></div>
+            <ng-template #finishBlock>
+              <span class="btn btn-success btn-sm waves-effect waves-light" style="font-size: 0.9rem;font-weight: 500;">
+                <i class="fa fa-check"></i>
+                {{'EXAM.FINISHED' | translate}}
+              </span>
+            </ng-template>
+            <ng-template #launchBlock>
+              <div *ngIf="isEndTimeSupToCurrent(element.exam.endDateTime); then launchBlock1 else launchBlock2"></div>
+              <ng-template #launchBlock1 >
+                <span class="btn btn-warning btn-sm waves-effect waves-light" style="font-size: 0.9rem;font-weight: 500;">
+                  <i class="fa fa-spinner"></i>
+                  {{'EXAM.UNVAILABLE'|translate}}
+                </span>
+           
+              </ng-template>
+              <ng-template #launchBlock2>
+                
+                <span class="btn btn-danger btn-sm waves-effect waves-light" style="font-size: 0.9rem;font-weight: 500;">
+                  <i class="fa fa-minus-circle"></i>
+                  {{'EXAM.ABSENT'|translate}}
+                </span>
+                  </ng-template>
+             
+            </ng-template>
+          </div>
+        </td>
+      </ng-container>
+      <ng-container matColumnDef="launch">
+        <th mat-header-cell *matHeaderCellDef> {{'ACTION.LAUNCH'| translate}} </th>
+        <td mat-cell *matCellDef="let element">
+          <div class="btn-group btn-group-sm">
+            <div
+              *ngIf="!element.finished && readyToStar(element?.exam.startDateTime); then launchValid else launchInvalid">
+            </div>
+            <ng-template #launchValid>
+              <button type="button" style="margin-right: 20px" (click)="openExam(element)"
+                class="btn btn-primary btn-sm waves-effect waves-light">
+                <i class="fa fa-play"></i>{{'ACTION.START'| translate}}
+              </button>
+            </ng-template>
+            <ng-template #launchInvalid>
+              <button type="button" style="margin-right: 20px" [disabled]="true"
+                class="btn btn-primary btn-sm waves-effect waves-light">
+                <i class="fa fa-play"></i>{{'ACTION.START'| translate}}
+              </button>
+            </ng-template>
+
+
+
+          </div>
+        </td>
+      </ng-container>
+      <ng-container matColumnDef="action">
+        <th mat-header-cell *matHeaderCellDef> Action </th>
+        <td mat-cell *matCellDef="let element">
+          <div class="btn-group btn-group-sm">
+          <button mat-icon-button [disabled]="element.showScore">
+            <span *ngIf="!element.showScore" class="fa fa-play" (click)="openDialogShowScore(row)"
+              style="color: #2ecc71" ngbTooltip="{{'ACTION.SHOW' | translate}}"></span>
+            <span *ngIf="element.showScore" class="fa fa-pause" style="color: #d11818"
+              ngbTooltip="{{'EXAM.ALREADY_SHOW' | translate}}"></span>
+          </button>
+          <button mat-icon-button >
+            <span  class="fa fa-desktop" (click)="openDialogDetail(element)"
+              style="color: #007bff" ngbTooltip="{{'ACTION.DETAIL' | translate}}"></span>
+            
+          </button>
+        </div>
+
+        </td>
+      </ng-container>
+
+
+
+
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+
+    <mat-paginator #paginator (page)="refreshDataTable($event)" [pageSizeOptions]="[5, 10, 20]" [length]="resultsLength"
+      [pageSize]="5" showFirstLastButtons></mat-paginator>
+
+
+
+
+  </div>
+</div>

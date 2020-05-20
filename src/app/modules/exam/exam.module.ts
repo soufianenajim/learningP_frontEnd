@@ -8,6 +8,8 @@ import { DetailComponent } from './detail/detail.component';
 import { SharedModule } from '../../shared/shared.module';
 import { QuestionModule } from '../question/question.module';
 import { ExercicesModule } from '../exercices/exercices.module';
+import { StudentComponent } from './student/student.component';
+import { NoteExamModule } from '../note-exam/note-exam.module';
 
 @NgModule({
   imports: [
@@ -15,9 +17,10 @@ import { ExercicesModule } from '../exercices/exercices.module';
     ExamRoutingModule,
     SharedModule,
     QuestionModule,
-    ExercicesModule
+    ExercicesModule,
+    NoteExamModule
   ],
-  declarations: [ListComponent, SaveOrUpdateComponent, DetailComponent],
-  entryComponents: [SaveOrUpdateComponent,DetailComponent] 
+  declarations: [ListComponent, SaveOrUpdateComponent, DetailComponent, StudentComponent],
+  entryComponents: [SaveOrUpdateComponent,DetailComponent,StudentComponent] 
 })
 export class ExamModule { }

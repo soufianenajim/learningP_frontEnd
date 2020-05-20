@@ -9,6 +9,7 @@ import { SaveOrUpdateComponent } from '../save-or-update/save-or-update.componen
 import { ModuleService } from '../../../core/services/module/module.service';
 import swal from 'sweetalert2';
 import { TranslateService } from '@ngx-translate/core';
+import { StudentComponent } from '../student/student.component';
 
 @Component({
   selector: 'app-list',
@@ -16,7 +17,7 @@ import { TranslateService } from '@ngx-translate/core';
   styleUrls: ['./list.component.css']
 })
 export class ListComponent implements OnInit {
-  displayedColumns: string[] = ["name", "module","startTime","endTime","actions"];
+  displayedColumns: string[] = ["name", "module","type","startTime","endTime","actions"];
   //dataSource = new MatTableDataSource<PeriodicElement>(ELEMENT_DATA);
   dataSource: MatTableDataSource<Exam>;
 
@@ -29,6 +30,7 @@ export class ListComponent implements OnInit {
   listModule: any;
   examForm = new FormGroup({
     name: new FormControl(""),
+    type: new FormControl(""),
     module: new FormControl()
   });
   constructor(
@@ -53,11 +55,11 @@ export class ListComponent implements OnInit {
     const size = this.paginator.pageSize;
     const name = this.examForm.get("name").value;
     const module = this.examForm.get("module").value;
-   
+   const type=this.examForm.get("type").value;
 
     this.exam.name = name;
     this.exam.module = module;
-   
+   this.exam.type=type;
     this.demandeExam.model = this.exam;
     this.demandeExam.page = page;
     this.demandeExam.size = size;
@@ -81,6 +83,7 @@ export class ListComponent implements OnInit {
   reset() {
     this.examForm.get("name").setValue("");
     this.examForm.get("module").setValue(null);
+    this.examForm.get("type").setValue("");
     this.search(false);
   }
   refreshDataTable() {
@@ -104,7 +107,6 @@ export class ListComponent implements OnInit {
     });
   }
   openDialog(data) {
-    console.log("data", data);
     const dialogRef = this.dialog.open(SaveOrUpdateComponent, {
       width: "80%",
       data: data,
@@ -163,5 +165,23 @@ export class ListComponent implements OnInit {
       i18 = value;
     });
     return i18;
+  }
+  openDialogStudent(exam){
+    const dialogRef = this.dialog.open(StudentComponent, {
+      width: "80%",
+      data: exam,
+      disableClose: true,
+      autoFocus: false,
+      maxHeight: '90vh'
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        this.search(false);
+      }
+
+      console.log("The dialog was closed");
+    });
+
   }
 }

@@ -48,7 +48,7 @@ export const AppRoutes: Routes = [
         path: "exam",
         loadChildren: "./modules/exam/exam.module#ExamModule"
       },{
-        path: "note_exam",
+        path: "studentExam",
         loadChildren: "./modules/note-exam/note-exam.module#NoteExamModule"
       },{
         path: "user",

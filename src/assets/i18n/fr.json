@@ -10,7 +10,9 @@
     "CHAPTER": "Chapitre",
     "PARAGRAPH": "Paragraphe",
     "STUDENT_SPACE": "Espace Etudiant",
-    "PROFESSOR_SPACE": "Espace Professeur"
+    "PROFESSOR_SPACE": "Espace Professeur",
+    "QUIZ":"Quiz",
+    "EXAM":"Examen"
   },
   "ACTION": {
     "SEARCH": "Rechercher",
@@ -31,7 +33,9 @@
     "BACK": "Précédent",
     "NEXT": "Suivant",
     "VALIDATE":"Valider",
-    "NOT_EXIST":"Pas encore existe"
+    "NOT_EXIST":"Pas encore existe",
+    "START": "Démarrer",
+    "LAUNCH":"Launch"
   },
   "LANGUAGE": {
     "FRENCH": "Français",
@@ -51,7 +55,7 @@
     "SAVE_SUCCESS": "Module enregistré avec succès",
     "EXIST": "Ce Module existe déjà!",
     "ALREADY_LAUNCHED": "déja lancée",
-    "LAUNCH": "Lancée"
+    "LAUNCH": "Démarrer"
   },
   "CHAPTER": {
     "NAME": "Nom",
@@ -70,10 +74,10 @@
     "MODULE": "Module",
     "SELECT_MODULE": "Select module",
     "LAUNCH": "Lancer ce cours immédiatement ?",
-    "LAUNCHED": "Lancé !",
+    "LAUNCHED": "Démarrer !",
     "LAUNCHED_MESSAGE": "le cour à été lancé ",
     "FINISHED":"Cours terminé",
-    "START":"Commencer cours",
+    "START":"Démarrer cours",
     "PROGRESSION":"Progression des cours"
   },
   "ERRORS": {
@@ -110,7 +114,8 @@
     "EXIST": "Cet utilisateur existe déjà!",
     "SAVE_SUCCESS": "Utilisateur enregistré avec succès",
     "DELETE": "Supprimer utilisateur ?",
-    "DELETED": "L'utilisateur a été supprimé."
+    "DELETED": "L'utilisateur a été supprimé.",
+    "GLOLBAL_PLACEHOLDER":"Entrez prénom, nom ou email"
   },
   "LEVEL": {
     "SAVE_SUCCESS": "Niveau enregistré avec succès",
@@ -141,6 +146,7 @@
     "CODE": "Code",
     "INDEX": "Indice",
     "SHOW_RESPONSES": "Afficher les réponses correctes",
+    "SHOW_RESPONSES_USER": "Afficher les réponses de",
     "CORRECT_COMMENT": "Commentaire correct",
     "Index_MESSAGE": "L'indice doit compris entre 1  ",
     "EXIST_INDEX": " existe déjà!",
@@ -160,19 +166,24 @@
     "PROGRESSION":"Progression d'examen",
     "SCORE":"Score d'examen",
     "SCORE_FINAL":"Score final",
-    "FINISHED": "Examen terminé",
-    "START":"Commencer examen",
+    "FINISHED": "Terminé",
+    "ABSENT":"Manqué",
+    "UNVAILABLE":"Indisponible",
+    "START":"Démarrer examen",
     "REMAINING_TIME":"Temps restant",
+    "DAY":"Jour",
     "HOUR":"Heure",
     "MINUTE":"Minute",
     "SECOND":"Seconde",
     "AVAILABLE":"Cet examen  est lancé mais non disponible ",
-    "AVAILABLE_TIME":"Il sera disponible à : "
+    "AVAILABLE_TIME":"Il sera disponible à : ",
+    "USER_SHOW_SCORE":"Vous voulez que cette utilisateur voir son score",
+    "ALREADY_SHOW":"Déjà affiché"
   },
   "QUIZ": {
     "FINISHED": "Quiz terminé",
     "SCORE":"Score du quiz",
-    "START":"Commencer quiz",
+    "START":"Démarrer quiz",
     "AVAILABLE":"Ce quiz est lancé mais non disponible ",
     "AVAILABLE_TIME":"Il sera disponible à : "
     

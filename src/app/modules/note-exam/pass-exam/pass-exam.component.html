@@ -1,0 +1,6 @@
+
+
+<app-td-or-quiz [tdOrQuiz]="exam" [isNotTd]="true" [questionCorrectSuggestions]="questionCorrectSuggestions" (onFinished)="onFinished($event)"></app-td-or-quiz>
+<button class="btn btn-success btn-md waves-effect waves-light f-left" (click)="validateExam()"
+style="margin-right: 15px">
+<i class="fa fa-check"></i>{{'ACTION.VALIDATE'|translate}} </button>

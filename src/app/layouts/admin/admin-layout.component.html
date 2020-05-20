@@ -41,11 +41,11 @@
 
               </li>
               <li class="header-notification" *ngIf="isStudent">
-                <a href="javascript:;">
+                <a href="javascript:;" *ngIf="listNotification.length>0">
                   <i class="ti-bell"></i>
                   <span class="badge">{{listNotification.length}}</span>
                 </a>
-                <ul class="show-notification">
+                <ul class="show-notification" *ngIf="listNotification.length>0">
                   <li>
                     <h6>{{'NOTIFICATIONS.NAME'|translate}}</h6>
                     <label class="label label-danger">{{'NOTIFICATIONS.NEW'|translate}}</label>

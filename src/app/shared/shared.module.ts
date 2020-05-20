@@ -29,7 +29,7 @@ import { AnimatorModule } from "css-animator";
 import { ColorPickerModule } from "ngx-color-picker";
 import { CurrencyMaskModule } from "ng2-currency-mask";
 
-import { SelectModule } from "ng-select";
+//import { SelectModule } from "ng-select";
 import { SelectOptionService } from "./elements/select-option.service";
 import { FormWizardModule } from "angular2-wizard";
 import { DataFilterPipe } from "./elements/data-filter.pipe";
@@ -69,7 +69,7 @@ import { TextWidthPipe } from "../core/pipes/text-width.pipe";
     UiSwitchModule,
     AnimatorModule,
     ColorPickerModule,
-    SelectModule,
+    //SelectModule,
     MaterialsModule,
     CurrencyMaskModule,
     FormWizardModule,
@@ -147,7 +147,7 @@ import { TextWidthPipe } from "../core/pipes/text-width.pipe";
     UiSwitchModule,
     AnimatorModule,
     ColorPickerModule,
-    SelectModule,
+   // SelectModule,
     TranslateModule,
 
     CurrencyMaskModule,

@@ -1,3 +1,4 @@
+
 /**
 
 Template Name: Mash Able Admin Template
@@ -25,13 +26,23 @@ File: style.css
 /**  ===================== Custom css start
 ==========================  **/
 @import "~@ng-select/ng-select/themes/default.theme.css";
-@import "~@ng-select/ng-select/themes/ant.design.theme.css";
  @import "~ng-pick-datetime/assets/style/picker.min.css"; */
 /* @import "~/angular-notifier/styles.css";
 @import "~/angular-notifier/styles/core.css";
 @import "~/angular-notifier/styles/theme";
 @import "~/angular-notifier/styles/types"; */
-
+.ng-select .ng-select-container {
+  background-color: #fff!important;
+  border-radius: 4px!important;
+  border: 1px solid #ccc!important;
+  max-height: 8rem!important;
+  overflow:  scroll!important;
+  overflow: auto!important;  
+  align-items: center!important;
+}
+.ng-select-disabled .ng-select-container {
+  background-color: #dad9d9 !important;
+}
 body {
   background-color: #f3f3f3;
   font-size: 0.875em;

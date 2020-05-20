@@ -47,6 +47,20 @@
 
         </div>
       </div>
+      <div class="form-group row" *ngIf="this.isExam">
+        <label class="col-sm-2 col-form-label">{{'EXERCICES.TYPE'| translate}}</label>
+        <div class="col-sm-10">
+          <select name="select" name="type" formControlName="type" class="form-control" (change)="onSelectType()">
+           <option value="" disabled selected>Selectioner un type</option>
+            <option value="EXAM">Exam</option>
+            <option value="QUIZ">Quiz</option>
+
+          </select>
+          <div *ngIf="errormptyFieldForm1('type')" style="color:red">
+            {{'ERRORS.EMPTY_FIELD' | translate}}</div>
+
+        </div>
+      </div>
       <div class="form-group row" *ngIf="!this.isExam">
         <label class="col-sm-2 col-form-label">{{'EXERCICES.COURSE'| translate}}</label>
         <div class="col-sm-10">

@@ -58,7 +58,7 @@ export class SaveOrUpdateComponent implements OnInit {
   isStudent = false;
   isTeacher = false;
   isClickSave = false;
-  isClientAdmin=false;
+  isClientAdmin = false;
   groups = [];
   constructor(
     private userService: UserService,
@@ -69,7 +69,7 @@ export class SaveOrUpdateComponent implements OnInit {
     private translateService: TranslateService,
     @Inject(MAT_DIALOG_DATA) public data: any,
     notifierService: NotifierService,
-    private tokenStorageService:TokenStorageService
+    private tokenStorageService: TokenStorageService
   ) {
     this.notifier = notifierService;
     if (data !== null) {
@@ -86,24 +86,24 @@ export class SaveOrUpdateComponent implements OnInit {
     this.userForm.get("phone").setValue(data.phone);
     this.userForm.get("organization").setValue(data.organization);
     this.userForm.get("role").setValue(data.refRole);
-    if(data.refRole.name==="ROLE_STUDENT"){
-      this.isStudent=true;
+    if (data.refRole.name === "ROLE_STUDENT") {
+      this.isStudent = true;
       this.userForm.get("group").setValue(data.groups[0]);
     }
-   
-    if(data.refRole.name==="ROLE_TEACHER"){
-      this.isTeacher=true;
+
+    if (data.refRole.name === "ROLE_TEACHER") {
+      this.isTeacher = true;
       this.userForm.get("group").setValue(data.groups);
     }
-    
+
     this.onSelectRole();
     this.onSelectOgra();
   }
 
   ngOnInit() {
-    const user=this.tokenStorageService.getUser();
-    if(user.refRole.name==='ROLE_ADMIN_CLIENT'){
-      this.isClientAdmin=true;
+    const user = this.tokenStorageService.getUser();
+    if (user.refRole.name === "ROLE_ADMIN_CLIENT") {
+      this.isClientAdmin = true;
       this.userForm.get("organization").setValue(user.organization);
     }
     this.dropdownSettings = {
@@ -116,24 +116,27 @@ export class SaveOrUpdateComponent implements OnInit {
       allowSearchFilter: true,
       allowSelectAll: false,
     };
-    if(!this.isClientAdmin){
+    if (!this.isClientAdmin) {
       this.organizationService.findAll().subscribe((res: any) => {
         this.listOrganization = res;
         this.roleService.findAll().subscribe((resp: any) => {
-      
           this.listRole = resp;
           this.transalteRoles();
         });
       });
-    }
-    else{
+    } else {
       this.roleService.findAllClient().subscribe((resp: any) => {
-      
         this.listRole = resp;
         this.transalteRoles();
+        const orgaId = this.userForm.get("organization").value.id;
+        this.getGroups(orgaId);
       });
     }
-   
+  }
+  getGroups(idOrg) {
+    this.groupService.findByOrganization(idOrg).subscribe((resp: any) => {
+      this.listGroup = resp;
+    });
   }
   transalteRoles() {
     this.listRole.sort();
@@ -141,7 +144,7 @@ export class SaveOrUpdateComponent implements OnInit {
     for (const role of this.listRole) {
       role.translated = this.getRoleName(role.name);
     }
-    console.log("listRole",this.listRole)
+    console.log("listRole", this.listRole);
     this.listRole.sort((a, b) => a.translated.localeCompare(b.translated));
   }
   getRoleName(role: String) {
@@ -167,11 +170,10 @@ export class SaveOrUpdateComponent implements OnInit {
       groups.push(this.userForm.get("group").value);
     } else if (this.isTeacher) {
       groups = this.groups;
-    }
-    else{
-      const group=new Group()
+    } else {
+      const group = new Group();
       this.userForm.get("group").setValue(group);
-      groups=null;
+      groups = null;
     }
     let user = new User();
     user.id = this.idUser;

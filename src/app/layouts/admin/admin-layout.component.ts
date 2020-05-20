@@ -127,12 +127,12 @@ export class AdminLayoutComponent implements OnInit {
     const user = this.tokenStorageService.getUser();
     this.userService.getNotificationsByUser(user.id).subscribe((resp: any) => {
       console.log("resp", resp);
-      this.buildNotification(resp.examList, resp.quizList);
+      this.buildNotification(resp.examList);
       this.fullName = user.firstName + " " + user.lastName;
       this.isStudent = user.refRole.name === "ROLE_STUDENT";
     });
   }
-  buildNotification(exams, quizs) {
+  buildNotification(exams) {
     exams.forEach((element) => {
       this.listNotification.push(
         new Notifications(
@@ -142,16 +142,7 @@ export class AdminLayoutComponent implements OnInit {
           )
       );
     });
-    quizs.forEach((element) => {
-      console.log('element',element.cour.name)
-      this.listNotification.push(
-        new Notifications(
-          element.cour.name,
-          element.name,
-          new Date(element.startDateTime)
-        )
-      );
-    });
+   
     if(this.listNotification.length>0){
       this.listNotification.sort(function (a: any, b: any) {
         return a.dateNotif - b.dateNotif;

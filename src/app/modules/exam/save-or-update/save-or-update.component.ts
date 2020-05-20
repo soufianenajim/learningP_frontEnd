@@ -33,6 +33,7 @@ export class SaveOrUpdateComponent implements OnInit {
   ) {
     if (data !== null) {
     this.exam=data;
+    console.log('this.exam',this.exam);
     }
   }
  

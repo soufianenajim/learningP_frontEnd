@@ -16,7 +16,7 @@ import { TokenStorageService } from "../../../core/services/token_storage/token-
   styleUrls: ["./list.component.css"],
 })
 export class ListComponent implements OnInit {
-  displayedColumns: string[] = ["name", "module", "action"];
+  displayedColumns: string[] = ["name", "module", "launch","action"];
 
   dataSource: MatTableDataSource<Cour>;
   demandeCour: Demande<Cour> = new Demande<Cour>();
