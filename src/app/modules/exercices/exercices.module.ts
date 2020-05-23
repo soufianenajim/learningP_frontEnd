@@ -10,11 +10,10 @@ import { PersonalizeComponent } from "./personalize/personalize.component";
 import { EditQuestionComponent } from "./personalize/edit-question/edit-question.component";
 import { ShowComponent } from "./show/show.component";
 import { ListQuestionComponent } from "./personalize/list-question/list-question.component";
-import { QuestionModule } from "../question/question.module";
 import { DetailQuestionComponent } from "./personalize/list-question/detail/detail.component";
 import {DetailSuggestionQuestionComponent}from  "./personalize/list-question/detail/detail-suggestion/detail-suggestion.component";
 @NgModule({
-  imports: [CommonModule, ExercicesRoutingModule, SharedModule, QuestionModule],
+  imports: [CommonModule, ExercicesRoutingModule, SharedModule],
   declarations: [
     ListComponent,
     SaveOrUpdateExComponent,

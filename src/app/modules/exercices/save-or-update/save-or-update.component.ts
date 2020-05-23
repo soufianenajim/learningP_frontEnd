@@ -154,7 +154,7 @@ export class SaveOrUpdateExComponent implements OnInit {
         });
     } else {
       this.examService.saveOrUpdate(this.examOrExercices).subscribe((resp) => {
-        this.successNotifaction("EXERCICES.EXAM_SAVE_SUCCESS");
+        this.successNotifaction("EXAM.SAVE_SUCCESS");
       });
     }
   }

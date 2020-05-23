@@ -101,13 +101,13 @@ const MENUITEMS_TEACHER = [
             icon: "fa fa-pencil",
           },
           {
-            state: "question",
-            name: "Question",
-            icon: "fa fa-question",
-          },
-          {
             state: "exam",
             name: "Exam",
+            icon: "fa fa-list-alt",
+          },
+          {
+            state: "studentExamProg",
+            name: "Student prog",
             icon: "fa fa-list-alt",
           },
         ],

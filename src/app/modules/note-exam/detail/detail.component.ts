@@ -13,6 +13,8 @@ export class DetailComponent implements OnInit {
   suggestions=[];
   isShow=false;
   isShowUser=false;
+  score=0;
+  scale;
     constructor(public dialogRef: MatDialogRef<DetailComponent>,
       @Inject(MAT_DIALOG_DATA) public data: any,) { }
   
@@ -22,6 +24,10 @@ export class DetailComponent implements OnInit {
         this.exam=this.data.exam;
         this.suggestions=this.data.answers;
         this.fullNameUser=this.data.user.firstName+" "+this.data.user.lastName;
+        this.score=(this.data.score*this.data.exam.scale)/100;
+        this.scale=this.data.exam.scale;
+        console.log('score',this.score);
+
       }
     }
     containsSuggestions(suggestion):boolean{
@@ -30,15 +36,11 @@ export class DetailComponent implements OnInit {
         return true;
         
       }
-      // this.suggestions.forEach(element => {
-      //   if(element.id===suggestion.id){
-      //     console.log("ddd")
-      //     return true;
-      //   }
-       
-      // });
-      // return false;
+     
       return false;
+    }
+    cancel(){
+      this.dialogRef.close();
     }
     
 }

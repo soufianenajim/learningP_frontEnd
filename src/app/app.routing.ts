@@ -37,20 +37,17 @@ export const AppRoutes: Routes = [
         loadChildren: "./modules/exercices/exercices.module#ExercicesModule"
       },
       {
-        path: "question",
-        loadChildren: "./modules/question/question.module#QuestionModule"
-      },
-      {
-        path: "note_quiz",
-        loadChildren: "./modules/note-quiz/note-quiz.module#NoteQuizModule"
-      }
-      ,{
         path: "exam",
         loadChildren: "./modules/exam/exam.module#ExamModule"
       },{
         path: "studentExam",
         loadChildren: "./modules/note-exam/note-exam.module#NoteExamModule"
-      },{
+      },
+      {
+        path: "studentExamProg",
+        loadChildren: "./modules/student-space-prog/student-space-prog.module#StudentSpaceProgModule"
+      },
+      {
         path: "user",
         loadChildren: "./modules/user/user.module#UserModule"
       },{

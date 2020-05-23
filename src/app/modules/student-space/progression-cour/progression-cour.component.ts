@@ -15,7 +15,6 @@ import { User } from "../../../core/models/user.model";
 import { CourseService } from "../../../core/services/course/course.service";
 import { ReadCourComponent } from "./read-cour/read-cour.component";
 import { ExercicesService } from "../../../core/services/exercices/exercices.service";
-import { PassQuizComponent } from "./pass-quiz/pass-quiz.component";
 import moment from "moment";
 import swal from "sweetalert2";
 import { TranslateService } from "@ngx-translate/core";
@@ -31,10 +30,7 @@ export class ProgressionCourComponent implements OnInit {
     "startCour",
     "courFinished",
     "tdFinished",
-    "startQuiz",
-    "quizFinished",
     "progression",
-    "scorQuiz",
   ];
   //dataSource = new MatTableDataSource<PeriodicElement>(ELEMENT_DATA);
   dataSource: MatTableDataSource<ProgressionCour>;
@@ -62,6 +58,14 @@ export class ProgressionCourComponent implements OnInit {
     private exercicesService: ExercicesService,
     private translateService: TranslateService
   ) {
+    if(data.isTeacher){
+      this. displayedColumns = [
+        "name",
+        "courFinished",
+        "tdFinished",
+        "progression",
+      ];
+    }
     this.dataFromDialog = data;
   }
   ngOnInit() {
@@ -150,33 +154,7 @@ export class ProgressionCourComponent implements OnInit {
       console.log("The dialog was closed");
     });
   }
-  openQuiz(data) {
-    this.exercicesService
-      .findByCourAndType(data.cour.id, "QUIZ")
-      .subscribe((resp: any) => {
-        data.quiz = resp;
-        const availableToBeStarted = moment().isSameOrAfter(resp.startDateTime);
-        if (availableToBeStarted) {
-          const dialogRef = this.dialog.open(PassQuizComponent, {
-            width: "90%",
-            data: data,
-            disableClose: true,
-            autoFocus: false,
-            maxHeight: "90vh",
-          });
-
-          dialogRef.afterClosed().subscribe((result) => {
-            if (result) {
-              this.search(false);
-            }
-
-            console.log("The dialog was closed");
-          });
-        } else {
-          this.openDialogLaunch(data.quiz);
-        }
-      });
-  }
+ 
   openDialogLaunch(quiz) {
     swal({
       title: this.getI18n("QUIZ.AVAILABLE"),

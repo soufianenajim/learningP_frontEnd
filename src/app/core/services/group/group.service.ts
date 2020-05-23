@@ -27,4 +27,9 @@ findByOrganization(id){
   return this.httpClient.get(this.url + "/find-by-organization/"+id);
 
 }
+findByUser(id){
+  return this.httpClient.get(this.url + "/find-by-user/"+id);
+
 }
+}
+

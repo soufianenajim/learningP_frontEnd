@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from "@angular/core";
+import { Component, OnInit, ViewChild, Input } from "@angular/core";
 import { MatTableDataSource, MatPaginator, MatDialog } from "@angular/material";
 import { UserService } from "../../../core/services/user/user.service";
 import { FormGroup, FormControl } from "@angular/forms";
@@ -9,24 +9,24 @@ import { User } from "../../../core/models/user.model";
 import { ModuleService } from "../../../core/services/module/module.service";
 import { ProgressionCourComponent } from "../progression-cour/progression-cour.component";
 import { TokenStorageService } from "../../../core/services/token_storage/token-storage.service";
-import { PassExamComponent } from "../pass-exam/pass-exam.component";
 import { ExamService } from "../../../core/services/exam/exam.service";
 import moment from "moment";
 import swal from "sweetalert2";
 import { TranslateService } from "@ngx-translate/core";
+import { GroupService } from "../../../core/services/group/group.service";
 
 @Component({
   selector: "app-progression-module-list",
   templateUrl: "./list.component.html",
-  styleUrls: ["./list.component.css"],
-})
+ styleUrls: ["./list.component.css"],
+}) 
 export class ListComponent implements OnInit {
+ @Input()isTeacher=false;
   displayedColumns: string[] = [
+    "user",
     "name",
     "startCourse",
     "cour",
-    "exam",
-    "examFinished",
     "noteExam",
     "noteF",
   ];
@@ -44,9 +44,14 @@ export class ListComponent implements OnInit {
   groupId;
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
-  listModule;
+  listModule=[];
+  listGroup=[];
   progressionModuleForm = new FormGroup({
     module: new FormControl(null),
+    firstName: new FormControl(""),
+    lastName: new FormControl(""),
+    email: new FormControl(""),
+    group: new FormControl(null),
   });
   constructor(
     private userService: UserService,
@@ -55,19 +60,42 @@ export class ListComponent implements OnInit {
     private moduleService: ModuleService,
     private dialog: MatDialog,
     private tokenStorageService: TokenStorageService,
-    private translateService:TranslateService
+    private translateService:TranslateService,
+    private groupService:GroupService,
   ) {}
   ngOnInit() {
-    console.log("user", this.tokenStorageService.getUser());
+    
+    
     const user = this.tokenStorageService.getUser();
     this.user.id = user.id;
     this.groupId = user.groups[0].id;
-
-    this.moduleService.findByGroup(this.groupId).subscribe((resp) => {
-      this.listModule = resp;
-      console.log("module---", resp);
+if(this.isTeacher){
+  this.displayedColumns = [
+    "user",
+    "name",
+    "detailProgression",
+    "cour",
+    "noteExam",
+    "noteF",
+  ];
+  this.moduleService.findByProfessor(this.user.id).subscribe((resp:any) => {
+    this.listModule = resp;
+    this.groupService.findByUser(this.user.id).subscribe((resp:any)=>{
+      console.log('group',resp);
+      this.listGroup=resp;
       this.search(false);
-    });
+    })
+   
+  });
+
+}else{
+  this.moduleService.findByGroup(this.groupId).subscribe((resp:any) => {
+    this.listModule = resp;
+    console.log("module---", resp);
+    this.search(false);
+  });
+}
+    
   }
   search(bool) {
     if (!bool) {
@@ -76,10 +104,19 @@ export class ListComponent implements OnInit {
     const page = this.paginator.pageIndex;
     const size = this.paginator.pageSize;
     const module = this.progressionModuleForm.get("module").value;
-
+    const email = this.progressionModuleForm.get("email").value;
+    const firstName = this.progressionModuleForm.get("firstName").value;
+    const lastName = this.progressionModuleForm.get("lastName").value;
+    const group = this.progressionModuleForm.get("group").value;
+    this.user.email=email;
+    this.user.firstName=firstName;
+    this.user.lastName=lastName;
+    this.user.groupId = group != null ? group.id : null;
     this.progressionModule.module = module;
     this.progressionModule.student = this.user;
+    this.progressionModule.teacher=this.isTeacher;
     this.demandeProgressionModule.model = this.progressionModule;
+    
     this.demandeProgressionModule.page = page;
     this.demandeProgressionModule.size = size;
 
@@ -108,6 +145,11 @@ export class ListComponent implements OnInit {
   }
   reset() {
     this.progressionModuleForm.get("module").setValue(null);
+    this.progressionModuleForm.get("group").setValue(null);
+    this.progressionModuleForm.get("firstName").setValue("");
+    this.progressionModuleForm.get("lastName").setValue("");
+    this.progressionModuleForm.get("email").setValue("");
+
     this.search(false);
   }
   refreshDataTable() {
@@ -128,7 +170,7 @@ export class ListComponent implements OnInit {
     );
   }
   openProgressionCour(data) {
-    console.log("data", data);
+    data.isTeacher=this.isTeacher;
     const dialogRef = this.dialog.open(ProgressionCourComponent, {
       width: "90%",
       data: data,
@@ -145,30 +187,7 @@ export class ListComponent implements OnInit {
       console.log("The dialog was closed");
     });
   }
-  openExam(data) {
-    let dialogRef;
-    this.examService.findByModule(data.module.id).subscribe((resp: any) => {
-      data.module.exams = resp;
-      const availableToBeStarted = moment().isSameOrAfter(resp.startDateTime);
-      if (availableToBeStarted) {
-        dialogRef = this.dialog.open(PassExamComponent, {
-          width: "90%",
-          data: data,
-          disableClose: true,
-          autoFocus: false,
-          maxHeight: "90vh",
-        });
-        dialogRef.afterClosed().subscribe((result) => {
-          console.log("result", result);
-          if (result) {
-            this.search(false);
-          }
-        });
-      } else {
-        this.openDialogLaunch(resp[0]);
-      }
-    });
-  }
+
   openDialogLaunch(quiz) {
     swal({
       title: this.getI18n("EXAM.AVAILABLE"),

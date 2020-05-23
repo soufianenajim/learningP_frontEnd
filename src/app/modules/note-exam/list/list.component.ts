@@ -182,13 +182,13 @@ export class ListComponent implements OnInit, AfterViewChecked {
   }
   secondsToHms(d) {
     // console.log('new Date(d).getTime()',new Date(d).getTime())
+    
     let time = (new Date(d).getTime() - this.currentDate.getTime()) / 1000;
     time = Number(time);
     var day = Math.floor(time / 86400);
-    var h = Math.floor((time / 86400) % 3600);
+    var h = Math.floor((time / 3600)%24);
     var m = Math.floor((time % 3600) / 60);
     var s = Math.floor((time % 3600) % 60);
-
     var dayDisplay =
       day > 0
         ? day + (day == 1 ? " " + this.DAY + ", " : " " + this.DAYS + " , ")
@@ -261,6 +261,7 @@ export class ListComponent implements OnInit, AfterViewChecked {
       });
   }
   openDialogShowScore(element){
+    console.log('element',element);
       const  courLanched=this.getI18n('COURSE.LAUNCHED');
       const  courLanchedMSG=this.getI18n('COURSE.LAUNCHED_MESSAGE');
         swal({
@@ -285,6 +286,7 @@ export class ListComponent implements OnInit, AfterViewChecked {
       }
       
 showScore(element){
+  console.log('element',element);
   element.showScore=true;
   this.noteExamService.saveOrUpdate(element).subscribe(resp=>{
     this.search(true);
@@ -313,6 +315,12 @@ console.log('data',data);
       this.search(false);
     }
   });
+}
+getScore(row){
+  let score=0;
+  const scale=row.exam.scale;
+  score=(row.score*row.exam.scale)/100;
+  return score+"/"+scale;
 }
 
 }

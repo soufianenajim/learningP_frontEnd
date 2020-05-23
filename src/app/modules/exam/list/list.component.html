@@ -116,13 +116,15 @@
               <span class="fa fa-users" style="color: #007bff" aria-hidden="true" (click)="openDialogStudent(row)"></span>
             </button>
             <button mat-icon-button>
-              <span class="fa fa-desktop" (click)="openDialogDetail(row)" style="color: #007bff"></span>
+              <span class="fa fa-desktop" (click)="openDialogDetail(row)" style="color: #007bff" ngbTooltip="{{'ACTION.DETAIL' | translate}}"></span>
             </button>
-            <button mat-icon-button (click)="openDialog(row)">
-              <span class="fa fa-edit" style="color: #007bff"></span>
+            <button mat-icon-button (click)="openDialog(row)" [disabled]="row.launched">
+              <span *ngIf="!row.launched" class="fa fa-edit" style="color: #007bff" ngbTooltip="{{'ACTION.UPDATE' | translate}}"></span>
+              <span *ngIf="row.launched"  class="fa fa-edit" style="color: #c0c0c0" ngbTooltip="{{'ACTION.ALREADY_LAUNCHED' | translate}}"></span>
             </button>
-            <button mat-icon-button (click)="delete(row)" style="color:red">
-              <span class="icofont icofont-ui-delete tabledit-delete-button "></span>
+            <button mat-icon-button (click)="delete(row)" style="color:red" [disabled]="row.launched">
+              <span *ngIf="!row.launched" class="icofont icofont-ui-delete tabledit-delete-button" style="color: #007bff" ngbTooltip="{{'ACTION.DELETE' | translate}}"></span>
+              <span *ngIf="row.launched"  class="icofont icofont-ui-delete tabledit-delete-button" style="color: #c0c0c0" ngbTooltip="{{'ACTION.ALREADY_LAUNCHED' | translate}}"></span>
             </button>
 
 

@@ -8,26 +8,19 @@ import { QuestionService } from "../../../core/services/question/question.servic
   styleUrls: ["./detail.component.css"],
 })
 export class DetailComponent implements OnInit {
-  examDetail;
-  displayedColumns: string[] = ["name", "code", "correctComment"];
-  dataSource = null;
-  constructor(
-    public dialogRef: MatDialogRef<DetailComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: any,
-    private questionService: QuestionService
-  ) {
-    console.log('data',data);
-    this.questionService.findByExam(data.id).subscribe((resp) => {
-      console.log("resp", resp);
-      this.examDetail = data;
-
-      this.dataSource = resp;
-      console.log('dataSource',this.dataSource)
-    });
-  }
-
-  ngOnInit() {}
-  cancel() {
-    this.dialogRef.close("laaaaaaaaaaah yr7m lik lwalidin");
-  }
+  exam;
+  isShow=false;
+    constructor(public dialogRef: MatDialogRef<DetailComponent>,
+      @Inject(MAT_DIALOG_DATA) public data: any,) { }
+  
+    ngOnInit() {
+      console.log('this.data',this.data.questions);
+      if(this.data!=null){
+        this.exam=this.data;
+      }
+    }
+   
+    cancel(){
+      this.dialogRef.close();
+    }
 }

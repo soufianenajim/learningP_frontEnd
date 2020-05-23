@@ -7,10 +7,8 @@ export class ProgressionModule extends Historized {
     public student?: User,
     public module?: Module,
     public progressionCour?: number,
-    public progressionQuiz?: number,
-    public examFinished?: boolean,
     public noteFinal?: number,
-    public noteExam?:number,
+    public teacher?:boolean
   
   ) {
     super();

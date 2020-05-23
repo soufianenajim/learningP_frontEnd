@@ -156,6 +156,9 @@ export class AdminLayoutComponent implements OnInit {
     moment.locale(lang[length]);
     return moment(date).format("MMMM Do YYYY, h:mm:ss a");
   }
+  isAfterCurrentDate(date){
+    return moment().isSameOrAfter(moment(date));
+  }
   onClickedOutside(e: Event) {
     if (
       this.windowWidth < 768 &&
