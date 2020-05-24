@@ -7,7 +7,8 @@
     <form [formGroup]="firstFormGroup">
 
       <div class="form-group row">
-        <label class="col-sm-2 col-form-label">{{'EXERCICES.NAME'| translate}}</label>
+        <label class="col-sm-2 col-form-label">{{'EXERCICES.NAME'| translate}}<span style="margin-left:0.2rem;color: red">*</span><p class="f-right">
+          :</p></label>
         <div class="col-sm-10">
           <input type="text" formControlName="name" class="form-control">
           <div *ngIf="errormptyFieldForm1('name')" style="color:red">
@@ -18,7 +19,10 @@
       </div>
 
       <div class="form-group row" >
-        <label class="col-sm-2 col-form-label">{{'EXERCICES.MODULE'| translate}}</label>
+        <label class="col-sm-2 col-form-label">{{'EXERCICES.MODULE'| translate}}<span style="margin-left:0.2rem;color: red">*</span>
+          <p class="f-right">
+            :</p>
+        </label>
         <div class="col-sm-10">
           <select name="select" [compareWith]="compareModule" name="module" formControlName="module"
             class="form-control" (change)="onSelectModule()">
@@ -34,7 +38,8 @@
         </div>
       </div>
       <div class="form-group row" *ngIf="!this.isExam">
-        <label class="col-sm-2 col-form-label">{{'EXERCICES.TYPE'| translate}}</label>
+        <label class="col-sm-2 col-form-label">{{'EXERCICES.TYPE'| translate}}<span style="margin-left:0.2rem;color: red">*</span><p class="f-right">
+          :</p></label>
         <div class="col-sm-10">
           <select name="select" name="type" formControlName="type" class="form-control" (change)="onSelectType()">
            <option value="" disabled selected>Selectioner un type</option>
@@ -48,7 +53,8 @@
         </div>
       </div>
       <div class="form-group row" *ngIf="this.isExam">
-        <label class="col-sm-2 col-form-label">{{'EXERCICES.TYPE'| translate}}</label>
+        <label class="col-sm-2 col-form-label">{{'EXERCICES.TYPE'| translate}} <span style="margin-left:0.2rem;color: red">*</span><p class="f-right">
+          :</p></label>
         <div class="col-sm-10">
           <select name="select" name="type" formControlName="type" class="form-control" (change)="onSelectType()">
            <option value="" disabled selected>Selectioner un type</option>
@@ -62,7 +68,8 @@
         </div>
       </div>
       <div class="form-group row" *ngIf="!this.isExam">
-        <label class="col-sm-2 col-form-label">{{'EXERCICES.COURSE'| translate}}</label>
+        <label class="col-sm-2 col-form-label">{{'EXERCICES.COURSE'| translate}} <span style="margin-left:0.2rem;color: red">*</span><p class="f-right">
+          :</p></label>
         <div class="col-sm-10">
           <select name="select" [compareWith]="compareModule" name="cour" formControlName="cour" class="form-control">
             <option value="" disabled selected>{{'CHAPTER.SELECT_COURSE'|translate}}</option>
@@ -75,7 +82,8 @@
         </div>
       </div>
       <div class="form-group row" *ngIf="isNotTd">
-        <label class="col-sm-2 col-form-label">{{'EXERCICES.START_TIME'| translate}}</label>
+        <label class="col-sm-2 col-form-label">{{'EXERCICES.START_TIME'| translate}}<span style="margin-left:0.2rem;color: red">*</span> <p class="f-right">
+          :</p></label>
         <div class="col-sm-10">
           <label class="input-group date m-0">
 
@@ -93,7 +101,8 @@
 
       </div>
       <div class="form-group row" *ngIf="isNotTd">
-        <label class="col-sm-2 col-form-label">{{'EXERCICES.END_TIME'| translate}}</label>
+        <label class="col-sm-2 col-form-label">{{'EXERCICES.END_TIME'| translate}} <span style="margin-left:0.2rem;color: red">*</span><p class="f-right">
+          :</p></label>
         <div class="col-sm-10">
           <label class="input-group date m-0">
 
@@ -124,12 +133,7 @@
   <mat-step [stepControl]="secondFormGroup">
     <ng-template matStepLabel >{{'EXERCICES.QUESTIONS'| translate}}</ng-template>
     <form [formGroup]="secondFormGroup">
-
-
-
-
-
-      <app-personalize [data]="examOrExercices" [isClickSave]="isClicNextSecondForm" [exercicesForm]="secondFormGroup" (changeNote)="onChangeNote($event)" (invalidQuestion)="onChangeInvalidQuestion($event)"></app-personalize>
+      <app-personalize [data]="examOrExercices" [isExam]="isExam" [isClickSave]="isClicNextSecondForm" [exercicesForm]="secondFormGroup" (changeNote)="onChangeNote($event)" (invalidQuestion)="onChangeInvalidQuestion($event)"></app-personalize>
       <button type="button" (click)="cancel()" class="btn btn-danger btn-md waves-effect waves-light f-light"
         style="margin-right: 15px">
         <i class="fa fa-close"></i>{{'ACTION.CANCEL'| translate}}

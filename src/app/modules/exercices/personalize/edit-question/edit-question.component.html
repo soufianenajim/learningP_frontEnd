@@ -8,7 +8,8 @@
 
     <form [formGroup]="questionForm" (ngSubmit)="save()">
       <div class="form-group row">
-        <label class="col-sm-3 col-form-label">{{'QUESTION.CODE'|translate}}</label>
+        <label class="col-sm-3 col-form-label">{{'QUESTION.CODE'|translate}} <span style="margin-left:0.2rem;color: red">*</span><p class="f-right">
+          :</p></label>
         <div class="col-sm-9">
           <input type="text" formControlName="code" class="form-control">
           <div *ngIf="errormptyField('code')" style="color:red">
@@ -18,7 +19,8 @@
         </div>
       </div>
       <div class="form-group row">
-        <label class="col-sm-3 col-form-label">{{'QUESTION.CONTENT'|translate}}</label>
+        <label class="col-sm-3 col-form-label">{{'QUESTION.CONTENT'|translate}} <span style="margin-left:0.2rem;color: red">*</span><p class="f-right">
+          :</p></label>
         <div class="col-sm-9">
           <input type="text" formControlName="name" class="form-control">
           <div *ngIf="errormptyField('name')" style="color:red">
@@ -29,7 +31,8 @@
       </div>
      
       <div class="form-group row">
-        <label class="col-sm-3 col-form-label">{{'QUESTION.CORRECT_COMMENT'|translate}}</label>
+        <label class="col-sm-3 col-form-label">{{'QUESTION.CORRECT_COMMENT'|translate}} <span style="margin-left:0.2rem;color: red">*</span><p class="f-right">
+          :</p></label>
         <div class="col-sm-9">
           <textarea type="text" formControlName="correctComment" class="form-control"></textarea>
           <div *ngIf="errormptyField('correctComment')" style="color:red">

@@ -187,6 +187,7 @@ export class SaveOrUpdateExComponent implements OnInit {
       if (type === "TD") {
         this.firstFormGroup.get("startTime").setValue(new Date());
         this.firstFormGroup.get("endTime").setValue(new Date());
+        this.secondFormGroup.get("scale").setValue(5);
         this.examOrExercices.startDateTime = null;
         this.examOrExercices.endDateTime = null;
       }else{
@@ -205,9 +206,8 @@ export class SaveOrUpdateExComponent implements OnInit {
     this.examOrExercices.endDateTime = endTime;
     }
 
-    console.log('!this.isExam',!this.isExam);
-    console.log('this.firstFormGroup.valid',this.firstFormGroup.valid);
     if (!this.isExam) {
+      console.log('this.firstFormGroup.valid',this.firstFormGroup.valid);
       if (this.firstFormGroup.valid) {
         this.exercicesService.isExist(this.examOrExercices).subscribe(
           (resp) => {
@@ -228,10 +228,10 @@ export class SaveOrUpdateExComponent implements OnInit {
     this.isClicNextSecondForm = true;
     const scale = this.secondFormGroup.get("scale").value;
     const questions = this.secondFormGroup.get("questions").value;
-    if (
-      this.secondFormGroup.valid &&
+    if (!this.isExam||
+      (this.secondFormGroup.valid &&
       this.sum === scale &&
-      !this.invalidQuestion
+      !this.invalidQuestion)
     ) {
       questions.sort(function (a: any, b: any) {
         return a.indexNumerator - b.indexNumerator;

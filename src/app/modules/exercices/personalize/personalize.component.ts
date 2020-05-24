@@ -37,6 +37,7 @@ export class PersonalizeComponent implements OnInit {
   @Input() isClickNext = false;
   @Output() changeNote = new EventEmitter<any>();
   @Output() invalidQuestion = new EventEmitter<boolean>();
+  @Input() isExam=false;
   mapQuestionNote = new Map();
 
   exercices: Exercices;
@@ -55,7 +56,6 @@ export class PersonalizeComponent implements OnInit {
     this.questionsValue = data.questions;
     for (let d of this.questionsValue) {
       this.sum += d.note;
-    
     }
    
   }

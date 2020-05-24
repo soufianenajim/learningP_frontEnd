@@ -44,6 +44,7 @@
   },
   "MODULE": {
     "NAME": "Nom",
+    "COEFFICIENT":"Coefficient",
     "PROFESSOR": "Professeur",
     "LEVEL": "Niveau",
     "BRANCH": "Branche",
@@ -55,7 +56,17 @@
     "SAVE_SUCCESS": "Module enregistré avec succès",
     "EXIST": "Ce Module existe déjà!",
     "ALREADY_LAUNCHED": "déja lancée",
-    "LAUNCH": "Démarrer"
+    "LAUNCH": "Démarrer",
+    "PERCENTAGE_ABSENCE":"Pourcentage (Absence)",
+    "PERCENTAGE_COUR":"Pourcentage (Cour)",
+    "PERCENTAGE_QUIZ":"Pourcentage (quiz)",
+    "PERCENTAGE_EXAM":"Pourcentage (Examen)",
+    "MIN_0":"Minimum est 0",
+    "MIN_5":"Minimum est 5",
+    "MIN_20":"Minimum est 20",
+    "TOTAL_PERCENTAGE":"Total des pourcentages doit étre égal 100 !",
+    "CALCULATE":"Calculer la note final",
+    "SCALE": "Barème"
   },
   "CHAPTER": {
     "NAME": "Nom",
@@ -78,7 +89,8 @@
     "LAUNCHED_MESSAGE": "le cour à été lancé ",
     "FINISHED":"Cours terminé",
     "START":"Démarrer cours",
-    "PROGRESSION":"Progression des cours"
+    "PROGRESSION":"Progression des cours",
+    "DETAIL_PROGRESSION":"Détail Progression des cours"
   },
   "ERRORS": {
     "EMPTY_FIELD": "Le champ ne doit pas être vide.",
@@ -94,7 +106,7 @@
     "MINUTES": " minutes! ",
     "LOGIN": "Se connecter",
     "FORGOT_PASSWORD": "Mot de passe oublié ?",
-    "COPIRIGHT": "Copyright © DATA-CSIRT Tous droits réservés.",
+    "COPIRIGHT": "Copyright © E_LEARNING Tous droits réservés.",
     "LOGOUT": "Déconnecter"
   },
   "USER": {
@@ -178,7 +190,9 @@
     "AVAILABLE":"Cet examen  est lancé mais non disponible ",
     "AVAILABLE_TIME":"Il sera disponible à : ",
     "USER_SHOW_SCORE":"Vous voulez que cette utilisateur voir son score",
-    "ALREADY_SHOW":"Déjà affiché"
+    "ALREADY_SHOW":"Déjà affiché",
+    "EXAM_QUIZ_PROGRESSION":"Examen et quiz progression",
+    "ABSENCE_PROGRESSION":"Progression absence"
   },
   "QUIZ": {
     "FINISHED": "Quiz terminé",

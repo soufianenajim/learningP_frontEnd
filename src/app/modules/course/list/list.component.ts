@@ -32,6 +32,7 @@ export class ListComponent implements OnInit {
     name: new FormControl(""),
     module: new FormControl(),
   });
+  idTeacher;
   constructor(
     private courService: CourseService,
     private moduleseService: ModuleService,
@@ -40,7 +41,8 @@ export class ListComponent implements OnInit {
     private tokenStorageService:TokenStorageService
   ) {}
   ngOnInit() {
-    const user=this.tokenStorageService.getUser()
+    const user=this.tokenStorageService.getUser();
+    this.idTeacher=user.id;
     this.moduleseService.findByProfessor(user.id).subscribe((res) => {
       console.log("modules in database -------------------------------", res);
       this.listModule = res;
@@ -59,6 +61,7 @@ export class ListComponent implements OnInit {
     console.log("module", module);
     this.cour.name = name;
     this.cour.module = module;
+    this.cour.idTeacher=this.idTeacher;
     this.demandeCour.model = this.cour;
     this.demandeCour.page = page;
     this.demandeCour.size = size;

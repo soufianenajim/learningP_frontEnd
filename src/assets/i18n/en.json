@@ -44,6 +44,7 @@
   },
   "MODULE": {
     "NAME": "Name",
+    "COEFFICIENT":"Coefficient",
     "PROFESSOR": "Professor",
     "LEVEL": "Level",
     "BRANCH": "Branch",
@@ -53,7 +54,20 @@
     "DELETE": "Delete module?",
     "DELETED": "Module has been deleted.",
     "SAVE_SUCCESS": "Module saved successfully",
-    "EXIST": "Module already exists!"
+    "EXIST": "Module already exists!",
+    "PERCENTAGE_ABSENCE":"Percentage (Absence)",
+    "PERCENTAGE_COUR":"Percentage (Course)",
+    "PERCENTAGE_QUIZ":"Percentage (quiz)",
+    "PERCENTAGE_EXAM":"Percentage (Exam)",
+    "MIN_0":"Minimum is 0 !",
+    "MIN_5":"Minimum is 5 !",
+    "MIN_20":"Minimum is 20 !",
+    "TOTAL_PERCENTAGE":"Total of percentage must be equal 100 !",
+    "EXAM_QUIZ_PROGRESSION":"Exam quiz progression",
+    "ABSENCE_PROGRESSION":"Absence progression",
+    "CALCULATE":"Calculate Final note",
+    "SCALE": "Scale"
+    
   },
   "CHAPTER": {
     "NAME": "Name",
@@ -81,7 +95,8 @@
     "DELETED": "Course has been deleted.",
     "FINISHED":"Course finished",
     "START":"Start course",
-    "PROGRESSION":"Course progression"
+    "PROGRESSION":"Course progression",
+    "DETAIL_PROGRESSION":"Detail courses progression"
   },
   "ERRORS": {
     "EMPTY_FIELD": "Field must not be empty.",
@@ -97,7 +112,7 @@
         "MINUTES": " minutes!",
         "LOGIN": "Login",
         "FORGOT_PASSWORD" : "Forgot your password ?",
-        "COPIRIGHT": "Copyright © DATA-CSIRT All rights reserved.",
+        "COPIRIGHT": "Copyright © E_LEARNING All rights reserved.",
         "LOGOUT": "Logout"
 
   },

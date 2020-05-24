@@ -9,7 +9,14 @@ export class Module extends Historized {
     public exams?: any[],
     public idOrganization?:number,
     public launched?:boolean,
-    public hasExam?:boolean
+    public hasExam?:boolean,
+
+    public coefficient?:number,
+    public percentageExam?:number,
+    public percentageQuiz?:number,
+    public percentageCour?:number,
+    public percentageAbsence?:number,
+    public scale?:number
   ) {
     super();
   }

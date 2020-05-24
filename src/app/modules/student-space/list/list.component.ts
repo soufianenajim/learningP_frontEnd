@@ -18,16 +18,17 @@ import { GroupService } from "../../../core/services/group/group.service";
 @Component({
   selector: "app-progression-module-list",
   templateUrl: "./list.component.html",
- styleUrls: ["./list.component.css"],
-}) 
+  styleUrls: ["./list.component.css"],
+})
 export class ListComponent implements OnInit {
- @Input()isTeacher=false;
+  @Input() isTeacher = false;
   displayedColumns: string[] = [
     "user",
     "name",
     "startCourse",
     "cour",
     "noteExam",
+    "absence",
     "noteF",
   ];
   //dataSource = new MatTableDataSource<PeriodicElement>(ELEMENT_DATA);
@@ -44,8 +45,8 @@ export class ListComponent implements OnInit {
   groupId;
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
-  listModule=[];
-  listGroup=[];
+  listModule = [];
+  listGroup = [];
   progressionModuleForm = new FormGroup({
     module: new FormControl(null),
     firstName: new FormControl(""),
@@ -60,42 +61,40 @@ export class ListComponent implements OnInit {
     private moduleService: ModuleService,
     private dialog: MatDialog,
     private tokenStorageService: TokenStorageService,
-    private translateService:TranslateService,
-    private groupService:GroupService,
+    private translateService: TranslateService,
+    private groupService: GroupService
   ) {}
   ngOnInit() {
-    
-    
     const user = this.tokenStorageService.getUser();
     this.user.id = user.id;
     this.groupId = user.groups[0].id;
-if(this.isTeacher){
-  this.displayedColumns = [
-    "user",
-    "name",
-    "detailProgression",
-    "cour",
-    "noteExam",
-    "noteF",
-  ];
-  this.moduleService.findByProfessor(this.user.id).subscribe((resp:any) => {
-    this.listModule = resp;
-    this.groupService.findByUser(this.user.id).subscribe((resp:any)=>{
-      console.log('group',resp);
-      this.listGroup=resp;
-      this.search(false);
-    })
-   
-  });
-
-}else{
-  this.moduleService.findByGroup(this.groupId).subscribe((resp:any) => {
-    this.listModule = resp;
-    console.log("module---", resp);
-    this.search(false);
-  });
-}
-    
+    if (this.isTeacher) {
+      this.displayedColumns = [
+        "user",
+        "name",
+        "detailProgression",
+        "cour",
+        "noteExam",
+        "absence",
+        "noteF",
+      ];
+      this.moduleService
+        .findByProfessor(this.user.id)
+        .subscribe((resp: any) => {
+          this.listModule = resp;
+          this.groupService.findByUser(this.user.id).subscribe((resp: any) => {
+            console.log("group", resp);
+            this.listGroup = resp;
+            this.search(false);
+          });
+        });
+    } else {
+      this.moduleService.findByGroup(this.groupId).subscribe((resp: any) => {
+        this.listModule = resp;
+        console.log("module---", resp);
+        this.search(false);
+      });
+    }
   }
   search(bool) {
     if (!bool) {
@@ -108,15 +107,15 @@ if(this.isTeacher){
     const firstName = this.progressionModuleForm.get("firstName").value;
     const lastName = this.progressionModuleForm.get("lastName").value;
     const group = this.progressionModuleForm.get("group").value;
-    this.user.email=email;
-    this.user.firstName=firstName;
-    this.user.lastName=lastName;
+    this.user.email = email;
+    this.user.firstName = firstName;
+    this.user.lastName = lastName;
     this.user.groupId = group != null ? group.id : null;
     this.progressionModule.module = module;
     this.progressionModule.student = this.user;
-    this.progressionModule.teacher=this.isTeacher;
+    this.progressionModule.teacher = this.isTeacher;
     this.demandeProgressionModule.model = this.progressionModule;
-    
+
     this.demandeProgressionModule.page = page;
     this.demandeProgressionModule.size = size;
 
@@ -170,7 +169,7 @@ if(this.isTeacher){
     );
   }
   openProgressionCour(data) {
-    data.isTeacher=this.isTeacher;
+    data.isTeacher = this.isTeacher;
     const dialogRef = this.dialog.open(ProgressionCourComponent, {
       width: "90%",
       data: data,
@@ -214,8 +213,14 @@ if(this.isTeacher){
   }
   getFormaterDate(date) {
     const lang = this.translateService.getLangs();
-    const length=lang.length-1
+    const length = lang.length - 1;
     moment.locale(lang[length]);
-    return  moment(date).format('MMMM Do YYYY, h:mm:ss a')
+    return moment(date).format("MMMM Do YYYY, h:mm:ss a");
+  }
+  getScore(row){
+    let score=0;
+    const scale=row.module.scale;
+    score=(row.noteFinal*scale)/100;
+    return score+"/"+scale;
   }
 }

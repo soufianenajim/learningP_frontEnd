@@ -8,6 +8,7 @@ import { TokenStorageService } from "../../../core/services/token_storage/token-
 import { UserService } from "../../../core/services/user/user.service";
 import { TranslateService } from "@ngx-translate/core";
 import { NotifierService } from "angular-notifier";
+import { min } from "d3";
 
 @Component({
   selector: "app-save-or-update",
@@ -16,10 +17,35 @@ import { NotifierService } from "angular-notifier";
 })
 export class SaveOrUpdateComponent implements OnInit {
   moduleForm = new FormGroup({
-    name: new FormControl("",[Validators.required,this.noWhitespaceValidator]),
-    prof: new FormControl(null,Validators.required),
-    group: new FormControl(null,Validators.required),
+    name: new FormControl("", [
+      Validators.required,
+      this.noWhitespaceValidator,
+    ]),
+    coefficient: new FormControl("", [Validators.required]),
+    prof: new FormControl(null, Validators.required),
+    group: new FormControl(null, Validators.required),
+    percentageAbsence: new FormControl("", [
+      Validators.required,
+      Validators.min(0),
+    ]),
+    percentageCour: new FormControl("", [
+      Validators.required,
+      Validators.min(0),
+    ]),
+    percentageQuiz: new FormControl("", [
+      Validators.required,
+      Validators.min(5),
+    ]),
+    percentageExam: new FormControl("", [
+      Validators.required,
+      Validators.min(20),
+    ]),
+    scale: new FormControl("", [
+      Validators.required,
+      Validators.min(5),
+    ]),
   });
+  totalPercentage=0;
   listLevel = [];
 
   listGroup = [];
@@ -28,6 +54,7 @@ export class SaveOrUpdateComponent implements OnInit {
   idModule = null;
   isEdit = false;
   isClickSave = false;
+  isTeacher = false;
   private readonly notifier: NotifierService;
   constructor(
     private moduleService: ModuleService,
@@ -36,64 +63,104 @@ export class SaveOrUpdateComponent implements OnInit {
     @Inject(MAT_DIALOG_DATA) public data: any,
     private tokenStorageService: TokenStorageService,
     private userService: UserService,
-    private translateService:TranslateService,
-     notifierService: NotifierService
+    private translateService: TranslateService,
+    notifierService: NotifierService
   ) {
-    this.notifier=notifierService;
+    this.notifier = notifierService;
     if (data !== null) {
+      this.isTeacher = data.isTeacher;
       this.isEdit = true;
       this.idModule = data.id;
-      const name = data.name;
-      const group = data.group;
-      const prof = data.professor;
-      console.log("data", data);
-      this.moduleForm.get("name").setValue(name);
-      this.moduleForm.get("group").setValue(group);
-      this.moduleForm.get("prof").setValue(prof);
-      console.log('form',this.moduleForm.value)
-
+      this.buildForm(data);
     }
   }
+  buildForm(data) {
+    const name = data.name;
+    const group = data.group;
+    const prof = data.professor;
+    const coefficient = data.coefficient;
+    const percentageAbsence = data.percentageAbsence;
+    const percentageCour = data.percentageCour;
+    const percentageExam = data.percentageExam;
+    const percentageQuiz = data.percentageQuiz;
+    const scale=data.scale;
+    this.moduleForm.get("name").setValue(name);
+    this.moduleForm.get("group").setValue(group);
+    this.moduleForm.get("prof").setValue(prof);
+    this.moduleForm.get("coefficient").setValue(coefficient);
+    this.moduleForm.get("percentageAbsence").setValue(percentageAbsence);
+    this.moduleForm.get("percentageCour").setValue(percentageCour);
+    this.moduleForm.get("percentageExam").setValue(percentageExam);
+    this.moduleForm.get("percentageQuiz").setValue(percentageQuiz);
+    this.moduleForm.get("scale").setValue(scale);
 
+    if (this.isTeacher) {
+      this.moduleForm.get("name").disable();
+      this.moduleForm.get("group").disable();
+      this.moduleForm.get("prof").disable();
+      this.moduleForm.get("coefficient").disable();
+    } else {
+      this.moduleForm.get("percentageAbsence").disable();
+      this.moduleForm.get("percentageCour").disable();
+      this.moduleForm.get("percentageExam").disable();
+      this.moduleForm.get("percentageQuiz").disable();
+      this.moduleForm.get("scale").disable();
+    }
+  }
   ngOnInit() {
     const user = this.tokenStorageService.getUser();
 
-   
-        this.groupService
-          .findByOrganization(user.organization.id)
-          .subscribe((response: any) => {
-            this.listGroup = response;
-            this.userService
-              .findAllProfessorByOrga(user.organization.id)
-              .subscribe((resp: any) => {
-                this.listProfessor = resp;
-              });
+    this.groupService
+      .findByOrganization(user.organization.id)
+      .subscribe((response: any) => {
+        this.listGroup = response;
+        this.userService
+          .findAllProfessorByOrga(user.organization.id)
+          .subscribe((resp: any) => {
+            this.listProfessor = resp;
           });
-     
+      });
   }
   save() {
+    this.onReCalculateTotal();
     this.isClickSave = true;
     const name = this.moduleForm.get("name").value;
     const group = this.moduleForm.get("group").value;
     const professor = this.moduleForm.get("prof").value;
+    const coefficient = this.moduleForm.get("coefficient").value;
+    const percentageAbsence = this.moduleForm.get("percentageAbsence").value;
+    const percentageCour = this.moduleForm.get("percentageCour").value;
+    const percentageExam = this.moduleForm.get("percentageExam").value;
+    const percentageQuiz = this.moduleForm.get("percentageQuiz").value;
+    const scale=this.moduleForm.get("scale").value;
     let module = new Module();
     module.id = this.idModule;
     module.name = name;
     module.group = group;
     module.professor = professor;
-    console.log("module", module);
-    if(this.moduleForm.valid){
-      this.moduleService.saveOrUpdate(module).subscribe( 
+    module.coefficient = coefficient;
+    module.percentageAbsence=percentageAbsence;
+    module.percentageCour=percentageCour;
+    module.percentageExam=percentageExam;
+    module.percentageQuiz=percentageQuiz;
+    module.scale=scale;
+
+    if (this.moduleForm.valid) {
+    if(this.totalPercentage==100){
+      this.moduleService.saveOrUpdate(module).subscribe(
         (resp) => {
           this.successNotifaction();
         },
         (error) => {
-          this.erorrNotifaction();
-        }   
-    );
-    
-      }
-
+          this.erorrNotifaction("MODULE.EXIST");
+        }
+      );
+    }
+    else{
+      this.erorrNotifaction("MODULE.TOTAL_PERCENTAGE")
+    }
+      
+    }
   }
   cancel() {
     this.dialogRef.close(false);
@@ -142,9 +209,18 @@ export class SaveOrUpdateComponent implements OnInit {
   public showNotification(type: string, message: string): void {
     this.notifier.notify(type, message);
   }
-  erorrNotifaction() {
-    this.translateService.get("MODULE.EXIST").subscribe((value: string) => {
+  erorrNotifaction(msg) {
+    this.translateService.get(msg).subscribe((value: string) => {
       this.showNotification("error", value);
     });
   }
+  onReCalculateTotal() {
+    const percentageAbsence = this.moduleForm.get("percentageAbsence").value;
+    const percentageCour = this.moduleForm.get("percentageCour").value;
+    const percentageExam = this.moduleForm.get("percentageExam").value;
+    const percentageQuiz = this.moduleForm.get("percentageQuiz").value;
+    this.totalPercentage =
+      percentageAbsence + percentageCour + percentageExam + percentageQuiz;
+  }
+
 }

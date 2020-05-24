@@ -8,7 +8,8 @@
       
       <form  [formGroup]="groupForm" (ngSubmit)="save()">
           <div class="form-group row">
-              <label class="col-sm-2 col-form-label">{{'MODULE.NAME'|translate}}</label>
+              <label class="col-sm-2 col-form-label">{{'MODULE.NAME'|translate}}<span style="margin-left:0.2rem;color: red">*</span><p class="f-right">
+                :</p></label>
               <div class="col-sm-10">
                   <input type="text" maxlength="100" formControlName="name" class="form-control">
                   <div *ngIf="errormptyField('name')" style="color:red">
@@ -19,7 +20,8 @@
           </div>
           
           <div class="form-group row">
-            <label class="col-sm-2 col-form-label">{{'MODULE.LEVEL'|translate}}</label>
+            <label class="col-sm-2 col-form-label">{{'MODULE.LEVEL'|translate}} <span style="margin-left:0.2rem;color: red">*</span><p class="f-right">
+              :</p></label>
             <div class="col-sm-10">
               <select name="select" [compareWith]="compareLevel" name="level"  formControlName="level" class="form-control">
                <option value="" disabled selected>{{'MODULE.SELECT_LEVEL'|translate}}</option>
@@ -32,7 +34,8 @@
             </div>
         </div>
         <div class="form-group row">
-          <label class="col-sm-2 col-form-label">{{'MODULE.BRANCH'|translate}}</label>
+          <label class="col-sm-2 col-form-label">{{'MODULE.BRANCH'|translate}}<span style="margin-left:0.2rem;color: red">*</span><p class="f-right">
+            :</p></label>
           <div class="col-sm-10">
             <select name="select" [compareWith]="compareBranch" name="branch"  formControlName="branch" class="form-control">
              <option value="" disabled selected>{{'MODULE.SELECT_BRANCH'|translate}}</option>

@@ -8,7 +8,8 @@
 
     <form [formGroup]="userForm" (ngSubmit)="save()">
       <div class="form-group row">
-        <label class="col-sm-2 col-form-label">{{'USER.EMAIL'|translate}}<span style="color: red">*</span></label>
+        <label class="col-sm-2 col-form-label">{{'USER.EMAIL'|translate}}<span style="margin-left:0.2rem;color: red">*</span><p class="f-right">
+          :</p></label>
         <div class="col-sm-10">
           <input type="text" maxlength="30" formControlName="email" class="form-control">
           <div *ngIf="errormptyField('email')" style="color:red">
@@ -18,7 +19,8 @@
         </div>
       </div>
       <div class="form-group row">
-        <label class="col-sm-2 col-form-label">{{'USER.FIRST_NAME'|translate}}<span style="color: red">*</span></label>
+        <label class="col-sm-2 col-form-label">{{'USER.FIRST_NAME'|translate}}<span style="margin-left:0.2rem;color: red">*</span><p class="f-right">
+          :</p></label>
         <div class="col-sm-10">
           <input type="text" maxlength="30" formControlName="firstName" class="form-control">
           <div *ngIf="errormptyField('firstName')" style="color:red">
@@ -28,7 +30,8 @@
         </div>
       </div>
       <div class="form-group row">
-        <label class="col-sm-2 col-form-label">{{'USER.LAST_NAME'|translate}}<span style="color: red">*</span></label>
+        <label class="col-sm-2 col-form-label">{{'USER.LAST_NAME'|translate}}<span style="margin-left:0.2rem;color: red">*</span><p class="f-right">
+          :</p></label>
         <div class="col-sm-10">
           <input type="text" maxlength="30" formControlName="lastName" class="form-control">
           <div *ngIf="errormptyField('lastName')" style="color:red">
@@ -38,7 +41,8 @@
         </div>
       </div>
       <div class="form-group row">
-        <label class="col-sm-2 col-form-label">{{'USER.PHONE'|translate}}</label>
+        <label class="col-sm-2 col-form-label">{{'USER.PHONE'|translate}}<p class="f-right">
+          :</p></label>
         <div class="col-sm-10">
           <input type="text" maxlength="30" formControlName="phone" class="form-control">
           <div *ngIf="errormptyField('phone')" style="color:red">
@@ -49,7 +53,8 @@
       </div>
       <div class="form-group row" *ngIf="!isClientAdmin">
         <label class="col-sm-2 col-form-label">{{'USER.ORGANIZATION'|translate}}<span
-            style="color: red">*</span></label>
+            style="margin-left:0.2rem;color: red">*</span><p class="f-right">
+              :</p></label>
         <div class="col-sm-10">
           <select name="select" [compareWith]="compareLevel" name="organization" formControlName="organization"
             class="form-control" (change)="onSelectOgra()">
@@ -64,7 +69,8 @@
         </div>
       </div>
       <div class="form-group row">
-        <label class="col-sm-2 col-form-label">{{'USER.ROLE'|translate}}<span style="color: red">*</span></label>
+        <label class="col-sm-2 col-form-label">{{'USER.ROLE'|translate}}<span style="margin-left:0.2rem;color: red">*</span> <p class="f-right">
+          :</p> </label>
         <div class="col-sm-10">
           <select name="select" [compareWith]="compareLevel" name="role" formControlName="role" class="form-control"
             (change)="onSelectRole()">
@@ -79,7 +85,8 @@
       </div>
       <div *ngIf="isStudent">
         <div class="form-group row">
-          <label class="col-sm-2 col-form-label">{{'USER.GROUP'|translate}}<span style="color: red">*</span></label>
+          <label class="col-sm-2 col-form-label">{{'USER.GROUP'|translate}}<span style="margin-left:0.2rem;color: red">*</span><p class="f-right">
+            :</p></label>
           <div class="col-sm-10">
             <select name="select" [compareWith]="compareLevel" name="group" formControlName="group"
               class="form-control">
@@ -95,7 +102,8 @@
       </div>
       <div *ngIf="isTeacher">
         <div class="form-group row">
-        <label class="col-sm-2 col-form-label">{{'USER.ROLE'|translate}}<span style="color: red">*</span></label>
+        <label class="col-sm-2 col-form-label">{{'USER.ROLE'|translate}}<span style="margin-left:0.2rem;color: red">*</span><p class="f-right">
+          :</p></label>
         <div class="col-sm-10">
         <ng-multiselect-dropdown class="col-sm-10" [placeholder]="'custom placeholder'" [data]="listGroup" formControlName="group"
           [settings]="dropdownSettings" (onSelect)="onItemSelect($event)" (onSelectAll)="onSelectAll($event)">

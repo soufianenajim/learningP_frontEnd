@@ -16,7 +16,6 @@ export class SaveOrUpdateComponent implements OnInit {
   courForm = new FormGroup({
     name: new FormControl(""),
     module: new FormControl(null),
-    quiz: new FormControl(null),
     content: new FormControl(""),
   });
   listModule: any;
@@ -60,14 +59,12 @@ console.log('quiz',quiz)
   save() {
     const name = this.courForm.get("name").value;
     const module = this.courForm.get("module").value;
-    const quiz = this.courForm.get("quiz").value;
     const content = this.courForm.get("content").value;
 
     let cour = new Cour();
     cour.id = this.idCour;
     cour.name = name;
     cour.module = module;
-    cour.quiz = quiz;
     cour.content = content;
     console.log("cour", cour);
     this.courseService.saveOrUpdate(cour).subscribe((resp) => {

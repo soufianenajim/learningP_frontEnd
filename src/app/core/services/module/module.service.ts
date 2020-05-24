@@ -29,5 +29,8 @@ export class ModuleService {
   delete(id) {
     return this.httpClient.delete(this.url + "/delete/" + id);
   }
+  calculate(module){
+    return this.httpClient.post(this.url+"/calculate",module);
+  }
 
 }

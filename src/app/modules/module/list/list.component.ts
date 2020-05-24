@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from "@angular/core";
+import { Component, OnInit, ViewChild, Input } from "@angular/core";
 import { MatTableDataSource, MatPaginator, MatDialog } from "@angular/material";
 import { UserService } from "../../../core/services/user/user.service";
 import { FormGroup, FormControl } from "@angular/forms";
@@ -14,10 +14,11 @@ import swal from "sweetalert2";
 @Component({
   selector: "app-module-list",
   templateUrl: "./list.component.html",
-  styleUrls: ["./list.component.css"]
+  styleUrls: ["./list.component.css"],
 })
 export class ListComponent implements OnInit {
-  displayedColumns: string[] = ["name", "professeur","group", "actions"];
+  @Input() isTeacher = false;
+  displayedColumns: string[] = ["name", "professeur", "group", "actions"];
   //dataSource = new MatTableDataSource<PeriodicElement>(ELEMENT_DATA);
   dataSource: MatTableDataSource<Module>;
 
@@ -29,25 +30,34 @@ export class ListComponent implements OnInit {
 
   listProfessor;
   idOrganization;
+  teacher;
   moduleForm = new FormGroup({
     name: new FormControl(""),
-    prof: new FormControl()
+    prof: new FormControl(),
   });
   constructor(
     private userService: UserService,
     private moduleService: ModuleService,
     private dialog: MatDialog,
-    private tokenStorage:TokenStorageService,
-    private translateService:TranslateService
+    private tokenStorage: TokenStorageService,
+    private translateService: TranslateService
   ) {}
   ngOnInit() {
-     const user=this.tokenStorage.getUser()
-     this.idOrganization=user.organization.id;
-    this.userService.findAllProfessorByOrga(this.idOrganization).subscribe(resp => {
-      this.listProfessor = resp;
-      
+    const user = this.tokenStorage.getUser();
+    if (this.isTeacher) {
+      this.teacher = user;
       this.search(false);
-    });
+    }else{
+      this.idOrganization = user.organization.id;
+      this.userService
+        .findAllProfessorByOrga(this.idOrganization)
+        .subscribe((resp) => {
+          this.listProfessor = resp;
+  
+          this.search(false);
+        });
+    }
+    
   }
   search(bool) {
     if (!bool) {
@@ -59,8 +69,8 @@ export class ListComponent implements OnInit {
     const professeur = this.moduleForm.get("prof").value;
 
     this.module.name = name;
-    this.module.professor = professeur;
-    this.module.idOrganization=this.idOrganization;
+    this.module.professor =this.isTeacher?this.teacher: professeur;
+    this.module.idOrganization = this.idOrganization;
     this.demandeModule.model = this.module;
     this.demandeModule.page = page;
     this.demandeModule.size = size;
@@ -92,59 +102,72 @@ export class ListComponent implements OnInit {
     this.search(true);
   }
 
-
-  openDialogDetail(row){
+  openDialogDetail(module) {
+   
     const dialogRef = this.dialog.open(DetailComponent, {
       width: "60%",
-      data: row,
-      disableClose: true
-
+      data: module,
+      disableClose: true,
     });
 
-    dialogRef.afterClosed().subscribe(result => {
-     console.log('result mn dialog detail afakom rkzo m3ana   -----------',result);
-  
+    dialogRef.afterClosed().subscribe((result) => {
+      console.log(
+        "result mn dialog detail afakom rkzo m3ana   -----------",
+        result
+      );
     });
   }
-  openDialog(data) {
-    console.log("data", data);
+  openDialog(module) {
+    if(module)
+    module.isTeacher=this.isTeacher;
     const dialogRef = this.dialog.open(SaveOrUpdateComponent, {
       width: "60%",
-      data: data,
-      disableClose: true
+      data: module,
+      disableClose: true,
+      autoFocus: false,
+      maxHeight: '90vh'
     });
 
-    dialogRef.afterClosed().subscribe(result => {
-      if(result){
+    dialogRef.afterClosed().subscribe((result) => {
+      if (result) {
         this.search(false);
       }
-      
+
       console.log("The dialog was closed");
     });
-
   }
-   delete(row) {
+  delete(row) {
     this.moduleService.delete(row.id).subscribe(
-      response => {
+      (response) => {
         console.log("response", response);
         this.search(true);
       },
-      error => {
+      (error) => {
+        console.log("error", error);
+      }
+    );
+  }
+  calculate(module){
+    console.log('module',module)
+    this.moduleService.calculate(module).subscribe(
+      (response) => {
+        console.log("response", response);
+        this.search(true);
+      },
+      (error) => {
         console.log("error", error);
       }
     );
   }
   getFullName(row) {
-
-      return row? row.lastName + ' ' + row.firstName:'---';
-
+    return row ? row.lastName + " " + row.firstName : "---";
   }
-  getGroup(row){
-    return row? row.name :'---';
+  getGroup(row) {
+    return row ? row.name : "---";
   }
   openDialogDelete(module) {
-    let actionDeleted=this.getI18n("ACTION.DELETED");
-    let userDeleted= this.getI18n("MODULE.DELETED");
+    let actionDeleted = this.getI18n("ACTION.DELETED");
+    let userDeleted = this.getI18n("MODULE.DELETED");
     swal({
       title: this.getI18n("MODULE.DELETE"),
       text: this.getI18n("ACTION.CONFIRMATION_MESSAGE"),
@@ -161,9 +184,34 @@ export class ListComponent implements OnInit {
       .then(function () {
         swal({
           title: actionDeleted,
-          text:userDeleted,
+          text: userDeleted,
           type: "success",
         });
+      })
+      .catch();
+  }
+  openDialogCalculate(module){
+    // let actionDeleted = this.getI18n("ACTION.DELETED");
+    // let userDeleted = this.getI18n("MODULE.DELETED");
+    swal({
+      title: this.getI18n("MODULE.CALCULATE")+ "?",
+      text: this.getI18n("ACTION.CONFIRMATION_MESSAGE"),
+      type: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: this.getI18n("ACTION.CONFIRMATION"),
+      cancelButtonText: this.getI18n("ACTION.CANCEL_CONFIRMATION"),
+      reverseButtons: false,
+      focusCancel: true,
+    })
+      .then(() => this.calculate(module))
+      .then(function () {
+        // swal({
+        //   title: actionDeleted,
+        //   text: userDeleted,
+        //   type: "success",
+        // });
       })
       .catch();
   }
@@ -174,6 +222,4 @@ export class ListComponent implements OnInit {
     });
     return i18;
   }
- 
 }
-

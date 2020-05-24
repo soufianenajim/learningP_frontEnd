@@ -48,6 +48,10 @@ export const AppRoutes: Routes = [
         loadChildren: "./modules/student-space-prog/student-space-prog.module#StudentSpaceProgModule"
       },
       {
+        path: "moduleTeacher",
+        loadChildren: "./modules/module-teacher/module-teacher.module#ModuleTeacherModule"
+      },
+      {
         path: "user",
         loadChildren: "./modules/user/user.module#UserModule"
       },{

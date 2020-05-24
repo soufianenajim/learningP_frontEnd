@@ -90,6 +90,12 @@ const MENUITEMS_TEACHER = [
         type: "sub",
         icon: "icofont icofont-teacher",
         children: [
+          
+          {
+            state: "moduleTeacher",
+            name: "MENU_ITEM.MANAGED_MODULE",
+            icon: "fa fa-bookmark",
+          },
           {
             state: "course",
             name: "MENU_ITEM.COURSE",
