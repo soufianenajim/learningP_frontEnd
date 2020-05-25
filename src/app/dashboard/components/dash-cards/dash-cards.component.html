@@ -1,0 +1,20 @@
+<div class="card client-blocks {{ClassHeaderName}}">
+  <div class="card-block">
+    <div class="row">
+    <h6 class="col-sm-5">{{cardName | translate}}</h6>
+    <form class="col-sm-7" [formGroup]="searchForm">
+      <ng-select [items]="listGroup" bindLabel="name" formControlName="group" (clear)="onClear()" (change)="onChangeGroup()"
+          placeholder="{{ 'USER.SELECT_GROUP' | translate }}">
+      </ng-select>
+    </form>
+  </div>
+    <ul>
+      <li>
+        <i class="{{cardDataIcon}}"></i>
+      </li>
+      <li class="text-right {{cardDataClass}}">
+        {{cardData}}
+      </li>
+    </ul>
+  </div>
+</div>

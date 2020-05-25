@@ -1,0 +1,4 @@
+<app-dashboard-client-admin  *ngIf="isClientAdmin"></app-dashboard-client-admin>
+<app-dashboard-student *ngIf="isStudent"></app-dashboard-student>
+<app-dashboard-teacher [user]="user" *ngIf="isTeacher"></app-dashboard-teacher>
+<app-dashboard-technical-admin *ngIf="isTechnicalAdmin"></app-dashboard-technical-admin>

@@ -3,6 +3,23 @@
     "NAME": "Name",
     "MODULE":"Module"
   },
+  "DASHBOARD":{
+    "STUDENT":{
+      "LATEST_COURSE":"Latest courses",
+      "LATEST_Exam_QUIZ":"Latest Exam and quiz"
+
+    },
+    "TEACHER":{
+
+    },
+    "TECHNICAL_ADMIN":{
+
+    },
+    "CLIENT_ADMIN":{
+
+    }
+
+  },
   "MENU_ITEM": {
     "HOME": "Dashboard",
     "MANAGED_MODULE": "Module",
@@ -130,6 +147,7 @@
     "SELECT_LEVEL": "Select level",
     "SELECT_ROLE": "Select role",
     "SELECT_ORGANIZATION": "Select organization",
+    "SELECT_GROUP":"Select group",
     "EXIST": "User already exists!",
     "SAVE_SUCCESS": "User saved successfully",
     "DELETE": "Delete user?",

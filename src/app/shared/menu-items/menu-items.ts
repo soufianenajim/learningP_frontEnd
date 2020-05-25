@@ -84,40 +84,38 @@ const MENUITEMS_TEACHER = [
     label: "Module",
 
     main: [
-      {
-        state: "module_menu",
-        name: "MENU_ITEM.PROFESSOR_SPACE",
-        type: "sub",
-        icon: "icofont icofont-teacher",
-        children: [
-          
           {
             state: "moduleTeacher",
             name: "MENU_ITEM.MANAGED_MODULE",
             icon: "fa fa-bookmark",
+            type: "link",
           },
           {
             state: "course",
             name: "MENU_ITEM.COURSE",
             icon: "fa fa-book",
+            type: "link",
           },
           {
             state: "exercices",
             name: "Exercices",
             icon: "fa fa-pencil",
+            type: "link",
           },
           {
             state: "exam",
             name: "Exam",
             icon: "fa fa-list-alt",
+            type: "link",
           },
           {
             state: "studentExamProg",
             name: "Student prog",
             icon: "fa fa-list-alt",
+            type: "link",
           },
-        ],
-      },
+        
+      
     ],
   },
   
@@ -140,40 +138,39 @@ const MENUITEMS_ADMIN_CLIENT = [
   {
     label: "Administration",
     main: [
-      {
-        state: "administration_menu",
-        name: "Administration",
-        type: "sub",
-        icon: "fa fa-users",
-        children: [
+  
           {
             state: "user",
             name: "Utilisateur",
             icon: "fa fa-users",
+            type: "link",
           },
           {
             state: "group",
             name: "Group",
             icon: "fa fa-building-o",
+            type: "link",
           },
           {
             state: "level",
             name: "Level",
             icon: "fa fa-signal",
+            type: "link",
           },
           {
             state: "branch",
             name: "Branch",
             icon: "fa fa-institution",
+            type: "link",
           },
           {
             state: "module",
             name: "MENU_ITEM.MANAGED_MODULE",
             icon: "fa fa-bookmark",
+            type: "link",
           },
          
-        ],
-      },
+        
     ],
   },
 ];

@@ -31,6 +31,10 @@ File: style.css
 @import "~/angular-notifier/styles/core.css";
 @import "~/angular-notifier/styles/theme";
 @import "~/angular-notifier/styles/types"; */
+/**======  Card-Layout css end ======**/
+a.canvasjs-chart-credit {
+  display: none!important;
+}
 .ng-select .ng-select-container {
   background-color: #fff!important;
   border-radius: 4px!important;

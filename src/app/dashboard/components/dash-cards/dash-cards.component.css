@@ -1,0 +1,32 @@
+.card-header-blue {
+    border-top: 4px solid #0073aa;
+}
+.card-header-azure {
+    border-top: 4px solid 	#007FFF;
+}
+.card-header-baby_blue {
+    border-top: 4px solid 	#89CFF0;
+}
+.card-header-colbat_blue{
+    border-top: 4px solid 	#0047AB;
+}
+.card-header-yellow {
+    border-top: 4px solid #f1c40f;
+}
+.card-header-green {
+    border-top: 4px solid #2ecc71;
+}
+.card-header-red {
+    border-top: 4px solid rgba(255, 16, 16, 0.69);
+}
+.card-header-black {
+    border-top: 4px solid rgba(0,0,0);
+}
+
+.card-block {
+    padding: 0.25rem 1.25rem 0.25rem 1.25rem;
+} 
+.client-blocks ul li {
+    font-size: 35px;
+    display: inline-block;
+}

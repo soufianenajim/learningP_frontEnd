@@ -1,0 +1,45 @@
+
+<div class="row">
+  <div class="col-sm-4">
+    <app-dash-cards [cardName]="'Total Modules'" [listGroup]="listGroup" (changeEvent)="onChangeGroupModule($event)"
+    [cardData]="(countModule | async) ? (countModule | async) : '0'" [ClassHeaderName]="'card-header-azure'"
+    [cardDataIcon]="'icofont icofont-book-mark text-primary'"></app-dash-cards>
+  </div>
+  <div class="col-sm-4">
+    <app-dash-cards [isTeacher]="true" [cardName]="'Total Exam'" [listGroup]="listGroup" (changeEvent)="onChangeGroupExam($event)"
+    [cardData]="(countExam | async) ? (countExam | async) : '0'" [ClassHeaderName]="'card-header-baby_blue'"
+    [cardDataIcon]="'icofont icofont-paper text-primary'"></app-dash-cards>
+  </div>
+  <div class="col-sm-4">
+    <app-dash-cards [isTeacher]="true" [cardName]="'Total Quiz'" [listGroup]="listGroup" (changeEvent)="onChangeGroupQuiz($event)"
+    [cardData]="(countQuiz | async) ? (countQuiz | async) : '0'" [ClassHeaderName]="'card-header-colbat_blue'"
+    [cardDataIcon]="'icofont icofont-paper text-primary'"></app-dash-cards>
+  </div>
+  <div class="col-sm-4">
+    <app-dash-cards [isTeacher]="true" [cardName]="'Total Courses'" [listGroup]="listGroup" (changeEvent)="onChangeGroupCour($event)"
+    [cardData]="(countCour | async) ? (countCour | async) : '0'" [ClassHeaderName]="'card-header-yellow'"
+    [cardDataIcon]="'icofont icofont-read-book text-warning'"></app-dash-cards>
+  </div>
+  <div class="col-sm-4">
+    <app-dash-cards  [isTeacher]="true"[cardName]="'Total Students'" [listGroup]="listGroup" (changeEvent)="onChangeGroupStudent($event)"
+    [cardData]="(countStudent | async) ? (countStudent | async) : '0'" [ClassHeaderName]="'card-header-green'"
+    [cardDataIcon]="'icofont icofont-student-alt text-success'"></app-dash-cards>
+  </div>
+  <div class="col-sm-4">
+    <app-dash-cards [cardName]="'Total Absence'" [listGroup]="listGroup"
+    [cardData]="50" [ClassHeaderName]="'card-header-red'"
+    [cardDataIcon]="'icofont icofont-wall-clock text-danger'"></app-dash-cards>
+  </div>
+  <div class="col-sm-6">
+    <app-edit-card [title]="'DASHBOARD.BULLETIN_BY_CRITICITY'">
+      <div id="chartContainer" style="height: 20rem;width: 35rem; max-width: 35rem "></div>
+    </app-edit-card>
+  
+  </div>
+  <div class="col-sm-6">
+    <app-edit-card [title]="'DASHBOARD.BULLETIN_BY_CRITICITY'">
+    <div id="chartContainer1" style="height: 20rem;width: 35rem; max-width: 35rem"></div>
+  </app-edit-card>
+  </div>
+
+</div>

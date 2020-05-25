@@ -5,6 +5,12 @@ import { CommonModule } from '@angular/common';
 import { DashboardComponent } from './dashboard.component';
 import { DashboardRoutes } from './dashboard.routing';
 import {SharedModule} from '../shared/shared.module';
+import { DashboardStudentComponent } from './components/dashboard-student/dashboard-student.component';
+import { DashboardTeacherComponent } from './components/dashboard-teacher/dashboard-teacher.component';
+import { DashboardClientAdminComponent } from './components/dashboard-client-admin/dashboard-client-admin.component';
+import { DashboardTechnicalAdminComponent } from './components/dashboard-technical-admin/dashboard-technical-admin.component';
+import { EditComponent } from './components/cardEdit/edit.component';
+import { DashCardsComponent } from './components/dash-cards/dash-cards.component';
 
 @NgModule({
   imports: [
@@ -12,7 +18,7 @@ import {SharedModule} from '../shared/shared.module';
       RouterModule.forChild(DashboardRoutes),
       SharedModule
   ],
-  declarations: [DashboardComponent]
+  declarations: [DashboardComponent, DashboardStudentComponent, DashboardTeacherComponent, DashboardClientAdminComponent, DashboardTechnicalAdminComponent,EditComponent, DashCardsComponent]
 })
 
 export class DashboardModule {}

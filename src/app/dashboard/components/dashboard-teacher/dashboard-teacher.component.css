@@ -1,0 +1,31 @@
+.btn {
+    text-transform: capitalize;
+}
+
+i {
+    float: initial;
+}
+
+.chart-stat-cont {
+    background-color: #25a25a;
+}
+
+.text-no-data {
+    position: relative;
+    margin-top: -78%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 370px;
+}
+
+.backround-no-data{
+    background-color: antiquewhite;
+    padding: 10px 100px 10px 100px;
+    border-radius: 12px;
+    border: 2px solid #f9dfbc;
+}
+
+a.canvasjs-chart-credit {
+    display: none!important;
+  }

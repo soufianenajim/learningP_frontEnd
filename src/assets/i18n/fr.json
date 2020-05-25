@@ -121,6 +121,7 @@
     "ROLE": "Rôle",
     "SELECT_BRANCH": "Selectionner une branche",
     "SELECT_LEVEL": "Selectionner un niveau",
+    "SELECT_GROUP":"Selectionner un group",
     "SELECT_ROLE": "Selectionner un rôle",
     "SELECT_ORGANIZATION": "Selectionner une organisation",
     "EXIST": "Cet utilisateur existe déjà!",

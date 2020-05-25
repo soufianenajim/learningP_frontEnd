@@ -1,0 +1,23 @@
+<div class="card" [ngClass]="cardClass">
+  <div class="card-header" *ngIf="title">
+    <h5>{{ title | translate}}</h5>
+    <span *ngIf="!classHeader">{{ headerContent }}</span>
+    <span *ngIf="classHeader">
+      <ng-content select=".code-header"></ng-content>
+    </span>
+    <div class="card-header-right">
+      <i class="icofont icofont-rounded-down" cardToggleEvent (click)="toggleCard($event)"></i> <!--(click)="toggleCard($event)-->
+      <i class="icofont icofont-edit" (click)="edit()" [hidden]="!forEdit"></i>
+    </div>
+  </div>
+
+    <div class="card-body" [ngClass]="blockClass">
+      <div class="card-right">
+        <i class="icofont icofont-rounded-down" cardToggleEvent (click)="toggleCard($event)" *ngIf="!title"></i> <!--(click)="toggleCard($event)-->
+      <div class="card-header-right">
+      <div [@cardToggle]="cardToggle">
+      <ng-content></ng-content>
+      </div>
+
+  </div>
+</div>
