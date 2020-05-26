@@ -1,5 +1,6 @@
 import {Component, OnInit, Input, ViewEncapsulation, EventEmitter, Output} from '@angular/core';
 import {cardToggle, cardClose} from './edit-animation';
+import { FormGroup, FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-edit-card',
@@ -19,6 +20,9 @@ export class EditComponent implements OnInit {
   cardClose = 'open';
   @Output() isEdit = new EventEmitter();
   editBoolean = false;
+  searchForm = new FormGroup({
+    group: new FormControl(null),
+  });
   constructor() { }
   ngOnInit() {
   }
@@ -36,5 +40,6 @@ export class EditComponent implements OnInit {
       this.isEdit.emit(this.editBoolean);
 
   }
+  
 
 }

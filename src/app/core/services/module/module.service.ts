@@ -19,11 +19,13 @@ export class ModuleService {
   findByProfessor(idProfessor){
     return this.httpClient.get(this.url + "/find-by-professor/"+idProfessor);
   }
+  findByProfessorAndGroup(idProfessor,idGroup){
+    return this.httpClient.get(this.url+"/find-by-professor-group/"+idProfessor+"/"+idGroup)
+  }
   saveOrUpdate(module: Module) {
     return this.httpClient.post(this.url + "/save-or-update", module);
   }
   searchByCritere(demande) {
-    console.log("demande", demande);
     return this.httpClient.post(this.url + "/find-by-critere", demande);
   }
   delete(id) {

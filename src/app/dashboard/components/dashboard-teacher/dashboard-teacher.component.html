@@ -1,43 +1,59 @@
 
 <div class="row">
   <div class="col-sm-4">
-    <app-dash-cards [cardName]="'Total Modules'" [listGroup]="listGroup" (changeEvent)="onChangeGroupModule($event)"
+    <app-dash-cards [cardName]="'DASHBOARD.TEACHER.TOTAL_MODULES'" [listGroup]="listGroup" (changeEvent)="onChangeGroupModule($event)"
     [cardData]="(countModule | async) ? (countModule | async) : '0'" [ClassHeaderName]="'card-header-azure'"
     [cardDataIcon]="'icofont icofont-book-mark text-primary'"></app-dash-cards>
   </div>
   <div class="col-sm-4">
-    <app-dash-cards [isTeacher]="true" [cardName]="'Total Exam'" [listGroup]="listGroup" (changeEvent)="onChangeGroupExam($event)"
+    <app-dash-cards [isTeacher]="true" [cardName]="'DASHBOARD.TEACHER.TOTAL_EXAMS'" [listGroup]="listGroup" (changeEvent)="onChangeGroupExam($event)"
     [cardData]="(countExam | async) ? (countExam | async) : '0'" [ClassHeaderName]="'card-header-baby_blue'"
     [cardDataIcon]="'icofont icofont-paper text-primary'"></app-dash-cards>
   </div>
   <div class="col-sm-4">
-    <app-dash-cards [isTeacher]="true" [cardName]="'Total Quiz'" [listGroup]="listGroup" (changeEvent)="onChangeGroupQuiz($event)"
+    <app-dash-cards [isTeacher]="true"  [cardName]="'DASHBOARD.TEACHER.TOTAL_QUIZS'" [listGroup]="listGroup" (changeEvent)="onChangeGroupQuiz($event)"
     [cardData]="(countQuiz | async) ? (countQuiz | async) : '0'" [ClassHeaderName]="'card-header-colbat_blue'"
     [cardDataIcon]="'icofont icofont-paper text-primary'"></app-dash-cards>
   </div>
   <div class="col-sm-4">
-    <app-dash-cards [isTeacher]="true" [cardName]="'Total Courses'" [listGroup]="listGroup" (changeEvent)="onChangeGroupCour($event)"
+    <app-dash-cards [isTeacher]="true" [cardName]="'DASHBOARD.TEACHER.TOTAL_COURSES'" [listGroup]="listGroup" (changeEvent)="onChangeGroupCour($event)"
     [cardData]="(countCour | async) ? (countCour | async) : '0'" [ClassHeaderName]="'card-header-yellow'"
     [cardDataIcon]="'icofont icofont-read-book text-warning'"></app-dash-cards>
   </div>
   <div class="col-sm-4">
-    <app-dash-cards  [isTeacher]="true"[cardName]="'Total Students'" [listGroup]="listGroup" (changeEvent)="onChangeGroupStudent($event)"
+    <app-dash-cards  [isTeacher]="true"[cardName]="'DASHBOARD.TEACHER.TOTAL_STUDENTS'" [listGroup]="listGroup" (changeEvent)="onChangeGroupStudent($event)"
     [cardData]="(countStudent | async) ? (countStudent | async) : '0'" [ClassHeaderName]="'card-header-green'"
     [cardDataIcon]="'icofont icofont-student-alt text-success'"></app-dash-cards>
   </div>
   <div class="col-sm-4">
-    <app-dash-cards [cardName]="'Total Absence'" [listGroup]="listGroup"
+    <app-dash-cards [cardName]="'Total Absence'" style="color: #000;"  [listGroup]="listGroup"
     [cardData]="50" [ClassHeaderName]="'card-header-red'"
     [cardDataIcon]="'icofont icofont-wall-clock text-danger'"></app-dash-cards>
   </div>
   <div class="col-sm-6">
-    <app-edit-card [title]="'DASHBOARD.BULLETIN_BY_CRITICITY'">
+    <app-edit-card [title]="'Average students grades by exam'" >
+    <div class="row">
+      <label class="col-sm-2 col-form-label"
+      style="font-weight: bold;color: #757575;">{{'USER.GROUP'|translate}}<p class="f-right">:</p></label>
+      <form class="col-sm-4" [formGroup]="searchForm">
+        <ng-select [items]="listGroup" bindLabel="name" formControlName="group" (clear)="onClear()" (change)="onChangeGroupBar()"
+            placeholder="{{ 'USER.SELECT_GROUP' | translate }}">
+        </ng-select>
+      </form>
+      <label class="col-sm-2 col-form-label"
+      style="font-weight: bold;color: #757575;">Module<p class="f-right">:</p></label>
+      <form class="col-sm-4" [formGroup]="searchForm">
+        <ng-select [items]="listModule" bindLabel="name" formControlName="module" (clear)="onClear()" (change)="onChangeModulePie()"
+            placeholder="{{'COURSE.SELECT_MODULE'| translate }}">
+        </ng-select>
+      </form>
+    </div>  
       <div id="chartContainer" style="height: 20rem;width: 35rem; max-width: 35rem "></div>
     </app-edit-card>
   
   </div>
   <div class="col-sm-6">
-    <app-edit-card [title]="'DASHBOARD.BULLETIN_BY_CRITICITY'">
+    <app-edit-card [title]="'DASHBOARD.BULLETIN_BY_CRITICITY'" >
     <div id="chartContainer1" style="height: 20rem;width: 35rem; max-width: 35rem"></div>
   </app-edit-card>
   </div>

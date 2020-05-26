@@ -10,7 +10,11 @@
 
     },
     "TEACHER":{
-
+      "TOTAL_MODULES":"Number of modules",
+      "TOTAL_EXAMS":"Number of exams",
+      "TOTAL_COURSES":"Number of courses",
+      "TOTAL_QUIZS":"Number of quizs",
+      "TOTAL_STUDENTS":"Number of students"
     },
     "TECHNICAL_ADMIN":{
 
