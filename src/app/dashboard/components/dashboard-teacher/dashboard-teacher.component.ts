@@ -220,7 +220,16 @@ export class DashboardTeacherComponent implements OnInit {
     const module=this.searchForm.get('module').value;
       this.getChartBar(this.user.id,group?group.id:0,module?module.id:0);
   }
-  onClearGrouBar(){}
+  onClearGrouBar(){
+    this.searchForm.get('group').setValue(null);
+    const module=this.searchForm.get('module').value;
+    this.getChartBar(this.user.id,0,module?module.id:0);
+  }
+  onClearModulePie(){
+    this.searchForm.get('module').setValue(null);
+    const group=this.searchForm.get('group').value;
+    this.getChartBar(this.user.id,group?group.id:0,module?module.id:0);
+  }
   onChangeModuleBar(){
     // const module=this.searchForm.get('module').value;
     // this.getChartBar(this.user.id,group.id);

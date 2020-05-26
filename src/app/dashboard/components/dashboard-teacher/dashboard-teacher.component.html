@@ -36,14 +36,14 @@
       <label class="col-sm-2 col-form-label"
       style="font-weight: bold;color: #757575;">{{'USER.GROUP'|translate}}<p class="f-right">:</p></label>
       <form class="col-sm-4" [formGroup]="searchForm">
-        <ng-select [items]="listGroup" bindLabel="name" formControlName="group" (clear)="onClear()" (change)="onChangeGroupBar()"
+        <ng-select [items]="listGroup" bindLabel="name" formControlName="group" (clear)="onClearGrouBar()" (change)="onChangeGroupBar()"
             placeholder="{{ 'USER.SELECT_GROUP' | translate }}">
         </ng-select>
       </form>
       <label class="col-sm-2 col-form-label"
       style="font-weight: bold;color: #757575;">Module<p class="f-right">:</p></label>
       <form class="col-sm-4" [formGroup]="searchForm">
-        <ng-select [items]="listModule" bindLabel="name" formControlName="module" (clear)="onClear()" (change)="onChangeModulePie()"
+        <ng-select [items]="listModule" bindLabel="name" formControlName="module" (clear)="onClearModulePie()" (change)="onChangeModulePie()"
             placeholder="{{'COURSE.SELECT_MODULE'| translate }}">
         </ng-select>
       </form>
