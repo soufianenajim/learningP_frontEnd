@@ -25,7 +25,7 @@ export const AppRoutes: Routes = [
         loadChildren: "./modules/course/course.module#CourseModule"
       },
       {
-        path: "module",
+        path: "moduleAffected",
         loadChildren: "./modules/module/module.module#ModuleModule"
       },
       {
@@ -71,6 +71,9 @@ export const AppRoutes: Routes = [
       {
         path: "branch",
         loadChildren: "./modules/branch/branch.module#BranchModule"
+      },{
+        path:"module",
+        loadChildren:"./modules/module-name/module-name.module#ModuleNameModule"
       }
     ]
   },

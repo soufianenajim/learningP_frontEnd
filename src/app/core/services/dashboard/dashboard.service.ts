@@ -24,7 +24,11 @@ export class DashboardService {
     return this.httpClient.get(this.url+'/countStudentByTeacherAndGroupe/'+idTeacher+"/"+idGroup);
   }
   getAverageGoodAndBadGrades(idTeacher,idGroup,idModule){
-    console.log(this.url+'/getAverageGoodAndBadGrades/'+idTeacher+"/"+idGroup+"/"+idModule);
+   
     return this.httpClient.get(this.url+'/getAverageGoodAndBadGrades/'+idTeacher+"/"+idGroup+"/"+idModule);
+  }
+  getAverageSuccessStudent(idTeacher,idGroup,idModule){
+   
+    return this.httpClient.get(this.url+'/getAverageSuccessStudent/'+idTeacher+"/"+idGroup+"/"+idModule);
   }
 }

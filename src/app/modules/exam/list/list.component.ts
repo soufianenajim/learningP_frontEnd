@@ -12,7 +12,7 @@ import { TranslateService } from '@ngx-translate/core';
 import { StudentComponent } from '../student/student.component';
 
 @Component({
-  selector: 'app-list',
+  selector: 'app-exam-list',
   templateUrl: './list.component.html',
   styleUrls: ['./list.component.css']
 })

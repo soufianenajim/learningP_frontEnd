@@ -1,0 +1,38 @@
+<div class="card">
+  <div class="card-header">
+      <h5 *ngIf="isEdit">Modification Branch</h5>
+      <h5 *ngIf="!isEdit">Ajout Branch</h5>
+      
+  </div>
+  <div class="card-block" style="margin: 1rem;">
+      
+      <form  [formGroup]="moduleNameForm" (ngSubmit)="save()">
+          <div class="form-group row">
+              <label class="col-sm-2 col-form-label">{{'GLOBAL.NAME'|translate}} <span style="margin-left:0.2rem;color: red">*</span><p class="f-right">
+                :</p></label>
+              <div class="col-sm-10">
+                  <input type="text" formControlName="name" maxlength="100" class="form-control">
+                  <div *ngIf="errormptyField('name')" style="color:red">
+                    {{'ERRORS.EMPTY_FIELD' | translate}}</div>
+                  <div *ngIf="invalidData('name')" style="color:red">
+                    {{'ERRORS.INVALID_DATA' | translate}}</div>
+              </div>
+          </div>
+      
+      
+      <div class="form-group row justify-content-center">
+        <button type="button" style="margin-right: 20px"  type="submit" [disabled]="isSaved"
+          class="btn btn-success btn-md waves-effect waves-light">
+          <i class="fa fa-check"></i>{{'ACTION.SAVE'| translate}}
+        </button>
+        <button type="button" (click)="cancel()" class="btn btn-danger btn-md waves-effect waves-light">
+          <i class="fa fa-close"></i>{{'ACTION.CANCEL'| translate}}
+        </button>
+      </div>
+         
+      </form>
+    
+     
+  </div>
+</div>
+<notifier-container></notifier-container>

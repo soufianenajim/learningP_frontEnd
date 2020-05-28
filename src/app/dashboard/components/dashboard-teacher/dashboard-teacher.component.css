@@ -12,11 +12,12 @@ i {
 
 .text-no-data {
     position: relative;
-    margin-top: -78%;
+    margin-top: -61%;
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 370px;
+    height: 285px;
+    margin-bottom: 10%;
 }
 
 .backround-no-data{
@@ -24,8 +25,10 @@ i {
     padding: 10px 100px 10px 100px;
     border-radius: 12px;
     border: 2px solid #f9dfbc;
+    
 }
 
 a.canvasjs-chart-credit {
     display: none!important;
   }
+  

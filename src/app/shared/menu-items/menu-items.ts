@@ -86,8 +86,8 @@ const MENUITEMS_TEACHER = [
     main: [
           {
             state: "moduleTeacher",
-            name: "MENU_ITEM.MANAGED_MODULE",
-            icon: "fa fa-bookmark",
+            name: "MENU_ITEM.AFFCTED_MODULE",
+            icon: "fa fa-link",
             type: "link",
           },
           {
@@ -164,8 +164,14 @@ const MENUITEMS_ADMIN_CLIENT = [
             type: "link",
           },
           {
+            state: "moduleAffected",
+            name: "MENU_ITEM.AFFCTED_MODULE",
+            icon: "fa fa-link",
+            type: "link",
+          },
+          {
             state: "module",
-            name: "MENU_ITEM.MANAGED_MODULE",
+            name: "MENU_ITEM.MODULE",
             icon: "fa fa-bookmark",
             type: "link",
           },

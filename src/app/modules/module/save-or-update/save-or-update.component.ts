@@ -9,6 +9,7 @@ import { UserService } from "../../../core/services/user/user.service";
 import { TranslateService } from "@ngx-translate/core";
 import { NotifierService } from "angular-notifier";
 import { min } from "d3";
+import { ModuleNameService } from "../../../core/services/module_name/module-name.service";
 
 @Component({
   selector: "app-save-or-update",
@@ -24,6 +25,7 @@ export class SaveOrUpdateComponent implements OnInit {
     coefficient: new FormControl("", [Validators.required]),
     prof: new FormControl(null, Validators.required),
     group: new FormControl(null, Validators.required),
+    module: new FormControl(null, Validators.required),
     percentageAbsence: new FormControl("", [
       Validators.required,
       Validators.min(0),
@@ -50,6 +52,7 @@ export class SaveOrUpdateComponent implements OnInit {
 
   listGroup = [];
   listProfessor = [];
+  listModuleName=[];
 
   idModule = null;
   isEdit = false;
@@ -64,7 +67,8 @@ export class SaveOrUpdateComponent implements OnInit {
     private tokenStorageService: TokenStorageService,
     private userService: UserService,
     private translateService: TranslateService,
-    notifierService: NotifierService
+    notifierService: NotifierService,
+    private moduleNameService:ModuleNameService
   ) {
     this.notifier = notifierService;
     if (data !== null) {
@@ -84,6 +88,7 @@ export class SaveOrUpdateComponent implements OnInit {
     const percentageExam = data.percentageExam;
     const percentageQuiz = data.percentageQuiz;
     const scale=data.scale;
+    const module=data.module;
     this.moduleForm.get("name").setValue(name);
     this.moduleForm.get("group").setValue(group);
     this.moduleForm.get("prof").setValue(prof);
@@ -93,6 +98,7 @@ export class SaveOrUpdateComponent implements OnInit {
     this.moduleForm.get("percentageExam").setValue(percentageExam);
     this.moduleForm.get("percentageQuiz").setValue(percentageQuiz);
     this.moduleForm.get("scale").setValue(scale);
+    this.moduleForm.get("module").setValue(module);
 
     if (this.isTeacher) {
       this.moduleForm.get("name").disable();
@@ -118,6 +124,9 @@ export class SaveOrUpdateComponent implements OnInit {
           .findAllProfessorByOrga(user.organization.id)
           .subscribe((resp: any) => {
             this.listProfessor = resp;
+            this.moduleNameService.findByOrganisation(user.organization.id).subscribe((resp:any)=>{
+              this.listModuleName=resp;
+            })
           });
       });
   }
@@ -133,6 +142,7 @@ export class SaveOrUpdateComponent implements OnInit {
     const percentageExam = this.moduleForm.get("percentageExam").value;
     const percentageQuiz = this.moduleForm.get("percentageQuiz").value;
     const scale=this.moduleForm.get("scale").value;
+    const moduleN=this.moduleForm.get("module").value;
     let module = new Module();
     module.id = this.idModule;
     module.name = name;
@@ -144,6 +154,7 @@ export class SaveOrUpdateComponent implements OnInit {
     module.percentageExam=percentageExam;
     module.percentageQuiz=percentageQuiz;
     module.scale=scale;
+    module.module=moduleN;
 
     if (this.moduleForm.valid) {
     if(this.totalPercentage==100){

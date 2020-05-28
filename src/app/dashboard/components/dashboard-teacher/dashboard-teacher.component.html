@@ -31,31 +31,58 @@
     [cardDataIcon]="'icofont icofont-wall-clock text-danger'"></app-dash-cards>
   </div>
   <div class="col-sm-6">
-    <app-edit-card [title]="'Average students grades by exam'" >
+    <app-edit-card [title]="'DASHBOARD.TEACHER.RATE_STUDENTS_BY_EXAM'" >
     <div class="row">
       <label class="col-sm-2 col-form-label"
       style="font-weight: bold;color: #757575;">{{'USER.GROUP'|translate}}<p class="f-right">:</p></label>
-      <form class="col-sm-4" [formGroup]="searchForm">
-        <ng-select [items]="listGroup" bindLabel="name" formControlName="group" (clear)="onClearGrouBar()" (change)="onChangeGroupBar()"
+      <form class="col-sm-4" [formGroup]="barSearchForm">
+        <ng-select [items]="listGroupBar" bindLabel="name" formControlName="group" (clear)="onClearGrouBar()" (change)="onChangeGroupBar()"
             placeholder="{{ 'USER.SELECT_GROUP' | translate }}">
         </ng-select>
       </form>
       <label class="col-sm-2 col-form-label"
       style="font-weight: bold;color: #757575;">Module<p class="f-right">:</p></label>
-      <form class="col-sm-4" [formGroup]="searchForm">
-        <ng-select [items]="listModule" bindLabel="name" formControlName="module" (clear)="onClearModulePie()" (change)="onChangeModulePie()"
+      <form class="col-sm-4" [formGroup]="barSearchForm">
+        <ng-select [items]="listModuleBar" bindLabel="name" formControlName="module" (clear)="onClearModuleBar()" (change)="onChangeModuleBar()"
             placeholder="{{'COURSE.SELECT_MODULE'| translate }}">
         </ng-select>
       </form>
     </div>  
-      <div id="chartContainer" style="height: 20rem;width: 35rem; max-width: 35rem "></div>
+      <div  id="chartContainer" style="height: 20rem;width: 35rem; max-width: 35rem "></div>
+      <div *ngIf="!isBarChartExist" class="text-no-data" >
+        <span class="backround-no-data">{{'DASHBOARD.NO_DATA_CHART' | translate}}</span>
+      </div>
     </app-edit-card>
   
   </div>
   <div class="col-sm-6">
-    <app-edit-card [title]="'DASHBOARD.BULLETIN_BY_CRITICITY'" >
-    <div id="chartContainer1" style="height: 20rem;width: 35rem; max-width: 35rem"></div>
+    <app-edit-card [title]="'DASHBOARD.TEACHER.GLOBAL_RATE_STUDENTS'" >
+      <div class="row">
+        <label class="col-sm-2 col-form-label"
+        style="font-weight: bold;color: #757575;">{{'USER.GROUP'|translate}}<p class="f-right">:</p></label>
+        <form class="col-sm-4" [formGroup]="pieSearchForm">
+          <ng-select [items]="listGroupPie" bindLabel="name" formControlName="group" (clear)="onClearGrouPie()" (change)="onChangeGroupPie()"
+              placeholder="{{ 'USER.SELECT_GROUP' | translate }}">
+          </ng-select>
+        </form>
+        <label class="col-sm-2 col-form-label"
+        style="font-weight: bold;color: #757575;">Module<p class="f-right">:</p></label>
+        <form class="col-sm-4" [formGroup]="pieSearchForm">
+          <ng-select [items]="listModulePie" bindLabel="name" formControlName="module" (clear)="onClearModulePie()" (change)="onChangeModulePie()"
+              placeholder="{{'COURSE.SELECT_MODULE'| translate }}">
+          </ng-select>
+        </form>
+      </div>  
+    <div  id="chartContainer1" style="height: 20rem;width: 35rem; max-width: 35rem"></div>
+    <div *ngIf="!isPieChartExist" class="text-no-data" >
+      <span class="backround-no-data">{{'DASHBOARD.NO_DATA_CHART' | translate}}</span>
+    </div>
   </app-edit-card>
   </div>
-
+  <div class="col-md-12">
+    <app-edit-card [title]="'DASHBOARD.TEACHER.GLOBAL_RATE_STUDENTS'" >
+      <!-- <app-exam-list></app-exam-list> -->
+      <app-future-tense-exam></app-future-tense-exam>
+  </app-edit-card>
+  </div>
 </div>

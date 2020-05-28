@@ -3,7 +3,9 @@
     "NAME": "Name",
     "MODULE":"Module"
   },
+  
   "DASHBOARD":{
+    "NO_DATA_CHART": "No data available",
     "STUDENT":{
       "LATEST_COURSE":"Latest courses",
       "LATEST_Exam_QUIZ":"Latest Exam and quiz"
@@ -14,8 +16,14 @@
       "TOTAL_EXAMS":"Number of exams",
       "TOTAL_COURSES":"Number of courses",
       "TOTAL_QUIZS":"Number of quizs",
-      "TOTAL_STUDENTS":"Number of students"
-    },
+      "TOTAL_STUDENTS":"Number of students",
+      "GLOBAL_RATE_STUDENTS":"Successful student rate",
+      "RATE_STUDENTS_BY_EXAM":"Rate of successful students per exam or quiz",
+     "BELOW_AVERAGE":"Below average",
+     "GREATHER_AVERAGE":"Greater than average",
+     "SUCCESS":"Success",
+     "FAILURE":"Failure"
+    }, 
     "TECHNICAL_ADMIN":{
 
     },
@@ -26,7 +34,8 @@
   },
   "MENU_ITEM": {
     "HOME": "Dashboard",
-    "MANAGED_MODULE": "Module",
+    "AFFCTED_MODULE": "Module Affected",
+    "MODULE":"Module",
     "COURSE": "Course",
     "CHAPTER": "Chapter",
     "PARAGRAPH": "Paragraph",
@@ -65,6 +74,7 @@
   },
   "MODULE": {
     "NAME": "Name",
+    "MODULE":"Module",
     "COEFFICIENT":"Coefficient",
     "PROFESSOR": "Professor",
     "LEVEL": "Level",
@@ -121,7 +131,8 @@
   },
   "ERRORS": {
     "EMPTY_FIELD": "Field must not be empty.",
-    "INVALID_DATA": "Please enter valid data."
+    "INVALID_DATA": "Please enter valid data.",
+    "NO_DATA": "No data available!"
   },
   "LOGIN":{
     "PROFILE":"Profile",

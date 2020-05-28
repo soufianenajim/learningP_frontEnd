@@ -7,7 +7,7 @@ import { Module } from '../../models/module.model';
   providedIn: "root"
 })
 export class ModuleService {
-  url = environment.baseUrl + "/module";
+  url = environment.baseUrl + "/module-affected";
   constructor(private httpClient: HttpClient) {}
 
   findAll() {

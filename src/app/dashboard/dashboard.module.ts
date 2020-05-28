@@ -11,14 +11,18 @@ import { DashboardClientAdminComponent } from './components/dashboard-client-adm
 import { DashboardTechnicalAdminComponent } from './components/dashboard-technical-admin/dashboard-technical-admin.component';
 import { EditComponent } from './components/cardEdit/edit.component';
 import { DashCardsComponent } from './components/dash-cards/dash-cards.component';
+import { ExamModule } from '../modules/exam/exam.module';
+import { FutureTenseExamComponent } from './components/dashboard-teacher/future-tense-exam/future-tense-exam.component';
 
 @NgModule({
   imports: [
+    //ExamModule,
       CommonModule,
       RouterModule.forChild(DashboardRoutes),
-      SharedModule
+      SharedModule,
+      
   ],
-  declarations: [DashboardComponent, DashboardStudentComponent, DashboardTeacherComponent, DashboardClientAdminComponent, DashboardTechnicalAdminComponent,EditComponent, DashCardsComponent]
+  declarations: [DashboardComponent, DashboardStudentComponent, DashboardTeacherComponent, DashboardClientAdminComponent, DashboardTechnicalAdminComponent,EditComponent, DashCardsComponent, FutureTenseExamComponent]
 })
 
 export class DashboardModule {}

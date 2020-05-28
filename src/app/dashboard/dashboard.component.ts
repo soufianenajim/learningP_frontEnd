@@ -21,7 +21,7 @@ export class DashboardComponent implements OnInit {
 
     }
     ngOnInit() {
-      
+      console.log('dashboard');
         this.user=this.tokenStorageService.getUser();
         const role=this.user.refRole.name;
         console.log('role',role);

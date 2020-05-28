@@ -20,6 +20,23 @@
         </div>
       </div>
       <div class="form-group row">
+        <label class="col-sm-3 col-form-label">{{'MODULE.MODULE'|translate}}
+          <span style="margin-left:0.2rem;color: red">*</span>
+          <p class="f-right"> :</p>
+        </label>
+        <div class="col-sm-9">
+          <select name="select" [compareWith]="compareGroup" name="module" formControlName="module" class="form-control">
+            <option value="" disabled selected>{{'COURSE.SELECT_MODULE'|translate}}</option>
+            <option *ngFor="let module of listModuleName" [ngValue]="module">
+              {{module.name}}
+            </option>
+          </select>
+          <div *ngIf="errormptyField('module')" style="color:red">
+            {{'ERRORS.EMPTY_FIELD' | translate}}</div>
+
+        </div>
+      </div>
+      <div class="form-group row">
         <label class="col-sm-3 col-form-label">{{'MODULE.COEFFICIENT'|translate}}<span style="margin-left:0.2rem;color: red">*</span>
           <p class="f-right"> :</p>
         </label>

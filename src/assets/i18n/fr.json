@@ -4,6 +4,7 @@
     "MODULE":"Module"
   },
   "DASHBOARD":{
+    "NO_DATA_CHART": "Aucune donnée disponible",
     "STUDENT":{
       "LATEST_COURSE":"Latest courses",
       "LATEST_Exam_QUIZ":"Latest Exam and quiz"
@@ -11,10 +12,17 @@
     },
     "TEACHER":{
      "TOTAL_MODULES":"Nombre des modules",
-     "TOTAL_EXAM":"Nombre des examens",
+     "TOTAL_EXAMS":"Nombre des examens",
      "TOTAL_COURSES":"Nombre des cours",
-     "TOTAL_QUIZ":"Nombre des quizs",
-     "TOTAL_STUDENT":"Nombre étudiants"
+     "TOTAL_QUIZS":"Nombre des quizs",
+     "TOTAL_STUDENTS":"Nombre étudiants",
+     "GLOBAL_RATE_STUDENTS":"Taux des étudiants réussi",
+     "RATE_STUDENTS_BY_EXAM":"Taux des étudiants réussi par examen ou quiz",
+     "BELOW_AVERAGE":"Sous la moyenne",
+     "GREATHER_AVERAGE":"Supérieur à la moyenne",
+     "SUCCESS":"Validé",
+     "FAILURE":"Non validé"
+
     },
     "TECHNICAL_ADMIN":{
 
@@ -26,7 +34,8 @@
   },
   "MENU_ITEM": {
     "HOME": "Tableau de bord",
-    "MANAGED_MODULE": "Module",
+    "AFFCTED_MODULE": "Module Affected",
+    "MODULE":"Module",
     "COURSE": "Cours",
     "CHAPTER": "Chapitre",
     "PARAGRAPH": "Paragraphe",
@@ -65,6 +74,7 @@
   },
   "MODULE": {
     "NAME": "Nom",
+    "MODULE":"Module",
     "COEFFICIENT":"Coefficient",
     "PROFESSOR": "Professeur",
     "LEVEL": "Niveau",
@@ -72,6 +82,7 @@
     "GROUP": "Groupe",
     "SELECT_BRANCH": "Selectionner une branche",
     "SELECT_LEVEL": "Selectionner un niveau",
+    
     "DELETE": "Supprimer module ?",
     "DELETED": "Le module a été supprimé.",
     "SAVE_SUCCESS": "Module enregistré avec succès",
@@ -115,7 +126,8 @@
   },
   "ERRORS": {
     "EMPTY_FIELD": "Le champ ne doit pas être vide.",
-    "INVALID_DATA": "Veuillez entrer des données valides."
+    "INVALID_DATA": "Veuillez entrer des données valides.",
+    "NO_DATA": "Aucune donnée trouvée!"
   },
   "LOGIN":{
     "PROFILE":"Profile",

@@ -17,6 +17,8 @@ import { NoteExamModule } from '../note-exam/note-exam.module';
     SharedModule,
     ExercicesModule,
     NoteExamModule
+  ],exports:[
+    ListComponent
   ],
   declarations: [ListComponent, SaveOrUpdateComponent, DetailComponent, StudentComponent],
   entryComponents: [SaveOrUpdateComponent,DetailComponent,StudentComponent] 

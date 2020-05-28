@@ -2,7 +2,7 @@
   <div class="card-block">
     <div class="row">
     <h6 class="col-sm-6">{{cardName | translate}}</h6>
-    <form *ngIf="isTeacher" class="col-sm-6" [formGroup]="searchForm">
+    <form *ngIf="isTeacher" class="col-sm-6 p-0" [formGroup]="searchForm">
       <ng-select [items]="listGroup" bindLabel="name" formControlName="group" (clear)="onClear()" (change)="onChangeGroup()"
           placeholder="{{ 'USER.SELECT_GROUP' | translate }}">
       </ng-select>

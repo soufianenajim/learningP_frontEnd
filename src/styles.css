@@ -35,6 +35,11 @@ File: style.css
 a.canvasjs-chart-credit {
   display: none!important;
 }
+.alert-info-nothing {
+  color: #31708f;
+  background-color: #d9edf7;
+  border-color: #bce8f1;
+}
 .ng-select .ng-select-container {
   background-color: #fff!important;
   border-radius: 4px!important;

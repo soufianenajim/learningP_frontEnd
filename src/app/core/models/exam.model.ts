@@ -7,7 +7,8 @@ export class Exam extends Historized {
     public startDateTime?:string,
     public endDateTime?:string,
     public questions?: any[],
-    public type?:string
+    public type?:string,
+    public afterCurrentDate?:boolean
   ) {
     super();
   }

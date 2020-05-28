@@ -1,0 +1,92 @@
+<div class="card">
+  <div class="card-header">
+      <h5><i class="fa fa-search" style="margin-right: 4px;"></i>{{'ACTION.SEARCH'|translate}}</h5>
+      <button type="button" class="btn btn-primary btn-md waves-effect waves-light f-right"
+          (click)="openDialog(null)"> <i class="fa fa-plus"></i> {{'ACTION.ADD'|translate}}
+      </button>
+  </div>
+
+
+  
+  <div class="card-body">
+      <form [formGroup]="moduleNameForm">
+          <div class="row">
+              <div class="col-sm-6">
+                  <div class="row">
+                      <label class="col-sm-3 col-form-label" style="font-weight: bold;color: #757575;">{{'GLOBAL.NAME'|translate}}</label>
+                      <div class="col-sm-9" >
+                          <input type="text" formControlName="name" class="form-control">
+
+                      </div>
+                  </div>
+              </div>
+              <div class="col-sm-3">
+                <div class="form-group row justify-content-center">
+                    <button type="button" style="margin-right: 20px" (click)="search(false)"
+                        class="btn btn-success btn-md waves-effect waves-light">
+                        <i class="fa fa-search"></i>{{'ACTION.SEARCH'|translate}}
+                    </button>
+                    <button type="button" (click)="reset()" class="btn btn-danger btn-md waves-effect waves-light">
+                        <i class="fa fa-close"></i>{{'ACTION.RESET'|translate}}
+                    </button>
+                </div>
+              </div>
+          </div>
+                    
+
+      </form>
+
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-header">
+      <h5><i class="fa fa-list m-r-5"></i>{{'ACTION.LIST'|translate}}</h5>
+  </div>
+
+
+  <div class="card-body" style="overflow: auto">
+
+      <table class="table-striped" mat-table [dataSource]="dataSource">
+
+          <!-- Name Column -->
+          <ng-container matColumnDef="name">
+              <th mat-header-cell *matHeaderCellDef> {{'GLOBAL.NAME'|translate}} </th>
+              <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+          </ng-container>
+
+         
+         
+          <!-- Action Column -->
+          <ng-container matColumnDef="action">
+              <th class="center-action" mat-header-cell *matHeaderCellDef> Actions </th>
+              <td class="center-action" mat-cell *matCellDef="let row">
+                  <div class="btn-group btn-group-sm">
+                      <button mat-icon-button>
+                          <span class="fa fa-desktop" (click)="openDialogDetail(row)" style="color: #007bff" ngbTooltip="{{'ACTION.SHOW' | translate}}"></span>
+                      </button>
+                      <button mat-icon-button (click)="openDialog(row)" >
+                          <span class="fa fa-edit" style="color: #007bff" ngbTooltip="{{'ACTION.UPDATE' | translate}}"></span>
+                      </button>
+                      <button mat-icon-button (click)="openDialogDelete(row)" style="color:red" >
+                          <span class="icofont icofont-ui-delete tabledit-delete-button" ngbTooltip="{{'ACTION.DELETE' | translate}}"></span>
+                      </button>
+
+
+                  </div>
+              </td>
+          </ng-container>
+
+
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+      </table>
+
+      <mat-paginator #paginator (page)="refreshDataTable($event)" [pageSizeOptions]="[5, 10, 20]"
+          [length]="resultsLength" [pageSize]="5" showFirstLastButtons></mat-paginator>
+
+
+
+
+  </div>
+</div>

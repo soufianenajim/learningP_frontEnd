@@ -16,7 +16,8 @@ export class Module extends Historized {
     public percentageQuiz?:number,
     public percentageCour?:number,
     public percentageAbsence?:number,
-    public scale?:number
+    public scale?:number,
+    public module?:any
   ) {
     super();
   }

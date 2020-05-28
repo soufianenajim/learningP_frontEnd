@@ -1,0 +1,48 @@
+
+
+
+ 
+
+
+  
+
+    <table  class="table-striped" mat-table [dataSource]="dataSource">
+
+      <!-- Name Column -->
+      <ng-container matColumnDef="name">
+        <th mat-header-cell *matHeaderCellDef> {{'GLOBAL.NAME'|translate}} </th>
+        <td mat-cell *matCellDef="let element" title="{{element?.name}}">  {{element?.name.length>80?(element?.name | textWidth:80 ) +' ...' :element?.name}} </td>
+      </ng-container>
+
+      <!-- ModuleColumn -->
+      <ng-container matColumnDef="module">
+        <th mat-header-cell *matHeaderCellDef> {{'EXERCICES.MODULE'| translate}} </th>
+        <td mat-cell *matCellDef="let element" title="{{element?.module.name}}"> {{element?.module?.name.length>80?(element?.module?.name | textWidth:80 ) +' ...' :element?.module?.name}} </td>
+      </ng-container>
+      <ng-container matColumnDef="type">
+        <th mat-header-cell *matHeaderCellDef> Type </th>
+        <td mat-cell *matCellDef="let element"> {{element.type!=null?element.type:'---'}} </td>
+      </ng-container>
+      <ng-container matColumnDef="remainingTime">
+        <th mat-header-cell *matHeaderCellDef> RemainingTime </th>
+        <td mat-cell *matCellDef="let element" >  {{secondsToHms(element?.startDateTime)}} </td>
+      </ng-container>
+    
+  
+    
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+
+    <mat-paginator #paginator (page)="refreshDataTable($event)" [pageSizeOptions]="[5, 10, 20]" [length]="resultsLength"
+      [pageSize]="5" showFirstLastButtons></mat-paginator>
+
+
+
+
+
+      <div class="text-uppercase" *ngIf="dataSource?.data.length==0 && isLoadingResults">
+        <div class="text-uppercase alert alert-info-nothing">
+          {{'ERRORS.NO_DATA' | translate}}</div>
+      </div>
