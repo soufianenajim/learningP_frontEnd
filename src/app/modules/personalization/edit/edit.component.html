@@ -1,0 +1,299 @@
+<!-- <div class="card">
+  <div class="card-header"><h5>Personalization</h5></div>
+  <div class="card-body">
+    <form  [formGroup]="organizationForm" (ngSubmit)="save()">
+      <div class="form-group row">
+          <label class="col-sm-2 col-form-label">{{'GLOBAL.NAME'|translate}}<p class="f-right">
+            :</p></label>
+          <div class="col-sm-10">
+              <input type="text" maxlength="100" formControlName="name" class="form-control" disabled>
+          </div>
+      </div>
+      <div class="form-group row">
+        <label class="col-sm-2 col-form-label">Scale<p class="f-right">
+          :</p></label>
+        <div class="col-sm-10">
+            <input type="number" maxlength="3" formControlName="scale" class="form-control" >
+        </div>
+    </div>
+      <div class="form-group row">
+        <label class="col-sm-2 col-form-label">ThresholdeSucccess<p class="f-right">
+          :</p></label>
+        <div class="col-sm-10">
+            <input type="number" maxlength="3" formControlName="thresholdeSucccess" class="form-control" >
+        </div>
+    </div>
+    <div class="form-group row">
+      <label class="col-sm-2 col-form-label">ThresholdeCatchUp<p class="f-right">
+        :</p></label>
+      <div class="col-sm-10">
+          <input type="number" maxlength="3" formControlName="thresholdeCatchUp" class="form-control" >
+      </div>
+  </div>
+      <div class="form-group row" >
+        <label class="col-sm-2 col-form-label">{{'EXERCICES.TYPE'| translate}}<span style="margin-left:0.2rem;color: red">*</span><p class="f-right">
+          :</p></label>
+        <div class="col-sm-10">
+          <select name="select" name="type" formControlName="type" class="form-control" (change)="onSelectType()">
+           <option value="" disabled selected>Selectioner un type</option>
+            <option value="HIGHER_EDUCATION">Higher education</option>
+            <option value="PRIMARY_EDUCATION">Primary education</option>
+
+          </select>
+          <div *ngIf="errormptyField('type')" style="color:red">
+            {{'ERRORS.EMPTY_FIELD' | translate}}</div>
+
+        </div>
+      </div>
+
+      
+
+  
+      
+  <div class="form-group row justify-content-center">
+    <button type="button" style="margin-right: 20px"  type="submit" [disabled]="isSaved"
+      class="btn btn-success btn-md waves-effect waves-light">
+      <i class="fa fa-check"></i>{{'ACTION.SAVE'| translate}}
+    </button>
+    <button type="button" (click)="cancel()" class="btn btn-danger btn-md waves-effect waves-light">
+      <i class="fa fa-close"></i>{{'ACTION.CANCEL'| translate}}
+    </button>
+  </div>
+     
+  </form>
+  </div>
+</div> -->
+<mat-horizontal-stepper [linear]="isLinear" #stepper>
+  <ng-template matStepperIcon="edit">
+    <i class="fa fa-check"></i>
+  </ng-template>
+  <mat-step [stepControl]="firstFormGroup">
+    <ng-template matStepLabel disabled>{{'EXERCICES.GENERAL_INFORMATION'| translate}}</ng-template>
+    <form [formGroup]="firstForm">
+      <div class="form-group row">
+        <label class="col-sm-2 col-form-label">{{'GLOBAL.NAME'|translate}}<p class="f-right">
+            :</p></label>
+        <div class="col-sm-10">
+          <input type="text" maxlength="100" formControlName="name" class="form-control" disabled>
+        </div>
+      </div>
+      <div class="form-group row">
+        <label class="col-sm-2 col-form-label">{{'EXERCICES.TYPE'| translate}}<span
+            style="margin-left:0.2rem;color: red">*</span>
+          <p class="f-right">
+            :</p>
+        </label>
+        <div class="col-sm-10">
+          <select name="select" name="type" formControlName="type" class="form-control" (change)="onSelectType()">
+            <option value="" disabled selected>Selectioner un type</option>
+            <option value="HIGHER_EDUCATION">Higher education</option>
+            <option value="PRIMARY_EDUCATION">Primary education</option>
+
+          </select>
+          <div *ngIf="errormptyField('type')" style="color:red">
+            {{'ERRORS.EMPTY_FIELD' | translate}}</div>
+
+        </div>
+      </div>
+      <div class="form-group row">
+        <label class="col-sm-2 col-form-label">Scale<p class="f-right">
+            :</p></label>
+        <div class="col-sm-10">
+          <input type="number" maxlength="3" formControlName="scale" class="form-control">
+          <div *ngIf="errormptyField('scale')" style="color:red">
+            {{'ERRORS.EMPTY_FIELD' | translate}}</div>
+        </div>
+      </div>
+      <div class="form-group row">
+        <label class="col-sm-2 col-form-label">ThresholdeSucccess<p class="f-right">
+            :</p></label>
+        <div class="col-sm-10">
+          <input type="number" maxlength="3" formControlName="thresholdeSucccess" class="form-control">
+          <div *ngIf="errormptyField('thresholdeSucccess')" style="color:red">
+            {{'ERRORS.EMPTY_FIELD' | translate}}</div>
+        </div>
+      </div>
+      <div class="form-group row">
+        <label class="col-sm-2 col-form-label">ThresholdeCatchUp<p class="f-right">
+            :</p></label>
+        <div class="col-sm-10">
+          <input type="number" maxlength="3" formControlName="thresholdeCatchUp" class="form-control">
+          <div *ngIf="errormptyField('thresholdeCatchUp')" style="color:red">
+            {{'ERRORS.EMPTY_FIELD' | translate}}</div>
+        </div>
+      </div>
+
+
+
+
+
+
+      <button type="button" (click)="cancel()" class="btn btn-danger btn-md waves-effect waves-light f-left"
+        style="margin-right: 15px">
+        <i class="fa fa-close"></i>{{'ACTION.CANCEL'| translate}}
+      </button>
+      <button class="btn btn-primary btn-md waves-effect waves-light f-right"
+        (click)="nextForm1(stepper)">{{'ACTION.NEXT'| translate}}<i class="fa fa-chevron-right"
+          style="margin-left: 0.3rem;"></i></button>
+    </form>
+  </mat-step>
+  <mat-step [stepControl]="secondForm">
+    <ng-template matStepLabel>Calculate percentage</ng-template>
+    <form [formGroup]="secondForm">
+      <div class="row alert" *ngIf="isHigherEducation">
+
+        <strong style="color: red;font-size: 0.9rem;">{{'PERSONALIZATION.BEFORE_CATCHING_UP' | translate}} :</strong>
+        <strong
+          style="color: #0073aa;font-size: 0.9rem;margin-left: 1rem; ">{{'PERSONALIZATION.MESSAGE_BEFORE_CATCHING_UP' | translate}}
+        </strong>
+
+      </div>
+      <div class="form-group row">
+        <label class="col-sm-3 col-form-label">{{'MODULE.PERCENTAGE_ABSENCE'|translate}}<span style="margin-left:0.2rem;color: red">*</span>
+          <p class="f-right"> :</p>
+        </label>
+        <div class="col-sm-9">
+          <input type="number" formControlName="percentageAbsenceBefore" class="form-control" >
+          <div *ngIf="errormptyFieldForm2('percentageAbsenceBefore')" style="color:red">
+            {{'ERRORS.EMPTY_FIELD' | translate}}</div>
+          <div *ngIf="secondForm.get('percentageAbsenceBefore').errors?.min" style="color:red">
+            {{'MODULE.MIN_0' | translate}}</div>
+     
+
+        </div>
+      </div>
+      <div class="form-group row">
+        <label class="col-sm-3 col-form-label">{{'MODULE.PERCENTAGE_COUR'|translate}}<span style="margin-left:0.2rem;color: red">*</span>
+          <p class="f-right"> :</p>
+        </label>
+        <div class="col-sm-9">
+          <input type="number" formControlName="percentageCourBefore" class="form-control" >
+          <div *ngIf="errormptyFieldForm2('percentageCourBefore')" style="color:red">
+            {{'ERRORS.EMPTY_FIELD' | translate}}</div>
+          <div *ngIf="secondForm.get('percentageCourBefore').errors?.min" style="color:red">
+            {{'MODULE.MIN_0' | translate}}</div>
+
+        </div>
+      </div>
+      <div class="form-group row">
+        <label class="col-sm-3 col-form-label">{{'MODULE.PERCENTAGE_EXAM'|translate}}<span style="margin-left:0.2rem;color: red">*</span>
+          <p class="f-right"> :</p>
+        </label>
+        <div class="col-sm-9">
+          <input type="number" formControlName="percentageExamBefore" class="form-control" >
+          <div *ngIf="errormptyFieldForm2('percentageExamBefore')" style="color:red">
+            {{'ERRORS.EMPTY_FIELD' | translate}}</div>
+          <div *ngIf="secondForm.get('percentageExamBefore').errors?.min" style="color:red">
+            {{'MODULE.MIN_20' | translate}}</div>
+
+        </div>
+      </div>
+      <div class="form-group row">
+        <label class="col-sm-3 col-form-label">{{'MODULE.PERCENTAGE_QUIZ'|translate}}<span style="margin-left:0.2rem;color: red">*</span>
+          <p class="f-right"> :</p>
+        </label>
+        <div class="col-sm-9">
+          <input type="number" formControlName="percentageQuizBefore" class="form-control" >
+          <div *ngIf="errormptyFieldForm2('percentageQuizBefore')" style="color:red">
+            {{'ERRORS.EMPTY_FIELD' | translate}}</div>
+          <div *ngIf="secondForm.get('percentageQuizBefore').errors?.min" style="color:red">
+            {{'MODULE.MIN_5' | translate}}</div>
+
+
+        </div>
+      </div>
+    <div *ngIf="isHigherEducation">
+      <div class="row alert">
+
+        <strong style="color: red;font-size: 0.9rem;">{{'PERSONALIZATION.AFTER_CATCHING_UP' | translate}} :</strong>
+        <strong
+          style="color: #0073aa;font-size: 0.9rem;margin-left: 1rem; ">{{'PERSONALIZATION.MESSAGE_AFTER_CATCHING_UP' | translate}}
+        </strong>
+
+      </div>
+      <div class="form-group row">
+        <label class="col-sm-3 col-form-label">{{'MODULE.PERCENTAGE_ABSENCE'|translate}}<span style="margin-left:0.2rem;color: red">*</span>
+          <p class="f-right"> :</p>
+        </label>
+        <div class="col-sm-9">
+          <input type="number" formControlName="percentageAbsenceAfter" class="form-control" >
+          <div *ngIf="errormptyFieldForm2('percentageAbsenceAfter')" style="color:red">
+            {{'ERRORS.EMPTY_FIELD' | translate}}</div>
+          <div *ngIf="secondForm.get('percentageAbsenceAfter').errors?.min" style="color:red">
+            {{'MODULE.MIN_0' | translate}}</div>
+     
+
+        </div>
+      </div>
+      <div class="form-group row">
+        <label class="col-sm-3 col-form-label">{{'MODULE.PERCENTAGE_COUR'|translate}}<span style="margin-left:0.2rem;color: red">*</span>
+          <p class="f-right"> :</p>
+        </label>
+        <div class="col-sm-9">
+          <input type="number" formControlName="percentageCourAfter" class="form-control" >
+          <div *ngIf="errormptyFieldForm2('percentageCourAfter')" style="color:red">
+            {{'ERRORS.EMPTY_FIELD' | translate}}</div>
+          <div *ngIf="secondForm.get('percentageCourAfter').errors?.min" style="color:red">
+            {{'MODULE.MIN_0' | translate}}</div>
+
+        </div>
+      </div>
+      <div class="form-group row">
+        <label class="col-sm-3 col-form-label">{{'MODULE.PERCENTAGE_EXAM'|translate}}<span style="margin-left:0.2rem;color: red">*</span>
+          <p class="f-right"> :</p>
+        </label>
+        <div class="col-sm-9">
+          <input type="number" formControlName="percentageExamAfter" class="form-control" >
+          <div *ngIf="errormptyFieldForm2('percentageExamAfter')" style="color:red">
+            {{'ERRORS.EMPTY_FIELD' | translate}}</div>
+          <div *ngIf="secondForm.get('percentageExamAfter').errors?.min" style="color:red">
+            {{'MODULE.MIN_20' | translate}}</div>
+
+        </div>
+      </div>
+      <div class="form-group row">
+        <label class="col-sm-3 col-form-label">{{'MODULE.PERCENTAGE_QUIZ'|translate}}<span style="margin-left:0.2rem;color: red">*</span>
+          <p class="f-right"> :</p>
+        </label>
+        <div class="col-sm-9">
+          <input type="number" formControlName="percentageQuizAfter" class="form-control" >
+          <div *ngIf="errormptyFieldForm2('percentageQuizAfter')" style="color:red">
+            {{'ERRORS.EMPTY_FIELD' | translate}}</div>
+          <div *ngIf="secondForm.get('percentageQuizAfter').errors?.min" style="color:red">
+            {{'MODULE.MIN_5' | translate}}</div>
+
+
+        </div>
+      </div>
+    </div>
+      <button type="button" (click)="cancel()" class="btn btn-danger btn-md waves-effect waves-light f-light"
+        style="margin-right: 15px">
+        <i class="fa fa-close"></i>{{'ACTION.CANCEL'| translate}}
+      </button>
+      <div class="f-right">
+        <button type="button" matStepperPrevious class="btn btn-warning btn-md waves-effect waves-light"
+          style="margin-right: 15px"><i class="fa fa-chevron-left"></i>{{'ACTION.BACK'| translate}}</button>
+
+        <button class="btn btn-primary btn-md waves-effect waves-light"
+          (click)="nextForm2(stepper)">{{'ACTION.NEXT'| translate}}<i class="fa fa-chevron-right"
+            style="margin-left: 0.3rem;"></i></button>
+      </div>
+    </form>
+  </mat-step>
+  <mat-step>
+    <ng-template matStepLabel>Calculate pourcentage</ng-template>
+
+
+    <button type="button" (click)="cancel()" class="btn btn-danger btn-md waves-effect waves-light f-left">
+      <i class="fa fa-close"></i>{{'ACTION.CANCEL'| translate}}
+    </button>
+    <div class="f-right">
+      <button type="button" matStepperPrevious class="btn btn-warning btn-md waves-effect waves-light"
+        style="margin-right: 15px"><i class="fa fa-chevron-left"></i>{{'ACTION.BACK'| translate}}</button>
+
+      <button class="btn btn-success btn-md waves-effect waves-light" (click)="save()">{{'ACTION.SAVE'| translate}}<i
+          class="fa fa-check" style="margin-left: 0.3rem;"></i></button>
+    </div>
+  </mat-step>
+</mat-horizontal-stepper>
+<notifier-container></notifier-container>

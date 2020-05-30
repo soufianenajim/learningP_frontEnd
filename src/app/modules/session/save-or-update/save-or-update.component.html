@@ -1,0 +1,183 @@
+<div class="card">
+  <div class="card-header">
+    <h5 *ngIf="isEdit">{{'ACTION.UPDATE'|translate}}</h5>
+    <h5 *ngIf="!isEdit">{{'ACTION.ADD'|translate}}</h5>
+
+  </div>
+  <div class="card-block" style="margin: 1rem;">
+
+    <form [formGroup]="sessionForm" (ngSubmit)="save()">
+      <div class="form-group row">
+        <label class="col-sm-3 col-form-label">{{'GLOBAL.NAME'|translate}} <span
+            style="margin-left:0.2rem;color: red">*</span>
+          <p class="f-right">
+            :</p>
+        </label>
+        <div class="col-sm-9">
+          <input type="text" formControlName="name" maxlength="100" class="form-control">
+          <div *ngIf="errormptyField('name')" style="color:red">
+            {{'ERRORS.EMPTY_FIELD' | translate}}</div>
+          <div *ngIf="invalidData('name')" style="color:red">
+            {{'ERRORS.INVALID_DATA' | translate}}</div>
+        </div>
+      </div>
+      <div class="form-group row">
+        <label class="col-md-3 col-form-label">{{'GLOBAL.START_DATE' | translate}} <span style="color: red">*</span>
+          <p class="f-right">
+            :</p>
+        </label>
+        <div class="col-md-9 ">
+          <div class="input-group" style="margin-bottom: 0">
+            <input readonly class="form-control" type="text" (click)="picker.open()"
+              placeholder="{{'GLOBAL.PLACEHOLDER.START_DATE' |translate}}"
+              style="border:1px solid #ced4da;background: white" [matDatepicker]="picker" [min]="minDate"
+              formControlName="startDate" id="startDate" />
+            <mat-datepicker #picker></mat-datepicker>
+            <span class="input-group-addon" (click)="picker.open()" style="width: 40px;height: 35px;">
+              <i *ngIf="!isFieldValid('startDate')" class="fa fa-calendar" style="padding: 12px;"></i>
+              <i *ngIf="isFieldValid('startDate')" class="fa fa-calendar-times-o" style="padding: 12px;color: red"></i>
+            </span>
+          </div>
+          <div *ngIf="errormptyField('startDate')" style="color:red">
+            {{'ERRORS.EMPTY_FIELD' | translate}}</div>
+        </div>
+      </div>
+      <div class="form-group row">
+        <label class="col-md-3 col-form-label">{{'GLOBAL.END_DATE' | translate}} <span style="color: red">*</span>
+          <p class="f-right">
+            :</p>
+        </label>
+        <div class="col-md-9 ">
+          <div class="input-group" style="margin-bottom: 0">
+            <input readonly class="form-control" type="text" (click)="picker2.open()"
+              placeholder="{{'GLOBAL.PLACEHOLDER.END_DATE' |translate}}"
+              style="border:1px solid #ced4da;background: white" [matDatepicker]="picker2"
+              [min]="sessionForm.value.startDate" formControlName="endDate" id="endDate" />
+            <mat-datepicker #picker2></mat-datepicker>
+            <span class="input-group-addon" (click)="picker2.open()" style="width: 40px;height: 35px;">
+              <i *ngIf="!isFieldValid('endDate')" class="fa fa-calendar" style="padding: 12px;"></i>
+              <i *ngIf="isFieldValid('endDate')" class="fa fa-calendar-times-o" style="padding: 12px;color: red"></i>
+            </span>
+          </div>
+          <div *ngIf="errormptyField('endDate')" style="color:red">
+            {{'ERRORS.EMPTY_FIELD' | translate}}</div>
+        </div>
+      </div>
+
+      <div class="row alert">
+        <strong style="color: red;font-size: 0.9rem;">{{'SESSION.EXAM_PERIOD' | translate}} : </strong>
+        <strong
+          style="color: #0073aa;font-size: 0.9rem;margin-left: 1rem; ">{{'SESSION.EXAM_PERIOD_MESSAGE' | translate}}
+        </strong>
+
+      </div>
+      <div class="form-group row">
+        <label class="col-md-3 col-form-label">{{'GLOBAL.START_DATE' | translate}} ({{"SESSION.EXAM" | translate}})<span style="color: red">*</span>
+          <p class="f-right">
+            :</p>
+        </label>
+        <div class="col-md-9 ">
+          <div class="input-group" style="margin-bottom: 0">
+            <input readonly class="form-control" type="text" (click)="picker3.open()"
+              placeholder="{{'GLOBAL.PLACEHOLDER.START_DATE' |translate}}"
+              style="border:1px solid #ced4da;background: white" [matDatepicker]="picker3" [min]="minDate"
+              formControlName="startDateExam" id="startDateExam" />
+            <mat-datepicker #picker3></mat-datepicker>
+            <span class="input-group-addon" (click)="picker3.open()" style="width: 40px;height: 35px;">
+              <i *ngIf="!isFieldValid('startDateExam')" class="fa fa-calendar" style="padding: 12px;"></i>
+              <i *ngIf="isFieldValid('startDateExam')" class="fa fa-calendar-times-o" style="padding: 12px;color: red"></i>
+            </span>
+          </div>
+          <div *ngIf="errormptyField('startDateExam')" style="color:red">
+            {{'ERRORS.EMPTY_FIELD' | translate}}</div>
+        </div>
+      </div>
+      <div class="form-group row">
+        <label class="col-md-3 col-form-label">{{'GLOBAL.END_DATE' | translate}}({{"SESSION.EXAM" | translate}}) <span style="color: red">*</span>
+          <p class="f-right">
+            :</p>
+        </label>
+        <div class="col-md-9 ">
+          <div class="input-group" style="margin-bottom: 0">
+            <input readonly class="form-control" type="text" (click)="picker4.open()"
+              placeholder="{{'GLOBAL.PLACEHOLDER.END_DATE' |translate}}"
+              style="border:1px solid #ced4da;background: white" [matDatepicker]="picker4"
+              [min]="sessionForm.value.startDateExam" formControlName="endDateExam" id="endDateExam" />
+            <mat-datepicker #picker4></mat-datepicker>
+            <span class="input-group-addon" (click)="picker4.open()" style="width: 40px;height: 35px;">
+              <i *ngIf="!isFieldValid('endDateExam')" class="fa fa-calendar" style="padding: 12px;"></i>
+              <i *ngIf="isFieldValid('endDateExam')" class="fa fa-calendar-times-o" style="padding: 12px;color: red"></i>
+            </span>
+          </div>
+          <div *ngIf="errormptyField('endDateExam')" style="color:red">
+            {{'ERRORS.EMPTY_FIELD' | translate}}</div>
+        </div>
+      </div>
+      <div class="row alert">
+
+        <strong style="color: red;font-size: 0.9rem;">{{'SESSION.CATCHING_UP_PERIOD' | translate}} :</strong>
+        <strong
+          style="color: #0073aa;font-size: 0.9rem;margin-left: 1rem; ">{{'SESSION.CATCHING_UP_PERIOD_MESSAGE' | translate}}
+        </strong>
+
+      </div>
+      <div class="form-group row">
+        <label class="col-md-3 col-form-label">{{'GLOBAL.START_DATE' | translate}} ({{"SESSION.CATCHING_UP" | translate}})<span style="color: red">*</span>
+          <p class="f-right">
+            :</p>
+        </label>
+        <div class="col-md-9 ">
+          <div class="input-group" style="margin-bottom: 0">
+            <input readonly class="form-control" type="text" (click)="picker5.open()"
+              placeholder="{{'GLOBAL.PLACEHOLDER.START_DATE' |translate}}"
+              style="border:1px solid #ced4da;background: white" [matDatepicker]="picker5" [min]="sessionForm.value.endDateExam"
+              formControlName="startDateCatchUp" id="startDateCatchUp" />
+            <mat-datepicker #picker5></mat-datepicker>
+            <span class="input-group-addon" (click)="picker5.open()" style="width: 40px;height: 35px;">
+              <i *ngIf="!isFieldValid('startDateCatchUp')" class="fa fa-calendar" style="padding: 12px;"></i>
+              <i *ngIf="isFieldValid('startDateCatchUp')" class="fa fa-calendar-times-o" style="padding: 12px;color: red"></i>
+            </span>
+          </div>
+          <div *ngIf="errormptyField('startDateCatchUp')" style="color:red">
+            {{'ERRORS.EMPTY_FIELD' | translate}}</div>
+        </div>
+      </div>
+      <div class="form-group row">
+        <label class="col-md-3 col-form-label">{{'GLOBAL.END_DATE' | translate}} ({{"SESSION.CATCHING_UP" | translate}}) <span style="color: red">*</span>
+          <p class="f-right">
+            :</p>
+        </label>
+        <div class="col-md-9 ">
+          <div class="input-group" style="margin-bottom: 0">
+            <input readonly class="form-control" type="text" (click)="picker6.open()"
+              placeholder="{{'GLOBAL.PLACEHOLDER.END_DATE' |translate}}"
+              style="border:1px solid #ced4da;background: white" [matDatepicker]="picker6"
+              [min]="sessionForm.value.startDateCatchUp" formControlName="endDateCatchUp" id="endDateCatchUp" />
+            <mat-datepicker #picker6></mat-datepicker>
+            <span class="input-group-addon" (click)="picker6.open()" style="width: 40px;height: 35px;">
+              <i *ngIf="!isFieldValid('endDateCatchUp')" class="fa fa-calendar" style="padding: 12px;"></i>
+              <i *ngIf="isFieldValid('endDateCatchUp')" class="fa fa-calendar-times-o" style="padding: 12px;color: red"></i>
+            </span>
+          </div>
+          <div *ngIf="errormptyField('endDateCatchUp')" style="color:red">
+            {{'ERRORS.EMPTY_FIELD' | translate}}</div>
+        </div>
+      </div>
+      <br>
+     
+      <div class="form-group row justify-content-center">
+        <button type="button" style="margin-right: 20px" type="submit" [disabled]="isSaved"
+          class="btn btn-success btn-md waves-effect waves-light">
+          <i class="fa fa-check"></i>{{'ACTION.SAVE'| translate}}
+        </button>
+        <button type="button" (click)="cancel()" class="btn btn-danger btn-md waves-effect waves-light">
+          <i class="fa fa-close"></i>{{'ACTION.CANCEL'| translate}}
+        </button>
+      </div>
+
+    </form>
+
+
+  </div>
+</div>
+<notifier-container></notifier-container>

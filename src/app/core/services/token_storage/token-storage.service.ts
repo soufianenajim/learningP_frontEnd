@@ -32,6 +32,6 @@ export class TokenStorageService {
     return JSON.parse(sessionStorage.getItem(USER_KEY));
   }
   public getRoleUser(){
-    return this.getUser().refRole;
+    return this.getUser()?this.getUser().refRole:null;
   }
 }

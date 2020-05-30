@@ -1,48 +1,49 @@
 {
   "GLOBAL": {
     "NAME": "Name",
-    "MODULE":"Module"
-  },
-  
-  "DASHBOARD":{
-    "NO_DATA_CHART": "No data available",
-    "STUDENT":{
-      "LATEST_COURSE":"Latest courses",
-      "LATEST_Exam_QUIZ":"Latest Exam and quiz"
-
-    },
-    "TEACHER":{
-      "TOTAL_MODULES":"Number of modules",
-      "TOTAL_EXAMS":"Number of exams",
-      "TOTAL_COURSES":"Number of courses",
-      "TOTAL_QUIZS":"Number of quizs",
-      "TOTAL_STUDENTS":"Number of students",
-      "GLOBAL_RATE_STUDENTS":"Successful student rate",
-      "RATE_STUDENTS_BY_EXAM":"Rate of successful students per exam or quiz",
-     "BELOW_AVERAGE":"Below average",
-     "GREATHER_AVERAGE":"Greater than average",
-     "SUCCESS":"Success",
-     "FAILURE":"Failure"
-    }, 
-    "TECHNICAL_ADMIN":{
-
-    },
-    "CLIENT_ADMIN":{
-
+    "MODULE": "Module",
+    "START_DATE": "Start date",
+    "END_DATE": "End date",
+    "PLACEHOLDER": {
+      "START_DATE": "Choose the start date (format jj/mm/aaaa)",
+      "END_DATE": "Choose the end date (format jj/mm/aaaa)"
     }
-
+  },
+  "DASHBOARD": {
+    "NO_DATA_CHART": "No data available",
+    "STUDENT": {
+      "LATEST_COURSE": "Latest courses",
+      "LATEST_Exam_QUIZ": "Latest Exam and quiz"
+    },
+    "TEACHER": {
+      "TOTAL_MODULES": "Number of modules",
+      "TOTAL_EXAMS": "Number of exams",
+      "TOTAL_COURSES": "Number of courses",
+      "TOTAL_QUIZS": "Number of quizs",
+      "TOTAL_STUDENTS": "Number of students",
+      "GLOBAL_RATE_STUDENTS": "Successful student rate",
+      "RATE_STUDENTS_BY_EXAM": "Rate of successful students per exam or quiz",
+      "BELOW_AVERAGE": "Below average",
+      "GREATHER_AVERAGE": "Greater than average",
+      "SUCCESS": "Success",
+      "FAILURE": "Failed",
+      "CATCHING_UP": "Catching up"
+    },
+    "TECHNICAL_ADMIN": {},
+    "CLIENT_ADMIN": {}
   },
   "MENU_ITEM": {
     "HOME": "Dashboard",
     "AFFCTED_MODULE": "Module Affected",
-    "MODULE":"Module",
+    "MODULE": "Module",
     "COURSE": "Course",
     "CHAPTER": "Chapter",
     "PARAGRAPH": "Paragraph",
     "STUDENT_SPACE": "Student Space",
     "PROFESSOR_SPACE": "Professor Space",
-    "QUIZ":"Quiz",
-    "EXAM":"Exam"
+    "QUIZ": "Quiz",
+    "EXAM": "Exam",
+    "PERSONALIZATION": "Personalization"
   },
   "ACTION": {
     "SEARCH": "Search",
@@ -61,11 +62,11 @@
     "CONFIRMATION_MESSAGE": "You won't be able to revert this",
     "ALREADY_LAUNCHED": "already launched",
     "START": "Launch",
-    "LAUNCH":"Lancement ",
+    "LAUNCH": "Lancement ",
     "BACK": "Previous",
     "NEXT": "Next",
-    "VALIDATE":"Validate",
-    "NOT_EXIST":"Not yet exists"
+    "VALIDATE": "Validate",
+    "NOT_EXIST": "Not yet exists"
   },
   "LANGUAGE": {
     "FRENCH": "French",
@@ -74,8 +75,10 @@
   },
   "MODULE": {
     "NAME": "Name",
-    "MODULE":"Module",
-    "COEFFICIENT":"Coefficient",
+    "SELECT_SESSION": "Select session",
+    "MODULE": "Module",
+    "SESSION": "Session",
+    "COEFFICIENT": "Coefficient",
     "PROFESSOR": "Professor",
     "LEVEL": "Level",
     "BRANCH": "Branch",
@@ -86,19 +89,18 @@
     "DELETED": "Module has been deleted.",
     "SAVE_SUCCESS": "Module saved successfully",
     "EXIST": "Module already exists!",
-    "PERCENTAGE_ABSENCE":"Percentage (Absence)",
-    "PERCENTAGE_COUR":"Percentage (Course)",
-    "PERCENTAGE_QUIZ":"Percentage (quiz)",
-    "PERCENTAGE_EXAM":"Percentage (Exam)",
-    "MIN_0":"Minimum is 0 !",
-    "MIN_5":"Minimum is 5 !",
-    "MIN_20":"Minimum is 20 !",
-    "TOTAL_PERCENTAGE":"Total of percentage must be equal 100 !",
-    "EXAM_QUIZ_PROGRESSION":"Exam quiz progression",
-    "ABSENCE_PROGRESSION":"Absence progression",
-    "CALCULATE":"Calculate Final note",
+    "PERCENTAGE_ABSENCE": "Percentage (Absence)",
+    "PERCENTAGE_COUR": "Percentage (Course)",
+    "PERCENTAGE_QUIZ": "Percentage (quiz)",
+    "PERCENTAGE_EXAM": "Percentage (Exam)",
+    "MIN_0": "Minimum is 0 !",
+    "MIN_5": "Minimum is 5 !",
+    "MIN_20": "Minimum is 20 !",
+    "TOTAL_PERCENTAGE": "Total of percentage must be equal 100 !",
+    "EXAM_QUIZ_PROGRESSION": "Exam quiz progression",
+    "ABSENCE_PROGRESSION": "Absence progression",
+    "CALCULATE": "Calculate Final note",
     "SCALE": "Scale"
-    
   },
   "CHAPTER": {
     "NAME": "Name",
@@ -114,7 +116,6 @@
     "SELECT_CHAPTER": "Select chapter",
     "CONTENT": "Content"
   },
-    
   "COURSE": {
     "NAME": "Name",
     "MODULE": "Module",
@@ -124,29 +125,28 @@
     "LAUNCHED_MESSAGE": "Course  has been launched",
     "DELETE": "Delete cour ?",
     "DELETED": "Course has been deleted.",
-    "FINISHED":"Course finished",
-    "START":"Start course",
-    "PROGRESSION":"Course progression",
-    "DETAIL_PROGRESSION":"Detail courses progression"
+    "FINISHED": "Course finished",
+    "START": "Start course",
+    "PROGRESSION": "Course progression",
+    "DETAIL_PROGRESSION": "Detail courses progression"
   },
   "ERRORS": {
     "EMPTY_FIELD": "Field must not be empty.",
     "INVALID_DATA": "Please enter valid data.",
     "NO_DATA": "No data available!"
   },
-  "LOGIN":{
-    "PROFILE":"Profile",
+  "LOGIN": {
+    "PROFILE": "Profile",
     "INCORRECT": "Login or password incorrect !",
-        "EXPIRED": "expired license !",
-        "REQUIRED": "Please fill in all the blanks",
-        "CNX_FAILED": "Failed connection to DATACERT. Please contact the administrator.",
-        "LOCKED": "Your account is blocked please try again after ",
-        "MINUTES": " minutes!",
-        "LOGIN": "Login",
-        "FORGOT_PASSWORD" : "Forgot your password ?",
-        "COPIRIGHT": "Copyright © E_LEARNING All rights reserved.",
-        "LOGOUT": "Logout"
-
+    "EXPIRED": "expired license !",
+    "REQUIRED": "Please fill in all the blanks",
+    "CNX_FAILED": "Failed connection to DATACERT. Please contact the administrator.",
+    "LOCKED": "Your account is blocked please try again after ",
+    "MINUTES": " minutes!",
+    "LOGIN": "Login",
+    "FORGOT_PASSWORD": "Forgot your password ?",
+    "COPIRIGHT": "Copyright © E_LEARNING All rights reserved.",
+    "LOGOUT": "Logout"
   },
   "USER": {
     "EMAIL": "Email",
@@ -162,12 +162,12 @@
     "SELECT_LEVEL": "Select level",
     "SELECT_ROLE": "Select role",
     "SELECT_ORGANIZATION": "Select organization",
-    "SELECT_GROUP":"Select group",
+    "SELECT_GROUP": "Select group",
     "EXIST": "User already exists!",
     "SAVE_SUCCESS": "User saved successfully",
     "DELETE": "Delete user?",
     "DELETED": "User has been deleted.",
-    "GLOLBAL_PLACEHOLDER":"Enter firstName,LastName or email"
+    "GLOLBAL_PLACEHOLDER": "Enter firstName,LastName or email"
   },
   "LEVEL": {
     "SAVE_SUCCESS": "Level saved successfully",
@@ -209,47 +209,44 @@
     "ADD_SUGGESTION": "Add suggestion",
     "CORRECT": "Correct",
     "INCORRECT": "Incorrect"
-    
   },
   "EXAM": {
     "SAVE_SUCCESS": "Exam saved successfully",
     "EXIST": "Exam already exists!",
     "DELETE": "Delete exam?",
     "DELETED": "Exam has been deleted.",
-    "PROGRESSION":"Exam progress",
-    "SCORE":"Exam score",
-    "SCORE_FINAL":"Score final",
+    "PROGRESSION": "Exam progress",
+    "SCORE": "Exam score",
+    "SCORE_FINAL": "Score final",
     "FINISHED": "Finished",
-    "ABSENT":"Missed",
-    "UNVAILABLE":"Unvailable",
-    "START":"Start exam",
-    "REMAINING_TIME":"Remaining time",
-    "DAY":"Day",
-    "HOUR":"Hour",
-    "MINUTE":"Minute",
-    "SECOND":"Second",
-    "AVAILABLE":"This exam is launched but not availble ",
-    "AVAILABLE_TIME":"It will be available at : ",
-    "USER_SHOW_SCORE":"You want this user to see their score",
-    "ALREADY_SHOW":"Already showed"
+    "ABSENT": "Missed",
+    "UNVAILABLE": "Unvailable",
+    "START": "Start exam",
+    "REMAINING_TIME": "Remaining time",
+    "DAY": "Day",
+    "HOUR": "Hour",
+    "MINUTE": "Minute",
+    "SECOND": "Second",
+    "AVAILABLE": "This exam is launched but not availble ",
+    "AVAILABLE_TIME": "It will be available at : ",
+    "USER_SHOW_SCORE": "You want this user to see their score",
+    "ALREADY_SHOW": "Already showed"
   },
   "QUIZ": {
     "FINISHED": "Quiz finished",
-    "SCORE":"Quiz score",
-    "START":"Start quiz",
-    "AVAILABLE":"This quiz is launched but not availble ",
-    "AVAILABLE_TIME":"It will be available at : "
-    
-    },
-    "TD": {
-      "FINISHED": "Td finished"
-      },
-    "NOTIFICATIONS":{
-      "NAME":"Notifications",
-      "NEW":"New",
-      "AVAILABLE_TIME":" will be available at : "
-    }  ,
-      
+    "SCORE": "Quiz score",
+    "START": "Start quiz",
+    "AVAILABLE": "This quiz is launched but not availble ",
+    "AVAILABLE_TIME": "It will be available at : "
+  },
+  "TD": {
+    "FINISHED": "Td finished"
+  },
+  "NOTIFICATIONS": {
+    "NAME": "Notifications",
+    "NEW": "New",
+    "AVAILABLE_TIME": " will be available at : "
+  },
   "EXERCICES": {
     "SAVE_SUCCESS": "Exercices saved successfully",
     "EXIST": "Exercices already exists!",
@@ -283,6 +280,27 @@
     "TEACHER": "Teacher",
     "ADMIN_CLIENT": "Client Administrator",
     "ADMIN_TECHNIQUE": "Technical  Administrator"
+  },
+  "SESSION": {
+    "EXAM": "Exam",
+    "CATCHING_UP": "Catching up",
+    "EXAM_PERIOD": "Exam period",
+    "EXAM_PERIOD_MESSAGE": " Must be between start date and end date of session ",
+    "CATCHING_UP_PERIOD": "Catching up period",
+    "CATCHING_UP_PERIOD_MESSAGE": " Must be greater than the end of exam period and less than the end of session date",
+    "SAVE_SUCCESS": "Session saved successfully",
+    "EXIST": "Session already exists!",
+    "DELETE": "Delete session?",
+    "DELETED": "Session has been deleted."
+  },
+  "PERSONALIZATION": {
+    "BEFORE_CATCHING_UP": "Before Catching up",
+    "AFTER_CATCHING_UP": "After Catching up",
+    "MESSAGE_BEFORE_CATCHING_UP":"might you specify the percentages before catching up ",
+    "MESSAGE_AFTER_CATCHING_UP":"might you specify the percentages after catching up ",
+    "TOTAL_PERCENTAGE_BEFORE_CATCHING_UP": "Total of percentage before catching up must be equal 100 !",
+    "TOTAL_PERCENTAGE_AFTER_CATCHING_UP": "Total of percentage after catching up must be equal 100 !"
+
   },
   "EMAIL": "Email",
   "COMPONENTS": "Components",

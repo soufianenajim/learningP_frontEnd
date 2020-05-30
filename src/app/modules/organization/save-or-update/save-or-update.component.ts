@@ -8,7 +8,7 @@ import { BranchService } from "../../../core/services/branch/branch.service";
 import { isBuffer } from "util";
 
 @Component({
-  selector: "app-save-or-update",
+  selector: "app-save-or-update-org",
   templateUrl: "./save-or-update.component.html",
   styleUrls: ["./save-or-update.component.css"],
 })

@@ -74,6 +74,13 @@ export const AppRoutes: Routes = [
       },{
         path:"module",
         loadChildren:"./modules/module-name/module-name.module#ModuleNameModule"
+      },  {
+        path: "session",
+        loadChildren: "./modules/session/session.module#SessionModule"
+      },
+      {
+        path: "personalization",
+        loadChildren: "./modules/personalization/personalization.module#PersonalizationModule"
       }
     ]
   },

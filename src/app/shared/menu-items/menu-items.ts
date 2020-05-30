@@ -164,6 +164,12 @@ const MENUITEMS_ADMIN_CLIENT = [
             type: "link",
           },
           {
+            state: "session",
+            name: "Session",
+            icon: "fa fa-clock-o",
+            type: "link",
+          },
+          {
             state: "moduleAffected",
             name: "MENU_ITEM.AFFCTED_MODULE",
             icon: "fa fa-link",
@@ -173,6 +179,11 @@ const MENUITEMS_ADMIN_CLIENT = [
             state: "module",
             name: "MENU_ITEM.MODULE",
             icon: "fa fa-bookmark",
+            type: "link",
+          },          {
+            state: "personalization",
+            name: "MENU_ITEM.PERSONALIZATION",
+            icon: "fa fa-gears",
             type: "link",
           },
          

@@ -10,6 +10,7 @@ import { TranslateService } from "@ngx-translate/core";
 import { NotifierService } from "angular-notifier";
 import { min } from "d3";
 import { ModuleNameService } from "../../../core/services/module_name/module-name.service";
+import { SessionService } from "../../../core/services/session/session.service";
 
 @Component({
   selector: "app-save-or-update",
@@ -26,6 +27,7 @@ export class SaveOrUpdateComponent implements OnInit {
     prof: new FormControl(null, Validators.required),
     group: new FormControl(null, Validators.required),
     module: new FormControl(null, Validators.required),
+    session: new FormControl(null, Validators.required),
     percentageAbsence: new FormControl("", [
       Validators.required,
       Validators.min(0),
@@ -42,17 +44,15 @@ export class SaveOrUpdateComponent implements OnInit {
       Validators.required,
       Validators.min(20),
     ]),
-    scale: new FormControl("", [
-      Validators.required,
-      Validators.min(5),
-    ]),
+    scale: new FormControl("", [Validators.required, Validators.min(5)]),
   });
-  totalPercentage=0;
+  totalPercentage = 0;
   listLevel = [];
 
   listGroup = [];
   listProfessor = [];
-  listModuleName=[];
+  listModuleName = [];
+  listSession = [];
 
   idModule = null;
   isEdit = false;
@@ -68,7 +68,8 @@ export class SaveOrUpdateComponent implements OnInit {
     private userService: UserService,
     private translateService: TranslateService,
     notifierService: NotifierService,
-    private moduleNameService:ModuleNameService
+    private moduleNameService: ModuleNameService,
+    private sessionService: SessionService
   ) {
     this.notifier = notifierService;
     if (data !== null) {
@@ -87,8 +88,9 @@ export class SaveOrUpdateComponent implements OnInit {
     const percentageCour = data.percentageCour;
     const percentageExam = data.percentageExam;
     const percentageQuiz = data.percentageQuiz;
-    const scale=data.scale;
-    const module=data.module;
+    const scale = data.scale;
+    const module = data.module;
+    const session=data.session;
     this.moduleForm.get("name").setValue(name);
     this.moduleForm.get("group").setValue(group);
     this.moduleForm.get("prof").setValue(prof);
@@ -99,6 +101,7 @@ export class SaveOrUpdateComponent implements OnInit {
     this.moduleForm.get("percentageQuiz").setValue(percentageQuiz);
     this.moduleForm.get("scale").setValue(scale);
     this.moduleForm.get("module").setValue(module);
+    this.moduleForm.get("session").setValue(session);
 
     if (this.isTeacher) {
       this.moduleForm.get("name").disable();
@@ -124,9 +127,16 @@ export class SaveOrUpdateComponent implements OnInit {
           .findAllProfessorByOrga(user.organization.id)
           .subscribe((resp: any) => {
             this.listProfessor = resp;
-            this.moduleNameService.findByOrganisation(user.organization.id).subscribe((resp:any)=>{
-              this.listModuleName=resp;
-            })
+            this.moduleNameService
+              .findByOrganisation(user.organization.id)
+              .subscribe((resp: any) => {
+                this.listModuleName = resp;
+                this.sessionService
+                  .findByOrganisation(user.organization.id)
+                  .subscribe((resp: any) => {
+                    this.listSession = resp;
+                  });
+              });
           });
       });
   }
@@ -141,36 +151,36 @@ export class SaveOrUpdateComponent implements OnInit {
     const percentageCour = this.moduleForm.get("percentageCour").value;
     const percentageExam = this.moduleForm.get("percentageExam").value;
     const percentageQuiz = this.moduleForm.get("percentageQuiz").value;
-    const scale=this.moduleForm.get("scale").value;
-    const moduleN=this.moduleForm.get("module").value;
+    const scale = this.moduleForm.get("scale").value;
+    const moduleN = this.moduleForm.get("module").value;
+    const session=this.moduleForm.get("session").value;
     let module = new Module();
     module.id = this.idModule;
     module.name = name;
     module.group = group;
     module.professor = professor;
     module.coefficient = coefficient;
-    module.percentageAbsence=percentageAbsence;
-    module.percentageCour=percentageCour;
-    module.percentageExam=percentageExam;
-    module.percentageQuiz=percentageQuiz;
-    module.scale=scale;
-    module.module=moduleN;
+    module.percentageAbsence = percentageAbsence;
+    module.percentageCour = percentageCour;
+    module.percentageExam = percentageExam;
+    module.percentageQuiz = percentageQuiz;
+    module.scale = scale;
+    module.module = moduleN;
+    module.session=session;
 
     if (this.moduleForm.valid) {
-    if(this.totalPercentage==100){
-      this.moduleService.saveOrUpdate(module).subscribe(
-        (resp) => {
-          this.successNotifaction();
-        },
-        (error) => {
-          this.erorrNotifaction("MODULE.EXIST");
-        }
-      );
-    }
-    else{
-      this.erorrNotifaction("MODULE.TOTAL_PERCENTAGE")
-    }
-      
+      if (this.totalPercentage == 100) {
+        this.moduleService.saveOrUpdate(module).subscribe(
+          (resp) => {
+            this.successNotifaction();
+          },
+          (error) => {
+            this.erorrNotifaction("MODULE.EXIST");
+          }
+        );
+      } else {
+        this.erorrNotifaction("MODULE.TOTAL_PERCENTAGE");
+      }
     }
   }
   cancel() {
@@ -233,5 +243,4 @@ export class SaveOrUpdateComponent implements OnInit {
     this.totalPercentage =
       percentageAbsence + percentageCour + percentageExam + percentageQuiz;
   }
-
 }

@@ -13,13 +13,13 @@ export class DataBar {
     this.label = labelX;
   }
 }
-export class DataPie extends DataBar{
+export class DataPie extends DataBar {
   y: number;
   label: string;
-  color:string
-  constructor(yAxi?: number, labelX?: string,color?:string) {
-  super(yAxi,labelX);
-  this.color=color;
+  color: string;
+  constructor(yAxi?: number, labelX?: string, color?: string) {
+    super(yAxi, labelX);
+    this.color = color;
   }
 }
 @Component({
@@ -37,7 +37,7 @@ export class DashboardTeacherComponent implements OnInit {
   listGroupBar = [];
   listModuleBar = [];
 
-  listGroupPie= [];
+  listGroupPie = [];
   listModulePie = [];
   barSearchForm = new FormGroup({
     group: new FormControl(null),
@@ -53,26 +53,34 @@ export class DashboardTeacherComponent implements OnInit {
     private groupService: GroupService,
     private dashboardService: DashboardService,
     private moduleService: ModuleService,
-    private translateService:TranslateService
+    private translateService: TranslateService
   ) {}
   ngOnInit() {
-    this.getChartBar(this.user.id, 0,0);
-    this.getChartPie(this.user.id,0,0);
+    this.getChartBar(this.user.id, 0, 0);
+    this.getChartPie(this.user.id, 0, 0);
     this.translateService.onLangChange.subscribe((event: LangChangeEvent) => {
-     const groupBar=this.barSearchForm.get('group').value;
-     const moduleBar=this.barSearchForm.get('module').value;
-     const groupPie=this.pieSearchForm.get('group').value;
-     const modulePie=this.pieSearchForm.get('module').value;
-      this.getChartBar(this.user.id, groupBar?groupBar.id:0, moduleBar?moduleBar.id:0);
-    this.getChartPie(this.user.id,groupPie?groupPie.id:0, modulePie?modulePie.id:0);
+      const groupBar = this.barSearchForm.get("group").value;
+      const moduleBar = this.barSearchForm.get("module").value;
+      const groupPie = this.pieSearchForm.get("group").value;
+      const modulePie = this.pieSearchForm.get("module").value;
+      this.getChartBar(
+        this.user.id,
+        groupBar ? groupBar.id : 0,
+        moduleBar ? moduleBar.id : 0
+      );
+      this.getChartPie(
+        this.user.id,
+        groupPie ? groupPie.id : 0,
+        modulePie ? modulePie.id : 0
+      );
     });
-   
+
     this.groupService.findByUser(this.user.id).subscribe((resp: any) => {
       this.listGroupBar = resp;
-      this.listGroupPie=resp;
+      this.listGroupPie = resp;
       this.moduleService.findByProfessor(this.user.id).subscribe((res: any) => {
         this.listModuleBar = res;
-        this.listModulePie=res;
+        this.listModulePie = res;
       });
     });
     this.countModule = this.dashboardService.countModuleByTeacherAndGroupe(
@@ -155,7 +163,6 @@ export class DashboardTeacherComponent implements OnInit {
       .getAverageGoodAndBadGrades(userId, groupId, moduleId)
       .subscribe((resp: any) => {
         if (resp.length >= 1) {
-        
           this.isBarChartExist = true;
         } else {
           this.isBarChartExist = false;
@@ -167,19 +174,16 @@ export class DashboardTeacherComponent implements OnInit {
     this.dashboardService
       .getAverageSuccessStudent(userId, groupId, moduleId)
       .subscribe((resp: any) => {
-      
         if (resp.length >= 1) {
-        
-          this.isPieChartExist=true;
-        }
-        else{
-          this.isPieChartExist=false;
+          this.isPieChartExist = true;
+        } else {
+          this.isPieChartExist = false;
         }
         this.constructorDataPieSuccessAndFailed(resp);
       });
   }
   constructorDataBarSuccessAndFailed(data) {
-    let isEmpty=true;
+    let isEmpty = true;
     let dataSuccess: DataBar[] = [];
     let dataFailed: DataBar[] = [];
     data.forEach((element) => {
@@ -189,8 +193,8 @@ export class DashboardTeacherComponent implements OnInit {
       dataSuccess.push(new DataBar(success, label));
       dataFailed.push(new DataBar(failed, label));
     });
-  
- isEmpty=dataSuccess.length===0 &&dataFailed.length===0;
+
+    isEmpty = dataSuccess.length === 0 && dataFailed.length === 0;
     const chart = new CanvasJS.Chart("chartContainer", {
       animationEnabled: true,
       // title: {
@@ -214,48 +218,74 @@ export class DashboardTeacherComponent implements OnInit {
         shared: true,
         content: this.toolTipContent,
       },
-      data: !isEmpty?[
-        {
-          type: "stackedColumn",
-          showInLegend: true,
-          name: this.getI18n("DASHBOARD.TEACHER.BELOW_AVERAGE"),
-          color: "rgba(255, 16, 16, 0.69)",
-          dataPoints: dataFailed,
-        },
-        {
-          type: "stackedColumn",
-          showInLegend: true,
-          color: "#2ecc71",
-          name: this.getI18n("DASHBOARD.TEACHER.GREATHER_AVERAGE"),
-          dataPoints: dataSuccess,
-        },
-      ]:null,
+      data: !isEmpty
+        ? [
+            {
+              type: "stackedColumn",
+              showInLegend: true,
+              name: this.getI18n("DASHBOARD.TEACHER.BELOW_AVERAGE"),
+              color: "rgba(255, 16, 16, 0.69)",
+              dataPoints: dataFailed,
+            },
+            {
+              type: "stackedColumn",
+              showInLegend: true,
+              color: "#2ecc71",
+              name: this.getI18n("DASHBOARD.TEACHER.GREATHER_AVERAGE"),
+              dataPoints: dataSuccess,
+            },
+          ]
+        : null,
     });
     chart.render();
   }
   constructorDataPieSuccessAndFailed(data) {
+    console.log("data", data);
     let dataSuccess: DataPie[] = [];
-    if (data.length == 1) {
+    let total=0;
+    data.forEach(element => {
+      total+= element[1];
+    });
       data.forEach((element) => {
-        const success = (element[2] * 100) / element[1];
-        const failed = ((element[1] - element[2]) * 100) / element[1];
-        const label = element[0];
-        dataSuccess.push(new DataPie(success, this.getI18n("DASHBOARD.TEACHER.SUCCESS"),"#2ecc71"));
-        dataSuccess.push(new DataPie(success, this.getI18n("DASHBOARD.TEACHER.FAILURE"),"rgba(255, 16, 16, 0.69)"));
+        console.log('element',element);
+        const type = element[0];
+        const value = (element[1]*100)/total;
+        let typeValue;
+        let color;
+        if (type === "SUCCESS") {
+          typeValue = this.getI18n("DASHBOARD.TEACHER.SUCCESS");
+          color = "#2ecc71";
+        } else if (type === "CATCHING_UP") {
+          typeValue = this.getI18n("DASHBOARD.TEACHER.CATCHING_UP");
+          color = "#f1c40f";
+        } else {
+          typeValue = this.getI18n("DASHBOARD.TEACHER.FAILURE");
+          color = "rgba(255, 16, 16, 0.69)";
+        }
+        dataSuccess.push(
+          new DataPie(
+            value,
+            typeValue,
+            color
+          )
+        );
+       
       });
-    } else if (data.length > 1) {
-      let validatedStudent = 0;
-      let notValidatedStudent = 0;
-      data.forEach((element) => {
-        validatedStudent += (element[2] * 100) / element[1];
-        notValidatedStudent += ((element[1] - element[2]) * 100) / element[1];
-      });
-      dataSuccess.push(new DataPie(validatedStudent / data.length, this.getI18n("DASHBOARD.TEACHER.SUCCESS"),"#2ecc71"));
-      dataSuccess.push(
-        new DataPie(notValidatedStudent / data.length, this.getI18n("DASHBOARD.TEACHER.FAILURE"),"rgba(255, 16, 16, 0.69)")
-      );
-    }
     
+    console.log('dataSuccess',dataSuccess);
+    // } else if (data.length > 1) {
+    //   let validatedStudent = 0;
+    //   let notValidatedStudent = 0;
+    //   data.forEach((element) => {
+    //     validatedStudent += (element[2] * 100) / element[1];
+    //     notValidatedStudent += ((element[1] - element[2]) * 100) / element[1];
+    //   });
+    //   dataSuccess.push(new DataPie(validatedStudent / data.length, this.getI18n("DASHBOARD.TEACHER.SUCCESS"),"#2ecc71"));
+    //   dataSuccess.push(
+    //     new DataPie(notValidatedStudent / data.length, this.getI18n("DASHBOARD.TEACHER.FAILURE"),"rgba(255, 16, 16, 0.69)")
+    //   );
+    // }
+
     const chart1 = new CanvasJS.Chart("chartContainer1", {
       theme: "light2", // "light1", "light2", "dark1", "dark2"
       animationEnabled: true,
@@ -283,23 +313,21 @@ export class DashboardTeacherComponent implements OnInit {
   onChangeGroupBar() {
     const group = this.barSearchForm.get("group").value;
     this.barSearchForm.get("module").setValue(null);
-    if(group){
+    if (group) {
       this.moduleService
-      .findByProfessorAndGroup(this.user.id, group.id)
-      .subscribe((resp: any) => {
-        this.listModuleBar = resp;
-        this.getChartBar(this.user.id, group ? group.id : 0, 0);
-      });
-    }
-    else{
+        .findByProfessorAndGroup(this.user.id, group.id)
+        .subscribe((resp: any) => {
+          this.listModuleBar = resp;
+          this.getChartBar(this.user.id, group ? group.id : 0, 0);
+        });
+    } else {
       this.moduleService
-      .findByProfessor(this.user.id)
-      .subscribe((resp: any) => {
-        this.listModuleBar = resp;
-        this.getChartBar(this.user.id, group ? group.id : 0, 0);
-      });
+        .findByProfessor(this.user.id)
+        .subscribe((resp: any) => {
+          this.listModuleBar = resp;
+          this.getChartBar(this.user.id, group ? group.id : 0, 0);
+        });
     }
-   
   }
   onChangeModuleBar() {
     const group = this.barSearchForm.get("group").value;
@@ -327,24 +355,21 @@ export class DashboardTeacherComponent implements OnInit {
   onChangeGroupPie() {
     const group = this.pieSearchForm.get("group").value;
     this.barSearchForm.get("module").setValue(null);
-    if(group){
+    if (group) {
       this.moduleService
-      .findByProfessorAndGroup(this.user.id, group.id)
-      .subscribe((resp: any) => {
-        this.listModulePie = resp;
-        this.getChartPie(this.user.id, group ? group.id : 0, 0);
-      });
-    }
-    else{
+        .findByProfessorAndGroup(this.user.id, group.id)
+        .subscribe((resp: any) => {
+          this.listModulePie = resp;
+          this.getChartPie(this.user.id, group ? group.id : 0, 0);
+        });
+    } else {
       this.moduleService
-      .findByProfessor(this.user.id)
-      .subscribe((resp: any) => {
-        this.listModulePie = resp;
-        this.getChartPie(this.user.id, group ? group.id : 0, 0);
-      });
-
+        .findByProfessor(this.user.id)
+        .subscribe((resp: any) => {
+          this.listModulePie = resp;
+          this.getChartPie(this.user.id, group ? group.id : 0, 0);
+        });
     }
-   
   }
   onChangeModulePie() {
     const group = this.pieSearchForm.get("group").value;
@@ -375,5 +400,5 @@ export class DashboardTeacherComponent implements OnInit {
       i18 = value;
     });
     return i18;
-  } 
+  }
 }
