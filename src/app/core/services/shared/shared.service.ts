@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { BehaviorSubject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -10,7 +11,11 @@ export class SharedService {
   ctx = this.canvas.getContext('2d');
 
 
+  isBulletionLoaded = false;
+  currentComponent: any;
 
+  private behaviorLogo = new BehaviorSubject(undefined);
+  logo = this.behaviorLogo.asObservable();
 
 
   constructor() {
@@ -18,7 +23,10 @@ export class SharedService {
   }
 
  
+  setDemandeLogo(logo:String) {
+    this.behaviorLogo.next(logo);
 
+  }
   getName(row: string, numberCharacter: number): any {
     let charWidth = 0;
     let textToRender = '';

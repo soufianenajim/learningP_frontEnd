@@ -26,5 +26,8 @@ export class ExamService {
   findByModule(idModule){
     return this.httpClient.get(this.url + "/find-by-module/"+idModule);
   }
+  launch(idExam){
+    return this.httpClient.get(this.url + "/launch/"+idExam);
+  }
   
 }

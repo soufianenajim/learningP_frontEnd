@@ -17,7 +17,7 @@ import { StudentComponent } from '../student/student.component';
   styleUrls: ['./list.component.css']
 })
 export class ListComponent implements OnInit {
-  displayedColumns: string[] = ["name", "module","type","startTime","endTime","actions"];
+  displayedColumns: string[] = ["name", "module","type","startTime","endTime","launch","actions"];
   //dataSource = new MatTableDataSource<PeriodicElement>(ELEMENT_DATA);
   dataSource: MatTableDataSource<Exam>;
 
@@ -184,4 +184,32 @@ export class ListComponent implements OnInit {
     });
 
   }
+  openDialogLaunch(exam){
+    const  examLanched=this.getI18n('COURSE.LAUNCHED');
+    const  examLanchedMSG=this.getI18n('COURSE.LAUNCHED_MESSAGE');
+      swal({
+        title: this.getI18n('EXAM.LAUNCH'),
+        text: this.getI18n('ACTION.CONFIRMATION_MESSAGE'),
+        type: 'warning',
+        showCancelButton: true,
+        showCloseButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: this.getI18n('ACTION.CONFIRMATION'),
+        cancelButtonText: this.getI18n('ACTION.CANCEL_CONFIRMATION'),
+        reverseButtons: false,
+        focusCancel: true
+      }).then(() => this.launch(exam)).then(function () {
+        swal({
+          title: examLanched,
+          text: examLanchedMSG,
+          type: 'success'
+        });
+      }).catch();
+    }
+    launch(exam) {
+      this.examService.launch(exam.id).subscribe((resp) => {
+       this.search(true)
+      });
+    }
 }

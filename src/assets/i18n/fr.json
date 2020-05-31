@@ -4,6 +4,7 @@
     "MODULE": "Module",
     "START_DATE": "Date début",
     "END_DATE": "Date fin",
+    "SELECT_TYPE":"Sélectionner un type",
     "PLACEHOLDER": {
       "START_DATE": "Choisir la date de début (format jj/mm/aaaa)",
       "END_DATE": "Choisir la date de fin (format jj/mm/aaaa)"
@@ -229,7 +230,10 @@
     "USER_SHOW_SCORE": "Vous voulez que cette utilisateur voir son score",
     "ALREADY_SHOW": "Déjà affiché",
     "EXAM_QUIZ_PROGRESSION": "Examen et quiz progression",
-    "ABSENCE_PROGRESSION": "Progression absence"
+    "ABSENCE_PROGRESSION": "Progression absence",
+    "LAUNCH": "Lancer cet examn immédiatement ?",
+    "LAUNCHED": "Démarrer !",
+    "LAUNCHED_MESSAGE": "l'examen à été lancé "
   },
   "QUIZ": {
     "FINISHED": "Quiz terminé",
@@ -272,7 +276,10 @@
     "SCALE": "Barème",
     "SCALE_INTERVAL": "Le barème doit être comprise entre 5 et 100",
     "MARKS_MESSAGE": "Entrez les valeurs des marques, et vous pouvez changer l'ordre des questions par glisser-déposer des questions",
-    "ADD_QUESTION": "Ajouter question"
+    "ADD_QUESTION": "Ajouter question",
+    "EXAM":"Examen",
+    "QUIZ":"Quiz",
+    "CATCHING_UP":"Rattapage"
   },
   "ROLE": {
     "STUDENT": "Étudiant",
@@ -298,8 +305,56 @@
     "MESSAGE_BEFORE_CATCHING_UP":"Pourriez spécifier les pourcentages avant le rattrapage",
     "MESSAGE_AFTER_CATCHING_UP":"Pourriez spécifier les pourcentages après le rattrapage ",
     "TOTAL_PERCENTAGE_BEFORE_CATCHING_UP": "Total des pourcentages avant rattrapage doit étre égal 100 !",
-    "TOTAL_PERCENTAGE_AFTER_CATCHING_UP": "Total des pourcentages après rattrapage doit étre égal 100 !"
+    "TOTAL_PERCENTAGE_AFTER_CATCHING_UP": "Total des pourcentages après rattrapage doit étre égal 100 !",
+    "PERCENTAGE_CALCUL":"Le calcule de pourcentage",
+    "CATCHUP_THRESHOLD":"Seuil de rattrapage",
+    "SUCCESS_THRESHOLD":"Seuil de réussite",
+    "SCALE":"Barème",
+    "HIGHER_EDUCATION":"Enseignement supérieur",
+    "PRIMARY_EDUCATION":"Enseignment primaire ou secondaire",
+    "TIME_ZONE":"Fuseau horaire",
+    "SELECT_TIME_ZONE":"Sélectionner le fuseau horaire du pays",
+    "COUNTRY":"Pay",
+    "ADDRESS":"Addresse"
   },
+  "ORGANIZATION": {
+    "EDIT": "Modifier organisme ",
+    "NAME": "Organisme",
+    "DELETE": "Supprimer l'organisme?",
+    "DELETE_MSG": "Vous ne pourrez pas revenir en arrière!",
+    "DELETED": "L'organisme a été supprimée.",
+    "DELETE_CONFIRMATION": "Oui, supprimez-le!",
+    "MOBILE_NUMBER": "N° téléphone",
+    "EXIST": "Cet organisme existe déjà!",
+    "SAVE_SUCCESS": "Organisme enregistré avec succès",
+    "FAILED": "Organisme n'a pas persisté, veuillez réessayer!",
+    "LIST": "Liste des organismes",
+    "TITLE": "Organismes",
+    "ADD": "Ajouter un organisme",
+    "NEW": "Nouvel organisme",
+    "UPDATE": "Mdifier organisme",
+    "TIME_OF_BLOCK": "Temps de blocage",
+    "NBR_ATTEMPT": "Nombre de tentatives",
+    "DELETABLE": "Autoriser la suppression de l'organisme",
+    "OUI": "Oui",
+    "NON": "Non",
+    "LOGO":"Logo",
+    "NUMBER_USER": "Nombre d'utilisateurs",
+    "NUMBER_ADMIN": "Nombre d'administrateurs",
+    "LIST_ADMIN":"Historique des connexions du ",
+    "LICENCE":"License",
+    "EXPIRATION":"Expiration (jour)" ,
+    "NUMBER_CONNEXION":"Nombre de connexions",
+    "PLACEHOLDER": {
+        "NAME": "Saisir le nom de l'organisme",
+        "ADRESSE": "Saisir l'adresse",
+        "PHONE": "Saisir le n° téléphone (ex: +212600000000)",
+        "COUNTRY": "Sélectionner le pays",
+        "TIME_ZONE_SELECT": "Sélectionner le fuseau horaire du pays",
+        "TIME_OF_BLOCK_SELECT": "Sélectionner le délai de blocage d'un compte (en minutes)",
+        "NBR_ATTEMPT_SELECT": "Sélectionner le nombre de tentatives d'échec d'authentification autorisé"
+    }
+},
   "EMAIL": "Email",
   "COMPONENTS": "Composants",
   "ACCORDION": "Accordéon",

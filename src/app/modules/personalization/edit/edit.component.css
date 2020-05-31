@@ -3,3 +3,16 @@
     border-color: #99CCFF;
     width: 100%;
 }
+label {
+    cursor: pointer;
+    /* Style as you please, it will become the visible UI component. */
+ }
+ 
+ #upload-photo {
+    opacity: 0;
+    position: absolute;
+    z-index: -1;
+ }
+ ::ng-deep .mat-horizontal-stepper-header{
+    pointer-events: none !important;
+}

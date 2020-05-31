@@ -4,6 +4,7 @@
     "MODULE": "Module",
     "START_DATE": "Start date",
     "END_DATE": "End date",
+    "SELECT_TYPE":"Select type",
     "PLACEHOLDER": {
       "START_DATE": "Choose the start date (format jj/mm/aaaa)",
       "END_DATE": "Choose the end date (format jj/mm/aaaa)"
@@ -230,7 +231,10 @@
     "AVAILABLE": "This exam is launched but not availble ",
     "AVAILABLE_TIME": "It will be available at : ",
     "USER_SHOW_SCORE": "You want this user to see their score",
-    "ALREADY_SHOW": "Already showed"
+    "ALREADY_SHOW": "Already showed",
+    "LAUNCH": "Start this exam immediately ?",
+    "LAUNCHED": "Launched !",
+    "LAUNCHED_MESSAGE": "Exam  has been launched"
   },
   "QUIZ": {
     "FINISHED": "Quiz finished",
@@ -273,7 +277,10 @@
     "SCALE": "Scale",
     "SCALE_INTERVAL": "The scale must be betwen 5 and 100",
     "MARKS_MESSAGE": "Enter values of marks, And you can change order of question by drag and drop question",
-    "ADD_QUESTION": "Add question"
+    "ADD_QUESTION": "Add question",
+    "EXAM":"Exam",
+    "QUIZ":"Quiz",
+    "CATCHING_UP":"Catching up"
   },
   "ROLE": {
     "STUDENT": "Student",
@@ -299,9 +306,56 @@
     "MESSAGE_BEFORE_CATCHING_UP":"might you specify the percentages before catching up ",
     "MESSAGE_AFTER_CATCHING_UP":"might you specify the percentages after catching up ",
     "TOTAL_PERCENTAGE_BEFORE_CATCHING_UP": "Total of percentage before catching up must be equal 100 !",
-    "TOTAL_PERCENTAGE_AFTER_CATCHING_UP": "Total of percentage after catching up must be equal 100 !"
-
+    "TOTAL_PERCENTAGE_AFTER_CATCHING_UP": "Total of percentage after catching up must be equal 100 !",
+    "PERCENTAGE_CALCUL":"Percentage calculation",
+    "CATCHUP_THRESHOLD":"Catching up thresholde",
+    "SUCCESS_THRESHOLD":"Success thresholde",
+    "SCALE":"Scale",
+    "HIGHER_EDUCATION":"Higher education",
+    "PRIMARY_EDUCATION":"Primary or secondary education",
+    "TIME_ZONE":"Time zone",
+    "SELECT_TIME_ZONE":"Select time zone",
+    "COUNTRY":"Country",
+    "ADDRESS":"Address"
   },
+  "ORGANIZATION": {
+    "EDIT": "Edit organization",
+    "NAME": "Organization",
+    "DELETE": "Delete organization?",
+    "DELETE_MSG": "You will not be able to go back!",
+    "DELETED": "Organization has been deleted.",
+    "DELETE_CONFIRMATION": "Yes, delete it!",
+    "MOBILE_NUMBER": "Phone number",
+    "EXIST": "This organization already exists!",
+    "SAVE_SUCCESS": "Organization saved successfully",
+    "FAILED": "Organization did not persist, please try again!",
+    "LIST": "List of organizations",
+    "TITLE": "Organizations",
+    "ADD": "Add organization",
+    "NEW": "New organization",
+    "UPDATE": "Update organization",
+    "TIME_OF_BLOCK": "Blocking time",
+    "NBR_ATTEMPT": "Number of attempts",
+    "DELETABLE": "Authorize the removal of the organization",
+    "OUI": "Yes",
+    "NON": "No",
+    "LOGO":"Logo",
+    "NUMBER_USER": "Number of users",
+    "NUMBER_ADMIN": "Number of adminstrators",
+    "LIST_ADMIN":"Connection history of the ",
+    "LICENCE":"Licence",
+    "EXPIRATION":"Expiration (day)" ,
+    "NUMBER_CONNEXION":"Number of connexions",
+    "PLACEHOLDER": {
+        "NAME": "Enter the name of the organization",
+        "ADRESSE": "Enter the address",
+        "PHONE": "Enter the phone number (e.g: +212600000000)",
+        "COUNTRY": "Select country",
+        "TIME_ZONE_SELECT": "Select the time zone of the country",
+        "TIME_OF_BLOCK_SELECT": "Select account blocking time (in minutes)",
+        "NBR_ATTEMPT_SELECT": "Select number of attempts of authentication failure allowed"
+    }
+},
   "EMAIL": "Email",
   "COMPONENTS": "Components",
   "ACCORDION": "Accordion",

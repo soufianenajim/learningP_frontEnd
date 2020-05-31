@@ -58,8 +58,9 @@
         <div class="col-sm-10">
           <select name="select" name="type" formControlName="type" class="form-control" (change)="onSelectType()">
            <option value="" disabled selected>Selectioner un type</option>
-            <option value="EXAM">Exam</option>
-            <option value="QUIZ">Quiz</option>
+            <option value="EXAM">{{'EXERCICES.EXAM'|translate}}</option>
+            <option value="QUIZ">{{'EXERCICES.QUIZ'|translate}}</option>
+            <option value="CATCHING_UP">{{'EXERCICES.CATCHING_UP'|translate}}</option>
 
           </select>
           <div *ngIf="errormptyFieldForm1('type')" style="color:red">
@@ -81,13 +82,14 @@
             {{'ERRORS.EMPTY_FIELD' | translate}}</div>
         </div>
       </div>
+      <div *ngIf="firstFormGroup.get('module').value!==null&&firstFormGroup.get('type').value!==''">
       <div class="form-group row" *ngIf="isNotTd">
         <label class="col-sm-2 col-form-label">{{'EXERCICES.START_TIME'| translate}}<span style="margin-left:0.2rem;color: red">*</span> <p class="f-right">
           :</p></label>
         <div class="col-sm-10">
           <label class="input-group date m-0">
 
-            <input class="form-control" [min]="minDateTime" [disabled]="true" formControlName="startTime" [owlDateTime]="dtStart">
+            <input class="form-control" [min]="minDateTime" [max]="maxDateTime" [disabled]="true" formControlName="startTime" [owlDateTime]="dtStart">
 
             <span class="input-group-addon bg-default" style="padding: 0.2rem;
             background-color: #0738d8!important;" [owlDateTimeTrigger]="dtStart">
@@ -106,7 +108,7 @@
         <div class="col-sm-10">
           <label class="input-group date m-0">
 
-            <input class="form-control" [disabled]="true" [min]="minEnDatTime()" formControlName="endTime" [owlDateTime]="dtEnd">
+            <input class="form-control" [disabled]="true" [min]="minEnDatTime()" [max]="maxDateTime" formControlName="endTime" [owlDateTime]="dtEnd">
 
             <span class="input-group-addon bg-default" style="padding: 0.2rem;
             background-color: #0738d8!important;" [owlDateTimeTrigger]="dtEnd">
@@ -119,6 +121,7 @@
         </div>
 
       </div>
+    </div>
 
 
 

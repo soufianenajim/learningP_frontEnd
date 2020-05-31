@@ -17,7 +17,7 @@ import { NotifierService } from "angular-notifier";
 import { Exam } from "../../../core/models/exam.model";
 import { Cour } from "../../../core/models/cour.model";
 import { ExamService } from "../../../core/services/exam/exam.service";
-import moment from 'moment';
+import moment from "moment";
 
 @Component({
   selector: "app-save-or-update-ex",
@@ -36,6 +36,7 @@ export class SaveOrUpdateExComponent implements OnInit {
   @Input() exam;
   isNotTd = false;
   minDateTime = new Date();
+  maxDateTime;
 
   firstFormGroup = this._formBuilder.group({
     name: new FormControl("", [
@@ -45,7 +46,7 @@ export class SaveOrUpdateExComponent implements OnInit {
     type: new FormControl("", Validators.required),
     module: new FormControl(null, Validators.required),
     cour: new FormControl(null, Validators.required),
-    startTime: new FormControl(moment().format(), Validators.required),
+    startTime: new FormControl("", Validators.required),
     endTime: new FormControl("", Validators.required),
   });
 
@@ -76,9 +77,9 @@ export class SaveOrUpdateExComponent implements OnInit {
     notifierService: NotifierService
   ) {
     this.notifier = notifierService;
-    console.log('this.exam',this.exam);
+    console.log("this.exam", this.exam);
     if (data !== null) {
-      console.log('data',data);
+      console.log("data", data);
       this.examOrExercices = data;
       this.buildForm(data);
     } else {
@@ -86,14 +87,13 @@ export class SaveOrUpdateExComponent implements OnInit {
     }
   }
   buildForm(data) {
-    console.log('this.exam',this.isExam);
+    console.log("this.exam", this.isExam);
     this.idExercices = data.id;
     this.scale = data.scale;
     const name = data.name;
 
     let type, cour, module;
     if (this.isExam) {
-      
       type = data.type;
       cour = new Cour();
       module = data.module;
@@ -101,8 +101,8 @@ export class SaveOrUpdateExComponent implements OnInit {
       type = data.type;
       this.isNotTd = type === "QUIZ";
       cour = data.cour;
-      console.log('cour',cour);
-      module = cour?cour.module:data.module;
+      console.log("cour", cour);
+      module = cour ? cour.module : data.module;
     }
     const startTime = data.startDateTime;
     const endTime = data.endDateTime;
@@ -124,13 +124,16 @@ export class SaveOrUpdateExComponent implements OnInit {
   }
 
   ngOnInit() {
-    console.log('moment(item.publishDate).date()',new Date(moment().add(10,'minutes').format()))
-    console.log('date',new Date());
-    console.log('this.exam',this.exam);
+    console.log(
+      "moment(item.publishDate).date()",
+      new Date(moment().add(10, "minutes").format())
+    );
+    console.log("date", new Date());
+    console.log("this.exam", this.exam);
     if (this.isExam) {
       this.isNotTd = true;
       if (this.exam) {
-        console.log('this.exam',this.exam);
+        console.log("this.exam", this.exam);
         this.buildForm(this.exam);
       } else {
         this.examOrExercices = new Exam();
@@ -165,15 +168,51 @@ export class SaveOrUpdateExComponent implements OnInit {
     return c1 && c2 ? c1.id === c2.id : c1 === c2;
   }
   onSelectModule() {
+    const module = this.firstFormGroup.get("module").value;
+    this.buildMinMaxDate();
     if (!this.isExam) {
-      const module = this.firstFormGroup.get("module").value;
-      console.log("module", module);
       this.courService
         .findByModuleAndNotLaunchd(module.id)
         .subscribe((resp: any) => {
           this.listCour = resp;
         });
     }
+  }
+  buildMinMaxDate() {
+    this.firstFormGroup.get('startTime').setValue('');
+    this.firstFormGroup.get('endTime').setValue('');
+    const module = this.firstFormGroup.get("module").value;
+    const type = this.firstFormGroup.get("type").value;
+if(module&&type){
+  const session = module.session;
+
+  if(type==="QUIZ"){
+    console.log('QUZ')
+    if(moment(this.minDateTime).isBefore(session.startDate)){
+      this.minDateTime=new Date(session.startDate)
+    }
+    this.maxDateTime=new Date(session.startDateExam);
+  }else if(type==="EXAM"){
+    console.log('EXAM')
+    if(moment(this.minDateTime).isBefore(session.startDateExam)){
+      this.minDateTime=new Date(session.startDateExam)
+    }
+    this.maxDateTime=new Date(session.endDateExam);
+
+  }
+  else{
+    console.log('CATCHING UP')
+    if(moment(this.minDateTime).isBefore(session.startDateCatchUp)){
+      this.minDateTime=new Date(session.startDateCatchUp)
+    }
+    this.maxDateTime=new Date(session.endDateCatchUp);
+
+
+  }
+  console.log('minDateTime',this.minDateTime);
+  console.log('maxDateTime',this.maxDateTime);
+}
+   
   }
   nextForm1(stepper: MatStepper) {
     this.isClickNext1 = true;
@@ -190,7 +229,7 @@ export class SaveOrUpdateExComponent implements OnInit {
         this.secondFormGroup.get("scale").setValue(5);
         this.examOrExercices.startDateTime = null;
         this.examOrExercices.endDateTime = null;
-      }else{
+      } else {
         this.examOrExercices.startDateTime = startTime;
         this.examOrExercices.endDateTime = endTime;
       }
@@ -201,13 +240,13 @@ export class SaveOrUpdateExComponent implements OnInit {
       const type = this.firstFormGroup.get("type").value;
       this.firstFormGroup.get("cour").setValue(new Cour());
       this.examOrExercices.module = module;
-      this.examOrExercices.type=type;
+      this.examOrExercices.type = type;
       this.examOrExercices.startDateTime = startTime;
-    this.examOrExercices.endDateTime = endTime;
+      this.examOrExercices.endDateTime = endTime;
     }
 
     if (!this.isExam) {
-      console.log('this.firstFormGroup.valid',this.firstFormGroup.valid);
+      console.log("this.firstFormGroup.valid", this.firstFormGroup.valid);
       if (this.firstFormGroup.valid) {
         this.exercicesService.isExist(this.examOrExercices).subscribe(
           (resp) => {
@@ -228,10 +267,11 @@ export class SaveOrUpdateExComponent implements OnInit {
     this.isClicNextSecondForm = true;
     const scale = this.secondFormGroup.get("scale").value;
     const questions = this.secondFormGroup.get("questions").value;
-    if (!this.isExam||
+    if (
+      !this.isExam ||
       (this.secondFormGroup.valid &&
-      this.sum === scale &&
-      !this.invalidQuestion)
+        this.sum === scale &&
+        !this.invalidQuestion)
     ) {
       questions.sort(function (a: any, b: any) {
         return a.indexNumerator - b.indexNumerator;
@@ -291,10 +331,11 @@ export class SaveOrUpdateExComponent implements OnInit {
   }
   onSelectType() {
     const type = this.firstFormGroup.get("type").value;
-    this.isNotTd = type === "QUIZ"||type === "EXAM";
+    this.isNotTd = type === "QUIZ" || type === "EXAM" ||type==="CATCHING_UP";
+    this.buildMinMaxDate();
   }
-    minEnDatTime(){
-      const startTime=this.firstFormGroup.get('startTime').value
-      return moment(startTime).add(10,'minutes').format();
-    }
+  minEnDatTime() {
+    const startTime = this.firstFormGroup.get("startTime").value;
+    return moment(startTime).add(10, "minutes").format();
+  }
 }

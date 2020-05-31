@@ -5,6 +5,7 @@ import {
   ViewEncapsulation,
   ElementRef,
   AfterViewInit,
+  AfterViewChecked,
 } from "@angular/core";
 import "rxjs/add/operator/filter";
 import {
@@ -24,6 +25,7 @@ import { TokenStorageService } from "../../core/services/token_storage/token-sto
 import { UserService } from "../../core/services/user/user.service";
 import { Notifications } from "../../core/models/notification.model";
 import moment from "moment";
+import { SharedService } from "../../core/services/shared/shared.service";
 export interface Options {
   heading?: string;
   removeFooter?: boolean;
@@ -86,7 +88,7 @@ export interface Options {
     ]),
   ],
 })
-export class AdminLayoutComponent implements OnInit {
+export class AdminLayoutComponent implements OnInit,AfterViewInit{
   deviceType = "desktop";
   verticalNavType = "expanded";
   verticalEffect = "shrink";
@@ -103,6 +105,7 @@ export class AdminLayoutComponent implements OnInit {
 
   lang;
   fullName: string;
+  dataImage:String;
   isStudent = false;
   listNotification = [];
   constructor(
@@ -111,7 +114,8 @@ export class AdminLayoutComponent implements OnInit {
     private localeService: LocalService,
     private authenticasionService: AuthenticationService,
     private tokenStorageService: TokenStorageService,
-    private userService: UserService
+    private userService: UserService,
+    private sharedService:SharedService
   ) {
     const scrollHeight = window.screen.height - 150;
     this.innerHeight = scrollHeight + "px";
@@ -123,8 +127,17 @@ export class AdminLayoutComponent implements OnInit {
   ngOnInit() {
     this.getNotificationsAndFullName();
   }
+  ngAfterViewInit(){
+    this.sharedService.logo.subscribe(resp => {
+      console.log('resp');
+  if(resp)
+        this.dataImage=resp;  
+     
+    })
+  }
   getNotificationsAndFullName() {
     const user = this.tokenStorageService.getUser();
+     this.dataImage=user.organization.logo;
     this.userService.getNotificationsByUser(user.id).subscribe((resp: any) => {
       console.log("resp", resp);
       this.buildNotification(resp.examList);
