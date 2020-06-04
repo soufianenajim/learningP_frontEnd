@@ -123,6 +123,15 @@
     "LAUNCH": "Lancer ce cours immédiatement ?",
     "LAUNCHED": "Démarrer !",
     "LAUNCHED_MESSAGE": "le cour à été lancé ",
+    "DELETE": "Supprimer cour ?",
+    "DELETED": "Le cour a été supprimé avec succés.",
+    "ATTACHMENT":{
+      "ADD":"Ajouter une pièce jointe",
+      "LIST":"Pièces jointes",
+      "DELETE": "Supprimer la pièce jointe ?",
+      "DELETE1": "Supprimer la pièce jointe",
+      "DELETED": "La pièce jointe a été supprimée.."
+    },
     "FINISHED": "Cours terminé",
     "START": "Démarrer cours",
     "PROGRESSION": "Progression des cours",

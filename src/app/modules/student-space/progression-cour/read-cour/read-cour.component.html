@@ -3,43 +3,57 @@
     <form [formGroup]="firstFormGroup">
       <ng-template matStepLabel>{{'EXERCICES.COURSE'| translate}}</ng-template>
       <p [innerHTML]="cour?.content"></p>
-
-      <button class="btn btn-success btn-md waves-effect waves-light f-left" (click)="validateCour()"
-    >
-      <i class="fa fa-check"></i>{{'ACTION.VALIDATE'|translate}} </button>
+      <div *ngIf="listAttachment.length>0" class="row">
+        <h5>{{'COURSE.ATTACHMENT.LIST'|translate}}</h5>
+        <ng-container  *ngFor="let attachment of listAttachment">
+ 
+          <div class="col-sm-12 alert">
+           
+              <span><a  class="mr-3"   href="{{attachment.uri}}">{{attachment.fileName}}</a> </span>
+       
+  
+          
+          </div>
+        </ng-container>
+      </div>
+     
+      <button class="btn btn-success btn-md waves-effect waves-light f-left" (click)="validateCour()">
+        <i class="fa fa-check"></i>{{'ACTION.VALIDATE'|translate}} </button>
       <div class="f-right">
-        
-            <button type="button" (click)="cancel()" class="btn btn-danger btn-md waves-effect waves-light" style="margin-right: 15px">
-              <i class="fa fa-close"></i>{{'ACTION.CANCEL'| translate}}
-            </button> 
-            <button class="btn btn-primary btn-md waves-effect waves-light"  [disabled]="!isPastCour"  (click)="nextForm1(stepper)">Next<i
-              class="fa fa-chevron-right" style="margin-left: 0.3rem;"></i></button>
+
+        <button type="button" (click)="cancel()" class="btn btn-danger btn-md waves-effect waves-light"
+          style="margin-right: 15px">
+          <i class="fa fa-close"></i>{{'ACTION.CANCEL'| translate}}
+        </button>
+        <button class="btn btn-primary btn-md waves-effect waves-light" [disabled]="!isPastCour"
+          (click)="nextForm1(stepper)">Next<i class="fa fa-chevron-right" style="margin-left: 0.3rem;"></i></button>
       </div>
     </form>
   </mat-step>
   <mat-step [stepControl]="secondFormGroup">
     <form [formGroup]="secondFormGroup">
       <ng-template matStepLabel>Td</ng-template>
-     
-        <app-td-or-quiz [tdOrQuiz]="td" [isNotTd]="false" [questionCorrectSuggestions]="questionCorrectSuggestions"
-          [isPastTdorQuiz]="isPastTd" [questionCorrect]="questionCorrect"></app-td-or-quiz>
+
+      <app-td-or-quiz [tdOrQuiz]="td" [isNotTd]="false" [questionCorrectSuggestions]="questionCorrectSuggestions"
+        [isPastTdorQuiz]="isPastTd" [questionCorrect]="questionCorrect"></app-td-or-quiz>
 
 
-     
+
       <br>
 
-      <button class="btn btn-success btn-md waves-effect waves-light f-left" (click)="validateTd()" 
-      style="margin-right: 15px">
-      <i class="fa fa-check"></i>{{'ACTION.VALIDATE'|translate}} </button>
-    <div class="f-right">
+      <button class="btn btn-success btn-md waves-effect waves-light f-left" (click)="validateTd()"
+        style="margin-right: 15px">
+        <i class="fa fa-check"></i>{{'ACTION.VALIDATE'|translate}} </button>
+      <div class="f-right">
 
-      <button type="button" matStepperPrevious class="btn btn-warning btn-md waves-effect waves-light"
-        style="margin-right: 15px"><i class="fa fa-chevron-left"></i>Back</button>
+        <button type="button" matStepperPrevious class="btn btn-warning btn-md waves-effect waves-light"
+          style="margin-right: 15px"><i class="fa fa-chevron-left"></i>Back</button>
 
         <button type="button" (click)="cancel()" class="btn btn-danger btn-md waves-effect waves-light">
           <i class="fa fa-close"></i>{{'ACTION.CANCEL'| translate}}
         </button>
-    </div></form>
+      </div>
+    </form>
   </mat-step>
   <!-- <mat-step>
     <ng-template matStepLabel>Quiz</ng-template>

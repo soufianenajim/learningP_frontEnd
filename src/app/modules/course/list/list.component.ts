@@ -101,9 +101,9 @@ export class ListComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe((result) => {
-      if (result) {
+      
         this.search(false);
-      }
+      
 
       console.log("The dialog was closed");
     });

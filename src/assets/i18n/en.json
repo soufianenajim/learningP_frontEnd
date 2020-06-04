@@ -124,8 +124,15 @@
     "LAUNCH": "Start this course immediately ?",
     "LAUNCHED": "Launched !",
     "LAUNCHED_MESSAGE": "Course  has been launched",
-    "DELETE": "Delete cour ?",
+    "DELETE": "Delete course ?",
     "DELETED": "Course has been deleted.",
+    "ATTACHMENT":{
+      "ADD":"Add attachment",
+      "LIST":"Attachments",
+      "DELETE": "Delete attachment ?",
+      "DELETE1": "Delete attachment ",
+      "DELETED": "Attachment has been deleted."
+    },
     "FINISHED": "Course finished",
     "START": "Start course",
     "PROGRESSION": "Course progression",

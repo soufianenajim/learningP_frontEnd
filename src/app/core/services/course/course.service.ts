@@ -1,7 +1,8 @@
 import { Injectable } from "@angular/core";
-import { HttpClient } from "@angular/common/http";
+import { HttpClient, HttpEvent, HttpRequest } from "@angular/common/http";
 import { environment } from "../../../../environments/environment";
 import { Cour } from "../../models/cour.model";
+import { Observable } from "rxjs";
 @Injectable({
   providedIn: "root"
 })
@@ -12,8 +13,24 @@ export class CourseService {
   findAll() {
     return this.httpClient.get(this.url + "/find-all");
   }
-  saveOrUpdate(cour: Cour) {
-    return this.httpClient.post(this.url + "/save-or-update", cour);
+  saveOrUpdate(cour: Cour,files: File[]): Observable<HttpEvent<any>> {
+    const formData: FormData = new FormData();
+for (const file of files) {
+  formData.append('files', file);
+}
+    
+    formData.append('cour', new Blob([JSON.stringify(cour)],
+    {
+        type: "application/json"
+    }));
+
+    const req = new HttpRequest('POST', `${this.url}/save-with-file`, formData, {
+      reportProgress: true,
+      responseType: 'json'
+    });
+
+    return this.httpClient.request(req);
+   // return this.httpClient.post(this.url + "/save-or-update", cour);
   }
   searchByCritere(demande) {
     console.log("demande", demande);
@@ -21,6 +38,9 @@ export class CourseService {
   }
   delete(id) {
     return this.httpClient.delete(this.url + "/delete/" + id);
+  }
+  deleteAttachment(id,fileName){
+    return this.httpClient.delete(this.url+"/deleteAttachment/"+id+"/"+fileName)
   }
   findByModule(idModule){
     return this.httpClient.get(this.url + "/find-by-module/"+idModule);
@@ -31,5 +51,24 @@ export class CourseService {
   }
   launch(idCour){
     return this.httpClient.get(this.url + "/launch/"+idCour);
+  }
+  upload(file: File): Observable<HttpEvent<any>> {
+    const formData: FormData = new FormData();
+
+    formData.append('file', file);
+
+    const req = new HttpRequest('POST', `${this.url}/upload`, formData, {
+      reportProgress: true,
+      responseType: 'json'
+    });
+
+    return this.httpClient.request(req);
+  }
+
+  getFiles(): Observable<any> {
+    return this.httpClient.get(`${this.url}/files`);
+  }
+  loadAttachment(idCour,nameFile){
+    return this.httpClient.get(this.url + "/load/"+idCour+"/"+nameFile);
   }
 }

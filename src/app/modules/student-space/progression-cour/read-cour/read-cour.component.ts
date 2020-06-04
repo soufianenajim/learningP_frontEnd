@@ -6,7 +6,8 @@ import { ProgressionCourService } from "../../../../core/services/progression_co
 import { ExercicesService } from "../../../../core/services/exercices/exercices.service";
 import { Question } from "../../../../core/models/question.model";
 import { Suggestion } from "../../../../core/models/suggestion.model";
-import { element } from "protractor";
+import { AttachmentFile } from "../../../../modules/course/save-or-update/save-or-update.component";
+import { environment } from "../../../../../environments/environment";
 
 @Component({
   selector: "app-read-cour",
@@ -27,6 +28,10 @@ export class ReadCourComponent implements OnInit {
   isPastQuiz = false;
   isPastCour=false;
   quizFinished = false;
+  namePath;
+  attachmentPath;
+  url= environment.baseUrl + "/cour";
+  listAttachment: AttachmentFile[] = [];
   constructor(
     public dialogRef: MatDialogRef<ReadCourComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any,
@@ -36,6 +41,14 @@ export class ReadCourComponent implements OnInit {
   ) {
     console.log("data", data);
     this.cour = data.cour;
+    if (data.cour.attachmentFiles) {
+      console.log('data.attachmentFiles',data.attachmentFiles);
+      for (let attachment of data.cour.attachmentFiles) {
+        let uri=this.url+'/load/'+this.cour.id+"/"+attachment.fileName;
+        this.listAttachment.push(new AttachmentFile(attachment.fileName,attachment.attachmentPath,uri));
+        console.log('listAttachment',this.listAttachment)
+      }
+    }
     this.progressionCour = data;
     this.quizFinished = data.quizFinished;
     this.isPastCour=data.courFinished;
