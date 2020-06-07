@@ -25,6 +25,10 @@ export const AppRoutes: Routes = [
         loadChildren: "./modules/course/course.module#CourseModule"
       },
       {
+        path: "chat",
+        loadChildren: "./modules/chat/chat.module#ChatModule"
+      },
+      {
         path: "moduleAffected",
         loadChildren: "./modules/module/module.module#ModuleModule"
       },

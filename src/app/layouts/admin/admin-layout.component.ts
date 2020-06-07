@@ -88,7 +88,7 @@ export interface Options {
     ]),
   ],
 })
-export class AdminLayoutComponent implements OnInit,AfterViewInit{
+export class AdminLayoutComponent implements OnInit, AfterViewInit {
   deviceType = "desktop";
   verticalNavType = "expanded";
   verticalEffect = "shrink";
@@ -105,9 +105,11 @@ export class AdminLayoutComponent implements OnInit,AfterViewInit{
 
   lang;
   fullName: string;
-  dataImage:String;
+  dataImage: String;
   isStudent = false;
   listNotification = [];
+  listUser = [];
+  selectedUser;
   constructor(
     public menuItems: MenuItems,
     private translateService: TranslateService,
@@ -115,7 +117,7 @@ export class AdminLayoutComponent implements OnInit,AfterViewInit{
     private authenticasionService: AuthenticationService,
     private tokenStorageService: TokenStorageService,
     private userService: UserService,
-    private sharedService:SharedService
+    private sharedService: SharedService
   ) {
     const scrollHeight = window.screen.height - 150;
     this.innerHeight = scrollHeight + "px";
@@ -127,19 +129,21 @@ export class AdminLayoutComponent implements OnInit,AfterViewInit{
   ngOnInit() {
     this.getNotificationsAndFullName();
   }
-  ngAfterViewInit(){
-    this.sharedService.logo.subscribe(resp => {
-      console.log('resp');
-  if(resp)
-        this.dataImage=resp;  
-     
-    })
+  ngAfterViewInit() {
+    this.sharedService.logo.subscribe((resp) => {
+      console.log("resp");
+      if (resp) this.dataImage = resp;
+    });
   }
   getNotificationsAndFullName() {
     const user = this.tokenStorageService.getUser();
-     this.dataImage=user.organization.logo;
+    this.dataImage = user.organization.logo;
     this.userService.getNotificationsByUser(user.id).subscribe((resp: any) => {
-      console.log("resp", resp);
+      this.userService
+        .findAllByOrga(user.organization.id)
+        .subscribe((resp: any) => {
+          this.listUser = resp;
+        });
       this.buildNotification(resp.examList);
       this.fullName = user.firstName + " " + user.lastName;
       this.isStudent = user.refRole.name === "ROLE_STUDENT";
@@ -152,24 +156,24 @@ export class AdminLayoutComponent implements OnInit,AfterViewInit{
           element.module.name,
           element.name,
           new Date(element.startDateTime)
-          )
+        )
       );
     });
-   
-    if(this.listNotification.length>0){
+
+    if (this.listNotification.length > 0) {
       this.listNotification.sort(function (a: any, b: any) {
         return a.dateNotif - b.dateNotif;
       });
     }
-    console.log('notifications',this.listNotification.length);
+    console.log("notifications", this.listNotification.length);
   }
   getFormaterDate(date) {
     const lang = this.translateService.getLangs();
-    const length=lang.length-1
+    const length = lang.length - 1;
     moment.locale(lang[length]);
     return moment(date).format("MMMM Do YYYY, h:mm:ss a");
   }
-  isAfterCurrentDate(date){
+  isAfterCurrentDate(date) {
     return moment().isSameOrAfter(moment(date));
   }
   onClickedOutside(e: Event) {
@@ -243,7 +247,8 @@ export class AdminLayoutComponent implements OnInit,AfterViewInit{
     this.chatToggle = this.chatToggle === "out" ? "in" : "out";
   }
 
-  toggleChatInner() {
+  toggleChatInner(user) {
+   this.selectedUser=user;
     this.chatInnerToggle = this.chatInnerToggle === "off" ? "on" : "off";
   }
 

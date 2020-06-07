@@ -51,6 +51,12 @@ const MENUITEMS_STUDENT = [
         type: "link",
         icon: "icofont icofont-student-alt",
       },
+      {
+        state: "chat",
+        name: "MENU_ITEM.COURSE",
+        icon: "fa fa-book",
+        type: "link",
+      },
     ],
   },
 
@@ -92,6 +98,12 @@ const MENUITEMS_TEACHER = [
           },
           {
             state: "course",
+            name: "MENU_ITEM.COURSE",
+            icon: "fa fa-book",
+            type: "link",
+          },
+          {
+            state: "chat",
             name: "MENU_ITEM.COURSE",
             icon: "fa fa-book",
             type: "link",
@@ -241,8 +253,9 @@ constructor(private tokenStorageService:TokenStorageService){
 }  
 
   getAll(): Menu[] {
-    const role =this.tokenStorageService.getRoleUser().name;
-   switch (role) {
+    const role =this.tokenStorageService.getRoleUser()!==null?this.tokenStorageService.getRoleUser().name:null;
+  if(role){
+    switch (role) {
      case "ROLE_STUDENT":
        return MENUITEMS_STUDENT;
     case "ROLE_TEACHER":
@@ -254,6 +267,7 @@ constructor(private tokenStorageService:TokenStorageService){
      default:
        break;
    }
+  }
   }
 
  
