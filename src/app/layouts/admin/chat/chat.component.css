@@ -1,43 +1,24 @@
-.chat-container{
-    height: 80vh;
-    width: 100vw;
-  }
-  .chat{
-    text-align: left;
-    margin: 0 auto;
-    width: 50%;
-    height: 100%;
-    border: 1px solid grey;
-  }
-  
-  .footer{
-    background: #cccccc;
-    margin: 0 auto;
-    position: absolute;
-    bottom: 0;
-    height: 10vh;
-    width: 100vw;
-  }
-  .send-button{
-    margin: 0 auto;
-    height: 70%;
-    width: 50%;
-  }
-  input{
-    float: right;
-    height: 30px;
-    border-radius: 15px;
-    font-size: 1.5em;
-  }
-  .send{
-    float: right;
-    background: url("../../../../assets/images/send.png");
-    background-size: contain;
-    background-repeat: no-repeat;
-    height: 30px;
-    width: 30px;
-    margin-left: 5px;
-  
-  }.slimscroll-wrapper, .scroll-window {
-    width: 100% !important;
+/* You can add global styles to this file, and also import other style files */
+
+aside.pcoded-slider.ng-sidebar {
+  top: 56px;
+}
+
+.slimscroll-wrapper, .scroll-window {
+  width: 100% !important;
+}
+
+.userlist-box.show {
+  display: -webkit-box;
+}
+
+.userlist-box.hide {
+  display: none;
+}
+.container {
+  height: 100px;
+  padding: 0;
+  overflow-y: scroll;
+  display: flex;
+  flex-direction: column-reverse;
 }

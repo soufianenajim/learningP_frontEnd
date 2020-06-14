@@ -18,8 +18,8 @@ export class UserService {
   findAllProfessorByOrga(idOrga) {
     return this.httpClient.get(this.url + "/find-all-professor-by-orga/"+idOrga);
   }
-  findAllByOrga(idOrga) {
-    return this.httpClient.get(this.url + "/find-by-organization/"+idOrga);
+  findAllByOrgaWithoutUser(idOrga,idUser) {
+    return this.httpClient.get(this.url + "/find-by-organization/"+idOrga+"/"+idUser);
   }
   saveOrUpdate(user: User) {
     return this.httpClient.post(this.url + "/save-or-update", user);

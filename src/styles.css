@@ -26461,14 +26461,14 @@ table.footable-paging-center > tfoot > tr.footable-paging > td {
   display: flex;
   align-items: center;
   padding-top: 0;
-  padding-bottom: 10px;
-  margin-bottom: 10px;
-  padding-left: 20px;
-  padding-right: 20px;
+   padding-bottom: 4px; 
+  margin-bottom: 4px;
+  /* padding-left: 20px; */
+  /* padding-right: 20px; */
   position: relative;
 }
 .user-box .media-object {
-  height: 45px;
+  height: 20px;
   width: 45px;
   display: inline-block;
 }
@@ -26477,7 +26477,8 @@ table.footable-paging-center > tfoot > tr.footable-paging > td {
   background: #f3f3f3;
   position: relative;
   overflow: visible;
-  border-radius: 4px;
+  border-radius: 16px;
+  max-width: 11rem;
 }
 .chat-menu-content:before {
   position: absolute;
@@ -26526,13 +26527,16 @@ table.footable-paging-center > tfoot > tr.footable-paging > td {
   transform: rotate(45deg);
 }
 .showChat_inner .chat-messages {
-  padding-bottom: 20px;
+  /* padding-bottom: 20px; */
   padding-left: 15px;
   padding-right: 15px;
 }
 .chat-menu-content .chat-cont,
 .chat-menu-reply .chat-cont {
-  padding: 10px;
+  padding-right: 10px;
+    padding-left: 10px;
+    padding-top: 5px;
+    padding-bottom: 2px;
 }
 .chat-menu-content .chat-time,
 .chat-menu-reply .chat-time {

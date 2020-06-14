@@ -1,3 +1,38 @@
-<p>
-  dashboard-student works!
-</p>
+
+<div class="row">
+  <div class="col-sm-4">
+    <app-dash-cards [cardName]="'DASHBOARD.TEACHER.TOTAL_MODULES'" [listModule]="listModule" (changeEvent)="onChangeGroupModule($event)"
+    [cardData]="(countModule | async) ? (countModule | async) : '0'" [ClassHeaderName]="'card-header-azure'"
+    [cardDataIcon]="'icofont icofont-book-mark text-primary'"></app-dash-cards>
+  </div>
+  <div class="col-sm-4">
+    <app-dash-cards [isStudent]="true" [cardName]="'DASHBOARD.TEACHER.TOTAL_COURSES'" [listModule]="listModule" (changeEvent)="onChangeGroupCour($event)"
+    [cardData]="(countCour | async) ? (countCour | async) : '0'" [ClassHeaderName]="'card-header-yellow'"
+    [cardDataIcon]="'icofont icofont-read-book text-warning'"></app-dash-cards>
+  </div>
+  <div class="col-sm-4">
+    <app-dash-cards [isStudent]="true" [cardName]="'Total Absence'" style="color: #000;"  [listModule]="listModule"
+    [cardData]="50" [ClassHeaderName]="'card-header-red'"
+    [cardDataIcon]="'icofont icofont-wall-clock text-danger'"></app-dash-cards>
+  </div>
+  <div class="col-sm-4">
+    <app-dash-cards [isStudent]="true" [cardName]="'DASHBOARD.TEACHER.TOTAL_EXAMS'" [listModule]="listModule" (changeEvent)="onChangeGroupExam($event)"
+    [cardData]="(countExam | async) ? (countExam | async) : '0'" [ClassHeaderName]="'card-header-baby_blue'"
+    [cardDataIcon]="'icofont icofont-paper text-primary'"></app-dash-cards>
+  </div>
+  <div class="col-sm-4">
+    <app-dash-cards [isStudent]="true" [cardName]="'DASHBOARD.TEACHER.TOTAL_CATCHING_UP'" [listModule]="listModule" (changeEvent)="onChangeGroupExam($event)"
+    [cardData]="(countCatchingUp | async) ? (countCatchingUp | async) : '0'" [ClassHeaderName]="'card-header-baby_blue'"
+    [cardDataIcon]="'icofont icofont-paper text-primary'"></app-dash-cards>
+  </div>
+  <div class="col-sm-4">
+    <app-dash-cards [isStudent]="true"  [cardName]="'DASHBOARD.TEACHER.TOTAL_QUIZS'" [listModule]="listModule" (changeEvent)="onChangeGroupQuiz($event)"
+    [cardData]="(countQuiz | async) ? (countQuiz | async) : '0'" [ClassHeaderName]="'card-header-colbat_blue'"
+    [cardDataIcon]="'icofont icofont-paper text-primary'"></app-dash-cards>
+  </div>
+ 
+
+
+
+ 
+</div>

@@ -31,4 +31,14 @@ export class DashboardService {
    
     return this.httpClient.get(this.url+'/getAverageSuccessStudent/'+idTeacher+"/"+idGroup+"/"+idModule);
   }
+  countModuleByStudent(idStudent){
+    return this.httpClient.get(this.url+'/countModuleByStudent/'+idStudent);
+  }
+  countExamByStudentAndModuleAndType(idStudent,idModule,type){
+    return this.httpClient.get(this.url+'/countExamByStudentAndModule/'+idStudent+"/"+idModule+"/"+type);
+  }
+  countCourseByStudentAndModule(idStudent,idModule){
+    return this.httpClient.get(this.url+'/countCourseByStudentAndModule/'+idStudent+"/"+idModule);
+  }
+
 }

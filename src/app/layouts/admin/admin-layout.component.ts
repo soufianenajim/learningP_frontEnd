@@ -110,6 +110,8 @@ export class AdminLayoutComponent implements OnInit, AfterViewInit {
   listNotification = [];
   listUser = [];
   selectedUser;
+  mapNotReadMessages = new Map();
+  countNotReadMessages=0;
   constructor(
     public menuItems: MenuItems,
     private translateService: TranslateService,
@@ -125,7 +127,13 @@ export class AdminLayoutComponent implements OnInit, AfterViewInit {
     this.setMenuAttributs(this.windowWidth);
     this.lang = "en";
   }
-
+  onCountMessages(event){
+    this.mapNotReadMessages.set(event.user,event.count);
+    this.countNotReadMessages=0;
+    this.mapNotReadMessages.forEach((value, key) => {
+     this.countNotReadMessages+=value;
+    });
+  }
   ngOnInit() {
     this.getNotificationsAndFullName();
   }
@@ -140,7 +148,7 @@ export class AdminLayoutComponent implements OnInit, AfterViewInit {
     this.dataImage = user.organization.logo;
     this.userService.getNotificationsByUser(user.id).subscribe((resp: any) => {
       this.userService
-        .findAllByOrga(user.organization.id)
+        .findAllByOrgaWithoutUser(user.organization.id,user.id)
         .subscribe((resp: any) => {
           this.listUser = resp;
         });

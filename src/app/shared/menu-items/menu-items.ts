@@ -51,12 +51,7 @@ const MENUITEMS_STUDENT = [
         type: "link",
         icon: "icofont icofont-student-alt",
       },
-      {
-        state: "chat",
-        name: "MENU_ITEM.COURSE",
-        icon: "fa fa-book",
-        type: "link",
-      },
+     
     ],
   },
 
@@ -102,12 +97,7 @@ const MENUITEMS_TEACHER = [
             icon: "fa fa-book",
             type: "link",
           },
-          {
-            state: "chat",
-            name: "MENU_ITEM.COURSE",
-            icon: "fa fa-book",
-            type: "link",
-          },
+         
           {
             state: "exercices",
             name: "Exercices",

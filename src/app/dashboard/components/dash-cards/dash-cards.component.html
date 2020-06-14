@@ -1,10 +1,15 @@
 <div class="card client-blocks {{ClassHeaderName}}">
-  <div class="card-block">
+  <div class="card-block"  style="min-height: 7rem;">
     <div class="row">
     <h6 class="col-sm-6">{{cardName | translate}}</h6>
     <form *ngIf="isTeacher" class="col-sm-6 p-0" [formGroup]="searchForm">
       <ng-select [items]="listGroup" bindLabel="name" formControlName="group" (clear)="onClear()" (change)="onChangeGroup()"
           placeholder="{{ 'USER.SELECT_GROUP' | translate }}">
+      </ng-select>
+    </form>
+    <form *ngIf="isStudent" class="col-sm-6 p-0" [formGroup]="searchForm">
+      <ng-select [items]="listModule" bindLabel="name" formControlName="module" (clear)="onClear()" (change)="onChangeGroup()"
+          placeholder="{{ 'COURSE.SELECT_MODULE' | translate }}">
       </ng-select>
     </form>
   </div>

@@ -1,3 +1,79 @@
+<div  *ngIf="!isList" [@slideOnOff]="chatInnerToggle" class="card card_main showChat_inner" style="height:100%">
+  <div class="media chat-inner-header" >
+    <a class="back_chatBox" (click)="toggleChatInner()">
+      <i class="icofont icofont-rounded-left"></i> {{user?.firstName}} {{user?.lastName}}
+    </a>
+  </div>
+  <div style="height: 34rem;max-height: 34rem;" class="container" infiniteScroll [infiniteScrollDistance]="1" [infiniteScrollThrottle]="50" (scrolledUp)="onScroll()" [scrollWindow]="false">
+    <!-- <cdk-virtual-scroll-viewport itemSize="5"> -->
+      <div *ngFor="let message of messages">
+        
+      <div class="media chat-messages f-right" *ngIf="message.isSent">
+       
+        <div class="media-body chat-menu-reply">
+          <div >
+            <p class="chat-cont">{{message.message}}</p>
+            <!-- <p class="chat-time">8:20 a.m.</p> -->
+          </div>
+        </div>
+      </div>
+      <div class="media chat-messages f-left" *ngIf="!message.isSent">
+        <a *ngIf="message.isSamePerson" class="media-left photo-table" href="javascript:;">
+          <img class="media-object img-circle m-t-5" src="assets/images/avatar-1.png" alt="Generic placeholder image">
+        </a>
+        <div class="media-body chat-menu-content">
+          <div class="">
+            <p class="chat-cont">{{message.message}}</p>
+           
+          </div>
+        </div>
+        
+      </div>
+    </div>
+    <!-- </cdk-virtual-scroll-viewport> -->
+  <!-- <div *ngFor="let message of messages">
+  
+      <div class="media chat-messages" *ngIf="message.isSent">
+        <a class="media-left photo-table" href="javascript:;">
+          <img class="media-object img-circle m-t-5" src="assets/images/avatar-1.png" alt="Generic placeholder image">
+        </a>
+        <div class="media-body chat-menu-content">
+          <div class="">
+            <p class="chat-cont">{{message.message}}</p>
+            <p class="chat-time">8:20 a.m.</p>
+          </div>
+        </div>
+      </div>
+      <div class="media chat-messages" *ngIf="!message.isSent">
+        <div class="media-body chat-menu-reply">
+          <div class="">
+            <p class="chat-cont">{{message.message}}</p>
+            <p class="chat-time">8:20 a.m.</p>
+          </div>
+        </div>
+        <div class="media-right photo-table">
+          <a href="javascript:;">
+            <img class="media-object img-circle m-t-5" src="assets/images/avatar-2.png" alt="Generic placeholder image">
+          </a>
+        </div>
+      </div>
+  
+    
+  </div>   -->
+</div> 
+  <div class="right-icon-control">
+    <form [formGroup]="sendForm">
+      <input type="text" (click)="read()" class="form-control search-text" (keyup.enter)="sendMessage()" formControlName="message"
+        placeholder="Share Your Thoughts">
+      <div class="form-icon">
+        <i class="icofont icofont-paper-plane" (click)="sendMessage()" style="cursor: pointer;"></i>
+      </div>
+    </form>
+  </div>
+ 
+</div>
+<!-- <div *ngIf="!isList">
+  
 <div slimScroll class="main-friend-list scroll-window">
   <div *ngFor="let message of messages">
 
@@ -38,4 +114,19 @@
       </div>
     </form>
   </div>
+</div>
+</div> -->
+
+
+<div *ngIf="isList" (click)="toggleChatInner()" class="media userlist-box" data-id="18" data-status="online"
+data-username="Alice" data-toggle="tooltip" data-placement="left" title="Alice">
+<a class="media-left" href="javascript:;">
+  <img class="media-object img-circle" src="assets/images/avatar-2.png"
+    alt="Generic placeholder image">
+  <div class="live-status bg-success"></div>
+</a>
+<div class="media-body">
+  <!-- <div class="f-13 chat-header">{{user.firstName}} {{user.lastName}}</div> -->
+  <div  class="f-13 chat-header">{{user.firstName}} {{user.lastName}} <span *ngIf="countNotReadMessage>0">({{countNotReadMessage}})</span></div>
+</div>
 </div>

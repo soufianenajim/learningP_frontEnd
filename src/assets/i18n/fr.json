@@ -20,6 +20,7 @@
     "TEACHER": {
       "TOTAL_MODULES": "Nombre des modules",
       "TOTAL_EXAMS": "Nombre des examens",
+      "TOTAL_CATCHING_UP": "Nombre des rattrapages",
       "TOTAL_COURSES": "Nombre des cours",
       "TOTAL_QUIZS": "Nombre des quizs",
       "TOTAL_STUDENTS": "Nombre étudiants",
@@ -119,7 +120,7 @@
   "COURSE": {
     "NAME": "Nom",
     "MODULE": "Module",
-    "SELECT_MODULE": "Select module",
+    "SELECT_MODULE": "Selectionner un module",
     "LAUNCH": "Lancer ce cours immédiatement ?",
     "LAUNCHED": "Démarrer !",
     "LAUNCHED_MESSAGE": "le cour à été lancé ",

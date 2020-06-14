@@ -78,6 +78,7 @@
     "ngx-chips": "1.7.5",
     "ngx-color-picker": "^4.2.0",
     "ngx-echarts": "^1.2.3",
+    "ngx-infinite-scroll": "^9.0.0",
     "peity": "^3.2.1",
     "raphael": "^2.2.7",
     "rxjs": "6.3.3",

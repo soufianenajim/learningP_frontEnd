@@ -36,6 +36,7 @@ export class DashboardTeacherComponent implements OnInit {
   @Input() user;
   listGroupBar = [];
   listModuleBar = [];
+  listGroup=[];
 
   listGroupPie = [];
   listModulePie = [];
@@ -78,6 +79,7 @@ export class DashboardTeacherComponent implements OnInit {
     this.groupService.findByUser(this.user.id).subscribe((resp: any) => {
       this.listGroupBar = resp;
       this.listGroupPie = resp;
+      this.listGroup=resp;
       this.moduleService.findByProfessor(this.user.id).subscribe((res: any) => {
         this.listModuleBar = res;
         this.listModulePie = res;

@@ -19,6 +19,7 @@
     "TEACHER": {
       "TOTAL_MODULES": "Number of modules",
       "TOTAL_EXAMS": "Number of exams",
+      "TOTAL_CATCHING_UP": "Number of catchings up",
       "TOTAL_COURSES": "Number of courses",
       "TOTAL_QUIZS": "Number of quizs",
       "TOTAL_STUDENTS": "Number of students",

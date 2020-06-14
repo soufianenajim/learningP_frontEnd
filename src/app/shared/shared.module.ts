@@ -28,7 +28,7 @@ import { TagInputModule } from "ngx-chips";
 import { AnimatorModule } from "css-animator";
 import { ColorPickerModule } from "ngx-color-picker";
 import { CurrencyMaskModule } from "ng2-currency-mask";
-
+import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 //import { SelectModule } from "ng-select";
 import { SelectOptionService } from "./elements/select-option.service";
 import { FormWizardModule } from "angular2-wizard";
@@ -86,6 +86,8 @@ import { TextWidthPipe } from "../core/pipes/text-width.pipe";
     ClickOutsideModule,
     NgSelectModule,
     AngularEditorModule,
+    InfiniteScrollModule,
+
     NotifierModule.withConfig({
       position: {
         // fro custopm configuration visit : https://www.npmjs.com/package/angular-notifier
@@ -169,7 +171,9 @@ import { TextWidthPipe } from "../core/pipes/text-width.pipe";
     AngularEditorModule,
     NgMultiSelectDropDownModule,
     OwlDateTimeModule,
-    TextWidthPipe
+    TextWidthPipe,
+    InfiniteScrollModule,
+
   //  OwlNativeDateTimeModule 
   ],
  

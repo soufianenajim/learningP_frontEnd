@@ -19,10 +19,12 @@ export class DashCardsComponent implements OnInit {
   @Input() isClientAdmin=false;
   @Input() isTechnicalAdmin=false;
   @Input()listGroup;
+  @Input()listModule;
   @Output() changeEvent = new EventEmitter<any>();
 
   searchForm = new FormGroup({
     group: new FormControl(null),
+    module:new FormControl(null),
   });
   constructor() { }
 
@@ -34,6 +36,16 @@ export class DashCardsComponent implements OnInit {
     const group=this.searchForm.get('group').value;
     if(group){
       this.changeEvent.emit(group.id);
+    }
+    else{
+      this.changeEvent.emit(0);   
+    }
+  
+  }
+  onChangeModule(){
+    const module=this.searchForm.get('module').value;
+    if(module){
+      this.changeEvent.emit(module.id);
     }
     else{
       this.changeEvent.emit(0);   

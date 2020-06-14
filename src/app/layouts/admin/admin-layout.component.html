@@ -46,13 +46,13 @@
               <li class="header-notification">
                 <a href="javascript:;" (click)="toggleChat()" class="displayChatbox">
                   <i class="ti-comments"></i>
-                  <span class="badge">9</span>
+                  <span class="badge" *ngIf="countNotReadMessages>0">{{countNotReadMessages}}</span>
                 </a>
               </li>
-              <li class="header-notification" *ngIf="isStudent">
-                <a href="javascript:;" *ngIf="listNotification.length>0">
+              <li class="header-notification" >
+                <a href="javascript:;">
                   <i class="ti-bell"></i>
-                  <span class="badge">{{listNotification.length}}</span>
+                  <span class="badge"  *ngIf="listNotification.length>0">{{listNotification.length}}</span>
                 </a>
                 <ul class="show-notification" *ngIf="listNotification.length>0">
                   <li>
@@ -117,7 +117,7 @@
             <div slimScroll class="main-friend-list scroll-window" width="100%" height="100%" size="7px"
               color="rgb(27, 139, 249)" opacity="0.4">
               <ng-container *ngFor="let user of listUser">
-                <div (click)="toggleChatInner(user)" class="media userlist-box" data-id="18" data-status="online"
+                <!-- <div (click)="toggleChatInner(user)" class="media userlist-box" data-id="18" data-status="online"
                   data-username="Alice" data-toggle="tooltip" data-placement="left" title="Alice">
                   <a class="media-left" href="javascript:;">
                     <img class="media-object img-circle" src="assets/images/avatar-2.png"
@@ -125,9 +125,11 @@
                     <div class="live-status bg-success"></div>
                   </a>
                   <div class="media-body">
-                    <div class="f-13 chat-header">{{user.firstName}} {{user.lastName}}</div>
-                  </div>
-                </div>
+                     <div class="f-13 chat-header">{{user.firstName}} {{user.lastName}}</div> -->
+                   
+                  <!-- </div>
+                </div> --> 
+                <app-chat-user (countMessages)="onCountMessages($event)" [isList]="true" [user]="user" ></app-chat-user>
               </ng-container>
 
 
@@ -137,15 +139,15 @@
       </div>
     </div>
     <!-- rightbar inner chat start-->
-    <div [@slideOnOff]="chatInnerToggle" class="card card_main showChat_inner">
+    <!-- <div [@slideOnOff]="chatInnerToggle" class="card card_main showChat_inner">
       <div class="media chat-inner-header">
         <a class="back_chatBox" (click)="toggleChatInner()">
           <i class="icofont icofont-rounded-left"></i> {{selectedUser?.firstName}} {{selectedUser?.lastName}}
         </a>
       </div>
-      <app-chat-user *ngIf="selectedUser" [user]="selectedUser"></app-chat-user>
+      <app-chat-user [isList]="false" *ngIf="selectedUser" [user]="selectedUser"></app-chat-user>
      
-    </div>
+    </div> -->
     <!-- rightbar inner chat end-->
     <!-- rightbar chat end-->
     <div class="pcoded-main-container">

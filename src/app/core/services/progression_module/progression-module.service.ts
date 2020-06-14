@@ -23,4 +23,10 @@ export class ProgressionModuleService {
   delete(id) {
     return this.httpClient.delete(this.url + "/delete/" + id);
   }
+  getModuleByStudent(idStudent){
+   
+      return this.httpClient.get(this.url+'/getModuleByStudent/'+idStudent);
+  
+    
+  }
 }
