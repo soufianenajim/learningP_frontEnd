@@ -16,8 +16,8 @@
               <td mat-cell *matCellDef="let element"> {{element.module!=null?element.module.name:'---'}} </td>
           </ng-container>
           <ng-container matColumnDef="date">
-            <th mat-header-cell *matHeaderCellDef>{{'COURSE.DATE'| translate }}</th>
-            <td mat-cell *matCellDef="let element"> {{element.updatedAt}} </td>
+            <th mat-header-cell *matHeaderCellDef>{{'DASHBOARD.STUDENT.LAUNCH_DATE'| translate }}</th>
+            <td mat-cell *matCellDef="let element"> {{element.updatedAt| formatToFR:lang==='fr'?'fr':'en':'false'}} </td>
         </ng-container>
 
 

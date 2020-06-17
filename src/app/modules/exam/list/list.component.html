@@ -100,11 +100,11 @@
       </ng-container>
       <ng-container matColumnDef="startTime">
         <th mat-header-cell *matHeaderCellDef> StartTime </th>
-        <td mat-cell *matCellDef="let element" title="{{element?.startDateTime}}"> {{element.startDateTime!=null?element.startDateTime:'---'}} </td>
+        <td mat-cell *matCellDef="let element" title="{{element?.startDateTime}}"> {{element.startDateTime| formatToFR:lang==='fr'?'fr':'en':'true'}} </td>
       </ng-container>
       <ng-container matColumnDef="endTime">
         <th mat-header-cell *matHeaderCellDef> EndTime </th>
-        <td mat-cell *matCellDef="let element" title="{{element?.endDateTime}}"> {{element.endDateTime!=null?element.endDateTime:'---'}} </td>
+        <td mat-cell *matCellDef="let element" title="{{element?.endDateTime}}"> {{element.endDateTime | formatToFR:lang==='fr'?'fr':'en':'true'}} </td>
       </ng-container>
       <ng-container matColumnDef="launch">
         <th mat-header-cell *matHeaderCellDef> {{'ACTION.LAUNCH'| translate}} </th>

@@ -3,7 +3,7 @@ import { MatTableDataSource, MatDialog, MatPaginator } from "@angular/material";
 import { Cour } from "../../../../core/models/cour.model";
 import { Demande } from "../../../../core/models/demande.model";
 import { TokenStorageService } from "../../../../core/services/token_storage/token-storage.service";
-import { TranslateService } from "@ngx-translate/core";
+import { TranslateService, LangChangeEvent } from "@ngx-translate/core";
 import { ModuleService } from "../../../../core/services/module/module.service";
 import { CourseService } from "../../../../core/services/course/course.service";
 import { FormGroup, FormControl } from "@angular/forms";
@@ -25,13 +25,20 @@ export class LatestCourComponent implements OnInit {
   resultsLength;
 
   listModule: any;
-
+  lang;
   constructor(
     private courService: CourseService,
     private translate: TranslateService
   ) {}
   ngOnInit() {
+    this.lang=this.translate.getLangs()[0];
+    this.translate.onLangChange.subscribe((event: LangChangeEvent) => {
+      this.lang=event.lang;
+      console.log('lang',this.lang)
+      this.search(true);
+    });
     this.search(false);
+  
   }
 
   search(bool) {
@@ -40,7 +47,7 @@ export class LatestCourComponent implements OnInit {
     }
     const page = this.paginator.pageIndex;
     const size = this.paginator.pageSize;
-this.cour.student=this.student;
+    this.cour.student=this.student;
     this.demandeCour.model = this.cour;
     this.demandeCour.page = page;
     this.demandeCour.size = size;
@@ -65,11 +72,5 @@ this.cour.student=this.student;
     this.search(true);
   }
 
-  getI18n(name): string {
-    let i18;
-    this.translate.get(name).subscribe((value: string) => {
-      i18 = value;
-    });
-    return i18;
-  }
+
 }

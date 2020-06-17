@@ -8,7 +8,7 @@ import { DetailComponent } from '../detail/detail.component';
 import { SaveOrUpdateComponent } from '../save-or-update/save-or-update.component';
 import { ModuleService } from '../../../core/services/module/module.service';
 import swal from 'sweetalert2';
-import { TranslateService } from '@ngx-translate/core';
+import { TranslateService, LangChangeEvent } from '@ngx-translate/core';
 import { StudentComponent } from '../student/student.component';
 
 @Component({
@@ -25,6 +25,7 @@ export class ListComponent implements OnInit {
 
   exam: Exam = new Exam();
   resultsLength;
+  lang;
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
   listModule: any;
@@ -41,6 +42,11 @@ export class ListComponent implements OnInit {
 
   ) {}
   ngOnInit() {
+    this.lang=this.translateService.getLangs()[0];
+    this.translateService.onLangChange.subscribe((event: LangChangeEvent) => {
+      this.lang=event.lang;
+      this.search(true);
+    });
     this.moduleService.findAll().subscribe(res => {
       console.log("modules in database -------------------------------", res);
       this.listModule = res;

@@ -54,6 +54,7 @@ import { AngularEditorModule } from '@kolkov/angular-editor';
 import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
 import { OwlDateTimeModule, OwlNativeDateTimeModule } from 'ng-pick-datetime';
 import { TextWidthPipe } from "../core/pipes/text-width.pipe";
+import { DateFrFormat } from "../core/pipes/date-fr-format.pipe";
 
 @NgModule({
   imports: [
@@ -123,7 +124,8 @@ import { TextWidthPipe } from "../core/pipes/text-width.pipe";
     ModalAnimationComponent,
     ModalBasicComponent,
     DataFilterPipe,
-    TextWidthPipe
+    TextWidthPipe,
+    DateFrFormat
   ],
   exports: [
     AccordionAnchorDirective,
@@ -172,6 +174,7 @@ import { TextWidthPipe } from "../core/pipes/text-width.pipe";
     NgMultiSelectDropDownModule,
     OwlDateTimeModule,
     TextWidthPipe,
+    DateFrFormat,
     InfiniteScrollModule,
 
   //  OwlNativeDateTimeModule 

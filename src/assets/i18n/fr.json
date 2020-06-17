@@ -16,7 +16,7 @@
     "FUTURE_EXAM":"Future examen",
     "STUDENT": {
       "LATEST_COURSE": "Latest courses",
-      "LATEST_Exam_QUIZ": "Latest Exam and quiz"
+      "LAUNCH_DATE":"Date de lancement"
     },
     "TEACHER": {
       "TOTAL_MODULES": "Nombre des modules",

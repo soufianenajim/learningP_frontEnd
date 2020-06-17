@@ -14,7 +14,8 @@
     "NO_DATA_CHART": "No data available",
     "FUTURE_EXAM":"Future exam",
     "STUDENT": {
-      "LATEST_COURSE": "Latest courses"
+      "LATEST_COURSE": "Latest courses",
+      "LAUNCH_DATE":"Release date"
     },
     "TEACHER": {
       "TOTAL_MODULES": "Number of modules",
