@@ -8,7 +8,9 @@ export class Exam extends Historized {
     public endDateTime?:string,
     public questions?: any[],
     public type?:string,
-    public afterCurrentDate?:boolean
+    public afterCurrentDate?:boolean,
+    public professor?:any,
+    public student?:any
   ) {
     super();
   }

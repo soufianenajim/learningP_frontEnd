@@ -8,7 +8,8 @@ export class Cour extends Historized{
         public module?: any,
         public content?:string,
         public td?: any,
-        public idTeacher?:number
+        public idTeacher?:number,
+        public student?:any
 
     ) {
         super();

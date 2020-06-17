@@ -13,16 +13,19 @@ import { EditComponent } from './components/cardEdit/edit.component';
 import { DashCardsComponent } from './components/dash-cards/dash-cards.component';
 import { ExamModule } from '../modules/exam/exam.module';
 import { FutureTenseExamComponent } from './components/dashboard-teacher/future-tense-exam/future-tense-exam.component';
+import { NoteExamModule } from '../modules/note-exam/note-exam.module';
+import { LatestCourComponent } from './components/dashboard-student/latest-cour/latest-cour.component';
+import { CourseModule } from '../modules/course/course.module';
 
 @NgModule({
   imports: [
     //ExamModule,
+    
       CommonModule,
       RouterModule.forChild(DashboardRoutes),
       SharedModule,
-      
   ],
-  declarations: [DashboardComponent, DashboardStudentComponent, DashboardTeacherComponent, DashboardClientAdminComponent, DashboardTechnicalAdminComponent,EditComponent, DashCardsComponent, FutureTenseExamComponent]
+  declarations: [DashboardComponent, DashboardStudentComponent, DashboardTeacherComponent, DashboardClientAdminComponent, DashboardTechnicalAdminComponent,EditComponent, DashCardsComponent, FutureTenseExamComponent, LatestCourComponent]
 })
 
 export class DashboardModule {}

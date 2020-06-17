@@ -43,7 +43,9 @@ export class DashCardsComponent implements OnInit {
   
   }
   onChangeModule(){
+    
     const module=this.searchForm.get('module').value;
+    console.log('module',module);
     if(module){
       this.changeEvent.emit(module.id);
     }

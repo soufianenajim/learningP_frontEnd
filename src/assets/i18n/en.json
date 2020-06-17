@@ -12,9 +12,9 @@
   },
   "DASHBOARD": {
     "NO_DATA_CHART": "No data available",
+    "FUTURE_EXAM":"Future exam",
     "STUDENT": {
-      "LATEST_COURSE": "Latest courses",
-      "LATEST_Exam_QUIZ": "Latest Exam and quiz"
+      "LATEST_COURSE": "Latest courses"
     },
     "TEACHER": {
       "TOTAL_MODULES": "Number of modules",

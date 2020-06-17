@@ -18,7 +18,7 @@ import { SharedModule } from "../../shared/shared.module";
     SaveOrUpdateComponent,
     DetailComponent
   ],
-
+  exports:[ListComponent]
 
 })
 export class CourseModule {

@@ -199,12 +199,7 @@ export class DashboardTeacherComponent implements OnInit {
     isEmpty = dataSuccess.length === 0 && dataFailed.length === 0;
     const chart = new CanvasJS.Chart("chartContainer", {
       animationEnabled: true,
-      // title: {
-      //   text: "Rate success students  by exam or quiz",
-      //   fontFamily: "arial black",
-      //   fontColor: "#757575",
-      //   fontSize: 20,
-      // },
+
       axisX: {
         labelAngle: 150,
       },

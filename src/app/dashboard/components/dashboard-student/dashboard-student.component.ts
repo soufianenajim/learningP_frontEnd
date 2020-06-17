@@ -43,4 +43,35 @@ export class DashboardStudentComponent implements OnInit {
     );
   }
 
+  onChangeModuleExam(event) {
+    console.log('event',event);
+   this.countExam= this.dashboardService.countExamByStudentAndModuleAndType(
+      this.user.id,
+      event,
+      "EXAM"
+    );
+  }
+  onChangeModuleQuiz(event) {
+    console.log('event',event);
+    this.countQuiz = this.dashboardService.countExamByStudentAndModuleAndType(
+      this.user.id,
+      event,
+      "QUIZ"
+    );
+  }
+
+  onChangeModuleCour(event) {
+    this.countCour = this.dashboardService.countCourseByStudentAndModule(
+      this.user.id,
+      event
+    );
+  }
+  onChangeModuleCatchingUp(event) {
+    this.countCatchingUp = this.dashboardService.countExamByStudentAndModuleAndType(
+      this.user.id,
+      event,
+      "CATCHING_UP"
+    );
+  }
+
 }

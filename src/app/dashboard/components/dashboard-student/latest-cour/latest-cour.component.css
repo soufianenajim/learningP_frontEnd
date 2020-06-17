@@ -1,0 +1,9 @@
+table {
+    width: 100%;
+  }
+ .mat-column-name {
+    width: 35%;
+  }
+.mat-column-module {
+    width: 35%;
+  }

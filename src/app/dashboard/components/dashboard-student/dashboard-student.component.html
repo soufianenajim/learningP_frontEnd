@@ -6,7 +6,7 @@
     [cardDataIcon]="'icofont icofont-book-mark text-primary'"></app-dash-cards>
   </div>
   <div class="col-sm-4">
-    <app-dash-cards [isStudent]="true" [cardName]="'DASHBOARD.TEACHER.TOTAL_COURSES'" [listModule]="listModule" (changeEvent)="onChangeGroupCour($event)"
+    <app-dash-cards [isStudent]="true" [cardName]="'DASHBOARD.TEACHER.TOTAL_COURSES'" [listModule]="listModule" (changeEvent)="onChangeModuleCour($event)"
     [cardData]="(countCour | async) ? (countCour | async) : '0'" [ClassHeaderName]="'card-header-yellow'"
     [cardDataIcon]="'icofont icofont-read-book text-warning'"></app-dash-cards>
   </div>
@@ -16,23 +16,35 @@
     [cardDataIcon]="'icofont icofont-wall-clock text-danger'"></app-dash-cards>
   </div>
   <div class="col-sm-4">
-    <app-dash-cards [isStudent]="true" [cardName]="'DASHBOARD.TEACHER.TOTAL_EXAMS'" [listModule]="listModule" (changeEvent)="onChangeGroupExam($event)"
+    <app-dash-cards [isStudent]="true" [cardName]="'DASHBOARD.TEACHER.TOTAL_EXAMS'" [listModule]="listModule" (changeEvent)="onChangeModuleExam($event)"
     [cardData]="(countExam | async) ? (countExam | async) : '0'" [ClassHeaderName]="'card-header-baby_blue'"
     [cardDataIcon]="'icofont icofont-paper text-primary'"></app-dash-cards>
   </div>
   <div class="col-sm-4">
-    <app-dash-cards [isStudent]="true" [cardName]="'DASHBOARD.TEACHER.TOTAL_CATCHING_UP'" [listModule]="listModule" (changeEvent)="onChangeGroupExam($event)"
+    <app-dash-cards [isStudent]="true" [cardName]="'DASHBOARD.TEACHER.TOTAL_CATCHING_UP'" [listModule]="listModule" (changeEvent)="onChangeModuleCatchingUp($event)"
     [cardData]="(countCatchingUp | async) ? (countCatchingUp | async) : '0'" [ClassHeaderName]="'card-header-baby_blue'"
     [cardDataIcon]="'icofont icofont-paper text-primary'"></app-dash-cards>
   </div>
   <div class="col-sm-4">
-    <app-dash-cards [isStudent]="true"  [cardName]="'DASHBOARD.TEACHER.TOTAL_QUIZS'" [listModule]="listModule" (changeEvent)="onChangeGroupQuiz($event)"
+    <app-dash-cards [isStudent]="true"  [cardName]="'DASHBOARD.TEACHER.TOTAL_QUIZS'" [listModule]="listModule" (changeEvent)="onChangeModuleQuiz($event)"
     [cardData]="(countQuiz | async) ? (countQuiz | async) : '0'" [ClassHeaderName]="'card-header-colbat_blue'"
     [cardDataIcon]="'icofont icofont-paper text-primary'"></app-dash-cards>
   </div>
  
 
 
-
+  <div class="col-md-12">
+  <app-edit-card [title]="'DASHBOARD.FUTURE_EXAM'" >
+    <!-- <app-exam-list></app-exam-list> -->
+    <app-future-tense-exam  [student]="user"></app-future-tense-exam>
+</app-edit-card>
+</div>
+<div class="col-md-12">
+  <app-edit-card [title]="'DASHBOARD.STUDENT.LATEST_COURSE'" >
+    <!-- <app-exam-list></app-exam-list> -->
+    <!-- <app-future-tense-exam  [student]="user"></app-future-tense-exam> -->
+    <app-latest-cour [student]="user"></app-latest-cour>
+</app-edit-card>
+</div>
  
 </div>

@@ -13,6 +13,7 @@
   },
   "DASHBOARD": {
     "NO_DATA_CHART": "Aucune donnée disponible",
+    "FUTURE_EXAM":"Future examen",
     "STUDENT": {
       "LATEST_COURSE": "Latest courses",
       "LATEST_Exam_QUIZ": "Latest Exam and quiz"

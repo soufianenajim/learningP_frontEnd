@@ -11,7 +11,7 @@ import swal from 'sweetalert2';
 import { TranslateService } from "@ngx-translate/core";
 import { TokenStorageService } from "../../../core/services/token_storage/token-storage.service";
 @Component({
-  selector: "app-list",
+  selector: "app-list-cour",
   templateUrl: "./list.component.html",
   styleUrls: ["./list.component.css"],
 })

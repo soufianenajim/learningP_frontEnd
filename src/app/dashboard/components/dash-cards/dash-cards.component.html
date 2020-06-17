@@ -8,7 +8,7 @@
       </ng-select>
     </form>
     <form *ngIf="isStudent" class="col-sm-6 p-0" [formGroup]="searchForm">
-      <ng-select [items]="listModule" bindLabel="name" formControlName="module" (clear)="onClear()" (change)="onChangeGroup()"
+      <ng-select [items]="listModule" bindLabel="name" formControlName="module" (clear)="onClear()" (change)="onChangeModule()"
           placeholder="{{ 'COURSE.SELECT_MODULE' | translate }}">
       </ng-select>
     </form>
