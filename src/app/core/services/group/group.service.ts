@@ -1,10 +1,10 @@
-import { Injectable } from '@angular/core';
+import { Injectable } from "@angular/core";
 import { environment } from "../../../../environments/environment";
-import { HttpClient } from '@angular/common/http';
-import { Group } from '../../models/group.model';
+import { HttpClient } from "@angular/common/http";
+import { Group } from "../../models/group.model";
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: "root",
 })
 export class GroupService {
   url = environment.baseUrl + "/group";
@@ -23,13 +23,21 @@ export class GroupService {
   delete(id) {
     return this.httpClient.delete(this.url + "/delete/" + id);
   }
-findByOrganization(id){
-  return this.httpClient.get(this.url + "/find-by-organization/"+id);
-
+  findByOrganization(id) {
+    return this.httpClient.get(this.url + "/find-by-organization/" + id);
+  }
+  findByUser(id) {
+    return this.httpClient.get(this.url + "/find-by-user/" + id);
+  }
+  findByOrganizationAndLevelAndBranch(idOrg, idLevel, idBranch) {
+    return this.httpClient.get(
+      this.url +
+        "/findByOrganizationAndLevelAndBranch/" +
+        idOrg +
+        "/" +
+        idLevel +
+        "/" +
+        idBranch
+    );
+  }
 }
-findByUser(id){
-  return this.httpClient.get(this.url + "/find-by-user/"+id);
-
-}
-}
-

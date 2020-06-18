@@ -25,6 +25,7 @@
       "TOTAL_COURSES": "Nombre des cours",
       "TOTAL_QUIZS": "Nombre des quizs",
       "TOTAL_STUDENTS": "Nombre étudiants",
+      "TOTAL_TEACHERS": "Nombre des enseignements",
       "GLOBAL_RATE_STUDENTS": "Taux des étudiants réussi",
       "RATE_STUDENTS_BY_EXAM": "Taux des étudiants réussi par examen ou quiz",
       "BELOW_AVERAGE": "Sous la moyenne",
@@ -34,7 +35,11 @@
       "CATCHING_UP":" Rattapage"
     },
     "TECHNICAL_ADMIN": {},
-    "CLIENT_ADMIN": {}
+    "CLIENT_ADMIN": {
+      "TOTAL_LEVELS":"Nombre de niveaux",
+      "TOTAL_BRANCHS":"Nombre de branches",
+      "TOTAL_GROUPS":"Nombre de groupes"
+    }
   },
   "MENU_ITEM": {
     "HOME": "Tableau de bord",

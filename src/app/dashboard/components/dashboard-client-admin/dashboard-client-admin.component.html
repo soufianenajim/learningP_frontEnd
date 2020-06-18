@@ -1,3 +1,76 @@
-<p>
-  dashboard-client-admin works!
-</p>
+<div class="card">
+  <div class="card-header">
+      <h5><i class="fa fa-search" style="margin-right: 4px;"></i>{{'ACTION.SEARCH'|translate}}</h5>
+  </div>
+
+
+  
+  <div class="card-body">
+      <form [formGroup]="searchForm">
+          <div class="row">
+              <div class="col-sm-3">
+                <ng-select [items]="listLevel" bindLabel="name" formControlName="level" (clear)="onClearLevel()" 
+                placeholder="{{ 'MODULE.SELECT_LEVEL' | translate }}">
+            </ng-select>
+              </div>
+              <div class="col-sm-3">
+                <ng-select [items]="listBranch" bindLabel="name" formControlName="branch" (clear)="onClearBranch()" 
+                placeholder="{{ 'MODULE.SELECT_BRANCH' | translate }}">
+            </ng-select>
+              </div>
+              <div class="col-sm-3">
+                <ng-select [items]="listGroup" bindLabel="name" formControlName="group" (clear)="onClearGroup()" 
+                placeholder="{{ 'USER.SELECT_GROUP' | translate }}">
+            </ng-select>
+              </div>
+              <div class="col-sm-3">
+                <div class="form-group row justify-content-center">
+                    <button type="button" style="margin-right: 20px" (click)="search()"
+                        class="btn btn-success btn-md waves-effect waves-light">
+                        <i class="fa fa-search"></i>{{'ACTION.SEARCH'|translate}}
+                    </button>
+                    <button type="button" (click)="reset()" class="btn btn-danger btn-md waves-effect waves-light">
+                        <i class="fa fa-close"></i>{{'ACTION.RESET'|translate}}
+                    </button>
+                </div>
+              </div>
+          </div>
+                    
+
+      </form>
+
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-sm-4">
+    <app-dash-cards  [isClientAdmin]="true" [cardName]="'DASHBOARD.TEACHER.TOTAL_MODULES'" 
+    [cardData]="(countModule | async) ? (countModule | async) : '0'" [ClassHeaderName]="'card-header-azure'"
+    [cardDataIcon]="'icofont icofont-book-mark text-primary'"></app-dash-cards>
+  </div>
+  <div class="col-sm-4">
+    <app-dash-cards [isClientAdmin]="true"  [cardName]="'DASHBOARD.TEACHER.TOTAL_STUDENTS'"  
+    [cardData]="(countStudent | async) ? (countStudent | async) : '0'" [ClassHeaderName]="'card-header-green'"
+    [cardDataIcon]="'icofont icofont-student-alt text-success'"></app-dash-cards>
+  </div>
+  <div class="col-sm-4">
+    <app-dash-cards [isClientAdmin]="true"  [cardName]="'DASHBOARD.TEACHER.TOTAL_TEACHERS'" 
+    [cardData]="(countStudent | async) ? (countStudent | async) : '0'" [ClassHeaderName]="'card-header-green'"
+    [cardDataIcon]="'icofont icofont-teacher text-success'"></app-dash-cards>
+  </div>
+  <div class="col-sm-4">
+    <app-dash-cards [isClientAdmin]="true" [cardName]="'DASHBOARD.CLIENT_ADMIN.TOTAL_LEVELS'" 
+    [cardData]="(countLevel | async) ? (countLevel | async) : '0'" [ClassHeaderName]="'card-header-baby_blue'"
+    [cardDataIcon]="'fa fa-signal text-primary'"></app-dash-cards>
+  </div>
+  <div class="col-sm-4">
+    <app-dash-cards [isClientAdmin]="true" [cardName]="'DASHBOARD.CLIENT_ADMIN.TOTAL_BRANCHS'"
+    [cardData]="(countBranch | async) ? (countBranch | async) : '0'" [ClassHeaderName]="'card-header-baby_blue'"
+    [cardDataIcon]="'fa fa-institution text-primary'"></app-dash-cards>
+  </div>
+  <div class="col-sm-4">
+    <app-dash-cards [isClientAdmin]="true"  [cardName]="'DASHBOARD.CLIENT_ADMIN.TOTAL_GROUPS'" [listModule]="listModule" (changeEvent)="onChangeModuleQuiz($event)"
+    [cardData]="(countGroup | async) ? (countGroup | async) : '0'" [ClassHeaderName]="'card-header-colbat_blue'"
+    [cardDataIcon]="'fa fa-building-o text-primary'"></app-dash-cards>
+  </div>
+</div>

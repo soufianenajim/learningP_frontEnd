@@ -24,6 +24,7 @@
       "TOTAL_COURSES": "Number of courses",
       "TOTAL_QUIZS": "Number of quizs",
       "TOTAL_STUDENTS": "Number of students",
+      "TOTAL_TEACHERS": "Number of teachers",
       "GLOBAL_RATE_STUDENTS": "Successful student rate",
       "RATE_STUDENTS_BY_EXAM": "Rate of successful students per exam or quiz",
       "BELOW_AVERAGE": "Below average",
@@ -33,7 +34,12 @@
       "CATCHING_UP": "Catching up"
     },
     "TECHNICAL_ADMIN": {},
-    "CLIENT_ADMIN": {}
+    "CLIENT_ADMIN": {
+      "TOTAL_LEVELS":"Number of levels",
+      "TOTAL_BRANCHS":"Number of branchs",
+      "TOTAL_GROUPS":"Number of groups"
+
+    }
   },
   "MENU_ITEM": {
     "HOME": "Dashboard",

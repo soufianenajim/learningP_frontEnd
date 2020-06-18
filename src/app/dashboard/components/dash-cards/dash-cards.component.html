@@ -1,4 +1,4 @@
-<div class="card client-blocks {{ClassHeaderName}}">
+<div class="card client-blocks {{ClassHeaderName}}"  >
   <div class="card-block"  style="min-height: 7rem;">
     <div class="row">
     <h6 class="col-sm-6">{{cardName | translate}}</h6>
@@ -12,14 +12,15 @@
           placeholder="{{ 'COURSE.SELECT_MODULE' | translate }}">
       </ng-select>
     </form>
+  
   </div>
-    <ul>
-      <li>
-        <i class="{{cardDataIcon}}"></i>
-      </li>
-      <li class="text-right {{cardDataClass}}">
-        {{cardData}}
-      </li>
-    </ul>
+  <ul >
+    <li>
+      <i class="{{cardDataIcon}}"></i>
+    </li>
+    <li class="text-right {{cardDataClass}}" style="margin-left: 1rem;">
+      {{cardData}}
+    </li>
+  </ul>
   </div>
 </div>
