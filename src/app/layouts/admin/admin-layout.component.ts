@@ -26,6 +26,7 @@ import { UserService } from "../../core/services/user/user.service";
 import { Notifications } from "../../core/models/notification.model";
 import moment from "moment";
 import { SharedService } from "../../core/services/shared/shared.service";
+import { Router } from "@angular/router";
 export interface Options {
   heading?: string;
   removeFooter?: boolean;
@@ -119,7 +120,8 @@ export class AdminLayoutComponent implements OnInit, AfterViewInit {
     private authenticasionService: AuthenticationService,
     private tokenStorageService: TokenStorageService,
     private userService: UserService,
-    private sharedService: SharedService
+    private sharedService: SharedService, 
+    private router: Router,
   ) {
     const scrollHeight = window.screen.height - 150;
     this.innerHeight = scrollHeight + "px";
@@ -280,6 +282,9 @@ export class AdminLayoutComponent implements OnInit, AfterViewInit {
     this.isScrolled = false;
   }
   logout() {
-    this.authenticasionService.logout();
+    this.authenticasionService.logout().subscribe(resp=>{
+      localStorage.clear();
+      this.router.navigate(['login']);
+    });
   }
 }

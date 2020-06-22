@@ -4,19 +4,18 @@
     "MODULE": "Module",
     "START_DATE": "Date début",
     "END_DATE": "Date fin",
-    "SELECT_TYPE":"Sélectionner un type",
+    "SELECT_TYPE": "Sélectionner un type",
     "PLACEHOLDER": {
       "START_DATE": "Choisir la date de début (format jj/mm/aaaa)",
       "END_DATE": "Choisir la date de fin (format jj/mm/aaaa)"
-    
-  }
+    }
   },
   "DASHBOARD": {
     "NO_DATA_CHART": "Aucune donnée disponible",
-    "FUTURE_EXAM":"Future examen",
+    "FUTURE_EXAM": "Future examen",
     "STUDENT": {
       "LATEST_COURSE": "Latest courses",
-      "LAUNCH_DATE":"Date de lancement"
+      "LAUNCH_DATE": "Date de lancement"
     },
     "TEACHER": {
       "TOTAL_MODULES": "Nombre des modules",
@@ -32,13 +31,14 @@
       "GREATHER_AVERAGE": "Supérieur à la moyenne",
       "SUCCESS": "Validé",
       "FAILURE": "Non validé",
-      "CATCHING_UP":" Rattapage"
+      "CATCHING_UP": " Rattapage"
     },
     "TECHNICAL_ADMIN": {},
     "CLIENT_ADMIN": {
-      "TOTAL_LEVELS":"Nombre de niveaux",
-      "TOTAL_BRANCHS":"Nombre de branches",
-      "TOTAL_GROUPS":"Nombre de groupes"
+      "TOTAL_LEVELS": "Nombre de niveaux",
+      "TOTAL_BRANCHS": "Nombre de branches",
+      "TOTAL_GROUPS": "Nombre de groupes",
+      "TOTAL_USER_CONNECTED": "Nombre d'utilisateurs connectés"
     }
   },
   "MENU_ITEM": {
@@ -52,7 +52,7 @@
     "PROFESSOR_SPACE": "Espace Professeur",
     "QUIZ": "Quiz",
     "EXAM": "Examen",
-    "PERSONALIZATION":"Personnalisation"
+    "PERSONALIZATION": "Personnalisation"
   },
   "ACTION": {
     "SEARCH": "Rechercher",
@@ -85,7 +85,7 @@
   "MODULE": {
     "NAME": "Nom",
     "SELECT_SESSION": "Selectionner une session",
-    "SESSION":"Session",
+    "SESSION": "Session",
     "MODULE": "Module",
     "COEFFICIENT": "Coefficient",
     "PROFESSOR": "Professeur",
@@ -132,9 +132,9 @@
     "LAUNCHED_MESSAGE": "le cour à été lancé ",
     "DELETE": "Supprimer cour ?",
     "DELETED": "Le cour a été supprimé avec succés.",
-    "ATTACHMENT":{
-      "ADD":"Ajouter une pièce jointe",
-      "LIST":"Pièces jointes",
+    "ATTACHMENT": {
+      "ADD": "Ajouter une pièce jointe",
+      "LIST": "Pièces jointes",
       "DELETE": "Supprimer la pièce jointe ?",
       "DELETE1": "Supprimer la pièce jointe",
       "DELETED": "La pièce jointe a été supprimée.."
@@ -293,9 +293,9 @@
     "SCALE_INTERVAL": "Le barème doit être comprise entre 5 et 100",
     "MARKS_MESSAGE": "Entrez les valeurs des marques, et vous pouvez changer l'ordre des questions par glisser-déposer des questions",
     "ADD_QUESTION": "Ajouter question",
-    "EXAM":"Examen",
-    "QUIZ":"Quiz",
-    "CATCHING_UP":"Rattapage"
+    "EXAM": "Examen",
+    "QUIZ": "Quiz",
+    "CATCHING_UP": "Rattapage"
   },
   "ROLE": {
     "STUDENT": "Étudiant",
@@ -303,13 +303,13 @@
     "ADMIN_CLIENT": "Administrateur Client",
     "ADMIN_TECHNIQUE": "Administrateur Technique"
   },
-  "SESSION":{
-    "EXAM":"Examens",
-    "CATCHING_UP":"Rattrapage",
-    "EXAM_PERIOD":"Période des examens",
-    "EXAM_PERIOD_MESSAGE":" Doit étre compris entre date début et date fin de session ",
-    "CATCHING_UP_PERIOD":"Période de rattrapage",
-    "CATCHING_UP_PERIOD_MESSAGE":" Doit étre supérieur au date fin de période des examens et inférieur au date fin de session",
+  "SESSION": {
+    "EXAM": "Examens",
+    "CATCHING_UP": "Rattrapage",
+    "EXAM_PERIOD": "Période des examens",
+    "EXAM_PERIOD_MESSAGE": " Doit étre compris entre date début et date fin de session ",
+    "CATCHING_UP_PERIOD": "Période de rattrapage",
+    "CATCHING_UP_PERIOD_MESSAGE": " Doit étre supérieur au date fin de période des examens et inférieur au date fin de session",
     "SAVE_SUCCESS": "Session enregistré avec succès",
     "EXIST": "Cette session existe déjà!",
     "DELETE": "Supprimer session ?",
@@ -318,20 +318,20 @@
   "PERSONALIZATION": {
     "BEFORE_CATCHING_UP": "Avant rattrapage",
     "AFTER_CATCHING_UP": "Après rattrapage",
-    "MESSAGE_BEFORE_CATCHING_UP":"Pourriez spécifier les pourcentages avant le rattrapage",
-    "MESSAGE_AFTER_CATCHING_UP":"Pourriez spécifier les pourcentages après le rattrapage ",
+    "MESSAGE_BEFORE_CATCHING_UP": "Pourriez spécifier les pourcentages avant le rattrapage",
+    "MESSAGE_AFTER_CATCHING_UP": "Pourriez spécifier les pourcentages après le rattrapage ",
     "TOTAL_PERCENTAGE_BEFORE_CATCHING_UP": "Total des pourcentages avant rattrapage doit étre égal 100 !",
     "TOTAL_PERCENTAGE_AFTER_CATCHING_UP": "Total des pourcentages après rattrapage doit étre égal 100 !",
-    "PERCENTAGE_CALCUL":"Le calcule de pourcentage",
-    "CATCHUP_THRESHOLD":"Seuil de rattrapage",
-    "SUCCESS_THRESHOLD":"Seuil de réussite",
-    "SCALE":"Barème",
-    "HIGHER_EDUCATION":"Enseignement supérieur",
-    "PRIMARY_EDUCATION":"Enseignment primaire ou secondaire",
-    "TIME_ZONE":"Fuseau horaire",
-    "SELECT_TIME_ZONE":"Sélectionner le fuseau horaire du pays",
-    "COUNTRY":"Pay",
-    "ADDRESS":"Addresse"
+    "PERCENTAGE_CALCUL": "Le calcule de pourcentage",
+    "CATCHUP_THRESHOLD": "Seuil de rattrapage",
+    "SUCCESS_THRESHOLD": "Seuil de réussite",
+    "SCALE": "Barème",
+    "HIGHER_EDUCATION": "Enseignement supérieur",
+    "PRIMARY_EDUCATION": "Enseignment primaire ou secondaire",
+    "TIME_ZONE": "Fuseau horaire",
+    "SELECT_TIME_ZONE": "Sélectionner le fuseau horaire du pays",
+    "COUNTRY": "Pay",
+    "ADDRESS": "Addresse"
   },
   "ORGANIZATION": {
     "EDIT": "Modifier organisme ",
@@ -354,23 +354,23 @@
     "DELETABLE": "Autoriser la suppression de l'organisme",
     "OUI": "Oui",
     "NON": "Non",
-    "LOGO":"Logo",
+    "LOGO": "Logo",
     "NUMBER_USER": "Nombre d'utilisateurs",
     "NUMBER_ADMIN": "Nombre d'administrateurs",
-    "LIST_ADMIN":"Historique des connexions du ",
-    "LICENCE":"License",
-    "EXPIRATION":"Expiration (jour)" ,
-    "NUMBER_CONNEXION":"Nombre de connexions",
+    "LIST_ADMIN": "Historique des connexions du ",
+    "LICENCE": "License",
+    "EXPIRATION": "Expiration (jour)",
+    "NUMBER_CONNEXION": "Nombre de connexions",
     "PLACEHOLDER": {
-        "NAME": "Saisir le nom de l'organisme",
-        "ADRESSE": "Saisir l'adresse",
-        "PHONE": "Saisir le n° téléphone (ex: +212600000000)",
-        "COUNTRY": "Sélectionner le pays",
-        "TIME_ZONE_SELECT": "Sélectionner le fuseau horaire du pays",
-        "TIME_OF_BLOCK_SELECT": "Sélectionner le délai de blocage d'un compte (en minutes)",
-        "NBR_ATTEMPT_SELECT": "Sélectionner le nombre de tentatives d'échec d'authentification autorisé"
+      "NAME": "Saisir le nom de l'organisme",
+      "ADRESSE": "Saisir l'adresse",
+      "PHONE": "Saisir le n° téléphone (ex: +212600000000)",
+      "COUNTRY": "Sélectionner le pays",
+      "TIME_ZONE_SELECT": "Sélectionner le fuseau horaire du pays",
+      "TIME_OF_BLOCK_SELECT": "Sélectionner le délai de blocage d'un compte (en minutes)",
+      "NBR_ATTEMPT_SELECT": "Sélectionner le nombre de tentatives d'échec d'authentification autorisé"
     }
-},
+  },
   "EMAIL": "Email",
   "COMPONENTS": "Composants",
   "ACCORDION": "Accordéon",

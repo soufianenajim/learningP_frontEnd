@@ -37,7 +37,8 @@
     "CLIENT_ADMIN": {
       "TOTAL_LEVELS":"Number of levels",
       "TOTAL_BRANCHS":"Number of branchs",
-      "TOTAL_GROUPS":"Number of groups"
+      "TOTAL_GROUPS":"Number of groups",
+      "TOTAL_USER_CONNECTED":"Number of connected users"
 
     }
   },

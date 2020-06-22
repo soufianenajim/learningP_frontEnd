@@ -21,6 +21,9 @@
     <li class="text-right {{cardDataClass}}" style="margin-left: 1rem;">
       {{cardData}}
     </li>
+    <li *ngIf="cardData1" class="text-right {{cardDataClass}}" style="margin-left: 1rem;">
+     / {{cardData1}}
+    </li>
   </ul>
   </div>
 </div>

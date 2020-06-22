@@ -58,6 +58,19 @@ export class DashboardService {
         idModule
     );
   }
+  getAverageSuccessStudentByOrg(idOrg, idLevel, idBranch,idGroup) {
+    return this.httpClient.get(
+      this.url +
+        "/getAverageSuccessStudentByOrg/" +
+        idOrg+
+        "/" +
+        idLevel +
+        "/" +
+        idBranch+
+        "/"+
+        idGroup
+    );
+  }
   countModuleByStudent(idStudent) {
     return this.httpClient.get(this.url + "/countModuleByStudent/" + idStudent);
   }
@@ -126,5 +139,8 @@ export class DashboardService {
   }
   countGroupByOrganizationAndLevelAndBranch(idOrg, idLevel, idBranch) {
     return this.httpClient.get(this.url + "/countGroupByOrganizationAndLevelAndBranch/" + idOrg+"/"+idLevel+"/"+idBranch);  
+  }
+  countOnlineUserByOrganization(idOrg){
+    return this.httpClient.get(this.url + "/countOnlineUserByOrganization/" + idOrg);  
   }
 }

@@ -10,6 +10,7 @@ export class DashCardsComponent implements OnInit {
 
   @Input() cardName: any;
   @Input() cardData: any;
+  @Input() cardData1: any;
   @Input() cardDataClass: any;
   @Input() cardDataIcon: any;
   @Input() styleHeader: any;

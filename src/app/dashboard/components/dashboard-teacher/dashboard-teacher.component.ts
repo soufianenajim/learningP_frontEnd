@@ -270,19 +270,7 @@ export class DashboardTeacherComponent implements OnInit {
       });
     
     console.log('dataSuccess',dataSuccess);
-    // } else if (data.length > 1) {
-    //   let validatedStudent = 0;
-    //   let notValidatedStudent = 0;
-    //   data.forEach((element) => {
-    //     validatedStudent += (element[2] * 100) / element[1];
-    //     notValidatedStudent += ((element[1] - element[2]) * 100) / element[1];
-    //   });
-    //   dataSuccess.push(new DataPie(validatedStudent / data.length, this.getI18n("DASHBOARD.TEACHER.SUCCESS"),"#2ecc71"));
-    //   dataSuccess.push(
-    //     new DataPie(notValidatedStudent / data.length, this.getI18n("DASHBOARD.TEACHER.FAILURE"),"rgba(255, 16, 16, 0.69)")
-    //   );
-    // }
-
+  
     const chart1 = new CanvasJS.Chart("chartContainer1", {
       theme: "light2", // "light1", "light2", "dark1", "dark2"
       animationEnabled: true,
@@ -304,9 +292,7 @@ export class DashboardTeacherComponent implements OnInit {
     });
     chart1.render();
   }
-  //   onChangeGroupExamGraph(event){
-  // this.getChartBar(this.user.id,event);
-  //   }
+  
   onChangeGroupBar() {
     const group = this.barSearchForm.get("group").value;
     this.barSearchForm.get("module").setValue(null);

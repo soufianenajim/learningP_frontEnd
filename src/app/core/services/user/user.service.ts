@@ -3,7 +3,7 @@ import { CrudService } from "../crud/crud.service";
 import { HttpClient } from "@angular/common/http";
 import { environment } from "../../../../environments/environment";
 import { User } from "../../models/user.model";
-import { of } from "rxjs";
+import { of, Observable } from "rxjs";
 
 @Injectable({
   providedIn: "root"
@@ -42,4 +42,7 @@ export class UserService {
     return of([]);
     
   }
+  timeOfBlock(email: String): Observable<any> {
+    return this.httpClient.post(this.url+"/timeOfBlock", email);
+}
 }
