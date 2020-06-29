@@ -4,7 +4,7 @@
       <i class="icofont icofont-rounded-left"></i> {{user?.firstName}} {{user?.lastName}}
     </a>
   </div>
-  <div style="height: 34rem;max-height: 34rem;" class="container" infiniteScroll [infiniteScrollDistance]="1" [infiniteScrollThrottle]="50" (scrolledUp)="onScroll()" [scrollWindow]="false">
+  <div style="height: 30rem;max-height: 30rem;" class="container" infiniteScroll [infiniteScrollDistance]="1" [infiniteScrollThrottle]="50" (scrolledUp)="onScroll()" [scrollWindow]="false">
     <!-- <cdk-virtual-scroll-viewport itemSize="5"> -->
       <div *ngFor="let message of messages">
         

@@ -5,6 +5,6 @@
 
 export const environment = {
   production: false,
-  baseUrl: 'http://localhost:8080/learning_backEnd/api',
+  baseUrl: 'http://192.168.1.107:8081/learning_backEnd/api',
 
 };
